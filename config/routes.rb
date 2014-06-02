@@ -1,5 +1,6 @@
 Servicetrac::Application.routes.draw do
 
+  devise_for :users
   namespace :admin do
     resources :service_centers
     root to: "admin#index"
@@ -7,6 +8,7 @@ Servicetrac::Application.routes.draw do
     resources :eobr_models
     resources :eobr_makes
   end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
