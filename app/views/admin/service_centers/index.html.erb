@@ -1,7 +1,16 @@
-<h1>Listing admin_service_centers</h1>
+    <div class="container">
 
-<table>
-  <thead>
+    <div class="serch-fld">
+          <label class="margin-top">Service Alert </label>
+           <span class="align-right">
+              <input class="form-control" type="search">
+                <input value="" class="search-submit" type="submit" />
+            </span>
+           
+        </div>  
+<div class="table-responsive">
+   <table class="table-striped table-bordered table-condensed" width="100%"> 
+    <thead>
     <tr>
       <th>Name</th>
       <th>State</th>
@@ -37,7 +46,8 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
 
 <%= link_to 'New Service center', new_admin_service_center_path %>
+</div>

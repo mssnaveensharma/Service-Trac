@@ -61,6 +61,10 @@ class Admin::EobrMakesController < ApplicationController
     end
   end
 
+  def getmodal
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_eobr_make

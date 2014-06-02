@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 20140602130833) do
     t.datetime "updated_at"
   end
 
+  create_table "service_center_reviews", force: true do |t|
+    t.integer  "user_id"
+    t.string   "comments"
+    t.integer  "service_center_id"
+    t.integer  "ratings"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -79,5 +88,13 @@ ActiveRecord::Schema.define(version: 20140602130833) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "vehicle_locations", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "latitude"
+    t.integer  "longitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

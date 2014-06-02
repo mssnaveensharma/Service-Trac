@@ -1,6 +1,15 @@
-<h1>Listing admin_companies</h1>
+    <div class="container">
 
-<table>
+    <div class="serch-fld">
+          <label class="margin-top">Service Alert </label>
+           <span class="align-right">
+              <input class="form-control" type="search">
+                <input value="" class="search-submit" type="submit" />
+            </span>
+           
+        </div>  
+<div class="table-responsive">
+   <table class="table-striped table-bordered table-condensed" width="100%"> 
   <thead>
     <tr>
       <th>Companyname</th>
@@ -21,7 +30,7 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
-
 <%= link_to 'New Company', new_admin_company_path %>
+</div>

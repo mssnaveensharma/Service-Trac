@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  s_no: 1
+  make: MyString
+  model: MyString
+
+two:
+  s_no: 1
+  make: MyString
+  model: MyString
