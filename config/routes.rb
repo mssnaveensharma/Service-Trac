@@ -12,7 +12,7 @@ Servicetrac::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-
+  resources :users
 
   resources :admin_eobr_makes do
     collection  do

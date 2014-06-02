@@ -51,11 +51,33 @@ ActiveRecord::Schema.define(version: 20140602130833) do
     t.datetime "updated_at"
   end
 
+  create_table "electronics", force: true do |t|
+    t.integer  "s_no"
+    t.string   "make"
+    t.string   "model"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "service_center_reviews", force: true do |t|
     t.integer  "user_id"
     t.string   "comments"
     t.integer  "service_center_id"
     t.integer  "ratings"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "service_centers", force: true do |t|
+    t.string   "name"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "pin"
+    t.integer  "telephone"
+    t.integer  "fax"
+    t.string   "email"
+    t.string   "url"
+    t.string   "contact_person"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
