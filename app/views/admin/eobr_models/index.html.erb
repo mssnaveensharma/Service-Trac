@@ -1,0 +1,38 @@
+    <div class="container">
+
+    <div class="serch-fld">
+          <label class="margin-top">Service Alert </label>
+           <span class="align-right">
+              <input class="form-control" type="search">
+                <input value="" class="search-submit" type="submit" />
+            </span>
+           
+        </div>  
+<div class="table-responsive">
+   <table class="table-striped table-bordered table-condensed" width="100%">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Eobrmake</th>
+      <th>Actions</th>
+<!--       <th></th>
+      <th></th> -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_eobr_models.each do |admin_eobr_model| %>
+       <tr>
+        <td><%= admin_eobr_model.Name %></td>
+        <td><%= admin_eobr_model.EobrMake_id%></td>
+        <td><%= link_to 'Edit', edit_admin_eobr_model_path(admin_eobr_model) %>
+        <%= link_to 'Destroy', admin_eobr_model, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Eobr model', new_admin_eobr_model_path %>
+</div>

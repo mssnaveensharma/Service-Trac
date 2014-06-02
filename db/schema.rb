@@ -11,10 +11,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140602110335) do
+ActiveRecord::Schema.define(version: 20140602121950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admin_companies", force: true do |t|
+    t.string   "CompanyName"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "admin_eobr_makes", force: true do |t|
+    t.string   "Name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "admin_eobr_models", force: true do |t|
+    t.string   "Name"
+    t.integer  "EobrMake_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_eobr_models", ["EobrMake_id"], name: "index_admin_eobr_models_on_EobrMake_id", using: :btree
+
+  create_table "admin_service_centers", force: true do |t|
+    t.string   "Name"
+    t.string   "State"
+    t.string   "City"
+    t.string   "Pin"
+    t.string   "Tel"
+    t.string   "Fax"
+    t.string   "Email"
+    t.string   "Url"
+    t.string   "ContactPerson"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "electronics", force: true do |t|
     t.integer  "s_no"

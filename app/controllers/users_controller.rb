@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    @electronic = Electronic.all
+    @electronic = Admin::EobrMake.all
   end
 
   # GET /users/1/edit

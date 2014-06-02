@@ -1,0 +1,38 @@
+    <div class="container">
+
+    <div class="serch-fld">
+          <label class="margin-top">Service Alert </label>
+           <span class="align-right">
+              <input class="form-control" type="search">
+                <input value="" class="search-submit" type="submit" />
+            </span>
+           
+        </div>  
+<%= form_for(@admin_eobr_model) do |f| %>
+  <% if @admin_eobr_model.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_eobr_model.errors.count, "error") %> prohibited this admin_eobr_model from being saved:</h2>
+
+      <ul>
+      <% @admin_eobr_model.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= select("admin_eobr_model", "EobrMake_id", Admin::EobrMake.all.collect {|e| [ e.Name, e.id ] }, { include_blank: "Select Make" }, :class => "slct" ) %>
+
+<!--   <div class="field">
+    <%= f.label :EobrMake_id %><br>
+    <%= f.text_field :EobrMake_id %>
+  </div> -->
+  <div class="field">
+    <%= f.label :Name %><br>
+    <%= f.text_field :Name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>

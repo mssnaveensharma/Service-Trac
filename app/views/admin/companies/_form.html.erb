@@ -1,0 +1,34 @@
+    <div class="container">
+
+    <div class="serch-fld">
+          <label class="margin-top">Service Alert </label>
+           <span class="align-right">
+              <input class="form-control" type="search">
+                <input value="" class="search-submit" type="submit" />
+            </span>
+           
+        </div>  
+<%= form_for(@admin_company) do |f| %>
+  <% if @admin_company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_company.errors.count, "error") %> prohibited this admin_company from being saved:</h2>
+
+      <ul>
+      <% @admin_company.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :CompanyName %><br>
+    <%= f.text_field :CompanyName %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <%= link_to 'Back', admin_companies_path %>
+
+<% end %>
+</div>

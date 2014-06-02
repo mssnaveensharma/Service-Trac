@@ -3,7 +3,7 @@
     var make_id = id;
       if(make_id != '' && make_id != null) {
         $.ajax({
-          url:"/electronics/getmodal?make="+make_id,
+          url:"/admin/eobr_make/getmodal?make="+make_id,
           dataType: "json",
           success: function (modal) {
             //console.log(modal);
@@ -57,13 +57,13 @@
   <%= form_for(@user) do |f| %>
     <div>
       <label>EORB Make</label>
-       <%= select("user", "e_make", Electronic.all.collect {|e| [ e.make, e.make ] }, { include_blank: "Select Make" }, :onchange => "getModal(this.value)", :class => "slct" ) %>
+       <%= select("user", "e_make", Admin::EobrMake.all.collect {|e| [ e.Name, e.Name ] }, { include_blank: "Select Make" },  :class => "slct" ) %>
       <%#= f.text_field :e_make %> 
     </div>
     <div>
       <label>EORB Model</label>
       <%#= f.text_field :e_model %> 
-        <%= select("user", "e_model", Electronic.all.collect {|e| [ e.model, e.id ] }, { include_blank: "Select Make" }, :class => "slct" ) %>
+        <%= select("user", "e_model", Admin::EobrModel.all.collect {|e| [ e.Name, e.id ] }, { include_blank: "Select Model" }, :class => "slct" ) %>
     </div>
     <div>
     <label>EORB No</label>
@@ -87,7 +87,7 @@
     </div>
     <div>
       <label>Company Name</label>
-      <%= f.text_field :company_name %> 
+      <%= select("user", "company_name", Admin::Company.all.collect {|e| [ e.CompanyName, e.id ] }, { include_blank: "Select Company" }, :class => "slct" ) %>
     </div>
     <div>
       <label>First Name</label>
