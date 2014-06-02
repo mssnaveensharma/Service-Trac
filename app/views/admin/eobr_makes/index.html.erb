@@ -1,0 +1,27 @@
+<h1>Listing admin_eobr_makes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_eobr_makes.each do |admin_eobr_make| %>
+      <tr>
+        <td><%= admin_eobr_make.Name %></td>
+        <td><%= link_to 'Show', admin_eobr_make %></td>
+        <td><%= link_to 'Edit', edit_admin_eobr_make_path(admin_eobr_make) %></td>
+        <td><%= link_to 'Destroy', admin_eobr_make, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Eobr make', new_admin_eobr_make_path %>

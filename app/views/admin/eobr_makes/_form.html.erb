@@ -1,0 +1,21 @@
+<%= form_for(@admin_eobr_make) do |f| %>
+  <% if @admin_eobr_make.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_eobr_make.errors.count, "error") %> prohibited this admin_eobr_make from being saved:</h2>
+
+      <ul>
+      <% @admin_eobr_make.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Name %><br>
+    <%= f.text_field :Name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

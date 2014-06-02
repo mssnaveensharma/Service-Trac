@@ -1,0 +1,27 @@
+<h1>Listing admin_companies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Companyname</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_companies.each do |admin_company| %>
+      <tr>
+        <td><%= admin_company.CompanyName %></td>
+        <td><%= link_to 'Show', admin_company %></td>
+        <td><%= link_to 'Edit', edit_admin_company_path(admin_company) %></td>
+        <td><%= link_to 'Destroy', admin_company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Company', new_admin_company_path %>
