@@ -1,4 +1,5 @@
 Servicetrac::Application.routes.draw do
+  devise_for :users
   namespace :admin do
     resources :service_centers
     root to: "admin#index"
