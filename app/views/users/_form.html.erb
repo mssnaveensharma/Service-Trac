@@ -1,0 +1,109 @@
+<script type="text/javascript">
+  function getModal(id) {       // get the the modals on selecting the make
+    var make_id = id;
+      if(make_id != '' && make_id != null) {
+        $.ajax({
+          url:"/electronics/getmodal?make="+make_id,
+          dataType: "json",
+          success: function (modal) {
+            //console.log(modal);
+            var modal_length = modal.length;
+            var modal_id = "";
+            var modal_name = "";
+            var modal_list = "";
+            $.each([modal], function(index, value){
+              for(var i = 0; i < modal_length; i++) {
+                //console.log(value[i]['model']);
+                var modal_id = modal[i].id;
+                var modal_name = modal[i].model;
+                  modal_list+='<option value="'+modal_id+'">'+modal_name+'</option>';
+              }
+              var modal_first = "<option>Select Modal</option>"
+              $('#user_e_model').children().remove().end().append(modal_first+modal_list);
+            });
+          },error: function(xhr, text) {
+            console.log("Error http code is "+xhr.status);
+          }
+        });
+      }
+  }
+</script>
+   <div class="container">
+
+    <div class="serch-fld">
+          <label class="margin-top">Service Alert </label>
+           <span class="align-right">
+              <input class="form-control" type="search">
+                <input value="" class="search-submit" type="submit" />
+            </span>
+           
+        </div>  
+<h1>New User</h1>
+
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this app_user from being saved:</h2>
+
+      <ul>
+      <% @app_user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+  <%= form_for(@user) do |f| %>
+    <div>
+      <label>EORB Make</label>
+       <%= select("user", "e_make", Electronic.all.collect {|e| [ e.make, e.make ] }, { include_blank: "Select Make" }, :onchange => "getModal(this.value)", :class => "slct" ) %>
+      <%#= f.text_field :e_make %> 
+    </div>
+    <div>
+      <label>EORB Model</label>
+      <%#= f.text_field :e_model %> 
+        <%= select("user", "e_model", Electronic.all.collect {|e| [ e.model, e.id ] }, { include_blank: "Select Make" }, :class => "slct" ) %>
+    </div>
+    <div>
+    <label>EORB No</label>
+      <%= f.text_field :e_no %> 
+    </div>
+    <div>
+      <label>Truck Number</label>
+      <%= f.text_field :truck_number %> 
+    </div>
+    <div>
+      <label>Truck Make</label>
+      <%= f.text_field :truck_make %> 
+    </div>
+    <div>
+      <label>Truck Year</label>
+      <%= f.text_field :truck_year %> 
+    </div>
+    <div>
+      <label>Owner Operator</label>
+      <%= f.text_field :truck_owner %> 
+    </div>
+    <div>
+      <label>Company Name</label>
+      <%= f.text_field :company_name %> 
+    </div>
+    <div>
+      <label>First Name</label>
+      <%= f.text_field :first_name %> 
+    </div>
+    <div>
+    <label>Last Name</label>
+      <%= f.text_field :last_name %> 
+    </div>
+    <div>
+      <label>Language</label>
+      <%= f.text_field :language %> 
+    </div>
+
+    <%=  f.submit :value=>'Create' ,:class=>'crt-btn'%> 
+    <%= link_to 'Back', users_path %>
+  <% end %>
+  </div>
+<% end %>

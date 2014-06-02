@@ -3,8 +3,17 @@ Servicetrac::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'welcome#index'
 
+  resources :users 
+
+  resources :electronics do
+    collection  do
+      get 'getmodal' 
+    end
+  end
+
+  #   get 'register' => 'welcome#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  e_no: 1
+  e_make: MyString
+  e_model: MyString
+  truck_number: 1
+  truck_make: MyString
+  truck_year: 2014-06-02
+  truck_owner: 1
+  company_name: MyString
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  language: MyString
+  role: MyString
+
+two:
+  e_no: 1
+  e_make: MyString
+  e_model: MyString
+  truck_number: 1
+  truck_make: MyString
+  truck_year: 2014-06-02
+  truck_owner: 1
+  company_name: MyString
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  language: MyString
+  role: MyString
