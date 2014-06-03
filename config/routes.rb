@@ -6,9 +6,9 @@ Servicetrac::Application.routes.draw do
 
   resources :messages
 
-  devise_for :users do
-    post 'NewUser'
-  end
+  devise_for :user 
+
+  resources :user
 
   namespace :admin do
     resources :service_centers
