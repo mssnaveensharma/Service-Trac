@@ -1,5 +1,9 @@
 Servicetrac::Application.routes.draw do
 
+  namespace :admin do
+    resources :tech_supports
+  end
+
   resources :messages
 
   devise_for :users do

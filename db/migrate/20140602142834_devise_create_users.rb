@@ -21,12 +21,13 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :EobrNumber
       t.integer :eobr_model_id
       t.integer :eobr_make_id
+      t.string :company_id
       t.integer :TruckNumber
       t.string :TruckYear
       t.string :TruckOwner
       t.string :FirstName
       t.string :LastName
-      t.string :CompanyName
+      
       t.string :Role
       t.string :Language 
       ## Confirmable
