@@ -1,27 +1,37 @@
-<h1>Listing admin_tech_supports</h1>
-
-<table>
+<div class="container">
+    <div class="serch-fld">
+          <label class="margin-top">Service Alert </label>
+           <span class="align-right">
+              <input class="form-control" type="search">
+                <input value="" class="search-submit" type="submit" />
+            </span>
+           
+        </div> 
+<h1>Listing Tech Support</h1>
+ <div class="table-responsive">
+          <table class="table-striped table-bordered table-condensed" width="100%">
   <thead>
     <tr>
+      <th>Date/Time</th>
       <th>Supportdescription</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Actions</th>
+      <!-- <th></th> -->
     </tr>
   </thead>
 
   <tbody>
     <% @admin_tech_supports.each do |admin_tech_support| %>
       <tr>
+        <td><%= admin_tech_support.created_at %></td>
         <td><%= admin_tech_support.SupportDescription %></td>
-        <td><%= link_to 'Show', admin_tech_support %></td>
-        <td><%= link_to 'Edit', edit_admin_tech_support_path(admin_tech_support) %></td>
-        <td><%= link_to 'Destroy', admin_tech_support, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_admin_tech_support_path(admin_tech_support) %>
+        <%= link_to 'Destroy', admin_tech_support, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
 
 <%= link_to 'New Tech support', new_admin_tech_support_path %>
+</div>

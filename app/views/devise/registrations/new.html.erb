@@ -43,7 +43,7 @@ $(document).ready(function (){
            
         </div>  
 <h2>Sign up</h2>
-<div style="color:#fff;">
+<div >
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
@@ -74,6 +74,9 @@ $(document).ready(function (){
   	<div><%= f.label :TruckNumber %><br />
   		<%= f.text_field :TruckNumber %>
 
+  	<div><%= f.label :truckmake %><br />
+  		<%= f.text_field :truckmake %>
+
   	<div><%= f.label :TruckYear %><br />
   		<%= f.text_field :TruckYear %>
   		
@@ -82,6 +85,7 @@ $(document).ready(function (){
   		
   	<div><%= f.label :CompanyName %><br />
   		<%= select("user", "CompanyName", Admin::Company.all.collect {|c| [ c.CompanyName, c.id ] }, { include_blank: "Select Company" }, :class => "slct" ) %>
+
 
    	<div><%= f.label :Language %><br />
   		<%= f.text_field :Language %>
