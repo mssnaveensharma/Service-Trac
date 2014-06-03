@@ -20,7 +20,6 @@ class Admin::EobrMakesController < ApplicationController
   # GET /admin/eobr_makes/1/edit
   def edit
   end
-
   # POST /admin/eobr_makes
   # POST /admin/eobr_makes.json
   def create
