@@ -8,7 +8,7 @@ $(document).ready(function (){
     var make_id = id;
       if(make_id != '' && make_id != null) {
         $.ajax({
-          url:"/admin/eobr_makes/getmodal?make="+make_id,
+          url:"/admin/eobr_makes/getmodal?make_id="+make_id,
           dataType: "json",
           success: function (modal) {
             //console.log(modal);
@@ -89,6 +89,9 @@ $(document).ready(function (){
 	</div>
   	<div><%= f.label :CompanyName %><br />
   		<%= select("user", "CompanyName", Admin::Company.all.collect {|c| [ c.CompanyName, c.id ] }, { include_blank: "Select Company" }, :class => "slct" ) %>
+
+  	<div><label>Driver Assistence</label><br />
+  		<%= select("user", "tech_support", Admin::TechSupport.all.collect {|t| [ t.SupportDescription, t.id ] }, { include_blank: "Driver Assistence" }, :class => "slct" ) %>
 
 
    	<div><%= f.label :Language %><br />

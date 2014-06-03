@@ -11,7 +11,9 @@ class UsersController < ApplicationController
   def create
   end
 
-  
+  def register_app_user
+    
+  end
 
  
   

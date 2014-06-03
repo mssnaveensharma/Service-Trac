@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :company
-  belongs_to :tech_support
+  #belongs_to :tech_support
   belongs_to :eobr_make
   belongs_to :eobr_model
 
@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   validates :LastName, presence: true
   validates :email, presence: true
   validates :encrypted_password, presence: true
-  validates :password_confirmation, presence: true
+  validates :tech_support, presence: true
   validates :Language, presence: true
 
 end

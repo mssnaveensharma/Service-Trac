@@ -35,6 +35,7 @@ Servicetrac::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
+  post 'register_app_user' => 'users#register_app_user'
   #resources :users
 
   
