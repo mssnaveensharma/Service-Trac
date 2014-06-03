@@ -1,9 +1,14 @@
-<script>
+<script type="text/javascript">
+$(document).ready(function (){
+  var modal_first = "<option>Select Modal</option>";
+   $('#user_eobr_model_id').children().remove().end().append(modal_first);
+   //console.log(modal_first);
+});
   function getModal(id) {       // get the the modals on selecting the make
     var make_id = id;
       if(make_id != '' && make_id != null) {
         $.ajax({
-          url:"/admin/eobr_makes/getmodal?make="+make_id,
+          url:"/admin/eobr_makes/getmodal?make_id="+make_id,
           dataType: "json",
           success: function (modal) {
             //console.log(modal);
@@ -40,91 +45,54 @@
 <h2>Sign up</h2>
 <div >
 <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this app_user from being saved:</h2>
+     <div><%= f.label :FirstName %><br />
+      <%= f.text_field :FirstName %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <div><%= f.label :LastName %><br />
+      <%= f.text_field :LastName %>
 
-  <div class="actions">
-  <%= form_for(@user) do |f| %>
-    <div>
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, autofocus: true %></div>
 
-    <label>First Name</label>
-      <%= f.text_field :FirstName %> 
-    </div>
-    <div>
-    <label>Last Name</label>
-      <%= f.text_field :LastName %> 
-    </div>
+  <div><%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "off" %></div>
 
-    <div>
-    <label>Email</label>
-      <%= f.text_field :email %> 
-    </div>
+  <div><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+   
+   <div><%= f.label :EobrNumber %><br />
+      <%= f.text_field :EobrNumber %>
 
-    <div>
-    <label>Password</label>
-      <%= f.text_field :encrypted_password %> 
-    </div>
-
-      <div><%= f.label :eobr_make_id %>
+    <div><%= f.label :eobr_make_id %><br />
        <%= select("user", "eobr_make_id", Admin::EobrMake.all.collect {|e| [ e.Name, e.id ] }, { include_blank: "Select Make", },:onchange => "getModal(this.value)",  :class => "slct" ) %>
-      <%#= f.text_field :e_make %> 
-    </div>
-    <div><%= f.label :eobr_model_id %>
+
+    <div><%= f.label :eobr_model_id %><br />
       <%= select("user", "eobr_model_id", Admin::EobrModel.all.collect {|e| [ e.Name, e.id ] }, { include_blank: "Select Model" }, :class => "slct" ) %>
-    <div>
-    <label>EORB No</label>
-      <%= f.text_field :EobrNumber %> 
-    </div>
-    <div>
-      <label>Truck Number</label>
-      <%= f.text_field :TruckNumber %> 
-    </div>
-    <div>
-      <label>Truck Make</label>
-      <%= f.text_field :truckmake %> 
-    </div>
-    <div>
-      <label>Truck Year</label>
-      <%= f.text_field :TruckYear %> 
-    </div>
-    <div>
-      <label>Owner Operator</label>
-      <%= f.text_field :TruckOwner %> 
-    </div>
-    <div><%= f.label :CompanyName %>
+
+    <div><%= f.label :TruckNumber %><br />
+      <%= f.text_field :TruckNumber %>
+
+    <div><%= f.label :truckmake %><br />
+      <%= f.text_field :truckmake %>
+
+    <div><%= f.label :TruckYear %><br />
+      <%= f.text_field :TruckYear %>
+      
+    <div><%= f.label :TruckOwner %><br />
+      <%= f.text_field :TruckOwner %>
+      
+    <div><%= f.label :CompanyName %><br />
       <%= select("user", "CompanyName", Admin::Company.all.collect {|c| [ c.CompanyName, c.id ] }, { include_blank: "Select Company" }, :class => "slct" ) %>
-    <div>
-    
-    <div>
-      <label>Language</label>
-      <%= f.text_field :Language %> 
-    </div>
 
-    <%=  f.submit :value=>'Add/Update' ,:class=>'crt-btn'%> 
 
-  <% end %>
+    <div><%= f.label :Language %><br />
+      <%= f.text_field :Language %>
+
+  <div><%= f.submit "Sign up",:style => "color:#000;" %>
+      <%= render "devise/shared/links" %>
   </div>
 <% end %>
 
 
-
 </div>
 </div>
-<% if(action_name == 'new') %>
-<script type="text/javascript">
-$(document).ready(function (){
-  var modal_first = "<option>Select Modal</option>";
-   $('#user_eobr_model_id').children().remove().end().append(modal_first);
-   //console.log(modal_first);
-});
-</script>
-<% end %>

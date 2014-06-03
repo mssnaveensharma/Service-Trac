@@ -1,14 +1,21 @@
 Servicetrac::Application.routes.draw do
 
+  get "users/index"
+  get "users/show"
+  get "users/new"
+  get "users/create"
+  get "users/update"
+  get "users/edit"
+  get "users/destroy"
   namespace :admin do
     resources :tech_supports
   end
 
   resources :messages
 
-  devise_for :user 
+  devise_for :users 
 
-  resources :user
+  #resources :user
 
   namespace :admin do
     resources :service_centers
@@ -28,7 +35,7 @@ Servicetrac::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  resources :users
+  #resources :users
 
   
   #   get 'register' => 'welcome#index'

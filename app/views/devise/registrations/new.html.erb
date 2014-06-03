@@ -80,9 +80,13 @@ $(document).ready(function (){
   	<div><%= f.label :TruckYear %><br />
   		<%= f.text_field :TruckYear %>
   		
-  	<div><%= f.label :TruckOwner %><br />
-  		<%= f.text_field :TruckOwner %>
-  		
+	<div><label>Owner Opertor</label></div>
+	<div>
+		<select name="user[TruckOwner]">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</select>
+	</div>
   	<div><%= f.label :CompanyName %><br />
   		<%= select("user", "CompanyName", Admin::Company.all.collect {|c| [ c.CompanyName, c.id ] }, { include_blank: "Select Company" }, :class => "slct" ) %>
 

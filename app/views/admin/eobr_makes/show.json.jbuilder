@@ -1,1 +1,1 @@
-json.extract! @admin_eobr_make, :id, :Name, :created_at, :updated_at
+json.extract! @models, :id, :EobrMake_id, :Name, :created_at, :updated_at
