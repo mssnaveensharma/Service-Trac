@@ -1,0 +1,27 @@
+<h1>Listing admin_tech_supports</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Supportdescription</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_tech_supports.each do |admin_tech_support| %>
+      <tr>
+        <td><%= admin_tech_support.SupportDescription %></td>
+        <td><%= link_to 'Show', admin_tech_support %></td>
+        <td><%= link_to 'Edit', edit_admin_tech_support_path(admin_tech_support) %></td>
+        <td><%= link_to 'Destroy', admin_tech_support, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tech support', new_admin_tech_support_path %>
