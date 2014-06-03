@@ -21,5 +21,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,message: "is not valid" }
   validates :password, presence: true
   validates :tech_support_id, presence: true
+  validates :Contact, presence: true, numericality: { only_integer: true, message: "is not a valid number" }
   
 end

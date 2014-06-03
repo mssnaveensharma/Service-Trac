@@ -13,13 +13,14 @@ class UsersController < ApplicationController
   end
 
   def register_app_user
-    if(params[:email] and params[:password] and params[:FirstName] and params[:LastName] and params[:EobrNumber] and params[:eobr_make_id] and params[:eobr_model_id] and params[:TruckNumber] and params[:truckmake] and params[:TruckYear] and params[:TruckOwner] and params[:CompanyName] and params[:tech_support] )
+    if(params[:email] and params[:password] and params[:FirstName] and params[:LastName] and params[:EobrNumber] and params[:eobr_make_id] and params[:eobr_model_id] and params[:TruckNumber] and params[:truckmake] and params[:TruckYear] and params[:TruckOwner] and params[:CompanyName] and params[:tech_support] and params[:Contact] )
       @response = User.create({
           :email=>params[:email],
           :password=>params[:password],
           :FirstName=>params[:FirstName],
           :LastName=>params[:LastName],
           :EobrNumber=>params[:EobrNumber],
+          :Contact=>params[:Contact],
           :eobr_make_id=>params[:eobr_make_id],
           :eobr_model_id=>params[:eobr_model_id],
           :TruckNumber=>params[:TruckNumber],
