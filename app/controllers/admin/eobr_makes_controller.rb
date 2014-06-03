@@ -61,8 +61,18 @@ class Admin::EobrMakesController < ApplicationController
     end
   end
 
-  def getmodal
-
+def getmodal      #get the modal when the make is selected
+    if(params[:make] != '' and params[:make] != nil)
+      @models =  Admin::EobrModel.where(:EobrMake_id => params[:make])
+      respond_to do |format|
+          format.json {render :layout=>false , :json => @models}   #return the json response to ajax
+      end
+    else
+      @models = {"success" => 0 , "message" => "No modals for selected make"}
+      respond_to do |format|
+          format.json {render :layout=>false , :json => @models}   #return the json response to ajax
+      end
+    end
   end
 
   private

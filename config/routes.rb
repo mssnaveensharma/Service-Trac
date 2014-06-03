@@ -1,12 +1,21 @@
 Servicetrac::Application.routes.draw do
 
-  devise_for :users
+  resources :messages
+
+  devise_for :users do
+    post 'NewUser'
+  end
+
   namespace :admin do
     resources :service_centers
     root to: "admin#index"
     resources :companies
     resources :eobr_models
-    resources :eobr_makes
+    resources :eobr_makes do
+      collection  do
+        get 'getmodal' 
+      end
+    end
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
@@ -17,11 +26,6 @@ Servicetrac::Application.routes.draw do
 
   resources :users
 
-  resources :admin_eobr_makes do
-    collection  do
-      get 'getmodal' 
-    end
-  end
   
   #   get 'register' => 'welcome#index'
   # Example of regular route:

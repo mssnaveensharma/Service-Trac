@@ -5,17 +5,16 @@ Servicetrac::Application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
-
   # Do not eager load code on boot.
   config.eager_load = false
-
+  config.log_level = :debug
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
-
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -26,4 +25,12 @@ Servicetrac::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :address => "email-smtp.us-west-2.amazonaws.com",
+      :user_name => "AKIAJZ557T6WQWIJZHDQ",
+      :password => "AtjuD40eQ1H96irPGEGolxkoF7G8XZasYfMXGq0qzQiO",
+      :authentication => :login,
+      :enable_starttls_auto => true
+  }
 end
