@@ -74,8 +74,8 @@ $(document).ready(function (){
   	<div><%= f.label :TruckNumber %><br />
   		<%= f.text_field :TruckNumber %>
 
-  	<div><%= f.label :truckmake %><br />
-  		<%= f.text_field :truckmake %>
+  	<div><%= f.label :TruckMake %><br />
+  		<%= f.text_field :TruckMake %>
 
   	<div><%= f.label :TruckYear %><br />
   		<%= f.text_field :TruckYear %>
@@ -87,11 +87,11 @@ $(document).ready(function (){
 			<option value="0">No</option>
 		</select>
 	</div>
-  	<div><%= f.label :CompanyName %><br />
-  		<%= select("user", "CompanyName", Admin::Company.all.collect {|c| [ c.CompanyName, c.id ] }, { include_blank: "Select Company" }, :class => "slct" ) %>
+  	<div><%= f.label :company_id %><br />
+  		<%= select("user", "company_id", Admin::Company.all.collect {|c| [ c.CompanyName, c.id ] }, { include_blank: "Select Company" }, :class => "slct" ) %>
 
   	<div><label>Driver Assistence</label><br />
-  		<%= select("user", "tech_support", Admin::TechSupport.all.collect {|t| [ t.SupportDescription, t.id ] }, { include_blank: "Driver Assistence" }, :class => "slct" ) %>
+  		<%= select("user", "tech_support_id", Admin::TechSupport.all.collect {|t| [ t.SupportDescription, t.id ] }, { include_blank: "Driver Assistence" }, :class => "slct" ) %>
 
 
    	<div><%= f.label :Language %><br />

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603095645) do
+ActiveRecord::Schema.define(version: 20140602160223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,20 +74,6 @@ ActiveRecord::Schema.define(version: 20140603095645) do
     t.datetime "updated_at"
   end
 
-  create_table "service_centers", force: true do |t|
-    t.string   "name"
-    t.string   "city"
-    t.string   "state"
-    t.integer  "pin"
-    t.integer  "telephone"
-    t.integer  "fax"
-    t.string   "email"
-    t.string   "url"
-    t.string   "contact_person"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -102,49 +88,23 @@ ActiveRecord::Schema.define(version: 20140603095645) do
     t.string   "EobrNumber"
     t.integer  "eobr_model_id"
     t.integer  "eobr_make_id"
+    t.integer  "tech_support_id"
+    t.string   "TruckMake"
+    t.string   "company_id"
     t.integer  "TruckNumber"
     t.string   "TruckYear"
     t.string   "TruckOwner"
     t.string   "FirstName"
     t.string   "LastName"
-    t.string   "CompanyName"
     t.string   "Role"
     t.string   "Language"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "lat"
     t.string   "lan"
-    t.string   "truckmake"
-    t.string   "tech_support"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "vehicle_locations", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "latitude"
-    t.integer  "longitude"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "views", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "views", ["email"], name: "index_views_on_email", unique: true, using: :btree
-  add_index "views", ["reset_password_token"], name: "index_views_on_reset_password_token", unique: true, using: :btree
 
 end

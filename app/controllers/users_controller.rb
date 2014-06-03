@@ -23,11 +23,11 @@ class UsersController < ApplicationController
           :eobr_make_id=>params[:eobr_make_id],
           :eobr_model_id=>params[:eobr_model_id],
           :TruckNumber=>params[:TruckNumber],
-          :truckmake=>params[:truckmake],
+          :TruckMake=>params[:truckmake],
           :TruckYear=>params[:TruckYear],
           :TruckOwner=>params[:TruckOwner],
-          :CompanyName=>params[:CompanyName],
-          :tech_support=>params[:tech_support],
+          :company_id=>params[:CompanyName],
+          :tech_support_id=>params[:tech_support],
           :Language=>params[:Language]
         });
 
