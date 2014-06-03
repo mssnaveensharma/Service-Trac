@@ -36,6 +36,8 @@ Servicetrac::Application.routes.draw do
   root 'welcome#index'
 
   post 'register_app_user' => 'users#register_app_user'
+
+  post 'login' => 'users#login'
   #resources :users
 
   
