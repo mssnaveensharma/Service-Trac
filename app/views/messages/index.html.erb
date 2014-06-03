@@ -1,31 +1,39 @@
-<h1>Listing messages</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Fromuserid</th>
-      <th>Touserid</th>
-      <th>Messagecontent</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+		<div class="container">
 
-  <tbody>
-    <% @messages.each do |message| %>
-      <tr>
-        <td><%= message.FromUserId %></td>
-        <td><%= message.ToUserId %></td>
-        <td><%= message.MessageContent %></td>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+			<div class="serch-fld">
+					<label class="margin-top">Listing messages</label>
+			</div>  
+	<div class="col-sm-4 white-bg message-center">
+	</div>
+	<%=debug @users%>
+	<div class="col-sm-8">
+		<table>
+			<thead>
+				<tr>
+					<th>Fromuserid</th>
+					<th>Touserid</th>
+					<th>Messagecontent</th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
 
-<br>
-
-<%= link_to 'New Message', new_message_path %>
+			<tbody>
+				<% @messages.each do |message| %>
+					<tr>
+						<td><%= message.FromUserId %></td>
+						<td><%= message.ToUserId %></td>
+						<td><%= message.MessageContent %></td>
+						<td><%= link_to 'Show', message %></td>
+						<td><%= link_to 'Edit', edit_message_path(message) %></td>
+						<td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<br>
+		<%= link_to 'New Message', new_message_path %>
+		</div>
+	</div>
