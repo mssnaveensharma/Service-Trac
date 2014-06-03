@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   belongs_to :tech_support
   belongs_to :eobr_make
   belongs_to :eobr_model
+  
 end
