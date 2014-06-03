@@ -18,9 +18,8 @@ class User < ActiveRecord::Base
   validates :CompanyName, presence: true
   validates :FirstName, presence: true
   validates :LastName, presence: true
-  validates :email, presence: true
-  validates :encrypted_password, presence: true
+  validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,message: "is not valid" }
+  validates :password, presence: true
   validates :tech_support, presence: true
-  validates :Language, presence: true
-
+  
 end
