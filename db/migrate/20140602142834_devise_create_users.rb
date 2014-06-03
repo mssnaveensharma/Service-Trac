@@ -21,6 +21,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :EobrNumber
       t.integer :eobr_model_id
       t.integer :eobr_make_id
+      t.integer :tech_support_id
+      t.integer :TruckMake
       t.string :company_id
       t.integer :TruckNumber
       t.string :TruckYear
