@@ -22,4 +22,13 @@ class User < ActiveRecord::Base
   validates :password, presence: true
   validates :tech_support, presence: true
   
+  def self.authenticate(email, password)
+    user = find_by_email(email)
+    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+      user
+    else
+      nil
+    end
+  end
+  
 end
