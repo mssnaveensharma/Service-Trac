@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  TOKEN = "244438447039356867795f41713761393c446c393a4e5f3a6535595f24"
+  
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate
   def index
