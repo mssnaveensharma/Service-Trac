@@ -21,9 +21,9 @@
       <th>Email</th>
       <th>Url</th>
       <th>Contactperson</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Location</th>
+      <th>Actions</th>
+      <!-- <th></th> -->
     </tr>
   </thead>
 
@@ -39,9 +39,10 @@
         <td><%= admin_service_center.Email %></td>
         <td><%= admin_service_center.Url %></td>
         <td><%= admin_service_center.ContactPerson %></td>
-        <td><%= link_to 'Show', admin_service_center %></td>
-        <td><%= link_to 'Edit', edit_admin_service_center_path(admin_service_center) %></td>
-        <td><%= link_to 'Destroy', admin_service_center, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= admin_service_center.lat %>/<%= admin_service_center.lan %></td>
+        <!-- <td><%= link_to 'Show', admin_service_center %></td> -->
+        <td><%= link_to 'Edit', edit_admin_service_center_path(admin_service_center) %>
+        <%= link_to 'Destroy', admin_service_center, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
