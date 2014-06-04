@@ -1,4 +1,5 @@
 class ServiceAlertsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   before_action :set_service_alert, only: [:show, :edit, :update, :destroy]
 
   # GET /service_alerts
@@ -63,16 +64,23 @@ class ServiceAlertsController < ApplicationController
 
   def driver_status
     if(params[:user_id] !='' and params[:service_center_id] !='' and params[:status] !='')
-        @alerts = ServiceAlert.create({
-            :user_id=>params[:user_id],
-            :service_center_id=>params[:service_center_id],
-            :status=>params[:status]
-          });
-        if(@alerts.id !='' and @alerts.id !=nil)
-          return render :json => {:success => "true", :message => "User location is updated succesfully"}
-        else
-          return render :json => {:success => "false", :message => @alerts..errors}
-        end
+        @check_diver = ServiceAlert.where(:user_id => params[:user_id])
+          if(@check_diver.length != 0 and @check_diver.length != nil)
+            update = ServiceAlert.where(:user_id => params[:user_id]).update(params)
+              return render :json => {:success => "true", :message => "Alert is updated succesfully",}
+          else
+             @alerts = ServiceAlert.create({
+              :user_id=>params[:user_id],
+              :service_center_id=>params[:service_center_id],
+              :status=>params[:status]
+            });
+              if(@alerts.id !='' and @alerts.id !=nil)
+                return render :json => {:success => "true", :message => "New alert is added successfully"}
+              else
+                return render :json => {:success => "false", :message => @alerts.errors}
+              end
+          end
+        
 
       else
         return render :json => {:success => "false", :message => "Missing perameters or invalid request method"}

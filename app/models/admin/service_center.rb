@@ -1,6 +1,7 @@
 class Admin::ServiceCenter < ActiveRecord::Base
 	validates :Name, presence: true
 	validates :State, presence: true
+	validates :StateCode, presence: true
 	validates :City, presence: true
 	validates :Pin, presence: true, numericality: { only_integer: true, message: "is not a valid number" }
 	validates :Tel, presence: true, numericality: { only_integer: true, message: "is not a valid number" }
