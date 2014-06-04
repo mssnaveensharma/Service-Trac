@@ -90,7 +90,7 @@ class ServiceAlertsController < ApplicationController
                 end
             end
         else
-          return render :json => {:success => "false", :message => "User not exists ot invalid service center id"}
+          return render :json => {:success => "false", :message => "User not exists or invalid service center id"}
         end
       else
         return render :json => {:success => "false", :message => "Missing perameters or invalid request method"}
