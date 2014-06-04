@@ -62,7 +62,7 @@ class ServiceAlertsController < ApplicationController
   end
 
   def driver_status
-    if(params[:user_id] !='' and params[:service_center_id] !='' and [:status] !='')
+    if(params[:user_id] !='' and params[:service_center_id] !='' and params[:status] !='')
         @alerts = ServiceAlert.create({
             :user_id=>params[:user_id],
             :service_center_id=>params[:service_center_id],
