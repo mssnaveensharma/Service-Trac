@@ -64,27 +64,32 @@ class ServiceAlertsController < ApplicationController
 
   def driver_status
     if(params[:user_id] !='' and params[:service_center_id] !='' and params[:status] !='')
-        @check_diver = ServiceAlert.where(:user_id => params[:user_id])  #check for existence
-          if(@check_diver.length != 0 and @check_diver.length != nil)    #if found
-              @update = ServiceAlert.where('user_id= ?', params[:user_id]).update_all(service_center_id: params[:service_center_id],status: params[:status])
-                if(@update == 1)  
-                  return render :json => {:success => "true", :message => "Alert is updated succesfully"}
+        @chk_user = User.where(:id => params[:user_id])
+        @chk_center = Admin::ServiceCenter.where(:id => params[:service_center_id])
+         if(@chk_user.length != 0 and @chk_center.length != 0)
+          @check_diver = ServiceAlert.where(:user_id => params[:user_id])  #check for existence
+            if(@check_diver.length != 0 and @check_diver.length != nil)    #if found
+                @update = ServiceAlert.where('user_id= ?', params[:user_id]).update_all(service_center_id: params[:service_center_id],status: params[:status])
+                  if(@update == 1)  
+                    return render :json => {:success => "true", :message => "Alert is updated succesfully"}
+                  else
+                    return render :json => {:success => "false", :message => @update.errors}
+                  end
+            else
+               @alerts = ServiceAlert.create({
+                :user_id=>params[:user_id],
+                :service_center_id=>params[:service_center_id],
+                :status=>params[:status]
+              });
+                if(@alerts.id !='' and @alerts.id !=nil)
+                  return render :json => {:success => "true", :message => "New alert is added successfully"}
                 else
-                  return render :json => {:success => "true", :message => @update.errors}
+                  return render :json => {:success => "false", :message => @alerts.errors}
                 end
-          else
-             @alerts = ServiceAlert.create({
-              :user_id=>params[:user_id],
-              :service_center_id=>params[:service_center_id],
-              :status=>params[:status]
-            });
-              if(@alerts.id !='' and @alerts.id !=nil)
-                return render :json => {:success => "true", :message => "New alert is added successfully"}
-              else
-                return render :json => {:success => "false", :message => @alerts.errors}
-              end
-          end
-        
+            end
+         else
+            return render :json => {:success => "false", :message => "Invalid user id or service center not exists"}
+         end 
 
       else
         return render :json => {:success => "false", :message => "Missing perameters or invalid request method"}
