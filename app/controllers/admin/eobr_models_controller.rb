@@ -1,6 +1,6 @@
 class Admin::EobrModelsController < ApplicationController
   before_action :set_admin_eobr_model, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user! , only: [:create, :edit, :update, :destroy,:new]
   # GET /admin/eobr_models
   # GET /admin/eobr_models.json
   def index

@@ -1,6 +1,6 @@
 class Admin::ServiceCentersController < ApplicationController
   before_action :set_admin_service_center, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user! , only: [:create, :edit, :update, :destroy,:new]
   # GET /admin/service_centers
   # GET /admin/service_centers.json
   def index
