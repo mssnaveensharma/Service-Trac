@@ -49,7 +49,8 @@
                                 <td><%= center.City %>/<%= center.State %></td>
                                 <td>TODO</td>
                                 <% @status = JSON.parse(service_alert.status) %>
-                                 
+                                  <%=debug "Driver's current Latitude is "+@status['lat']+" and longitude is "+@status['lan'] %>
+                                  <%=debug "Service center Latitude is "+center.lat+"and longitude is "+center.lan %>
                                 <td><%= center.lat%>/<%= center.lan %></td>
                               <% end %>
                             <% else %>
