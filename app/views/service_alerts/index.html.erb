@@ -11,9 +11,6 @@
     
         <div class="table-responsive">
           <table class="table-striped table-bordered table-condensed" width="100%">
-            <% @service_alerts.each do |service_alert| %>
-
-            <% end %>
               <thead>
                     <tr>
                         <th><h4>DATE/TIME</h4></th>
@@ -28,117 +25,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>01/15/14 1:36AM</td>
-                        <td>K986712</td>
-                        <td>Anderson Andy </td>
-                        <td>904-999-999</td>
-                        <td>SelectComm</td>
-                        <td>Jacksonville, FL</td>
-                        <td><a> <%= image_tag "rating.png" , :alt => 'Service center ratings' %></a></td>
-                        <td>In-Route</td>
-                    </tr>
-                     <tr>
-                        <td>01/15/14 1:36AM</td>
-                        <td>K986712</td>
-                        <td>Anderson Andy </td>
-                        <td>904-999-999</td>
-                        <td>SelectComm</td>
-                        <td>Jacksonville, FL</td>
-                        <td><a> <%= image_tag "rating.png" , :alt => 'Service center ratings' %></a></td>
-                        <td>In-Route</td>
-                    </tr>
-                     <tr>
-                        <td>01/15/14 1:36AM</td>
-                        <td>K986712</td>
-                        <td>Anderson Andy </td>
-                        <td>904-999-999</td>
-                        <td>SelectComm</td>
-                        <td>Jacksonville, FL</td>
-                        <td><a> <%= image_tag "rating.png" , :alt => 'Service center ratings' %></a></td>
-                        <td>In-Route</td>
-                    </tr>
-                     <tr>
-                        <td>01/15/14 1:36AM</td>
-                        <td>K986712</td>
-                        <td>Anderson Andy </td>
-                        <td>904-999-999</td>
-                        <td>SelectComm</td>
-                        <td>Jacksonville, FL</td>
-                        <td><a> <%= image_tag "rating.png" , :alt => 'Service center ratings' %></a></td>
-                        <td>In-Route</td>
-                    </tr>
-                     <tr>
-                        <td>01/15/14 1:36AM</td>
-                        <td>K986712</td>
-                        <td>Anderson Andy </td>
-                        <td>904-999-999</td>
-                        <td>SelectComm</td>
-                        <td>Jacksonville, FL</td>
-                        <td><a> <%= image_tag "rating.png" , :alt => 'Service center ratings' %></a></td>
-                        <td>In-Route</td>
-                    </tr>
-                     <tr>
-                        <td>01/15/14 1:36AM</td>
-                        <td>K986712</td>
-                        <td>Anderson Andy </td>
-                        <td>904-999-999</td>
-                        <td>SelectComm</td>
-                        <td>Jacksonville, FL</td>
-                        <td><a> <%= image_tag "rating.png" , :alt => 'Service center ratings' %></a></td>
-                        <td>In-Route</td>
-                    </tr>
-                     <tr>
-                        <td>01/15/14 1:36AM</td>
-                        <td>K986712</td>
-                        <td>Anderson Andy </td>
-                        <td>904-999-999</td>
-                        <td>SelectComm</td>
-                        <td>Jacksonville, FL</td>
-                        <td><a> <%= image_tag "rating.png" , :alt => 'Service center ratings' %></a></td>
-                        <td>In-Route</td>
-                    </tr>
-                    <tr>
-                        <td>01/15/14 1:36AM</td>
-                        <td>K986712</td>
-                        <td>Anderson Andy </td>
-                        <td>904-999-999</td>
-                        <td>SelectComm</td>
-                        <td>Jacksonville, FL</td>
-                        <td><a> <%= image_tag "rating.png" , :alt => 'Service center ratings' %></a></td>
-                        <td>In-Route</td>
-                    </tr>
-                    <tr>
-                        <td>01/15/14 1:36AM</td>
-                        <td>K986712</td>
-                        <td>Anderson Andy </td>
-                        <td>904-999-999</td>
-                        <td>SelectComm</td>
-                        <td>Jacksonville, FL</td>
-                        <td><a> <%= image_tag "rating.png" , :alt => 'Service center ratings' %></a></td>
-                        <td>In-Route</td>
-                    </tr>
-                    <tr>
-                        <td>01/15/14 1:36AM</td>
-                        <td>K986712</td>
-                        <td>Anderson Andy </td>
-                        <td>904-999-999</td>
-                        <td>SelectComm</td>
-                        <td>Jacksonville, FL</td>
-                        <td><a> <%= image_tag "rating.png" , :alt => 'Service center ratings' %></a></td>
-                        <td>In-Route</td>
-                    </tr>
-                    <tr>
-                        <td>01/15/14 1:36AM</td>
-                        <td>K986712</td>
-                        <td>Anderson Andy </td>
-                        <td>904-999-999</td>
-                        <td>SelectComm</td>
-                        <td>Jacksonville, FL</td>
-                        <td><a> <%= image_tag "rating.png" , :alt => 'Service center ratings' %></a></td>
-                        <td>In-Route</td>
-                    </tr>
-                    
+                    <% @service_alerts.each do |service_alert| %>
+                      <tr>
+                        <td><%= service_alert.updated_at %></td>
+                          <% @drivers = User.where(:id => service_alert.user_id) %>
+                            <% if(@drivers.length != 0) %>
+                              <% @drivers.each do |driver| %>
+                              <%#=debug service_alert %>
+                                <td><%= driver.TruckNumber %></td>
+                                <td><%= driver.FirstName%>&nbsp;&nbsp;<%= driver.LastName%></td>
+                                <td><%= driver.Contact %></td>
+                              <% end %>
+                            <% else %>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            <% end %>
+                          <% @centers = Admin::ServiceCenter.where(:id => service_alert.service_center_id)%>
+                            <% if(@centers.length !=0 ) %>
+                              <%#=debug @centers  %>
+                              <% @centers.each do |center| %>
+                                <td><%= center.Name %></td>
+                                <td><%= center.City %>/<%= center.State %></td>
+                              <% end %>
+                            <% else %>
+                                <td></td>
+                                <td></td>
+                            <% end %>
+                        <td>TODO</td>
+                        <td>TODO</td>
+                      </tr>
+                    <% end %>
                 </tbody>
             </table>
         </div>
