@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20140602160223) do
     t.integer  "eobr_model_id"
     t.integer  "eobr_make_id"
     t.integer  "tech_support_id"
-    t.integer  "TruckMake"
+    t.string   "TruckMake"
     t.string   "company_id"
     t.integer  "TruckNumber"
     t.string   "TruckYear"

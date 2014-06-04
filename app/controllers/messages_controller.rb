@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     @messages = Message.all
-    @users = User.all
+    
   end
 
   # GET /messages/1
@@ -16,6 +16,7 @@ class MessagesController < ApplicationController
   # GET /messages/new
   def new
     @message = Message.new
+    @users = User.all
   end
 
   # GET /messages/1/edit

@@ -566,7 +566,12 @@ label.margin-top
 {
 	white-space:nowrap;
 }
+<<<<<<< HEAD
 .col-sm-4.white-bg.message-center {
     padding-left: 10px;
     padding-right: 10px;
+=======
+select.slct {
+    color: #000000;
+>>>>>>> 8439078ee9e2f93c4e6e17d0593b4848361b0563
 }

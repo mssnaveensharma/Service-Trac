@@ -1,0 +1,1 @@
+json.extract! @user, :success, :message, :created_at, :updated_at

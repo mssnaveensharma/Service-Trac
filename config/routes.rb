@@ -1,18 +1,32 @@
 Servicetrac::Application.routes.draw do
 
+  get "users/index"
+  get "users/show"
+  get "users/new"
+  get "users/create"
+  get "users/update"
+  get "users/edit"
+  get "users/destroy"
   namespace :admin do
     resources :tech_supports
   end
 
   resources :messages
 
-  devise_for :users
+  devise_for :users 
+
+  #resources :user
+
   namespace :admin do
     resources :service_centers
     root to: "admin#index"
     resources :companies
     resources :eobr_models
-    resources :eobr_makes
+    resources :eobr_makes do
+      collection  do
+        get 'getmodal' 
+      end
+    end
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
@@ -21,13 +35,9 @@ Servicetrac::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
+  post 'register_app_user' => 'users#register_app_user'
+  #resources :users
 
-
-  resources :admin_eobr_makes do
-    collection  do
-      get 'getmodal' 
-    end
-  end
   
   #   get 'register' => 'welcome#index'
   # Example of regular route:
