@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603145514) do
+ActiveRecord::Schema.define(version: 20140604044403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,14 @@ ActiveRecord::Schema.define(version: 20140603145514) do
     t.datetime "updated_at"
   end
 
+  create_table "service_alerts", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "service_center_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "service_center_reviews", force: true do |t|
     t.integer  "user_id"
     t.string   "comments"
@@ -88,12 +96,14 @@ ActiveRecord::Schema.define(version: 20140603145514) do
     t.string   "EobrNumber"
     t.integer  "eobr_model_id"
     t.integer  "eobr_make_id"
+    t.integer  "tech_support_id"
+    t.string   "TruckMake"
+    t.string   "company_id"
     t.integer  "TruckNumber"
     t.string   "TruckYear"
     t.string   "TruckOwner"
     t.string   "FirstName"
     t.string   "LastName"
-    t.string   "CompanyName"
     t.string   "Role"
     t.string   "Language"
     t.datetime "created_at"

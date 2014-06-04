@@ -45,7 +45,7 @@ def login
   user = User.authenticate(params[:email], params[:password])
     if user
       session[:user_id] = user.id
-      return render :json => {:success => true, :message => "Logged In"}
+      return render :json => {:success => true, :id => user.id, :email => user.email}
     else
       return render :json => {:success => false, :message => "Invalid email or password"}    
     end
