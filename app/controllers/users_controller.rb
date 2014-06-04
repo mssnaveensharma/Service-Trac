@@ -29,7 +29,8 @@ class UsersController < ApplicationController
           :TruckOwner=>params[:TruckOwner],
           :company_id=>params[:CompanyName],
           :tech_support_id=>params[:tech_support],
-          :Language=>params[:Language]
+          :Language=>params[:Language],
+          :Role=>"app_user"
         });
 
       if(@response.id !='' and @response.id != nil)
