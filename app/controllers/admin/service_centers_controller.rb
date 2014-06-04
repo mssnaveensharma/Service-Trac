@@ -70,6 +70,6 @@ class Admin::ServiceCentersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_service_center_params
-      params.require(:admin_service_center).permit(:Name, :State, :StateCode, :City, :Pin, :Tel, :Fax, :Email, :Url, :ContactPerson, :lat, :lan)
+      params.require(:admin_service_center).permit(:Name, :State, :StateCode, :City, :Pin, :Tel, :Fax, :Email, :Url, :ContactPerson, :lat, :lan, :StreetAddress)
     end
 end
