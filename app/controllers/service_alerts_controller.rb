@@ -1,7 +1,7 @@
 class ServiceAlertsController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  before_action :set_service_alert, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_service_alert, only: [:show, :edit,:index, :update, :destroy]
+  before_action :authenticate, only: [:driver_status]
   # GET /service_alerts
   # GET /service_alerts.json
   def index

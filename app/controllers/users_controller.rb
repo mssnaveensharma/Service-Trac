@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  TOKEN = "244438447039356867795f41713761393c446c393a4e5f3a6535595f24"
+  
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate
   def index
@@ -57,9 +57,5 @@ end
       #params.require(:user).permit!
       params.require(:user).permit(:eobr_make_id,:eobr_model_id,:EobrNumber,:TruckNumber,:truckmake,:TruckYear,:TruckOwner,:CompanyName,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language)
     end
-    def authenticate
-      authenticate_or_request_with_http_token do |token, options|
-        token.to_s == TOKEN.to_s
-      end
-    end
+    
 end
