@@ -13,8 +13,8 @@
     <thead>
     <tr>
       <th>Name</th>
+      <th>Address</th>
       <th>City/State</th>
-      <th>StateCode</th>
       <th>Pin</th>
       <th>Tel</th>
       <th>Fax</th>
@@ -31,8 +31,8 @@
     <% @admin_service_centers.each do |admin_service_center| %>
       <tr>
         <td><%= admin_service_center.Name %></td>
+        <td><%= admin_service_center.StreetAddress %></td>
         <td><%= admin_service_center.City %>/<%= admin_service_center.State %></td>
-        <td><%= admin_service_center.StateCode %></td>
         <td><%= admin_service_center.Pin %></td>
         <td><%= admin_service_center.Tel %></td>
         <td><%= admin_service_center.Fax %></td>

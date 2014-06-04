@@ -11,4 +11,5 @@ class Admin::ServiceCenter < ActiveRecord::Base
 	validates :ContactPerson, presence: true
 	validates :lat, presence: true
 	validates :lan, presence: true
+	validates :StreetAddress, presence: true
 end
