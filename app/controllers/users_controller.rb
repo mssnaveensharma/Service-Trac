@@ -60,7 +60,7 @@ end
     end
     def authenticate
       authenticate_or_request_with_http_token do |token, options|
-        token == TOKEN
+        token.to_s == TOKEN.to_s
       end
     end
 end
