@@ -8,7 +8,8 @@ class UsersController < ApplicationController
 
   
   def register_app_user
-    if(params[:email] and params[:password] and params[:FirstName] and params[:LastName] and params[:EobrNumber] and params[:eobr_make_id] and params[:eobr_model_id] and params[:TruckNumber] and params[:truckmake] and params[:TruckYear] and params[:TruckOwner] and params[:CompanyName] and params[:tech_support] and params[:Contact] )
+    if(params[:email] and params[:password] and params[:FirstName] and params[:LastName] and params[:EobrNumber] and params[:eobr_make_id] and params[:eobr_model_id] and params[:TruckNumber] and params[:truckmake] and params[:TruckYear] and params[:TruckOwner] and params[:CompanyName] and params[:tech_support] and params[:Contact] and params[:device_type] and params[:device_token])
+       
       @response = User.create({
           :email=>params[:email],
           :password=>params[:password],
@@ -25,7 +26,10 @@ class UsersController < ApplicationController
           :company_id=>params[:CompanyName],
           :tech_support_id=>params[:tech_support],
           :Language=>params[:Language],
-          :Role=>"AppUser"
+          :Role=>"AppUser",
+          :device_type=>params[:device_type],
+          :device_token=>params[:device_token],
+
         });
 
       if(@response.id !='' and @response.id != nil)
@@ -55,7 +59,7 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       #params.require(:user).permit!
-      params.require(:user).permit(:eobr_make_id,:eobr_model_id,:EobrNumber,:TruckNumber,:truckmake,:TruckYear,:TruckOwner,:CompanyName,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language)
+      params.require(:user).permit(:eobr_make_id,:eobr_model_id,:EobrNumber,:TruckNumber,:truckmake,:TruckYear,:TruckOwner,:CompanyName,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language,:device_type,:device_token)
     end
     
 end
