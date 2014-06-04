@@ -1,0 +1,2 @@
+module ServiceAlertsHelper
+end
