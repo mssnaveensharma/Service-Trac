@@ -1,6 +1,7 @@
 class Admin::CompaniesController < ApplicationController
   before_action :set_admin_company, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user! , only: [:create, :edit, :update, :destroy,:new]
+  before_filter :allow_admin_access, only: [:create, :edit, :update, :destroy,:new]
+  before_action :authenticate, only: [:index]
   # GET /admin/companies
   # GET /admin/companies.json
   def index

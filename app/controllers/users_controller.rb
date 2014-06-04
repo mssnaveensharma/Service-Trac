@@ -57,9 +57,5 @@ end
       #params.require(:user).permit!
       params.require(:user).permit(:eobr_make_id,:eobr_model_id,:EobrNumber,:TruckNumber,:truckmake,:TruckYear,:TruckOwner,:CompanyName,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language)
     end
-    def authenticate
-      authenticate_or_request_with_http_token do |token, options|
-        token.to_s == TOKEN.to_s
-      end
-    end
+    
 end
