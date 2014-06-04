@@ -70,7 +70,7 @@ class ServiceAlertsController < ApplicationController
                 if(@update == 1)  
                   return render :json => {:success => "true", :message => "Alert is updated succesfully"}
                 else
-                  return render :json => {:success => "true", :message => @update.errors}
+                  return render :json => {:success => "false", :message => @update.errors}
                 end
           else
              @alerts = ServiceAlert.create({

@@ -37,7 +37,7 @@ Servicetrac::Application.routes.draw do
 
   post 'register_app_user' => 'users#register_app_user'
 
-  post 'login' => 'users#login'
+  get 'login' => 'users#login'
 
   post 'driver_status' => 'service_alerts#driver_status'
   #resources :users
