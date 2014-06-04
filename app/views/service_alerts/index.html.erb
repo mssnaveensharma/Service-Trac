@@ -31,7 +31,7 @@
                           <% @drivers = User.where(:id => service_alert.user_id) %>
                             <% if(@drivers.length != 0) %>
                               <% @drivers.each do |driver| %>
-                              <%#=debug service_alert %>
+                               <%#=debug service_alert %>
                                 <td><%= driver.TruckNumber %></td>
                                 <td><%= driver.FirstName%>&nbsp;&nbsp;<%= driver.LastName%></td>
                                 <td><%= driver.Contact %></td>
