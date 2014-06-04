@@ -1,6 +1,6 @@
 class Admin::EobrMakesController < ApplicationController
   before_action :set_admin_eobr_make, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user! , only: [:create, :edit, :update, :destroy,:new]
+  before_action :authenticate_user! , only: [:create,:index, :edit, :update, :destroy,:new]
   # GET /admin/eobr_makes
   # GET /admin/eobr_makes.json
   def index
