@@ -70,7 +70,7 @@ class ServiceAlertsController < ApplicationController
         if(@chk_user.length != 0 and @chk_center.length != 0)
           #@check_diver = ServiceAlert.where(:user_id => params[:user_id])  #check for existence
             if(params[:alert_id] !='' and params[:alert_id] != nil)    #if found
-                @update = ServiceAlert.where('id= ?', params[:alert_id]).update_all(service_center_id: params[:service_center_id], lat: params[:lat], lan: params[:lan])
+                @update = ServiceAlert.where('id= ?', params[:alert_id]).update_all(service_center_id: params[:service_center_id], lat: params[:lat], lan: params[:lan], status: "In Route")
                   if(@update == 1)  
                     return render :json => {:success => "true", :message => "Alert is updated succesfully"}
                   else
@@ -81,7 +81,8 @@ class ServiceAlertsController < ApplicationController
                 :user_id=>params[:user_id],
                 :service_center_id=>params[:service_center_id],
                 :lan=>params[:lan],
-                :lat=>params[:lat]
+                :lat=>params[:lat],
+                :status=>"New"
               });
                 if(@alerts.id !='' and @alerts.id !=nil)
                   return render :json => {:success => "true", :message => "New alert is added successfully", :alert_id => @alerts.id }
