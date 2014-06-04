@@ -73,7 +73,7 @@ class ServiceAlertsController < ApplicationController
             if(params[:alert_id] !='' and params[:alert_id] != nil)    #if found
                 @update = ServiceAlert.where('id= ?', params[:alert_id]).update_all(service_center_id: params[:service_center_id], lat: params[:lat], lan: params[:lan], status: "In Route")
                   if(@update == 1)  
-                    return render :json => {:success => "true", :message => "Alert is updated succesfully"}
+                    return render :json => {:success => "true", :message => "Alert is updated succesfully", :status => "In Route"}
                   else
                     return render :json => {:success => "false", :message => "Invalid alert id"}
                   end
@@ -86,7 +86,7 @@ class ServiceAlertsController < ApplicationController
                 :status=>"New"
               });
                 if(@alerts.id !='' and @alerts.id !=nil)
-                  return render :json => {:success => "true", :message => "New alert is added successfully", :alert_id => @alerts.id }
+                  return render :json => {:success => "true", :message => "New alert is added successfully", :alert_id => @alerts.id, :status => @alerts.status }
                 else
                   return render :json => {:success => "false", :message => @alerts.errors}
                 end
