@@ -3,37 +3,93 @@
 
 			<div class="serch-fld">
 					<label class="margin-top">Listing messages</label>
-			</div>  
+			</div> 
+			<ol class="breadcrumb">
+			<li class="active">>> Main</li>
+			</ol>
+ 
 	<div class="col-sm-4 white-bg message-center">
+		<h4>New message</h4>
+ 			<div class="form-group">
+					<%= form_for(@message) do |f| %>
+			  <% if @message.errors.any? %>
+			    <div id="error_explanation">
+			      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+			      <ul>
+			      <% @message.errors.full_messages.each do |msg| %>
+			        <li><%= msg %></li>
+			      <% end %>
+			      </ul>
+			    </div>
+			  <% end %>
+
+			  <!--div class="form-group">
+			    <!--%= f.label :FromUserId %><br-->
+			    <%= f.hidden_field :FromUserId, :value => "1" %>
+			    <%= f.hidden_field 'ToUserId' %>
+			  <!--/div-->
+			  <div class="form-group">
+			   To:
+			  <!--%= text_field_tag 'tags' %-->
+
+			<%= select("message", "ToUserId", User.all.collect {|u| [ u.FirstName, u.id ] }, { include_blank: "Select User" }, :class => "slct" ) %>
+
+
+			  </div>
+			 
+			    <!--%= f.label :MessageContent %><br-->
+			    <%= f.text_area :MessageContent %>
+			 	<%= link_to 'Back', messages_path , :class=>"back_button" %>
+			  <div class="form-group align-right">
+			    <%= f.submit :Send, :class => "send" %>
+
+			  </div>
+			<% end %>
+			</div>
+
 	</div>
 	
 	<div class="col-sm-8">
-		<table>
-			<thead>
-				<tr>
-					<th>Fromuserid</th>
-					<th>Touserid</th>
-					<th>Messagecontent</th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
+		<div class="white-bg wdth-sd8">
+		<div class="col-sm-4"> </div>
+		<div class="col-sm-8 align-right">
+			<div class="top-search padding-search">
+			<label>SEARCH</label>
+			<input class="input-dtl-srch" type="text">
+			<input class="search-submit d-search" type="submit" value="">
+			</div>
+		</div>
+		<div class="para-content">
+			<% @messages.each do |message| %>
+					<div class="para-repeat">
+						<h4><%= message.created_at %></h4>
+						
+						<% @users = User.where(:id => message.FromUserId) %>
+						<% @users.each do |user| %>
+						<% @from_user_name = user.FirstName %>
+						<% end %>
+						<h4><%= @from_user_name %></h4>
+						
 
-			<tbody>
-				<% @messages.each do |message| %>
-					<tr>
-						<td><%= message.FromUserId %></td>
-						<td><%= message.ToUserId %></td>
-						<td><%= message.MessageContent %></td>
-						<td><%= link_to 'Show', message %></td>
-						<td><%= link_to 'Edit', edit_message_path(message) %></td>
-						<td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
+						<% @users = User.where(:id => message.ToUserId) %>
+						<% @users.each do |user| %>
+						<% @to_user_name = user.FirstName %>
+						<% end %>
+
+						<h4><%= @to_user_name %></h4>
+						<p><%= message.MessageContent %></p>
+						<%= link_to '', new_message_path, :class=>"mail-icon" %>
+						<div class="expand">
+						<%= link_to 'Show', message %>
+						<%= link_to 'Edit', edit_message_path(message) %>
+						<%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
+						</div>
+					</div>
+			<% end %>
+		</div>
 		<br>
-		<%= link_to 'New Message', new_message_path %>
+		
+		</div>
 		</div>
 	</div>

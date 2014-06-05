@@ -13,12 +13,16 @@
 
   <!--div class="form-group">
     <!--%= f.label :FromUserId %><br-->
-    <%= f.hidden_field :FromUserId %>
+    <%= f.hidden_field :FromUserId, :value => "1" %>
+    <%= f.hidden_field 'ToUserId' %>
   <!--/div-->
   <div class="form-group">
    To:
+  <!--%= text_field_tag 'tags' %-->
 
-    <%= f.number_field :ToUserId, :id => "tags", :class => "message-input" %>
+<%= select("message", "ToUserId", User.all.collect {|u| [ u.FirstName, u.id ] }, { include_blank: "Select User" }, :class => "slct" ) %>
+
+
   </div>
  
     <!--%= f.label :MessageContent %><br-->

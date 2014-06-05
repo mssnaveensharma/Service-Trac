@@ -3,51 +3,46 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
+<% @fname_arr = Array.new() %>
+<% @id_arr = Array.new() %>
+<% @users.each do |user| %>
+<% @fname_arr.push(user.FirstName) %>
+<% @id_arr.push(user.id) %>
+<% end %>
+<% @arr2 = Array.new() %>
+<% @fname_arr.each do |use| %>
+<% @arr2.push(use) %>
+<% end %>
+
+
 <script>
 $(function() {
-/*var availableTags = [
-"ActionScript",
-"AppleScript",
-"Asp",
-"BASIC",
-"C",
-"C++",
-"Clojure",
-"COBOL",
-"ColdFusion",
-"Erlang",
-"Fortran",
-"Groovy",
-"Haskell",
-"Java",
-"JavaScript",
-"Lisp",
-"Perl",
-"PHP",
-"Python",
-"Ruby",
-"Scala",
-"Scheme"
-];*/
 
-var availableTags = ["<% @users.each do |user| %><%= user.FirstName %><% end %>"];
-alert(availableTags);
+var availableTags = <%= raw @arr2 %>;
+//alert(availableTags);
 $( "#tags" ).autocomplete({
 source: availableTags
 });
 });
+
 </script>
+
 
 
 
 		<div class="serch-fld">
         	<label class="margin-top">Message Center</label>
         </div>	
+        <ol class="breadcrumb">
+			<li class="active">>> Main</li>
+		</ol>
+
         <div class="col-sm-4 white-bg message-center">
  			<h4>New message</h4>
  			<div class="form-group">
 				<%= render 'form' %>
+				<%= link_to 'Back', messages_path %>
 			</div>
-		<!--%= link_to 'Back', messages_path %-->
+		
 		</div>
 	</div>
