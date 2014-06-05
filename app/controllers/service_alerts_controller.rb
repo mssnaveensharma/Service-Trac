@@ -1,12 +1,13 @@
 class ServiceAlertsController < ApplicationController
+  helper_method :get_distance
   skip_before_filter :verify_authenticity_token
-  before_action :set_service_alert, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate, only: [:driver_status]
-  before_action :authenticate_user!, only: [:index]
+  #before_action :set_service_alert, only: [:show, :edit, :update, :destroy]
+  #before_action :authenticate, only: [:driver_status]
+  #before_action :authenticate_user!, only: [:index]
   # GET /service_alerts
   # GET /service_alerts.json
   def index
-    @service_alerts = ServiceAlert.all
+    @service_alerts = ServiceAlert.where("status != ?","cancel")
   end
 
   # GET /service_alerts/1
@@ -63,21 +64,58 @@ class ServiceAlertsController < ApplicationController
     end
   end
 
-  def driver_status
+  def driver_status     #the api will hit the method
     if(params[:user_id] !='' and params[:service_center_id] !='' and params[:lat] !='' and params[:lan] != '')
-        @chk_user = User.where(:id => params[:user_id])
-        @chk_center = Admin::ServiceCenter.where(:id => params[:service_center_id])
-        
-        if(@chk_user.length != 0 and @chk_center.length != 0)
+        @chk_user = User.where(:id => params[:user_id])  #check if user exists
+        @chk_center = Admin::ServiceCenter.where(:id => params[:service_center_id]) #check if service center exists
+       
+        if(@chk_user.length != 0 and @chk_center.length != 0)  #if user and center are found
           #@check_diver = ServiceAlert.where(:user_id => params[:user_id])  #check for existence
+            @chk_center.each do |center|
+              @center_loc = center.lat+","+center.lan     #get the service center location
+            end
+              @user_loc = params[:lat]+","+params[:lan]    #get the user cirrent location
             if(params[:alert_id] !='' and params[:alert_id] != nil)    #if found
-                @update = ServiceAlert.where('id= ?', params[:alert_id]).update_all(service_center_id: params[:service_center_id], lat: params[:lat], lan: params[:lan], status: "In Route")
+                @update = User.where('id= ?', params[:user_id]).update_all(lat: params[:lat], lan: params[:lan])  #update user' current location in table
                   if(@update == 1)  
-                    return render :json => {:success => "true", :message => "Alert is updated succesfully", :status => "In Route"}
-                  else
-                    return render :json => {:success => "false", :message => "Invalid alert id"}
+                     @current_distance = get_distance @user_loc,@center_loc     #hit the google api to get the diver location distance from service center
+                        @distance_array =  @current_distance['routes'] 
+                          if(@distance_array !='' and @current_distance['status'] !='ZERO_RESULTS' and @distance_array != nil)  #if no result is found from api
+                              @distance_array.each do |distance| 
+                                 @distance_count = distance['legs'] 
+                                    @distance_count.each do |new_distance| 
+                                      @distance =  new_distance['distance']['text'].gsub(/\s.+/, '').to_i   #lotal distance in kms
+                                      @time = new_distance['duration']['text'] #total time 
+                              end 
+                            end
+
+                            @service_status = ServiceAlert.where(:id => params[:alert_id])    #get the current alert status
+                            @service_status.each do |alert_status|
+                              @alert_status = alert_status.status
+                            end
+                                 @status = ""
+                                    if(@distance >= 1 and @alert_status == 'New')
+                                      @status = "In Route"
+                                    elsif(@distance <= 1 and @alert_status == 'In Route')
+                                      @status = "Service"
+                                    elsif (@distance > 1 and @alert_status == 'Service')
+                                      @status = "Complete"
+                                    elsif (@distance <= 1 and @alert_status == 'Service')
+                                      @status = "Service"
+                                    else
+                                      @status = "In Route"
+                                    end
+                                    @update_alert = ServiceAlert.where('id= ?', params[:alert_id]).update_all(service_center_id: params[:service_center_id], status: @status )  #update the alert status
+                                      return render :json => {:success => "true", :message => "Alert is updated succesfully", :status => @alert_status, :distance => @distance, :time => @time,:mystatus => @status} #return the response to api
+                          else
+                              return render :json => {:success => "false", :message => "Location information is incorrect", :status => "null", :distance => "", :time => ""}  #if invalid lat,lan
+                          end
+                 
+                  else                 
+                    return render :json => {:success => "false", :message => "Invalid alert id"}   #alert id is not found
                   end
             else
+              @cancel = ServiceAlert.where('user_id= ?', params[:user_id]).update_all(status: "cancel")  #cancel all previous alerts corresponding to this user
                @alerts = ServiceAlert.create({
                 :user_id=>params[:user_id],
                 :service_center_id=>params[:service_center_id],
@@ -86,8 +124,45 @@ class ServiceAlertsController < ApplicationController
                 :status=>"New"
               });
                 if(@alerts.id !='' and @alerts.id !=nil)
-                  return render :json => {:success => "true", :message => "New alert is added successfully", :alert_id => @alerts.id, :status => @alerts.status }
-                else
+                  @update = User.where('id= ?', params[:user_id]).update_all(lat: params[:lat], lan: params[:lan]) 
+                   if(@update == 1)  
+                     @current_distance = get_distance $user_loc,$center_loc     #hit the google api to get the diver location distance from service center
+                        @distance_array =  @current_distance['routes'] 
+                          if(@distance_array !='' and @current_distance['status'] !='ZERO_RESULTS' and @distance_array != nil)  #if no result is found from api
+                              @distance_array.each do |distance| 
+                                 @distance_count = distance['legs'] 
+                                    @distance_count.each do |new_distance| 
+                                      @distance =  new_distance['distance']['text'].gsub(/\s.+/, '').to_i   #lotal distance in kms
+                                      @time = new_distance['duration']['text'] #total time 
+                              end 
+                            end
+
+                            @service_status = ServiceAlert.where(:id => @alerts.id)    #get the current alert status
+                            @service_status.each do |alert_status|
+                              @alert_status = alert_status.status
+                            end
+                                 @status = ""
+                                    if(@distance >= 1 and @alert_status == 'New')
+                                      @status = "In Route"
+                                    elsif(@distance <= 1 and @alert_status == 'In Route')
+                                      @status = "Service"
+                                    elsif (@distance > 1 and @alert_status == 'Service')
+                                      @status = "Complete"
+                                    elsif (@distance <= 1 and @alert_status == 'Service')
+                                      @status = "Service"
+                                    else
+                                      @status = "In Route"
+                                    end
+                                    @update_alert = ServiceAlert.where('id= ?', @alerts.id).update_all(service_center_id: params[:service_center_id], status: @status )  #update the alert status
+                                      return render :json => {:success => "true", :message => "Alert is updated succesfully", :status => @status,:alert_id => @alerts.id, :distance => @distance, :time => @time,:mystatus => @status} #return the response to api
+                          else
+                              return render :json => {:success => "false", :message => "Location information is incorrect", :status => "null", :distance => "", :time => ""}  #if invalid lat,lan
+                          end
+                 
+                  else                 
+                    return render :json => {:success => "false", :message => "Invalid alert id"}   #alert id is not found
+                  end
+               else
                   return render :json => {:success => "false", :message => @alerts.errors}
                 end
             end
@@ -98,6 +173,22 @@ class ServiceAlertsController < ApplicationController
         return render :json => {:success => "false", :message => "Missing perameters or invalid request method"}
     end
   end
+
+  def get_distance user_loc,center_loc
+    uri = "https://maps.googleapis.com/maps/api/directions/json?origin="+user_loc+"&destination="+center_loc+"&key=AIzaSyAiQZZcEjo_QUWj476y3FPeKbg94ZldZhw"
+    request = Typhoeus::Request.new(uri,
+  method: :get,
+  #body: "this is a request body",
+  #params: { field1: "a field" },
+  headers: { Accept: "application/json" })
+    request.run
+    response = request.response
+    #response.code
+    return JSON.parse(response.response_body)
+  end
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

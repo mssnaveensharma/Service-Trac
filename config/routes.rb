@@ -44,6 +44,8 @@ Servicetrac::Application.routes.draw do
   post 'driver_status' => 'service_alerts#driver_status'
 
   post 'post_review' => 'service_center_reviews#post_review'
+
+  get 'distance' => 'service_alerts#distance'
   #resources :users
 
   

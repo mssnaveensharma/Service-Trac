@@ -8,7 +8,18 @@
             </span>
            
         </div>  
-    
+<% 
+request = Typhoeus::Request.new(
+  "https://maps.googleapis.com/maps/api/directions/json?origin=31.147130,75.341218&destination=28.635308,77.224960&key=AIzaSyAiQZZcEjo_QUWj476y3FPeKbg94ZldZhw",
+  method: :get,
+  #body: "this is a request body",
+  #params: { field1: "a field" },
+  headers: { Accept: "application/json" })
+  
+    request.run
+    response = request.response
+%>   
+
         <div class="table-responsive">
           <table class="table-striped table-bordered table-condensed" width="100%">
               <thead>
