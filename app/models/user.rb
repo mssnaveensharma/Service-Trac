@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
   belongs_to :eobr_make
   belongs_to :eobr_model
 
+=begin
   validates :eobr_make_id, presence: true
+<<<<<<< HEAD
   validates :eobr_model_id, presence: true
   validates :EobrNumber, presence: true
   validates :TruckNumber, presence: true
@@ -26,6 +28,23 @@ class User < ActiveRecord::Base
 
   #validates :tech_support_id, presence: true
   #validates :Contact, presence: true,length: { maximum: 10 }, numericality: { only_integer: true, message: "is not a valid number" }
+=======
+    validates :eobr_model_id, presence: true
+    validates :EobrNumber, presence: true
+    validates :TruckNumber, presence: true
+    validates :TruckMake, presence: true
+    validates :TruckYear, presence: true
+    validates :TruckOwner, presence: true
+    validates :company_id, presence: true
+    validates :FirstName, presence: true
+    validates :LastName, presence: true
+    validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,message: "is not valid" }
+    validates :password, presence: true
+    validates :tech_support_id, presence: true
+    validates :Contact, presence: true,length: { maximum: 10 }, numericality: { only_integer: true, message: "is not a valid number" }
+=end
+  
+>>>>>>> a29f25b97b67f9dd66a663d3bee782f5a6702ba9
   
   def self.authenticate(email, password)
     user = find_by_email(email)

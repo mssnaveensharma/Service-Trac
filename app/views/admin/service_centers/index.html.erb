@@ -13,17 +13,17 @@
     <thead>
     <tr>
       <th>Name</th>
-      <th>State</th>
-      <th>City</th>
+      <th>Address</th>
+      <th>City/State</th>
       <th>Pin</th>
       <th>Tel</th>
       <th>Fax</th>
       <th>Email</th>
       <th>Url</th>
       <th>Contactperson</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Location</th>
+      <th>Actions</th>
+      <!-- <th></th> -->
     </tr>
   </thead>
 
@@ -31,17 +31,18 @@
     <% @admin_service_centers.each do |admin_service_center| %>
       <tr>
         <td><%= admin_service_center.Name %></td>
-        <td><%= admin_service_center.State %></td>
-        <td><%= admin_service_center.City %></td>
+        <td><%= admin_service_center.StreetAddress %></td>
+        <td><%= admin_service_center.City %>/<%= admin_service_center.State %></td>
         <td><%= admin_service_center.Pin %></td>
         <td><%= admin_service_center.Tel %></td>
         <td><%= admin_service_center.Fax %></td>
         <td><%= admin_service_center.Email %></td>
         <td><%= admin_service_center.Url %></td>
         <td><%= admin_service_center.ContactPerson %></td>
-        <td><%= link_to 'Show', admin_service_center %></td>
-        <td><%= link_to 'Edit', edit_admin_service_center_path(admin_service_center) %></td>
-        <td><%= link_to 'Destroy', admin_service_center, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= admin_service_center.lat %>/<%= admin_service_center.lan %></td>
+        <!-- <td><%= link_to 'Show', admin_service_center %></td> -->
+        <td><%= link_to 'Edit', edit_admin_service_center_path(admin_service_center) %>
+        <%= link_to 'Destroy', admin_service_center, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

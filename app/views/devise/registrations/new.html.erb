@@ -1,38 +1,3 @@
-<script type="text/javascript">
-$(document).ready(function (){
-	var modal_first = "<option>Select Modal</option>";
-	 $('#user_eobr_model_id').children().remove().end().append(modal_first);
-	 //console.log(modal_first);
-});
-  function getModal(id) {       // get the the modals on selecting the make
-    var make_id = id;
-      if(make_id != '' && make_id != null) {
-        $.ajax({
-          url:"/admin/eobr_makes/getmodal?make_id="+make_id,
-          dataType: "json",
-          success: function (modal) {
-            //console.log(modal);
-            var modal_length = modal.length;
-            var modal_id = "";
-            var modal_name = "";
-            var modal_list = "";
-            $.each([modal], function(index, value){
-              for(var i = 0; i < modal_length; i++) {
-                //console.log(value);
-                var modal_id = modal[i].id;
-                var modal_name = modal[i].Name;
-                  modal_list+='<option value="'+modal_id+'">'+modal_name+'</option>';
-              }
-              var modal_first = "<option>Select Modal</option>"
-              $('#user_eobr_model_id').children().remove().end().append(modal_first+modal_list);
-            });
-          },error: function(xhr, text) {
-            console.log("Error http code is "+xhr.status);
-          }
-        });
-      }
-  }
-</script>
 <div class="container">
     <div class="serch-fld">
           <label class="margin-top">Service Alert </label>
@@ -48,13 +13,13 @@ $(document).ready(function (){
   <%= devise_error_messages! %>
 
     <div><%= f.label :FirstName %><br />
-  		<%= f.text_field :FirstName %>
+      <%= f.text_field :FirstName, autofocus: true %>
 
-  	<div><%= f.label :LastName %><br />
-  		<%= f.text_field :LastName %>
+    <div><%= f.label :LastName %><br />
+      <%= f.text_field :LastName %>
 
   <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+  <%= f.email_field :email %></div>
 
   <div><%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "off" %></div>
@@ -65,43 +30,44 @@ $(document).ready(function (){
   <div><%= f.label :Contact %><br />
     <%= f.text_field :Contact%></div>
    
-   <div><%= f.label :EobrNumber %><br />
-  		<%= f.text_field :EobrNumber %>
-
-  	<div><%= f.label :eobr_make_id %><br />
-  		 <%= select("user", "eobr_make_id", Admin::EobrMake.all.collect {|e| [ e.Name, e.id ] }, { include_blank: "Select Make", },:onchange => "getModal(this.value)",  :class => "slct" ) %>
-
-  	<div><%= f.label :eobr_model_id %><br />
-  		<%= select("user", "eobr_model_id", Admin::EobrModel.all.collect {|e| [ e.Name, e.id ] }, { include_blank: "Select Model" }, :class => "slct" ) %>
-
-  	<div><%= f.label :TruckNumber %><br />
-  		<%= f.text_field :TruckNumber %>
-
-  	<div><%= f.label :TruckMake %><br />
-  		<%= f.text_field :TruckMake %>
-
-  	<div><%= f.label :TruckYear %><br />
-  		<%= f.text_field :TruckYear %>
-  		
-	<div><label>Owner Opertor</label></div>
-	<div>
-		<select name="user[TruckOwner]">
-			<option value="1">Yes</option>
-			<option value="0">No</option>
-		</select>
-	</div>
-  	<div><%= f.label :company_id %><br />
-  		<%= select("user", "company_id", Admin::Company.all.collect {|c| [ c.CompanyName, c.id ] }, { include_blank: "Select Company" }, :class => "slct" ) %>
-
-  	<div><label>Driver Assistence</label><br />
-  		<%= select("user", "tech_support_id", Admin::TechSupport.all.collect {|t| [ t.SupportDescription, t.id ] }, { include_blank: "Driver Assistence" }, :class => "slct" ) %>
 
 
-   	<div><%= f.label :Language %><br />
-  		<%= f.text_field :Language %>
+    <%= f.hidden_field :EobrNumber, :value => Array.new(5){rand 10}.join  %>
+
+
+    <%= f.hidden_field :eobr_make_id, :value => "1" %>  
+
+
+
+      <%= f.hidden_field :eobr_model_id, :value => "1" %> 
+
+
+      <%= f.hidden_field :TruckNumber, :value => "1" %> 
+
+
+
+      <%= f.hidden_field :TruckMake, :value => "Make" %> 
+
+
+      
+      <%= f.hidden_field :TruckYear, :value => "Year" %> 
+
+
+      <%= f.hidden_field :TruckOwner, :value => "Yes" %> 
+
+
+
+      <%= f.hidden_field :company_id, :value => "1" %> 
+
+ 
+
+      <%= f.hidden_field :tech_support_id, :value => "1" %> 
+
+
+      <%= f.hidden_field :Language, :value => "EN" %> 
 
   <div><%= f.submit "Sign up",:style => "color:#000;" %>
-  		<%= render "devise/shared/links" %>
+      <%= render "devise/shared/links" %>
   </div>
 <% end %>
 

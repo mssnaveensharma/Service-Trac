@@ -1,4 +1,5 @@
 class ServiceCenterReviewsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   before_action :set_service_center_review, only: [:show, :edit, :update, :destroy]
 
   # GET /service_center_reviews
@@ -58,6 +59,31 @@ class ServiceCenterReviewsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to service_center_reviews_url }
       format.json { head :no_content }
+    end
+  end
+
+  def post_review
+    if(params[:user_id] != '' and params[:service_center_id] != '' and params[:ratings] !='' and params[:comments] != '')
+      @chk_user = User.where(:id => params[:user_id])
+      @chk_center = Admin::ServiceCenter.where(:id => params[:service_center_id])
+        if(@chk_center.length != 0 and @chk_user.length != 0)
+          @reviews = ServiceCenterReview.create({
+                :user_id=>params[:user_id],
+                :service_center_id=>params[:service_center_id],
+                :comments=>params[:comments],
+                :ratings=>params[:ratings]
+              });
+              
+              if(@reviews.id !='' and @reviews.id !=nil)
+                  return render :json => {:success => "true", :message => "Review is posted successfully", :review_id => @reviews.id }
+                else
+                  return render :json => {:success => "false", :message => @reviews.errors}
+                end
+        else
+          return render :json => {:success => false, :message => "invalid user id or service center not exists"}
+        end
+    else
+      return render :json => {:success => false, :message => "required perameters are missing"}    
     end
   end
 

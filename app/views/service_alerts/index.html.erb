@@ -1,0 +1,87 @@
+    <div class="container">
+
+    <div class="serch-fld">
+          <label class="margin-top">Service Alert </label>
+           <span class="align-right">
+              <input class="form-control" type="search">
+                <input value="" class="search-submit" type="submit" />
+            </span>
+           
+        </div>  
+    
+        <div class="table-responsive">
+          <table class="table-striped table-bordered table-condensed" width="100%">
+              <thead>
+                    <tr>
+                        <th><h4>DATE/TIME</h4></th>
+                        <th><h4>TRUCK #</h4></th>
+                        <th><h4>DRIVER NAME</h4></th>
+                        <th><h4>CONTACT #</h4></th>
+                        <th><h4>SERVICE CENTER</h4></th>
+                        <th><h4>CITY/STATE</h4></th>
+                        <th> <h4>REVIEWS</h4></th>
+                        <th><h4>STATUS</h4></th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @service_alerts.each do |service_alert| %>
+                      <tr>
+                        <td><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></td>
+                          <% @drivers = User.where(:id => service_alert.user_id) %>
+                            <% if(@drivers.length != 0) %>
+                              <% @drivers.each do |driver| %>
+                               <%#=debug service_alert %>
+                                <td><%= driver.TruckNumber %></td>
+                                <td><%= driver.FirstName%>&nbsp;&nbsp;<%= driver.LastName%></td>
+                                <td><%= driver.Contact %></td>
+                              <% end %>
+                            <% else %>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            <% end %>
+                          <% @centers = Admin::ServiceCenter.where(:id => service_alert.service_center_id)%>
+                            <% if(@centers.length !=0 ) %>
+                              <%#=debug @centers  %>
+                              <% @centers.each do |center| %>
+                                
+                                <td><%= center.Name %></td>
+                                <td><%= center.City %>/<%= center.State %></td>
+                                
+                                <% @reviews = ServiceCenterReview.where(:service_center_id => service_alert.service_center_id) %>
+                                <%#=debug @reviews %>
+                                  <% if(@reviews.length != 0 ) %>
+                                    <% @reviews.each do |review| %>
+                                      <td>TODO<%#= review.ratings %></td>
+                                    <% end %>
+                                  <% else %>
+                                    <td>TODO</td>
+                                  <% end %>
+                               
+                                <td><%= service_alert.status %></td>
+                              <% end %>
+                            <% else %>
+                                <td></td>
+                                <td></td>
+                            <% end %>
+                      </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        
+        
+      <!-- Main component for a primary marketing message or call to action -->
+      
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <%=javascript_include_tag "bootstrap.min.js"%>
+  </body>
+</html>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603145514) do
+ActiveRecord::Schema.define(version: 20140605041443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,10 @@ ActiveRecord::Schema.define(version: 20140603145514) do
     t.string   "ContactPerson"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "lat"
+    t.string   "lan"
+    t.string   "StateCode"
+    t.string   "StreetAddress"
   end
 
   create_table "admin_tech_supports", force: true do |t|
@@ -63,6 +67,16 @@ ActiveRecord::Schema.define(version: 20140603145514) do
     t.text     "MessageContent"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "service_alerts", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "service_center_id"
+    t.string   "lat"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "lan"
+    t.string   "status"
   end
 
   create_table "service_center_reviews", force: true do |t|
@@ -89,7 +103,11 @@ ActiveRecord::Schema.define(version: 20140603145514) do
     t.integer  "eobr_model_id"
     t.integer  "eobr_make_id"
     t.integer  "tech_support_id"
+<<<<<<< HEAD
     t.integer  "TruckMake"
+=======
+    t.string   "TruckMake"
+>>>>>>> a29f25b97b67f9dd66a663d3bee782f5a6702ba9
     t.string   "company_id"
     t.integer  "TruckNumber"
     t.string   "TruckYear"
@@ -105,6 +123,8 @@ ActiveRecord::Schema.define(version: 20140603145514) do
     t.integer  "Contact"
     t.string   "password_salt"
     t.string   "password_hash"
+    t.string   "device_type"
+    t.string   "device_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

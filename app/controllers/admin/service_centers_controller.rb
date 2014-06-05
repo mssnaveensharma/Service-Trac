@@ -1,6 +1,7 @@
 class Admin::ServiceCentersController < ApplicationController
   before_action :set_admin_service_center, only: [:show, :edit, :update, :destroy]
-
+  before_filter :allow_admin_access, only: [:create, :edit, :update, :destroy,:new]
+  before_action :authenticate, only: [:index]
   # GET /admin/service_centers
   # GET /admin/service_centers.json
   def index
@@ -69,6 +70,6 @@ class Admin::ServiceCentersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_service_center_params
-      params.require(:admin_service_center).permit(:Name, :State, :City, :Pin, :Tel, :Fax, :Email, :Url, :ContactPerson)
+      params.require(:admin_service_center).permit(:Name, :State, :StateCode, :City, :Pin, :Tel, :Fax, :Email, :Url, :ContactPerson, :lat, :lan, :StreetAddress)
     end
 end

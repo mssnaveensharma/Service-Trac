@@ -1,12 +1,12 @@
 Servicetrac::Application.routes.draw do
 
-  get "users/index"
-  get "users/show"
-  get "users/new"
-  get "users/create"
-  get "users/update"
-  get "users/edit"
-  get "users/destroy"
+  #get "users/index"
+  #get "users/show"
+  #get "users/new"
+  #get "users/create"
+  #get "users/update"
+  #get "users/edit"
+  #get "users/destroy"
   namespace :admin do
     resources :tech_supports
   end
@@ -15,7 +15,9 @@ Servicetrac::Application.routes.draw do
 
   devise_for :users 
 
-  #resources :user
+  resources :service_alerts
+
+  resources :service_center_reviews
 
   namespace :admin do
     resources :service_centers
@@ -33,11 +35,15 @@ Servicetrac::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'service_alerts#index'
 
   post 'register_app_user' => 'users#register_app_user'
 
   post 'login' => 'users#login'
+
+  post 'driver_status' => 'service_alerts#driver_status'
+
+  post 'post_review' => 'service_center_reviews#post_review'
   #resources :users
 
   
