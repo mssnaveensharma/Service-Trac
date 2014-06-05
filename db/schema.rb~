@@ -103,9 +103,11 @@ ActiveRecord::Schema.define(version: 20140605041443) do
     t.integer  "eobr_model_id"
     t.integer  "eobr_make_id"
     t.integer  "tech_support_id"
-
+<<<<<<< HEAD
     t.integer  "TruckMake"
-
+=======
+    t.string   "TruckMake"
+>>>>>>> a29f25b97b67f9dd66a663d3bee782f5a6702ba9
     t.string   "company_id"
     t.integer  "TruckNumber"
     t.string   "TruckYear"
