@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
 =begin
   validates :eobr_make_id, presence: true
+
     validates :eobr_model_id, presence: true
     validates :EobrNumber, presence: true
     validates :TruckNumber, presence: true

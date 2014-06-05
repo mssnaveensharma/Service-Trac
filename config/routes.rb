@@ -17,6 +17,8 @@ Servicetrac::Application.routes.draw do
 
   resources :service_alerts
 
+  resources :service_center_reviews
+
   namespace :admin do
     resources :service_centers
     root to: "admin#index"
@@ -40,6 +42,8 @@ Servicetrac::Application.routes.draw do
   post 'login' => 'users#login'
 
   post 'driver_status' => 'service_alerts#driver_status'
+
+  post 'post_review' => 'service_center_reviews#post_review'
   #resources :users
 
   
