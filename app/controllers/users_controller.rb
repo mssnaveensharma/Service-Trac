@@ -41,13 +41,22 @@ class UsersController < ApplicationController
 end
 
 def login
+  if(params[:email] != "" and params[:password] != "" and params[:device_type] !='' and params[:device_token] !='' )
   user = User.authenticate(params[:email], params[:password])
     if user
       session[:user_id] = user.id
-      return render :json => {:success => true, :id => user.id, :email => user.email}
+        @update = User.where('id= ?', user.id).update_all(device_type: params[:device_type], device_token: params[:device_token])
+          if(@update == 1)
+            return render :json => {:success => true, :id => user.id, :email => user.email}
+          else
+            return render :json => {:success => false, :message => "Invalid email or password"}
+          end
     else
       return render :json => {:success => false, :message => "Invalid email or password"}    
     end
+  else
+      return render :json => {:success => false, :message => "Required perameters are missing"}
+  end
 end
   
   private
