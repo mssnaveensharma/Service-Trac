@@ -1,10 +1,13 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /messages
   # GET /messages.json
   def index
     @messages = Message.all
+     @message = Message.new
+    @users = User.all
+    
   end
 
   # GET /messages/1
@@ -15,6 +18,7 @@ class MessagesController < ApplicationController
   # GET /messages/new
   def new
     @message = Message.new
+    @users = User.all
   end
 
   # GET /messages/1/edit

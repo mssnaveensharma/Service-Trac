@@ -86,35 +86,35 @@ ul
 }
 .home
 {
-	background:url(home.png) no-repeat;
+	background:url(../img/home.png) no-repeat;
 }
 .home:hover
 {
-	background:url(home-hover.png) no-repeat;
+	background:url(../img/home-hover.png) no-repeat;
 }
 .message
 {
-	background:url(message.png) no-repeat;
+	background:url(../img/message.png) no-repeat;
 }
 .message:hover
 {
-	background:url(message-hover.png) no-repeat;
+	background:url(../img/message-hover.png) no-repeat;
 }
 .setting
 {
-	background:url(setting.png) no-repeat;
+	background:url(../img/setting.png) no-repeat;
 }
 .setting:hover
 {
-	background:url(setting-hover.png) no-repeat;
+	background:url(../img/setting-hover.png) no-repeat;
 }
 .edit
 {
-	background:url(set-edit.png) no-repeat;
+	background:url(../img/set-edit.png) no-repeat;
 }
 .edit:hover
 {
-	background:url(set-edit-hover.png) no-repeat;
+	background:url(../img/set-edit-hover.png) no-repeat;
 }
 .align-right
 {
@@ -144,7 +144,7 @@ ul
 }
 .search-submit
 {
-	background:url(search.png) center no-repeat;
+	background:url(../img/search.png) center no-repeat;
 	padding:6px 14px;
 	border:none;
 	display:inline-block;
@@ -183,12 +183,12 @@ table tbody
 }
 .search-submit.d-search
 {
-	background:url(d-search.png) no-repeat;
+	background:url(../img/d-search.png) no-repeat;
 	background-position:center 2px;
 }
 .search-submit.d-search:hover
 {
-	background:url(d-search-hover.png) no-repeat;
+	background:url(../img/d-search-hover.png) no-repeat;
 	background-position:center 2px;
 }
 .active-row
@@ -255,19 +255,19 @@ table tbody
 	padding:10px;
 	margin-top:-4px;
 	vertical-align:top;
-	background:url(set.png) no-repeat;
+	background:url(../img/set.png) no-repeat;
 }
 .list-group-item a:hover
 {
-	background:url(set-hover.png) no-repeat;
+	background:url(../img/set-hover.png) no-repeat;
 }
 .list-group-item a.tick
 {
-	background:url(tick.png) no-repeat;
+	background:url(../img/tick.png) no-repeat;
 }
 .list-group-item a.tick:hover
 {
-	background:url(tick-hover.png) no-repeat;
+	background:url(../img/tick-hover.png) no-repeat;
 }
 .list-group li:last-child
 {
@@ -276,7 +276,7 @@ table tbody
 h4.bg-msg
 {
 	padding-right:50px;
-	background:url(email.png) 50px center no-repeat;
+	background:url(../img/email.png) 50px center no-repeat;
 }
 h4.bg-msg.bg-msg-pstn
 {
@@ -285,11 +285,11 @@ h4.bg-msg.bg-msg-pstn
 .refresh
 {
 	padding:10px;
-	background:url(refresh.png) no-repeat;
+	background:url(../img/refresh.png) no-repeat;
 }
 .refresh:hover
 {
-	background:url(refresh-hover.png) no-repeat;
+	background:url(../img/refresh-hover.png) no-repeat;
 }
 .list-group:last-child
 {
@@ -525,7 +525,7 @@ label.margin-top
 	padding:7px 11px;
 	width:auto;
 	display:inline-block;
-	background:url(email.png) no-repeat;
+	background:url(../img/email.png) no-repeat;
 }
 .padding-search
 {
@@ -569,16 +569,4 @@ label.margin-top
 .col-sm-4.white-bg.message-center {
     padding-left: 10px;
     padding-right: 10px;
-}
-select.slct {
-    color: #000000;
-
-}
-.no-padding-s4 .col-sm-8,
-.col-sm-8.align-right {
-    padding-left: 10px;
-    padding-right: 0;
-}
-.back_button{
-	float: left;
 }
