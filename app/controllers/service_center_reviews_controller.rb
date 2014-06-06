@@ -62,14 +62,14 @@ class ServiceCenterReviewsController < ApplicationController
     end
   end
 
-def all_routes
-  if(params[:lat] != "" and params[:lan]) #if start
+def get_distance
+  if(params[:lat] != "" and params[:lan] and params[:user_id]) #if start
     arr = Array.new
     @service_centers = Admin::ServiceCenter.all
       @service_centers.each do |service|   #each start
         @center_loc = service.lat+","+service.lan
         @user_loc = params[:lat]+","+params[:lan]
-          @current_distance = get_distance @user_loc,@center_loc          
+          @current_distance = distance @user_loc,@center_loc          
             @distance_array =  @current_distance['routes'] 
               if(@distance_array !='' and @current_distance['status'] !='ZERO_RESULTS' and @current_distance['status'] != 'NOT_FOUND' and @distance_array != nil)  #if no result is found from api
                   @distance_array.each do |distance| 
@@ -100,7 +100,7 @@ def all_routes
   end
 end
 
-  def get_distance user_loc,center_loc
+  def distance user_loc,center_loc
     uri = "https://maps.googleapis.com/maps/api/directions/json?origin="+user_loc+"&destination="+center_loc+"&key=AIzaSyAiQZZcEjo_QUWj476y3FPeKbg94ZldZhw"
     request = Typhoeus::Request.new(uri,
   method: :get,
