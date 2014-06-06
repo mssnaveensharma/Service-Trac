@@ -1,9 +1,9 @@
 class ServiceAlertsController < ApplicationController
   helper_method :get_distance
   skip_before_filter :verify_authenticity_token
-  before_action :set_service_alert, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate, only: [:driver_status]
-  before_action :authenticate_user!, only: [:index]
+  #before_action :set_service_alert, only: [:show, :edit, :update, :destroy]
+  #before_action :authenticate, only: [:driver_status]
+  #before_action :authenticate_user!, only: [:index]
   # GET /service_alerts
   # GET /service_alerts.json
   def index
@@ -88,7 +88,7 @@ class ServiceAlertsController < ApplicationController
                                       @time = new_distance['duration']['text'] #total time 
                               end 
                             end
-      #return render :json => {:success => "true", :message => "Alert is updated succesfully", :status => @current_distance['status'], :distance => @distance, :time => @time,:mystatus => @status} #return the response to api
+      
                             @service_status = ServiceAlert.where(:id => params[:alert_id])    #get the current alert status
                             @service_status.each do |alert_status|
                               @alert_status = alert_status.status
