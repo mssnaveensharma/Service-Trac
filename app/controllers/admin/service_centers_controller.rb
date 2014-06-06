@@ -148,7 +148,7 @@ def total_ratings service_center_id
   @rate_three = ServiceCenterReview.where(:ratings => 3,:service_center_id => service_center_id)
   @rate_four = ServiceCenterReview.where(:ratings => 4,:service_center_id => service_center_id)
   @rate_five = ServiceCenterReview.where(:ratings => 5,:service_center_id => service_center_id)
-  @total_count = ServiceCenterReview.all
+  @total_count = ServiceCenterReview.where(:service_center_id => service_center_id)
     @one_star = @rate_one.length
     @two_star = @rate_two.length
     @three_star = @rate_three.length
