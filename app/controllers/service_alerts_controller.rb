@@ -7,7 +7,7 @@ class ServiceAlertsController < ApplicationController
   # GET /service_alerts
   # GET /service_alerts.json
   def index
-    @service_alerts = ServiceAlert.where("status != ?","cancel")
+    @service_alerts = ServiceAlert.where('(status != ? )', "cancel")
   end
 
   # GET /service_alerts/1
@@ -88,7 +88,7 @@ class ServiceAlertsController < ApplicationController
                                       @time = new_distance['duration']['text'] #total time 
                               end 
                             end
-      #return render :json => {:success => "true", :message => "Alert is updated succesfully", :status => @current_distance['status'], :distance => @distance, :time => @time,:mystatus => @status} #return the response to api
+      
                             @service_status = ServiceAlert.where(:id => params[:alert_id])    #get the current alert status
                             @service_status.each do |alert_status|
                               @alert_status = alert_status.status
@@ -126,7 +126,7 @@ class ServiceAlertsController < ApplicationController
                 if(@alerts.id !='' and @alerts.id !=nil)
                   @update = User.where('id= ?', params[:user_id]).update_all(lat: params[:lat], lan: params[:lan]) 
                    if(@update == 1)  
-                     @current_distance = get_distance $user_loc,$center_loc     #hit the google api to get the diver location distance from service center
+                     @current_distance = get_distance @user_loc,@center_loc     #hit the google api to get the diver location distance from service center
                         @distance_array =  @current_distance['routes'] 
                            if(@distance_array !='' and @current_distance['status'] !='ZERO_RESULTS' and @current_distance['status'] != 'NOT_FOUND' and @distance_array != nil)  #if no result is found from api
                               @distance_array.each do |distance| 
@@ -153,7 +153,7 @@ class ServiceAlertsController < ApplicationController
                                     else
                                       @status = "In Route"
                                     end
-                                    @update_alert = ServiceAlert.where('id= ?', @alerts.id).update_all(service_center_id: params[:service_center_id], status: @status )  #update the alert status
+                                    #@update_alert = ServiceAlert.where('id= ?', @alerts.id).update_all(service_center_id: params[:service_center_id], status: @status )  #update the alert status
                                       return render :json => {:success => "true", :message => "Alert is updated succesfully", :status => @status,:alert_id => @alerts.id, :distance => @distance, :time => @time,:mystatus => @status} #return the response to api
                           else
                               return render :json => {:success => "false", :message => "Location information is incorrect", :status => "null", :distance => "", :time => ""}  #if invalid lat,lan
