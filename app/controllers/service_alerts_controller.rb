@@ -64,7 +64,7 @@ class ServiceAlertsController < ApplicationController
     end
   end
 
-  def driver_status     #the api will hit the method
+  def driver_status     
     if(params[:user_id] !='' and params[:service_center_id] !='' and params[:lat] !='' and params[:lan] != '')
         @chk_user = User.where(:id => params[:user_id])  #check if user exists
         @chk_center = Admin::ServiceCenter.where(:id => params[:service_center_id]) #check if service center exists
