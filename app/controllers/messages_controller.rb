@@ -23,7 +23,7 @@ class MessagesController < ApplicationController
            end 
        end 
        end
-      @new_users = arr
+      @new_users = arr.uniq
   end
 
   # GET /messages/1
