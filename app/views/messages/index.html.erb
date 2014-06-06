@@ -7,9 +7,11 @@
 			<ol class="breadcrumb">
 			<li class="active">>> Main</li>
 			</ol>
- 
 	<div class="col-sm-4 white-bg message-center">
 		<h4>New message</h4>
+ <% if(flash[:notice]) %>
+ 	<%= flash[:notice] %>
+ <% end %>
  			<div class="form-group">
 					<%= form_for(@message) do |f| %>
 			  <% if @message.errors.any? %>
@@ -33,15 +35,16 @@
 			   To:
 			  <!--%= text_field_tag 'tags' %-->
 
-			<%= select("message", "ToUserId", User.all.collect {|u| [ u.FirstName, u.id ] }, { include_blank: "Select User" }, :class => "slct" ) %>
+			<%= select("message", "ToUserId", User.where(:Role => "AppUser").collect {|u| [ u.FirstName, u.id ] }, { include_blank: "Select User" }, :class => "slct" ) %>
 
 
 			  </div>
 			 
 			    <!--%= f.label :MessageContent %><br-->
 			    <%= f.text_area :MessageContent %>
-			 	<%= link_to 'Back', messages_path , :class=>"back_button" %>
+			 	<%#= link_to 'Back', messages_path , :class=>"back_button" %>
 			  <div class="form-group align-right">
+				  <input type="reset" class="clear" value="Clear">
 			    <%= f.submit :Send, :class => "send" %>
 
 			  </div>
@@ -81,9 +84,10 @@
 						<p><%= message.MessageContent %></p>
 						<%= link_to '', new_message_path, :class=>"mail-icon" %>
 						<div class="expand">
-						<%= link_to 'Show', message %>
-						<%= link_to 'Edit', edit_message_path(message) %>
-						<%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
+						<%#= link_to 'Show', message %>
+						<%#= link_to 'Edit', edit_message_path(message) %>
+						<%#= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
+						<a href="javascript:void(0);" class="expand">Expand All</a>
 						</div>
 					</div>
 			<% end %>

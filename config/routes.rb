@@ -49,6 +49,8 @@ Servicetrac::Application.routes.draw do
 
   get  'total_ratings' => "users#total_ratings"
 
+  post 'post_message' => 'messages#post_message'
+
   #post 'distance' => 'service_alerts#distance'
   #resources :users
 

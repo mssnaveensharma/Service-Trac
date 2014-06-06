@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   before_action :set_message, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   # GET /messages
@@ -6,7 +7,7 @@ class MessagesController < ApplicationController
   def index
     @messages = Message.all
      @message = Message.new
-    @users = User.all
+      @users = User.all
     
   end
 
@@ -30,15 +31,15 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
 
-    respond_to do |format|
+    #respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @message }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+          flash[:notice]="Message was created successfully"
+          redirect_to(:action => "index")
+       else
+        flash[:notice]="Message can not be send, required fields are missing"
+        redirect_to(:action => "index")
       end
-    end
+    #end
   end
 
   # PATCH/PUT /messages/1
@@ -64,6 +65,31 @@ class MessagesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def post_message
+    if(params[:ToUserId] != '' and params[:FromUserId] != '' and params[:MessageContent] !='')
+      @chk_from_user = User.where(:id => params[:FromUserId])
+      @chk_to_user = User.where(:id => params[:ToUserId])
+        if(@chk_from_user.length !=0 and @chk_to_user.length !=0 )
+           @message = Message.create({
+                    :ToUserId=>params[:ToUserId],
+                    :FromUserId=>params[:FromUserId],
+                    :MessageContent=>params[:MessageContent]});
+            if(@message.id !='' and @message.id != nil)
+              return render :json => {:success => "true", :message => "Message is posted successfully", :meesage_id => @message.id}
+            else
+              return render :json => {:success => "false", :message => @message.errors}     
+            end
+         else
+          return render :json => {:success => "false", :message => "Invalid user id"} 
+         end
+      #return render :json => {:success => "false", :message => "Method is working fine"} 
+    else
+      return render :json => {:success => "false", :message => "Required fields are missing"} 
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
