@@ -1,14 +1,14 @@
 class MessagesController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_action :set_message, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate, only: [:index,:post_message]
   # GET /messages
   # GET /messages.json
   def index
     @messages = Message.all
     @message = Message.new
     @users = User.all
-    
+
   end
 
   # GET /messages/1

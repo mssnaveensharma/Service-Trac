@@ -64,19 +64,6 @@
 			</div>
 		</div>
 		<div class="para-content">
-<% @users.each do |user| %>
-		<% @messages.each do |message| %>
-			<% if(user.id == message.ToUserId or user.id == message.FromUserId) %>
-				<div class="para-repeat">
-				<h4><%= message.created_at %></h4>
-				<% if(message.FromUserId == user.id) %>
-					<h4><%= user.FirstName %></h4>
-				<% end %>
-				<p style="background:#fff "><%= message.MessageContent %></p>
-				</div>
-			<% end %>
-		<% end %>
-<% end %>
 
 
 			
