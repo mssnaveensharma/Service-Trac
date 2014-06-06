@@ -6,8 +6,8 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     @messages = Message.all
-     @message = Message.new
-      @users = User.all
+    @message = Message.new
+    @users = User.all
     
   end
 
@@ -69,7 +69,7 @@ class MessagesController < ApplicationController
   def post_message
     if(params[:ToUserId] != '' and params[:FromUserId] != '' and params[:MessageContent] !='')
       @chk_from_user = User.where(:id => params[:FromUserId])
-      @chk_to_user = User.where(:id => params[:ToUserId])
+      @chk_to_user = Admin::ServiceCenter.where(:id => params[:ToUserId])
         if(@chk_from_user.length !=0 and @chk_to_user.length !=0 )
            @message = Message.create({
                     :ToUserId=>params[:ToUserId],
@@ -81,7 +81,7 @@ class MessagesController < ApplicationController
               return render :json => {:success => "false", :message => @message.errors}     
             end
          else
-          return render :json => {:success => "false", :message => "Invalid user id"} 
+          return render :json => {:success => "false", :message => "Invalid user id or service center not exists"} 
          end
       #return render :json => {:success => "false", :message => "Method is working fine"} 
     else
