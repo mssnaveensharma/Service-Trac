@@ -68,10 +68,7 @@ class Admin::ServiceCentersController < ApplicationController
       end
     end
     else
-      @message = "{success => false, message => Required fields are missing }"
-      respond_to do |format|
-          format.json {render :json => @message}   #return the json response to ajax
-      end
+       @admin_service_centers = Admin::ServiceCenter.all
     end
   end
 
