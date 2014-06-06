@@ -62,10 +62,7 @@ class Admin::ServiceCentersController < ApplicationController
                     response[:reviews]=@ratings
                     arr.push(response)
               end
-
-      respond_to do |format|
-          format.json {render :json => arr}   #return the json response to ajax
-      end
+       return render :json => {:success => "true", :arr => arr}
     end
     else
        @admin_service_centers = Admin::ServiceCenter.all
