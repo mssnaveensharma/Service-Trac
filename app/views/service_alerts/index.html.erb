@@ -8,18 +8,6 @@
             </span>
            
         </div>  
-<% 
-request = Typhoeus::Request.new(
-  "https://maps.googleapis.com/maps/api/directions/json?origin=31.147130,75.341218&destination=28.635308,77.224960&key=AIzaSyAiQZZcEjo_QUWj476y3FPeKbg94ZldZhw",
-  method: :get,
-  #body: "this is a request body",
-  #params: { field1: "a field" },
-  headers: { Accept: "application/json" })
-  
-    request.run
-    response = request.response
-%>   
-
         <div class="table-responsive">
           <table class="table-striped table-bordered table-condensed" width="100%">
               <thead>
@@ -38,20 +26,15 @@ request = Typhoeus::Request.new(
                 <tbody>
                     <% @service_alerts.each do |service_alert| %>
                       <tr>
-                        <td><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></td>
-                          <% @drivers = User.where(:id => service_alert.user_id) %>
+                        <% @drivers = User.where('("Role" = ? AND id = ? )', "AppUser",service_alert.user_id) %>
                             <% if(@drivers.length != 0) %>
+                            <td><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></td>
                               <% @drivers.each do |driver| %>
                                <%#=debug service_alert %>
                                 <td><%= driver.TruckNumber %></td>
                                 <td><%= driver.FirstName%>&nbsp;&nbsp;<%= driver.LastName%></td>
                                 <td><%= driver.Contact %></td>
                               <% end %>
-                            <% else %>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            <% end %>
                           <% @centers = Admin::ServiceCenter.where(:id => service_alert.service_center_id)%>
                             <% if(@centers.length !=0 ) %>
                               <%#=debug @centers  %>
@@ -78,6 +61,7 @@ request = Typhoeus::Request.new(
                             <% end %>
                       </tr>
                     <% end %>
+                  <% end %>
                 </tbody>
             </table>
         </div>
