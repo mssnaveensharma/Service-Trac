@@ -152,8 +152,12 @@ def total_ratings service_center_id
     @four_star = @rate_four.length
     @five_star = @rate_five.length
     @total_star = @total_count.length
-    @ratings = (5*@five_star + 4*@four_star + 3*@three_star + 2*@two_star + 1*@one_star) / @total_star
-  return @ratings
+    if(@total_star == 0)
+      return 0
+    else
+      @ratings = (5*@five_star + 4*@four_star + 3*@three_star + 2*@two_star + 1*@one_star) / @total_star
+    return @ratings
+  end
 end
 
   private

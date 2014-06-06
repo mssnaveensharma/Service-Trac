@@ -68,6 +68,7 @@
 		<%=debug @new_users.length %>
 			<% @new_users.each do |message| %>
 					<div class="para-repeat">
+						<p><%= message[:id]  %></p>
 						<h4><%= message[:date] %></h4>
 						<h4><%= message[:name] %></h4>
 						<p><%= message[:content] %></p>

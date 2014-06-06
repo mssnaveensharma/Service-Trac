@@ -12,8 +12,9 @@ class MessagesController < ApplicationController
       arr = Array.new
        @users.each do |user| 
            @messages.each do |message| 
-               if(message.FromUserId == user.id) 
+               if(message.FromUserId == user.id or message.ToUserId == user.id) 
                   response = Hash.new
+                  response[:id]=message.id
                   response[:date]=message.created_at
                   response[:name]=user.FirstName
                   response[:content]=message.MessageContent
