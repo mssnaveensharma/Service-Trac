@@ -5,7 +5,74 @@ class Admin::ServiceCentersController < ApplicationController
   # GET /admin/service_centers
   # GET /admin/service_centers.json
   def index
-    @admin_service_centers = Admin::ServiceCenter.all
+    if(params[:lat] and params[:lan])
+      arr = Array.new
+      @admin_service_centers = Admin::ServiceCenter.all
+      @admin_service_centers.each do |center|
+      @user_loc = params[:lat]+","+params[:lan]
+      @center_loc = center.lat+","+center.lan
+      @current_distance = get_distance @user_loc,@center_loc     #hit the google api to get the diver location distance from service center
+      @ratings = total_ratings center.id
+                        @distance_array =  @current_distance['routes'] 
+                           if(@distance_array !='' and @current_distance['status'] !='ZERO_RESULTS' and @current_distance['status'] != 'NOT_FOUND' and @distance_array != nil)  #if no result is found from api
+                              @distance_array.each do |distance| 
+                                 @distance_count = distance['legs'] 
+                                    @distance_count.each do |new_distance| 
+                                      @distance =  new_distance['distance']['text'].gsub(/\s.+/, '').to_i   #lotal distance in kms
+                                      @time = new_distance['duration']['text'] #total time 
+                                      response = Hash.new
+                                      response[:Name]=center.Name
+                                      response[:StreetAddress]=center.StreetAddress
+                                      response[:State]=center.State
+                                      response[:StateCode]=center.StateCode
+                                      response[:City]=center.City
+                                      response[:Pin]=center.Pin
+                                      response[:Tel]=center.Tel
+                                      response[:Fax]=center.Fax
+                                      response[:Email]=center.Email
+                                      response[:Url]=center.Url
+                                      response[:lat]=center.lat
+                                      response[:lan]=center.lan
+                                      response[:ContactPerson]=center.ContactPerson
+                                      response[:service_center_id]=center.id
+                                      response[:distance]=@distance
+                                      response[:time]=@time
+                                      response[:reviews]=@ratings
+                                      arr.push(response)
+                              end 
+                            end
+               else
+                    response = Hash.new
+                    response[:Name]=center.Name
+                    response[:StreetAddress]=center.StreetAddress
+                    response[:State]=center.State
+                    response[:StateCode]=center.StateCode
+                    response[:City]=center.City
+                    response[:Pin]=center.Pin
+                    response[:Tel]=center.Tel
+                    response[:Fax]=center.Fax
+                    response[:Email]=center.Email
+                    response[:Url]=center.Url
+                    response[:lat]=center.lat
+                    response[:lan]=center.lan
+                    response[:ContactPerson]=center.ContactPerson
+                    response[:service_center_id]=center.id
+                    response[:distance]=""
+                    response[:time]=""
+                    response[:reviews]=@ratings
+                    arr.push(response)
+              end
+
+      respond_to do |format|
+          format.json {render :json => arr}   #return the json response to ajax
+      end
+    end
+    else
+      @message = "{success => false, message => Required fields are missing }"
+      respond_to do |format|
+          format.json {render :json => @message}   #return the json response to ajax
+      end
+    end
   end
 
   # GET /admin/service_centers/1
@@ -62,6 +129,35 @@ class Admin::ServiceCentersController < ApplicationController
     end
   end
 
+  def get_distance user_loc,center_loc
+    uri = "https://maps.googleapis.com/maps/api/directions/json?origin="+user_loc+"&destination="+center_loc+"&key=AIzaSyAiQZZcEjo_QUWj476y3FPeKbg94ZldZhw"
+    request = Typhoeus::Request.new(uri,
+  method: :get,
+  #body: "this is a request body",
+  #params: { field1: "a field" },
+  headers: { Accept: "application/json" })
+    request.run
+    response = request.response
+    #response.code
+    return JSON.parse(response.response_body)
+  end
+
+def total_ratings service_center_id
+  @rate_one = ServiceCenterReview.where(:ratings => 1,:service_center_id => service_center_id)
+  @rate_two = ServiceCenterReview.where(:ratings => 2,:service_center_id => service_center_id)
+  @rate_three = ServiceCenterReview.where(:ratings => 3,:service_center_id => service_center_id)
+  @rate_four = ServiceCenterReview.where(:ratings => 4,:service_center_id => service_center_id)
+  @rate_five = ServiceCenterReview.where(:ratings => 5,:service_center_id => service_center_id)
+  @total_count = ServiceCenterReview.all
+    @one_star = @rate_one.length
+    @two_star = @rate_two.length
+    @three_star = @rate_three.length
+    @four_star = @rate_four.length
+    @five_star = @rate_five.length
+    @total_star = @total_count.length
+    @ratings = (5*@five_star + 4*@four_star + 3*@three_star + 2*@two_star + 1*@one_star) / @total_star
+  return @ratings
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.

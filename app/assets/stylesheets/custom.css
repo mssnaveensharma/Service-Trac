@@ -525,7 +525,7 @@ label.margin-top
 	padding:7px 11px;
 	width:auto;
 	display:inline-block;
-	background:url(email.png) no-repeat;
+	background:url(../img/email.png) no-repeat;
 }
 .padding-search
 {
@@ -565,20 +565,4 @@ label.margin-top
 .srvc-tb-cntr th:last-child, .srvc-tb-cntr td:last-child
 {
 	white-space:nowrap;
-}
-.col-sm-4.white-bg.message-center {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-select.slct {
-    color: #000000;
-
-}
-.no-padding-s4 .col-sm-8,
-.col-sm-8.align-right {
-    padding-left: 10px;
-    padding-right: 0;
-}
-.back_button{
-	float: left;
 }
