@@ -47,7 +47,7 @@ Servicetrac::Application.routes.draw do
 
   post 'get_distance' => "service_center_reviews#get_distance"
 
-  get  'total_ratings' => "users#total_ratings"
+ 
 
   post 'post_message' => 'messages#post_message'
 

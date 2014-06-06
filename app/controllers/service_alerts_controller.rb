@@ -64,7 +64,7 @@ class ServiceAlertsController < ApplicationController
     end
   end
 
-  def driver_status     #the api will hit the method
+  def driver_status     
     if(params[:user_id] !='' and params[:service_center_id] !='' and params[:lat] !='' and params[:lan] != '')
         @chk_user = User.where(:id => params[:user_id])  #check if user exists
         @chk_center = Admin::ServiceCenter.where(:id => params[:service_center_id]) #check if service center exists
@@ -177,14 +177,14 @@ class ServiceAlertsController < ApplicationController
   def get_distance user_loc,center_loc
     uri = "https://maps.googleapis.com/maps/api/directions/json?origin="+user_loc+"&destination="+center_loc+"&key=AIzaSyAiQZZcEjo_QUWj476y3FPeKbg94ZldZhw"
     request = Typhoeus::Request.new(uri,
-  method: :get,
-  #body: "this is a request body",
-  #params: { field1: "a field" },
-  headers: { Accept: "application/json" })
-    request.run
-    response = request.response
-    #response.code
-    return JSON.parse(response.response_body)
+    method: :get,
+    #body: "this is a request body",
+    #params: { field1: "a field" },
+    headers: { Accept: "application/json" })
+      request.run
+      response = request.response
+      #response.code
+      return JSON.parse(response.response_body)
   end
 
 

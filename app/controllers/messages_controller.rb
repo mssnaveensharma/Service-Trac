@@ -30,16 +30,15 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
-
-    #respond_to do |format|
-      if @message.save
-          flash[:notice]="Message was created successfully"
-          redirect_to(:action => "index")
+    respond_to do |format|
+     if @message.save
+        format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        format.json { head :no_content }
        else
-        flash[:notice]="Message can not be send, required fields are missing"
-        redirect_to(:action => "index")
+        format.html { render action: 'new' }
+        format.json { render json: @message.errors, status: :unprocessable_entity }
       end
-    #end
+    end
   end
 
   # PATCH/PUT /messages/1
