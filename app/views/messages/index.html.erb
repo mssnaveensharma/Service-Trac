@@ -64,9 +64,22 @@
 			</div>
 		</div>
 		<div class="para-content">
-
-
-			
+		<%=debug @messages_l%>
+		<%=debug @new_users.length %>
+			<% @new_users.each do |message| %>
+					<div class="para-repeat">
+						<h4><%= message[:date] %></h4>
+						<h4><%= message[:name] %></h4>
+						<p><%= message[:content] %></p>
+						<%= link_to '', new_message_path, :class=>"mail-icon" %>
+						<div class="expand">
+						<%#= link_to 'Show', message %>
+						<%#= link_to 'Edit', edit_message_path(message) %>
+						<%#= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
+						<a href="javascript:void(0);" class="expand">Expand All</a>
+						</div>
+					</div>
+			<% end %>
 		</div>
 		<br>
 		
