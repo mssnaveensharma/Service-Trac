@@ -12,18 +12,21 @@ class MessagesController < ApplicationController
       arr = Array.new
        @users.each do |user| 
            @messages.each do |message| 
+              if(message.FromUserId == user.id  or message.ToUserId == user.id  and user.Role=="AppUser")
+                @from = user.FirstName
+              end
                if(message.FromUserId == user.id or message.ToUserId == user.id) 
                   response = Hash.new
                   response[:id]=message.id
                   response[:date]=message.created_at
-                  response[:name]=user.FirstName
+                  response[:name]=@from
                   response[:content]=message.MessageContent
                   arr.push(response)
                
            end 
        end 
        end
-      @new_users = arr
+      @new_users = arr.uniq{|x| x[:id]}
 
   end
 
