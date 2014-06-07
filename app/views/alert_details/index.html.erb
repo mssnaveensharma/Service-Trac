@@ -29,10 +29,10 @@ $(function () {
   directionsService = new google.maps.DirectionsService();
 
   // Create a map and center it on Manhattan.
-  var panchkula = new google.maps.LatLng(30.694209,76.860565);
+  var NY = new google.maps.LatLng(40.705631,-73.978003);
   var mapOptions = {
     zoom: 9,
-    center: panchkula
+    center: NY
   }
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
@@ -181,7 +181,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                                 <% if @driver.length != 0 %>
                                   <% @driver.each do |truck_info| %>
                                     <td><%= truck_info.TruckNumber %></td>
-                                    <td><a id="<%= alert.id %>" onclick="calcRoute(this.id)" href="javascript:void(0)"><%= truck_info.FirstName %></a></td>
+                                    <td><a id="<%= alert.id %>" onclick="calcRoute(this.id)" href="javascript:void(0)"><%= truck_info.FirstName %>&nbsp;&nbsp;&nbsp;<%= truck_info.LastName %></a></td>
                                   <% end %>
                                 <% else %>
                                     <td></td>
