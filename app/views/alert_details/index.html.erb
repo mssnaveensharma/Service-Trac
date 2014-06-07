@@ -22,7 +22,7 @@ var url_id = '';
 function initialize() {
   // Instantiate a directions service.
 $(function () {
-  url_id = GetParameterValues('id');
+  
 //alert(url_id);
 });
 
@@ -44,16 +44,18 @@ $(function () {
 
   // Instantiate an info window to hold step text.
   stepDisplay = new google.maps.InfoWindow();
+   url_id = GetParameterValues('id'); //alert(url_id);
+  //alert(url_id);
+  if(url_id !='' && url_id != null)
+  { 
+    calcRoute(url_id);
+  }
 }
   var driver_lat = '';
   var driver_lan = '';
   var center_lat = '';
   var center_lan = '';
-  
-  if(url_id !='' && url_id != null)
-  {
-    calcRoute(url_id);
-  }
+ 
 
 function calcRoute(id) {
   var alert_id = id;
