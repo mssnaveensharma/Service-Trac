@@ -181,7 +181,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                                 <% if @driver.length != 0 %>
                                   <% @driver.each do |truck_info| %>
                                     <td><%= truck_info.TruckNumber %></td>
-                                    <td><a id="<%= alert.id %>" onclick="calcRoute(this.id)" href="javascript:void(0)"><%= truck_info.FirstName %>&nbsp;&nbsp;&nbsp;<%= truck_info.LastName %></a></td>
+                                    <td><a id="<%= alert.id %>" onclick="calcRoute(this.id)" href="javascript:void(0)"><%= truck_info.FirstName %>&nbsp;<%= truck_info.LastName %></a></td>
                                   <% end %>
                                 <% else %>
                                     <td></td>
