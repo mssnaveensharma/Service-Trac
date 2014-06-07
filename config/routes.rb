@@ -51,7 +51,7 @@ Servicetrac::Application.routes.draw do
 
   post 'post_review' => 'service_center_reviews#post_review'
 
-  post 'get_distance' => "service_center_reviews#get_distance"
+  
 
  
 

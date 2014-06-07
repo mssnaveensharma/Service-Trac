@@ -7,8 +7,6 @@ gem 'rails', '4.0.4'
 gem 'pg'
 gem 'devise'
 gem 'pushmeup'
-gem 'urbanairship'
-gem 'ruby-mpns'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
