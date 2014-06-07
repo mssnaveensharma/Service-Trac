@@ -10,19 +10,32 @@ class MessagesController < ApplicationController
     @message = Message.new
     @users = User.all
       arr = Array.new
-       @users.each do |user| 
-           @messages.each do |message| 
-              if(message.FromUserId == user.id  or message.ToUserId == user.id  and user.Role=="AppUser")
+         @messages.each do |message| 
+            @users.each do |user| 
+              if message.FromUserId == user.id and user.Role=="AppUser"
                 @from = user.FirstName
+                @truck = user.TruckNumber 
+              elsif message.ToUserId == user.id  and user.Role=="AppUser"
+                @from = user.FirstName
+                @truck = user.TruckNumber
               end
-               if(message.FromUserId == user.id or message.ToUserId == user.id) 
+               if message.FromUserId == user.id 
                   response = Hash.new
                   response[:id]=message.id
+                  response[:truck]=@truck
                   response[:date]=message.created_at
                   response[:name]=@from
                   response[:content]=message.MessageContent
                   arr.push(response)
-               
+               elsif  message.ToUserId == user.id
+                  response = Hash.new
+                  response[:id]=message.id
+                  response[:truck]=@truck
+                  response[:date]=message.created_at
+                  response[:name]=@from
+                  response[:content]=message.MessageContent
+                  arr.push(response)
+
            end 
        end 
        end
@@ -88,8 +101,8 @@ class MessagesController < ApplicationController
   def post_message
     if(params[:ToUserId] != '' and params[:FromUserId] != '' and params[:MessageContent] !='')
       @chk_from_user = User.where(:id => params[:FromUserId])
-      @chk_to_user = User.where(:id => params[:ToUserId])
-        if(@chk_from_user.length !=0 and @chk_to_user.length !=0 )
+      @chk_center = Admin::ServiceCenter.where(:id => params[:ToUserId])
+        if(@chk_from_user.length !=0 and @chk_center.length !=0 )
            @message = Message.create({
                     :ToUserId=>params[:ToUserId],
                     :FromUserId=>params[:FromUserId],
