@@ -15,6 +15,13 @@ Servicetrac::Application.routes.draw do
 
   devise_for :users 
 
+  Urbanairship.application_key = 'qTvHh56aRoehg63Bukh-MA'
+  Urbanairship.application_secret = 'application-secret'
+  Urbanairship.master_secret = '_51FhNYhSkSmSH-LBzql9Q'
+  Urbanairship.logger = Rails.logger
+  Urbanairship.request_timeout = 5 # default
+  
+  
   resources :service_alerts
 
   resources :service_center_reviews

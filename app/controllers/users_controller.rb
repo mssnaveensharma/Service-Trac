@@ -29,7 +29,7 @@ class UsersController < ApplicationController
           :Role=>"AppUser",
           :device_type=>params[:device_type],
           :device_token=>params[:device_token],
-          :Url=>params[:Url]
+          :wp_notification_url=>params[:wp_notification_url]
 
         });
 
@@ -46,7 +46,7 @@ def login
   user = User.authenticate(params[:email], params[:password])
     if user
       session[:user_id] = user.id
-        @update = User.where('id= ?', user.id).update_all(lat: params[:lat], lan: params[:lan], device_type: params[:device_type], device_token: params[:device_token])
+        @update = User.where('id= ?', user.id).update_all(lat: params[:lat], lan: params[:lan], device_type: params[:device_type], device_token: params[:device_token], wp_notification_url: params[:wp_notification_url])
           if(@update == 1)
             return render :json => {:success => true, :id => user.id, :email => user.email, :lat => params[:lat], :lan => params[:lan]}
           else
@@ -69,7 +69,7 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       #params.require(:user).permit!
-      params.require(:user).permit(:eobr_make_id,:eobr_model_id,:EobrNumber,:TruckNumber,:truckmake,:TruckYear,:TruckOwner,:CompanyName,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language,:device_type,:device_token,:Url)
+      params.require(:user).permit(:eobr_make_id,:eobr_model_id,:EobrNumber,:TruckNumber,:truckmake,:TruckYear,:TruckOwner,:CompanyName,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language,:device_type,:device_token,:wp_notification_url)
     end
     
 end

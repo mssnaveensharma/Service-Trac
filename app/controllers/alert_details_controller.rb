@@ -5,7 +5,7 @@ class AlertDetailsController < ApplicationController
   # GET /alert_details
   # GET /alert_details.json
   def index
-    @alert_details = ServiceAlert.all
+    @alert_details = ServiceAlert.where('(status != ? )', "cancel")
   end
 
   # GET /alert_details/1

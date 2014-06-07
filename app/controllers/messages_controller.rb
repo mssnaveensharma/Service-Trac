@@ -8,41 +8,37 @@ class MessagesController < ApplicationController
     @messages = Message.find(:all, :order => "created_at DESC")
     @messages_l = @messages.length
     @message = Message.new
-    @users = User.all
+    @users = User.where(:Role => "AppUser")
     @service_centers = Admin::ServiceCenter.all
       arr = Array.new
          @messages.each do |message| 
-            @service_centers.each do |center| 
-               @users.each do |user|
-                  if message.FromUserId == user.id and user.Role=="AppUser"
-                    @from = user.FirstName
-                    @truck = user.TruckNumber 
-                  elsif message.ToUserId == center.id  and user.Role=="AppUser"
-                    @from = user.FirstName
-                    @truck = user.TruckNumber
-                  end
-                   if message.FromUserId == user.id 
+            @service_centers.each do |center|
+              @users.each do |user|
+                if message.ToUserId == user.id 
+                  @name = user.FirstName
+                  @truck = user.TruckNumber
                       response = Hash.new
                       response[:id]=message.id
                       response[:truck]=@truck
                       response[:date]=message.created_at
-                      response[:name]=@from
+                      response[:name]=@name
                       response[:content]=message.MessageContent
                       arr.push(response)
-                   elsif  message.ToUserId == center.id
+                elsif message.FromUserId == user.id
+                  @name = user.FirstName
+                  @truck = user.TruckNumber
                       response = Hash.new
                       response[:id]=message.id
                       response[:truck]=@truck
                       response[:date]=message.created_at
-                      response[:name]=@from
+                      response[:name]=@name
                       response[:content]=message.MessageContent
                       arr.push(response)
-
-               end 
-             end
-        end 
-       end
-      @new_users = arr.uniq{|x| x[:id]}
+                end
+              end
+            end  
+         end
+         @new_users = arr.uniq{|x| x[:id]}
 
   end
 
@@ -57,6 +53,7 @@ class MessagesController < ApplicationController
      @user_msg = @message.MessageContent 
     
      if @d_type == 'iphone' 
+     Urbanairship.register_device(@d_token)
      notification = { 
        :schedule_for => [1.second.from_now],  
        :device_tokens => [@d_token], 
@@ -65,17 +62,17 @@ class MessagesController < ApplicationController
       @response = Urbanairship.push(notification) 
       
        else @d_type == 'wp' 
-       @url = @user.Url 
-    uri = @url
-    @user_msg = "Dynamic Hello Push Notification."
-    options = {
-        title: "Hello !",
-        content: @user_msg,
-        params: {
-            any_data: 2,
-            another_key: "Hum..."
+       @url = @user.wp_notification_url 
+        uri = "http://am3.notify.live.net/throttledthirdparty/01.00/AQF1iHbWHpAeS4-uurPUDkPVAgAAAAADAQAAAAQUZm52OkJCMjg1QTg1QkZDMkUxREQFBkVVV0UwMQ"
+        @user_msg = "Service alert notification"
+        options = {
+            title: "Hello !",
+            content: @user_msg,
+            params: {
+                any_data: 2,
+                another_key: "Hum..."
+            }
         }
-    }
 
     # response is an Net::HTTP object
     @reponse = MicrosoftPushNotificationService.send_notification uri, :toast, options
@@ -146,7 +143,8 @@ class MessagesController < ApplicationController
            @message = Message.create({
                     :ToUserId=>params[:ToUserId],
                     :FromUserId=>params[:FromUserId],
-                    :MessageContent=>params[:MessageContent]});
+                    :MessageContent=>params[:MessageContent],
+                    :sent_by=>"AppUser" });
             if(@message.id !='' and @message.id != nil)
               return render :json => {:success => "true", :message => "Message is posted successfully", :meesage_id => @message.id}
             else
@@ -170,6 +168,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:FromUserId, :ToUserId, :MessageContent)
+      params.require(:message).permit(:FromUserId, :ToUserId, :MessageContent, :sent_by)
     end
 end

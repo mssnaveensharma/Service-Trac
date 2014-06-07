@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140607102638) do
+ActiveRecord::Schema.define(version: 20140607124653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,13 +67,7 @@ ActiveRecord::Schema.define(version: 20140607102638) do
     t.text     "MessageContent"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "posts", force: true do |t|
-    t.string   "title"
-    t.string   "permalink"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "sent_by"
   end
 
   create_table "service_alerts", force: true do |t|
@@ -113,7 +107,7 @@ ActiveRecord::Schema.define(version: 20140607102638) do
     t.integer  "tech_support_id"
     t.string   "TruckMake"
     t.string   "company_id"
-    t.integer  "TruckNumber"
+    t.string   "TruckNumber"
     t.string   "TruckYear"
     t.string   "TruckOwner"
     t.string   "FirstName"
@@ -129,7 +123,7 @@ ActiveRecord::Schema.define(version: 20140607102638) do
     t.string   "password_hash"
     t.string   "device_type"
     t.string   "device_token"
-    t.string   "Url"
+    t.string   "wp_notification_url"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
