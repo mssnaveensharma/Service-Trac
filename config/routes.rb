@@ -19,6 +19,12 @@ Servicetrac::Application.routes.draw do
 
   resources :service_center_reviews
 
+  resources :alert_details do
+    collection do
+      post 'get_route'
+    end
+  end
+
   namespace :admin do
     resources :service_centers
     root to: "admin#index"

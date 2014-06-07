@@ -1,4 +1,5 @@
 class Admin::ServiceCentersController < ApplicationController
+  helper_method :total_ratings
   before_action :set_admin_service_center, only: [:show, :edit, :update, :destroy]
   before_filter :allow_admin_access, only: [:create, :edit, :update, :destroy,:new]
   before_action :authenticate, only: [:index]

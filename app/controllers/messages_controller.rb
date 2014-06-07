@@ -9,35 +9,38 @@ class MessagesController < ApplicationController
     @messages_l = @messages.length
     @message = Message.new
     @users = User.all
+    @service_centers = Admin::ServiceCenter.all
       arr = Array.new
          @messages.each do |message| 
-            @users.each do |user| 
-              if message.FromUserId == user.id and user.Role=="AppUser"
-                @from = user.FirstName
-                @truck = user.TruckNumber 
-              elsif message.ToUserId == user.id  and user.Role=="AppUser"
-                @from = user.FirstName
-                @truck = user.TruckNumber
-              end
-               if message.FromUserId == user.id 
-                  response = Hash.new
-                  response[:id]=message.id
-                  response[:truck]=@truck
-                  response[:date]=message.created_at
-                  response[:name]=@from
-                  response[:content]=message.MessageContent
-                  arr.push(response)
-               elsif  message.ToUserId == user.id
-                  response = Hash.new
-                  response[:id]=message.id
-                  response[:truck]=@truck
-                  response[:date]=message.created_at
-                  response[:name]=@from
-                  response[:content]=message.MessageContent
-                  arr.push(response)
+            @service_centers.each do |center| 
+               @users.each do |user|
+                  if message.FromUserId == user.id and user.Role=="AppUser"
+                    @from = user.FirstName
+                    @truck = user.TruckNumber 
+                  elsif message.ToUserId == center.id  and user.Role=="AppUser"
+                    @from = user.FirstName
+                    @truck = user.TruckNumber
+                  end
+                   if message.FromUserId == user.id 
+                      response = Hash.new
+                      response[:id]=message.id
+                      response[:truck]=@truck
+                      response[:date]=message.created_at
+                      response[:name]=@from
+                      response[:content]=message.MessageContent
+                      arr.push(response)
+                   elsif  message.ToUserId == center.id
+                      response = Hash.new
+                      response[:id]=message.id
+                      response[:truck]=@truck
+                      response[:date]=message.created_at
+                      response[:name]=@from
+                      response[:content]=message.MessageContent
+                      arr.push(response)
 
-           end 
-       end 
+               end 
+             end
+        end 
        end
       @new_users = arr.uniq{|x| x[:id]}
 
