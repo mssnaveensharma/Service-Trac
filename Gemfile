@@ -7,6 +7,10 @@ gem 'rails', '4.0.4'
 gem 'pg'
 gem 'devise'
 gem 'pushmeup'
+#For sending notification on titanium devices
+gem 'urbanairship'
+#for sending notification on titanium devices
+gem 'ruby-mpns'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
