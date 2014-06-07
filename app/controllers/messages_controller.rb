@@ -49,6 +49,43 @@ class MessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.json
   def show
+
+    @users = User.all
+     @user = User.find(@message.ToUserId) 
+     @d_type = @user.device_type 
+     @d_token = @user.device_token 
+     @user_msg = @message.MessageContent 
+    
+     if @d_type == 'iphone' 
+     notification = { 
+       :schedule_for => [1.second.from_now],  
+       :device_tokens => [@d_token], 
+       :aps => {:alert => @user_msg, :badge => 1} 
+       } 
+      @response = Urbanairship.push(notification) 
+      
+       else @d_type == 'wp' 
+       @url = @user.Url 
+    uri = @url
+    @user_msg = "Dynamic Hello Push Notification."
+    options = {
+        title: "Hello !",
+        content: @user_msg,
+        params: {
+            any_data: 2,
+            another_key: "Hum..."
+        }
+    }
+
+    # response is an Net::HTTP object
+    @reponse = MicrosoftPushNotificationService.send_notification uri, :toast, options
+     end 
+    #notification = {
+    #:schedule_for => [1.second.from_now],
+    #:device_tokens => ['7d84912fd8b2d7318ef2d04529fc87f71a28ca82f2c15e2e5267c0e13dc25b80'],
+    #:aps => {:alert => 'bnde hai hum uske..hmpe kiska jor..', :badge => 1}
+  #}
+  #Urbanairship.push(notification)
   end
 
   # GET /messages/new

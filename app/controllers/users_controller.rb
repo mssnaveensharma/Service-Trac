@@ -29,6 +29,7 @@ class UsersController < ApplicationController
           :Role=>"AppUser",
           :device_type=>params[:device_type],
           :device_token=>params[:device_token],
+          :Url=>params[:Url]
 
         });
 
@@ -68,7 +69,7 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       #params.require(:user).permit!
-      params.require(:user).permit(:eobr_make_id,:eobr_model_id,:EobrNumber,:TruckNumber,:truckmake,:TruckYear,:TruckOwner,:CompanyName,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language,:device_type,:device_token)
+      params.require(:user).permit(:eobr_make_id,:eobr_model_id,:EobrNumber,:TruckNumber,:truckmake,:TruckYear,:TruckOwner,:CompanyName,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language,:device_type,:device_token,:Url)
     end
     
 end
