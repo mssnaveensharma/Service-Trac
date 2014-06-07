@@ -76,9 +76,12 @@
                   <% end %>
                 </tbody>
             </table>
+     <% if @service_alerts.length == 0 %>   
+      <h3 style="text-align:center;color:#fff">Currently you have no service alerts</h3>
+     <% end %>
+
         </div>
-        
-        
+
       <!-- Main component for a primary marketing message or call to action -->
       
 
