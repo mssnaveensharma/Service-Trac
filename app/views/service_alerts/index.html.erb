@@ -32,7 +32,7 @@
                               <% @drivers.each do |driver| %>
                                <%#=debug service_alert %>
                                 <td><%= driver.TruckNumber %></td>
-                                <td><%= driver.FirstName%>&nbsp;&nbsp;<%= driver.LastName%></td>
+                                <td><a href="/alert_details?id=<%= service_alert.id %>"><%= driver.FirstName%>&nbsp;&nbsp;<%= driver.LastName%></a></td>
                                 <td><%= driver.Contact %></td>
                               <% end %>
                           <% @centers = Admin::ServiceCenter.where(:id => service_alert.service_center_id)%>
@@ -42,17 +42,29 @@
                                 
                                 <td><%= center.Name %></td>
                                 <td><%= center.City %>/<%= center.State %></td>
-                                
-                                <% @reviews = ServiceCenterReview.where(:service_center_id => service_alert.service_center_id) %>
-                                <%#=debug @reviews %>
-                                  <% if(@reviews.length != 0 ) %>
-                                    <% @reviews.each do |review| %>
-                                      <td>TODO<%#= review.ratings %></td>
-                                    <% end %>
-                                  <% else %>
-                                    <td>TODO</td>
-                                  <% end %>
-                               
+                               <%
+
+                               @rate_one = ServiceCenterReview.where(:ratings => 1,:service_center_id => service_alert.service_center_id)
+                                @rate_two = ServiceCenterReview.where(:ratings => 2,:service_center_id => service_alert.service_center_id)
+                                @rate_three = ServiceCenterReview.where(:ratings => 3,:service_center_id => service_alert.service_center_id)
+                                @rate_four = ServiceCenterReview.where(:ratings => 4,:service_center_id => service_alert.service_center_id)
+                                @rate_five = ServiceCenterReview.where(:ratings => 5,:service_center_id => service_alert.service_center_id)
+                                @total_count = ServiceCenterReview.where(:service_center_id => service_alert.service_center_id)
+                                  @one_star = @rate_one.length
+                                  @two_star = @rate_two.length
+                                  @three_star = @rate_three.length
+                                  @four_star = @rate_four.length
+                                  @five_star = @rate_five.length
+                                  @total_star = @total_count.length
+                                  if(@total_star == 0)
+                                    @ratings = 0
+                                  else
+                                    @ratings = (5*@five_star + 4*@four_star + 3*@three_star + 2*@two_star + 1*@one_star) / @total_star
+                                  
+                                end
+
+                               %>
+                                <td><%= @ratings %></td>       
                                 <td><%= service_alert.status %></td>
                               <% end %>
                             <% else %>
@@ -64,9 +76,12 @@
                   <% end %>
                 </tbody>
             </table>
+     <% if @service_alerts.length == 0 %>   
+      <h3 style="text-align:center;color:#fff">Currently you have no service alerts</h3>
+     <% end %>
+
         </div>
-        
-        
+
       <!-- Main component for a primary marketing message or call to action -->
       
 

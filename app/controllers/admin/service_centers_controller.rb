@@ -1,4 +1,5 @@
 class Admin::ServiceCentersController < ApplicationController
+  helper_method :total_ratings
   before_action :set_admin_service_center, only: [:show, :edit, :update, :destroy]
   before_filter :allow_admin_access, only: [:create, :edit, :update, :destroy,:new]
   before_action :authenticate, only: [:index]
@@ -62,16 +63,11 @@ class Admin::ServiceCentersController < ApplicationController
                     response[:reviews]=@ratings
                     arr.push(response)
               end
-
-      respond_to do |format|
-          format.json {render :json => arr}   #return the json response to ajax
-      end
+       
     end
+      return render :json => {:success => "true", :arr => arr}
     else
-      @message = "{success => false, message => Required fields are missing }"
-      respond_to do |format|
-          format.json {render :json => @message}   #return the json response to ajax
-      end
+       @admin_service_centers = Admin::ServiceCenter.all
     end
   end
 
@@ -155,8 +151,12 @@ def total_ratings service_center_id
     @four_star = @rate_four.length
     @five_star = @rate_five.length
     @total_star = @total_count.length
-    @ratings = (5*@five_star + 4*@four_star + 3*@three_star + 2*@two_star + 1*@one_star) / @total_star
-  return @ratings
+    if(@total_star == 0)
+      return 0
+    else
+      @ratings = (5*@five_star + 4*@four_star + 3*@three_star + 2*@two_star + 1*@one_star) / @total_star
+    return @ratings
+  end
 end
 
   private

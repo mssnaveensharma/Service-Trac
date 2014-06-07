@@ -77,6 +77,7 @@ class ServiceAlertsController < ApplicationController
               @user_loc = params[:lat]+","+params[:lan]    #get the user cirrent location
             if(params[:alert_id] !='' and params[:alert_id] != nil)    #if found
                 @update = User.where('id= ?', params[:user_id]).update_all(lat: params[:lat], lan: params[:lan])  #update user' current location in table
+                @update_service = ServiceAlert.where('id= ?', params[:alert_id]).update_all(lat: params[:lat], lan: params[:lan])  #service alert user' current location in table
                   if(@update == 1)  
                      @current_distance = get_distance @user_loc,@center_loc     #hit the google api to get the diver location distance from service center
                         @distance_array =  @current_distance['routes'] 
@@ -102,6 +103,8 @@ class ServiceAlertsController < ApplicationController
                                       @status = "Complete"
                                     elsif (@distance <= 1 and @alert_status == 'Service')
                                       @status = "Service"
+                                    elsif (@distance > 1 and @alert_status == 'Complete')
+                                      @status = "Complete"
                                     else
                                       @status = "In Route"
                                     end
