@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token
   
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate
+  #before_action :set_user, only: [:show, :edit, :update, :destroy]
+  #before_action :authenticate
   def index
   end
 
@@ -77,8 +77,7 @@ def login
   if(params[:email] != "" and params[:password] != "" and params[:device_type] !='' and params[:device_token] !='' and params[:lat] != '' and params[:lan] != '')
   user = User.authenticate(params[:email], params[:password])
     if user
-      return render :json => {:success => false, :message => "Device url is reqiured", :pass => user}
-      session[:user_id] = user.id
+       session[:user_id] = user.id
        if params[:device_type] == 'wp'
            if params[:wp_notification_url] != ''
             @update = User.where('id= ?', user.id).update_all(lat: params[:lat], lan: params[:lan], device_type: params[:device_type], device_token: params[:device_token], wp_notification_url: params[:wp_notification_url])
@@ -124,11 +123,11 @@ def settings
       if(@response == 1 and user != nil and user != '')
         @update_pass = User.where('id= ?', params[:user_id]).update_all(encrypted_password: user)
                   if @update_pass == 1
-                    return render :json => {:success => "true", :message => "Profile information is updated successfully", :pass => user }
+                    return render :json => {:success => "true", :message => "Profile information is updated successfully"}
                   else
-                    return render :json => {:success => false, :message => "Current password is incorrect", :pass => user }
+                    return render :json => {:success => false, :message => "Current password is incorrect" }
                   end
-              return render :json => {:success => "true", :message => "Profile information is updated successfully", :pass => user }
+              return render :json => {:success => "true", :message => "Profile information is updated successfully" }
       else
         return render :json => {:success => "false", :message => "Required fields are missing in the request"}
       end
