@@ -119,11 +119,11 @@ class ServiceCenterReviewsController < ApplicationController
                 response[:comments]=@comments
                 service_center_reviews.push(response)
           end
-              return render :json => {:success => false,:service_center_reviews => service_center_reviews}  
+              return render :json => {:success => true,:service_center_reviews => service_center_reviews}  
         else
           return render :json => {:success => false, :message => "Service center currently has no reviews"}  
         end
-      return render :json => {:success => false, :message => "Ok working"}
+      return render :json => {:success => false, :message => "required fields are missing"}
     else
       return render :json => {:success => false, :message => "required fields are missing"}
     end
