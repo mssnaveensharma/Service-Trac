@@ -7,7 +7,7 @@
 			<ol class="breadcrumb">
 			<li class="active"> Main</li>
 			</ol>
-	<div class="col-sm-4 white-bg message-center">
+	<div class="col-sm-4 white-bg message-center" id="new">
 		<h4>New message</h4>
  <% if(flash[:notice]) %>
  	<%= flash[:notice] %>
@@ -25,10 +25,7 @@
 			      </ul>
 			    </div>
 			  <% end %>
-<%#=debug session[:user_id] %>
 
-			  <!--div class="form-group">
-			    <!--%= f.label :FromUserId %><br-->
 			    <%= f.hidden_field :FromUserId, :value => session[:user_id] %>
 			    <%#= f.hidden_field 'ToUserId' %>
 			  <!--/div-->
@@ -74,7 +71,8 @@
 						<h4><%= message[:truck] %></h4>
 						<h4><%= message[:name] %></h4>
 						<p><%= message[:content] %></p>
-						<%= link_to '', new_message_path, :class=>"mail-icon" %>
+						<%#= link_to '', new_message_path, :class=>"mail-icon" %>
+						<a href="#new" class="mail-icon"></a>
 						<div class="expand">
 						<%#= link_to 'Show', message %>
 						<%#= link_to 'Edit', edit_message_path(message) %>

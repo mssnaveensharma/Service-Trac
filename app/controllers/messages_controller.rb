@@ -63,10 +63,10 @@ class MessagesController < ApplicationController
       
        else @d_type == 'wp' 
        @url = @user.wp_notification_url 
-        uri = "http://am3.notify.live.net/throttledthirdparty/01.00/AQF1iHbWHpAeS4-uurPUDkPVAgAAAAADAQAAAAQUZm52OkJCMjg1QTg1QkZDMkUxREQFBkVVV0UwMQ"
-        @user_msg = "Service alert notification"
+        uri = @url
+        #@user_msg = "Service alert notification"
         options = {
-            title: "Hello !",
+            title: "Servicetrac alert notification",
             content: @user_msg,
             params: {
                 any_data: 2,
