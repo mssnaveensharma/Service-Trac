@@ -78,23 +78,26 @@ def login
   user = User.authenticate(params[:email], params[:password])
     if user
       session[:user_id] = user.id
-       if params[:device_type] == 'wp' and params[:wp_notification_url] !=''
-        @update = User.where('id= ?', user.id).update_all(lat: params[:lat], lan: params[:lan], device_type: params[:device_type], device_token: params[:device_token], wp_notification_url: params[:wp_notification_url])
+       if params[:device_type] == 'wp'
+           if params[:wp_notification_url] != ''
+            @update = User.where('id= ?', user.id).update_all(lat: params[:lat], lan: params[:lan], device_type: params[:device_type], device_token: params[:device_token], wp_notification_url: params[:wp_notification_url])
+              if(@update == 1)
+                return render :json => {:success => true, :id => user.id, :email => user.email, :lat => params[:lat], :lan => params[:lan]}
+              else
+                return render :json => {:success => false, :message => "Invalid email or password"}
+              end
+            else
+                return render :json => {:success => false, :message => "Device url is reqiured"}
+            end
+        else
+       @update = User.where('id= ?', user.id).update_all(lat: params[:lat], lan: params[:lan], device_type: params[:device_type], device_token: params[:device_token])
           if(@update == 1)
             return render :json => {:success => true, :id => user.id, :email => user.email, :lat => params[:lat], :lan => params[:lan]}
           else
             return render :json => {:success => false, :message => "Invalid email or password"}
           end
+         end
 
-       else
-        return render :json => {:success => false, :message => "Device uri is required"}
-       end
-        @update = User.where('id= ?', user.id).update_all(lat: params[:lat], lan: params[:lan], device_type: params[:device_type], device_token: params[:device_token])
-          if(@update == 1)
-            return render :json => {:success => true, :id => user.id, :email => user.email, :lat => params[:lat], :lan => params[:lan]}
-          else
-            return render :json => {:success => false, :message => "Invalid email or password"}
-          end
     else
       return render :json => {:success => false, :message => "Invalid email or password"}    
     end
