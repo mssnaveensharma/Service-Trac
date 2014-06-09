@@ -95,7 +95,60 @@ class ServiceCenterReviewsController < ApplicationController
     end
   end
 
+  def get_reviews
+    if params[:service_center_id] != '' and params[:service_center_id] != nil
+      service_center_reviews = Array.new
+      @centers = ServiceCenterReview.where(:service_center_id => params[:service_center_id])
+        if @centers.length != 0
+           @centers.each do |center|
+            @ratings = total_ratings center.service_center_id
+            @comments = center.comments
+            @date = center.created_at
+              @user = User.where(:id => center.user_id)
+                @user.each do |username|
+                  @username = username.FirstName+" "+username.LastName
+                end
+              @center_name = Admin::ServiceCenter.where(:id =>params[:service_center_id])
+                @center_name.each do |center_name|
+                  @service_center = center_name.Name
+                end
+                response = Hash.new
+                response[:date]=@date
+                response[:username]=@username
+                response[:ratings]=@ratings
+                response[:comments]=@comments
+                service_center_reviews.push(response)
+          end
+              return render :json => {:success => false,:service_center_reviews => service_center_reviews}  
+        else
+          return render :json => {:success => false, :message => "Service center currently has no reviews"}  
+        end
+      return render :json => {:success => false, :message => "Ok working"}
+    else
+      return render :json => {:success => false, :message => "required fields are missing"}
+    end
+  end
 
+def total_ratings service_center_id
+  @rate_one = ServiceCenterReview.where(:ratings => 1,:service_center_id => service_center_id)
+  @rate_two = ServiceCenterReview.where(:ratings => 2,:service_center_id => service_center_id)
+  @rate_three = ServiceCenterReview.where(:ratings => 3,:service_center_id => service_center_id)
+  @rate_four = ServiceCenterReview.where(:ratings => 4,:service_center_id => service_center_id)
+  @rate_five = ServiceCenterReview.where(:ratings => 5,:service_center_id => service_center_id)
+  @total_count = ServiceCenterReview.where(:service_center_id => service_center_id)
+    @one_star = @rate_one.length
+    @two_star = @rate_two.length
+    @three_star = @rate_three.length
+    @four_star = @rate_four.length
+    @five_star = @rate_five.length
+    @total_star = @total_count.length
+    if(@total_star == 0)
+      return 0
+    else
+      @ratings = (5*@five_star + 4*@four_star + 3*@three_star + 2*@two_star + 1*@one_star) / @total_star
+    return @ratings
+  end
+end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_service_center_review

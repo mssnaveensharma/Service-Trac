@@ -58,9 +58,7 @@ Servicetrac::Application.routes.draw do
 
   post 'post_review' => 'service_center_reviews#post_review'
 
-  
-
- 
+  post 'get_reviews' => 'service_center_reviews#get_reviews'  
 
   post 'post_message' => 'messages#post_message'
 
