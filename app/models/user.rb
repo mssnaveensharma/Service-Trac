@@ -37,6 +37,15 @@ class User < ActiveRecord::Base
     end
   end
 
+def self.update_password(email,new_password)
+    user = find_by_email(email)
+    if user 
+      BCrypt::Engine.hash_secret(new_password, user.password_salt)
+    else
+      nil
+    end
+  end
+
   def encrypt_password
     if password.present?
       self.password_salt = BCrypt::Engine.generate_salt

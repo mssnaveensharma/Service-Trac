@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   
   def register_app_user
-    if(params[:email] and params[:password] and params[:FirstName] and params[:LastName] and params[:EobrNumber] and params[:eobr_make_id] and params[:eobr_model_id] and params[:TruckNumber] and params[:truckmake] and params[:TruckYear] and params[:TruckOwner] and params[:CompanyName] and params[:tech_support] and params[:Contact] and params[:device_type] and params[:device_token])
+   if(params[:email] !='' and params[:password] !='' and params[:FirstName] !='' and params[:LastName] !='' and params[:EobrNumber] !='' and params[:eobr_make_id] !='' and params[:eobr_model_id] !='' and params[:TruckNumber] !='' and params[:truckmake] !='' and params[:TruckYear] !='' and params[:TruckOwner] !='' and params[:CompanyName] !='' and params[:tech_support] !='' and params[:Contact] !='' and params[:device_type] !='' and params[:device_token] !='')
        if params[:device_type] == 'wp' 
         if params[:wp_notification_url] != ''
           @response = User.create({
@@ -77,6 +77,7 @@ def login
   if(params[:email] != "" and params[:password] != "" and params[:device_type] !='' and params[:device_token] !='' and params[:lat] != '' and params[:lan] != '')
   user = User.authenticate(params[:email], params[:password])
     if user
+      return render :json => {:success => false, :message => "Device url is reqiured", :pass => user}
       session[:user_id] = user.id
        if params[:device_type] == 'wp'
            if params[:wp_notification_url] != ''
@@ -106,6 +107,52 @@ def login
   end
 end
   
+def settings
+  if params[:user_id] != '' and params[:user_id] != nil and params[:email] == ''
+    @user = User.where(:id => params[:user_id])
+      if @user.length != 0
+        return render :json => {:success => true, :user_info => @user}
+      else
+        return render :json => {:success => false, :message => "Invalid user id"}
+      end
+
+ elsif(params[:user_id] != '' and params[:email] !='' and params[:password] !='' and params[:FirstName] !='' and params[:LastName] !='' and params[:EobrNumber] !='' and params[:eobr_make_id] !='' and params[:eobr_model_id] !='' and params[:TruckNumber] !='' and params[:truckmake] !='' and params[:TruckYear] !='' and params[:TruckOwner] !='' and params[:company_id] !='' and params[:tech_support] !='' and params[:Contact] !='' and params[:device_type] !='' and params[:device_token] !='')
+       if params[:device_type] == 'wp' 
+        if params[:wp_notification_url] != ''
+          @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], company_id: params[:CompanyName], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], wp_notification_url: params[:wp_notification_url])
+          user = User.update_password(params[:email], params[:new_password])
+      if(@response == 1 and user != nil and user != '')
+        @update_pass = User.where('id= ?', params[:user_id]).update_all(encrypted_password: user)
+                  if @update_pass == 1
+                    return render :json => {:success => "true", :message => "Profile information is updated successfully", :pass => user }
+                  else
+                    return render :json => {:success => false, :message => "Current password is incorrect", :pass => user }
+                  end
+              return render :json => {:success => "true", :message => "Profile information is updated successfully", :pass => user }
+      else
+        return render :json => {:success => "false", :message => "Required fields are missing in the request"}
+      end
+    else
+        return render :json => {:success => "false", :message => "Device uri is required"}
+    end
+    else
+          @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], company_id: params[:CompanyName], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token])
+            user = User.update_password(params[:email], params[:new_password])
+           if(@response == 1 and user != nil and user != '')
+                  @update_pass = User.where('id= ?', params[:user_id]).update_all(encrypted_password: user)
+                  if @update_pass == 1
+                    return render :json => {:success => "true", :message => "Profile information is updated successfully", :pass => user }
+                  else
+                    return render :json => {:success => false, :message => "Current password is incorrect", :pass => user }
+                  end
+              return render :json => {:success => "true", :message => "Profile information is updated successfully", :pass => user }
+            else
+              return render :json => {:success => "false", :message => "Required perameters are mssing in the request"}
+            end
+    end
+  end
+end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

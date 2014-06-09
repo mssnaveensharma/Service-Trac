@@ -62,6 +62,8 @@ Servicetrac::Application.routes.draw do
 
   post 'post_message' => 'messages#post_message'
 
+  post 'settings' => 'users#settings'
+
   #post 'distance' => 'service_alerts#distance'
   #resources :users
 

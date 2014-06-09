@@ -101,7 +101,7 @@ class ServiceCenterReviewsController < ApplicationController
       @centers = ServiceCenterReview.where(:service_center_id => params[:service_center_id])
         if @centers.length != 0
            @centers.each do |center|
-            @ratings = total_ratings center.service_center_id
+            @ratings = center.ratings
             @comments = center.comments
             @date = center.created_at
               @user = User.where(:id => center.user_id)
@@ -129,26 +129,6 @@ class ServiceCenterReviewsController < ApplicationController
     end
   end
 
-def total_ratings service_center_id
-  @rate_one = ServiceCenterReview.where(:ratings => 1,:service_center_id => service_center_id)
-  @rate_two = ServiceCenterReview.where(:ratings => 2,:service_center_id => service_center_id)
-  @rate_three = ServiceCenterReview.where(:ratings => 3,:service_center_id => service_center_id)
-  @rate_four = ServiceCenterReview.where(:ratings => 4,:service_center_id => service_center_id)
-  @rate_five = ServiceCenterReview.where(:ratings => 5,:service_center_id => service_center_id)
-  @total_count = ServiceCenterReview.where(:service_center_id => service_center_id)
-    @one_star = @rate_one.length
-    @two_star = @rate_two.length
-    @three_star = @rate_three.length
-    @four_star = @rate_four.length
-    @five_star = @rate_five.length
-    @total_star = @total_count.length
-    if(@total_star == 0)
-      return 0
-    else
-      @ratings = (5*@five_star + 4*@four_star + 3*@three_star + 2*@two_star + 1*@one_star) / @total_star
-    return @ratings
-  end
-end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_service_center_review
