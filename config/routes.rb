@@ -55,7 +55,7 @@ Servicetrac::Application.routes.draw do
 
   post 'login' => 'users#login'
 
-  post 'driver_status' => 'service_alerts#driver_status'
+  match 'driver-status' => 'service_alerts#driver_status',  :via => :post
 
   post 'post_review' => 'service_center_reviews#post_review'
 
