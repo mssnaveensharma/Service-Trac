@@ -63,6 +63,8 @@ Servicetrac::Application.routes.draw do
 
   post 'post_message' => 'messages#post_message'
 
+  get 'all_messages' => 'messages#all_messages'
+
   post 'settings' => 'users#settings'
 
   post 'recover_password' => 'users#recover_password'
