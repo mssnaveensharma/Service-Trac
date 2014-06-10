@@ -59,6 +59,8 @@ $(function () {
 function calcRoute(id) {
   var alert_id = id;
   if(alert_id !='' && alert_id != null && alert_id != undefined ) {
+    $("tr").removeClass("active-row");
+    $("#"+id).addClass("active-row");
     $.ajax({
       url:"/alert_details/get_route",
       type:"POST",
@@ -164,7 +166,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
                 <input class="search-submit d-search" value="" type="submit" />
             </div>
             <div class="table-responsive">
-          
               <table class="table-striped table-bordered table-condensed" width="100%">
               <thead>
                     <tr>
@@ -175,7 +176,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
                 </thead>
                 <tbody>
                         <% @alert_details.each do |alert| %>
-                          <tr>
+                          <% if(params[:id] == alert.id.to_s) %>
+                          <tr class="active-row" id="<%= alert.id %>">
+                          <% else %>
+                          <tr id="<%= alert.id %>">
+                          <% end %>
                             <td><%= alert.created_at.strftime("%d/%m/%y %I:%M %p") %></td>
                               <% @driver = User.where(:id => alert.user_id) %>  
                                 <% if @driver.length != 0 %>
