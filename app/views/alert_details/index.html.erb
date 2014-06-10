@@ -15,6 +15,11 @@ $(document).ready(function(){
   $('#driver_contact_text').focusout(function (){
     $(this).attr("type","hidden");
     $('#driver_contact').show();
+      var new_contact = $(this).val();
+      //console.log(new_contact);
+        if(new_contact != '' && new_contact != undefined){
+          $.ajax
+        }
   });
     $('#truck_year_text').focusout( function (){
      $(this).attr("type","hidden");

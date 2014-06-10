@@ -39,13 +39,13 @@ Servicetrac::Application.routes.draw do
     end
   end
 
-  match 'api/EobrMakes' => 'admin/eobr_makes#index',  :via => :get,  :defaults => { :format => 'json' }
+  match 'api/eobr-makes' => 'admin/eobr_makes#index',  :via => :get,  :defaults => { :format => 'json' }
 
-  match 'api/EobrModels' => 'admin/eobr_models#index',  :via => :get,  :defaults => { :format => 'json' }
+  match 'api/eobr-models' => 'admin/eobr_models#index',  :via => :get,  :defaults => { :format => 'json' }
 
-  match 'api/Companies' => 'admin/companies#index',  :via => :get,  :defaults => { :format => 'json' }
+  match 'api/companies' => 'admin/companies#index',  :via => :get,  :defaults => { :format => 'json' }
 
-  match 'api/ServiceCenters' => 'admin/service_centers#index',  :via => :get,  :defaults => { :format => 'json' }
+  match 'api/service-centers' => 'admin/service_centers#index',  :via => :get,  :defaults => { :format => 'json' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
