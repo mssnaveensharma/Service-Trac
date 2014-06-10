@@ -15,20 +15,86 @@ $(document).ready(function(){
   $('#driver_contact_text').focusout(function (){
     $(this).attr("type","hidden");
     $('#driver_contact').show();
+  });
+    $('#truck_year_text').focusout(function (){
+    $(this).attr("type","hidden");
+    $('#truck_year').show();
+  });
+   $('#truck_make_text').focusout( function (){
+   $(this).attr("type","hidden");
+   $('#truck_make').show(); 
+  });
+  $('#driver_contact_text').change(function (){
+    $(this).attr("type","hidden");
+    $('#driver_contact').show();
       var new_contact = $(this).val();
+      var alert_id = GetParameterValues('id');
       //console.log(new_contact);
         if(new_contact != '' && new_contact != undefined){
-          $.ajax
+          $.ajax({
+            url: "/edit_alert",
+            type: "POST",
+            dataType: "json",
+            data: { contact: new_contact, alert_id: alert_id },
+            success: function (resopnse) {
+              if(resopnse.success == true) {
+                $('#driver_contact_text').val(new_contact);
+                $('#driver_contact').html(new_contact);
+                console.log(new_contact);
+              }
+            },error: function (xhr, txt) {
+              console.log("Error code is ",xhr.status);
+            }
+          });
         }
   });
-    $('#truck_year_text').focusout( function (){
+    $('#truck_year_text').change( function (){
      $(this).attr("type","hidden");
       $('#truck_year').show(); 
+        var new_year = $(this).val();
+        var alert_id = GetParameterValues('id');
+          if(new_year != '' && new_year != undefined){
+            $.ajax({
+              url: "/edit_alert",
+              type: "POST",
+              dataType: "json",
+              data: { truck_year: new_year, alert_id: alert_id },
+              success: function (resopnse) {
+                if(resopnse.success == true) {
+                  $('#truck_year_text').val(new_year);
+                  $('#truck_year').html(new_year);
+                  
+                }
+              },error: function (xhr, txt) {
+                console.log("Error code is ",xhr.status);
+              }
+            });
+          }
     });
-    $('#truck_make_text').focusout( function (){
+     $('#truck_make_text').change( function (){
      $(this).attr("type","hidden");
       $('#truck_make').show(); 
+        var new_make = $(this).val();
+        var alert_id = GetParameterValues('id');
+          if(new_make != '' && new_make != undefined){
+            $.ajax({
+              url: "/edit_alert",
+              type: "POST",
+              dataType: "json",
+              data: { truck_make: new_make, alert_id: alert_id },
+              success: function (resopnse) {
+                if(resopnse.success == true) {
+                  $('#truck_make_text').val(new_make);
+                  $('#truck_make').html(new_make);
+                  
+                }
+              },error: function (xhr, txt) {
+                console.log("Error code is ",xhr.status);
+              }
+            });
+          }
     });
+
 });
 var map;
 var directionsDisplay;

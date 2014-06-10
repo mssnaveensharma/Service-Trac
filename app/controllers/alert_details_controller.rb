@@ -88,7 +88,48 @@ class AlertDetailsController < ApplicationController
         end
       return render :json =>  data
     else
-      return render :json => {:success => "false", :data => "Required fields are missing "}     
+      return render :json => {:success => false, :data => "Required fields are missing "}     
+    end
+  end
+
+  def edit_alert
+    if params[:alert_id] !='' and params[:contact] and params[:contact] !='' and params[:contact] !=nil
+      @alert = ServiceAlert.where(:id => params[:alert_id])
+        @alert.each do |alert_user|
+          @user_id = alert_user.user_id
+            @update_contact = User.where('id= ?', @user_id).update_all(Contact: params[:contact])
+              if @update_contact ==1
+                return render :json => {:success => true, :message => "Driver contact is updated successfully", :user_id =>@user_id}
+              else
+                return render :json => {:success => false, :message => "contact is not updated"}
+              end
+        end
+    
+    elsif params[:alert_id] !='' and params[:truck_year] and params[:truck_year] != '' and params[:truck_year] != nil
+      @alert = ServiceAlert.where(:id => params[:alert_id])
+        @alert.each do |alert_user|
+          @user_id = alert_user.user_id
+            @update_contact = User.where('id= ?', @user_id).update_all(TruckYear: params[:truck_year])
+              if @update_contact ==1
+                return render :json => {:success => true, :message => "truck year is updated successfully", :user_id =>@user_id }
+              else
+                return render :json => {:success => false, :message => "truck year is not updated"}
+              end
+        end
+      return render :json => {:success => false, :message => "required perameters are missing"}     
+    
+    elsif params[:alert_id] !='' and params[:truck_make] and params[:truck_make] != '' and params[:truck_make] != nil
+      @alert = ServiceAlert.where(:id => params[:alert_id])
+        @alert.each do |alert_user|
+          @user_id = alert_user.user_id
+            @update_contact = User.where('id= ?', @user_id).update_all(TruckMake: params[:truck_make])
+              if @update_contact ==1
+                return render :json => {:success => true, :message => "truck make is updated successfully", :user_id =>@user_id}
+              else
+                return render :json => {:success => false, :message => "truck make is not updated"}
+              end
+        end
+      return render :json => {:success => false, :message => "required perameters are missing"}     
     end
   end
 

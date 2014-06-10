@@ -67,6 +67,7 @@ Servicetrac::Application.routes.draw do
 
   post 'recover_password' => 'users#recover_password'
   
+  post 'edit_alert' => 'alert_details#edit_alert'
   #post 'distance' => 'service_alerts#distance'
   #resources :users
 
