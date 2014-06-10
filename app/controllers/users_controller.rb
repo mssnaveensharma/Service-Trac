@@ -156,7 +156,7 @@ def settings
   end
 end
 
-def retrieve_password
+def recover_password
   if params[:email] != '' and params[:email] != nil
     @pass = User.where(:email => params[:email])
       if @pass.length != 0
