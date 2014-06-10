@@ -68,14 +68,23 @@ class AlertDetailsController < ApplicationController
       @alert_location = ServiceAlert.where(:id => params[:id])
         @alert_location.each do |alert|
           @center_location = Admin::ServiceCenter.where(:id => alert.service_center_id)
-            @center_location.each do |center|
-              response = Hash.new
-              response[:driver_lat]=alert.lat
-              response[:driver_lan]=alert.lan
-              response[:center_lat]=center.lat
-              response[:center_lan]=center.lan
-              data.push(response)
-            end
+            @users = User.where(:id => alert.user_id)
+              @users.each do |user|
+                @contact = user.Contact
+                @truck_year = user.TruckYear
+                @truck_make = user.TruckMake
+              end
+                @center_location.each do |center|
+                  response = Hash.new
+                  response[:driver_lat]=alert.lat
+                  response[:driver_lan]=alert.lan
+                  response[:center_lat]=center.lat
+                  response[:center_lan]=center.lan
+                  response[:contact]=@contact
+                  response[:truck_year]=@truck_year
+                  response[:truck_make]=@truck_make
+                  data.push(response)
+                end
         end
       return render :json =>  data
     else

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140607124653) do
+ActiveRecord::Schema.define(version: 20140610055618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,8 @@ ActiveRecord::Schema.define(version: 20140607124653) do
     t.string   "device_type"
     t.string   "device_token"
     t.string   "wp_notification_url"
+    t.string   "TruckModel"
+    t.string   "plain_password"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

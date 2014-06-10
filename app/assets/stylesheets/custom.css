@@ -566,3 +566,6 @@ label.margin-top
 {
 	white-space:nowrap;
 }
+.inline-edit {
+	width: 93px;
+}
