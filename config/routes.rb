@@ -15,13 +15,7 @@ Servicetrac::Application.routes.draw do
 
   devise_for :users 
 
-  Urbanairship.application_key = 'qTvHh56aRoehg63Bukh-MA'
-  Urbanairship.application_secret = 'application-secret'
-  Urbanairship.master_secret = '_51FhNYhSkSmSH-LBzql9Q'
-  Urbanairship.logger = Rails.logger
-  Urbanairship.request_timeout = 5 # default
-  
-  
+ 
   resources :service_alerts
 
   resources :service_center_reviews
@@ -43,7 +37,14 @@ Servicetrac::Application.routes.draw do
       end
     end
   end
-  
+
+  match 'api/EobrMakes' => 'admin/eobr_makes#index',  :via => :get,  :defaults => { :format => 'json' }
+
+  match 'api/EobrModels' => 'admin/eobr_models#index',  :via => :get,  :defaults => { :format => 'json' }
+
+  match 'api/Companies' => 'admin/companies#index',  :via => :get,  :defaults => { :format => 'json' }
+
+  match 'api/ServiceCenters' => 'admin/service_centers#index',  :via => :get,  :defaults => { :format => 'json' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -65,6 +66,7 @@ Servicetrac::Application.routes.draw do
   post 'settings' => 'users#settings'
 
   post 'retrieve_password' => 'users#retrieve_password'
+  
   #post 'distance' => 'service_alerts#distance'
   #resources :users
 

@@ -46,6 +46,13 @@ class MessagesController < ApplicationController
   # GET /messages/1.json
   def show
 
+  Urbanairship.application_key = 'qTvHh56aRoehg63Bukh-MA'
+  Urbanairship.application_secret = 'application-secret'
+  Urbanairship.master_secret = '_51FhNYhSkSmSH-LBzql9Q'
+  Urbanairship.logger = Rails.logger
+  Urbanairship.request_timeout = 5 # default
+    
+
     @users = User.all
      @user = User.find(@message.ToUserId) 
      @d_type = @user.device_type 

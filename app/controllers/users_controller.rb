@@ -157,8 +157,8 @@ def settings
 end
 
 def retrieve_password
-  if params[:user_id] != '' and params[:user_id] != nil
-    @pass = User.where(:id => params[:user_id])
+  if params[:email] != '' and params[:email] != nil
+    @pass = User.where(:email => params[:email])
       if @pass.length != 0
         @pass.each do |password|
           @user_pass = password.plain_password
