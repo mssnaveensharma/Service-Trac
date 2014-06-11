@@ -177,12 +177,12 @@ def all_messages
           @user_name = user.FirstName
         end
         @messages.each do |message| 
-          @center_name = Admin::ServiceCenter.where(:id => params[:service_center_id])
-              @center_name.each do |center|
-                @service_center = center.Name
-                @center_id = center.id
-              end
-                  #if params[:service_center_id]@center_id
+          if message.service_center_id.to_i == params[:service_center_id].to_i
+            @center_name = Admin::ServiceCenter.where(:id => params[:service_center_id])
+                @center_name.each do |center|
+                  @service_center = center.Name
+                  @center_id = center.id
+                end
                     response = Hash.new
                     response[:service_center]=@service_center
                     response[:message]=message.MessageContent
@@ -190,13 +190,11 @@ def all_messages
                     response[:username]=@user_name
                     response[:sent_by]=message.sent_by
                     response[:service_center_id]=message.service_center_id
-                    #response[:Service]=params[:service_center_id]
+                    #response[:my_Service]=params[:service_center_id]
                     messages.push(response)
 
-                #end
-             
-              
             @messageArray = messages
+          end
         end
           return render :json => {:success => true, :messages => @messageArray}
       else
