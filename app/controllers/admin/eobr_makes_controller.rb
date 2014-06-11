@@ -25,7 +25,6 @@ class Admin::EobrMakesController < ApplicationController
   # POST /admin/eobr_makes.json
   def create
     @admin_eobr_make = Admin::EobrMake.new(admin_eobr_make_params)
-
     respond_to do |format|
       if @admin_eobr_make.save
         format.html { redirect_to @admin_eobr_make, notice: 'Eobr make was successfully created.' }

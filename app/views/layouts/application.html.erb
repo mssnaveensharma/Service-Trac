@@ -46,9 +46,17 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><p>Dispatch Connection</p></li>
-            
-            </li>
+            <li class="active"><p>
+        	
+               	<% if user_signed_in? %>
+                 <%=current_user.FirstName.to_s+' '+current_user.LastName.to_s%>
+                  	 <% if user_signed_in? %>
+                  	 <%= link_to('Logout',destroy_user_session_path, :method => :delete,:class=>'logout')%>
+                  	 <%else%>
+                  	  <%= link_to('Sign In',new_user_session_path,:class=>'logout')%>
+                  	 <%end%>
+               <%end%>   
+              </p></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a class="home" href="/"></a></li>
