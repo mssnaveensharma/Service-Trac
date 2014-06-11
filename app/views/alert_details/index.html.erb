@@ -229,6 +229,10 @@ function calcRoute(id) {
 
             $('#last_alert').html(value[i]['last_alert']);
 
+            $('#asst_date').html(value[i]['asst_date']);
+
+            $('#asst_time').html(value[i]['asst_time']);
+
           }
           //console.log(value.lan);
         });
@@ -363,8 +367,8 @@ function edit_assist(){
             </div>
               <input type="hidden" id="alert_id_hidden" name="alert_id_hidden">
             <div class="table-responsive">
-            <% @time = Time.now + 5.hours %>
-            <%=debug Time.parse('1 day 12 hours') %>
+            <%# @time = Time.now + 5.hours %>
+            <%#=debug Time.parse('1 day 12 hours') %>
               <table class="table-striped table-bordered table-condensed" width="100%">
               <thead>
                     <tr>
@@ -445,8 +449,8 @@ function edit_assist(){
                </li>
                <li class="list-group-item"><h4>SERVICE CENTER </h4><p id="service_center">Omnitraces</p></li>
                <li class="list-group-item"><h4>CITY/STATE </h4><p id="city_state">MCP 100</p></li>
-               <li class="list-group-item"><h4>EST Service Date</h4><p>05/15/14</p></li>
-               <li class="list-group-item"><h4>EST ARRIVAL</h4><p>1:30 AM</p></li>
+               <li class="list-group-item"><h4>EST Service Date</h4><p id="asst_date">05/15/14</p></li>
+               <li class="list-group-item"><h4>EST ARRIVAL</h4><p id="asst_time">1:30 AM</p></li>
                <li class="list-group-item"><h4>Last Date of Service</h4><p id="last_alert">03/14/2014</p></li>
             </ul>
              <ul class="list-group">

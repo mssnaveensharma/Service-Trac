@@ -68,6 +68,8 @@ class AlertDetailsController < ApplicationController
       data = Array.new
       @alert_location = ServiceAlert.where(:id => params[:id])
         @alert_location.each do |alert|
+          @asst_time = Time.now + alert.asstimate_time.to_i.hours
+          #@asst_date = 
           @center_location = Admin::ServiceCenter.where(:id => alert.service_center_id)
             @users = User.where(:id => alert.user_id)
               @users.each do |user|
@@ -103,7 +105,9 @@ class AlertDetailsController < ApplicationController
                   response[:driver_assist]=@driver_assist
                   response[:service_center]=center.Name
                   response[:city_state]=center.City+"/"+center.State
-                  response[:last_alert]=alert.updated_at.strftime("%d/%m/%y")
+                  response[:last_alert]=alert.created_at.strftime("%d/%m/%y")
+                  response[:asst_time]=@asst_time.strftime("%I:%M %p")
+                  response[:asst_date]=Date.today.strftime("%d/%m/%y")
                   data.push(response)
                 end
         end

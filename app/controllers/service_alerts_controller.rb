@@ -90,7 +90,8 @@ class ServiceAlertsController < ApplicationController
                                     @distance_count.each do |new_distance| 
                                       @distance =  new_distance['distance']['text'].gsub(/\s.+/, '').to_i   #lotal distance in kms
                                       @time = new_distance['duration']['text'] #total time 
-                                      
+                                      @asst_time = new_distance['duration']['text'].gsub(/\s.+/, '').to_i
+
                               end 
                             end
       
@@ -112,7 +113,7 @@ class ServiceAlertsController < ApplicationController
                                     else
                                       @status = "In Route"
                                     end
-                                    @update_alert = ServiceAlert.where('id= ?', params[:alert_id]).update_all(service_center_id: params[:service_center_id], status: @status )  #update the alert status
+                                    @update_alert = ServiceAlert.where('id= ?', params[:alert_id]).update_all(service_center_id: params[:service_center_id], status: @status, asstimate_time: @asst_time, asstimate_date: @asst_time)  #update the alert status
                                       return render :json => {:success => "true", :message => "Alert is updated succesfully", :status => @alert_status, :distance => @distance, :time => @time,:mystatus => @status} #return the response to api
                           else
                               return render :json => {:success => "false", :message => "Location information is incorrect", :status => "null", :distance => "", :time => ""}  #if invalid lat,lan
@@ -141,6 +142,7 @@ class ServiceAlertsController < ApplicationController
                                     @distance_count.each do |new_distance| 
                                       @distance =  new_distance['distance']['text'].gsub(/\s.+/, '').to_i   #lotal distance in kms
                                       @time = new_distance['duration']['text'] #total time 
+                                      @asst_time = new_distance['duration']['text'].gsub(/\s.+/, '').to_i
                               end 
                             end
 
@@ -151,16 +153,16 @@ class ServiceAlertsController < ApplicationController
                                  @status = ""
                                     if(@distance >= 1 and @alert_status == 'New')
                                       @status = "In Route"
-                                    elsif(@distance <= 1 and @alert_status == 'In Route')
+                                    elsif(@distance < 1 and @alert_status == 'In Route')
                                       @status = "Service"
                                     elsif (@distance > 1 and @alert_status == 'Service')
                                       @status = "Complete"
-                                    elsif (@distance <= 1 and @alert_status == 'Service')
+                                    elsif (@distance < 1 and @alert_status == 'Service')
                                       @status = "Service"
                                     else
                                       @status = "In Route"
                                     end
-                                    #@update_alert = ServiceAlert.where('id= ?', @alerts.id).update_all(service_center_id: params[:service_center_id], status: @status )  #update the alert status
+                                    @update_alert = ServiceAlert.where('id= ?', @alerts.id).update_all(asstimate_time: @asst_time, asstimate_date: @asst_time )  #update the alert status
                                       return render :json => {:success => "true", :message => "New alert is created succesfully", :status => @status,:alert_id => @alerts.id, :distance => @distance, :time => @time,:mystatus => @status} #return the response to api
                           else
                               return render :json => {:success => "false", :message => "Location information is incorrect", :status => "null", :distance => "", :time => ""}  #if invalid lat,lan
