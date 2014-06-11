@@ -64,7 +64,7 @@ Servicetrac::Application.routes.draw do
 
   post 'post_message' => 'messages#post_message'
 
-  get 'all_messages' => 'messages#all_messages'
+  match 'all-messages' => 'messages#all_messages',  :via => :post,  :defaults => { :format => 'json' }
 
   post 'settings' => 'users#settings'
 

@@ -108,10 +108,10 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     respond_to do |format|
      if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        format.html { redirect_to '/messages', notice: 'Message was send successfully.' }
         format.json { head :no_content }
        else
-        format.html { render action: 'new' }
+        format.html { redirect_to '/messages', notice: 'Required fields are missing' }
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end
     end
@@ -151,6 +151,7 @@ class MessagesController < ApplicationController
                     :ToUserId=>params[:ToUserId],
                     :FromUserId=>params[:FromUserId],
                     :MessageContent=>params[:MessageContent],
+                    :service_center_id=>params[:ToUserId],
                     :sent_by=>"AppUser" });
             if(@message.id !='' and @message.id != nil)
               return render :json => {:success => "true", :message => "Message is posted successfully", :meesage_id => @message.id}
@@ -166,7 +167,31 @@ class MessagesController < ApplicationController
     end
   end
 
-
+def all_messages
+  if params[:user_id] != '' and params[:user_id] != nil and params[:service_center_id] and params[:service_center_id] != nil
+   messages = Array.new
+    @messages = Message.where('"ToUserId" = ? OR "FromUserId" = ? AND service_center_id = ?', params[:user_id],params[:user_id],params[:service_center_id])
+      if @messages.length != 0
+        @messages.each do |message| 
+          @center_name = Admin::ServiceCenter.where(:id => params[:service_center_id])
+            @center_name.each do |center|
+              @service_center = center.Name
+                response = Hash.new
+                response[:service_center]=@service_center
+                response[:message]=message.MessageContent
+                response[:messageId]=message.id
+                messages.push(response)
+            end
+            @messageArray = messages.uniq{|x| x[:messageId]}
+        end
+          return render :json => {:success => true, :messages => @messageArray}
+      else
+        return render :json => {:success => false, :messages => "no messages for this user"}
+      end
+  else
+    return render :json => {:success => false, :message => "User id is required"}
+  end
+end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message
@@ -175,6 +200,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:FromUserId, :ToUserId, :MessageContent, :sent_by)
+      params.require(:message).permit(:FromUserId, :ToUserId, :MessageContent, :sent_by, :service_center_id)
     end
 end

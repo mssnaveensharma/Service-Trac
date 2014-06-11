@@ -25,9 +25,15 @@
 			      </ul>
 			    </div>
 			  <% end %>
-			  <%=debug session[:user_id] %>
-			    <%= f.hidden_field :FromUserId, :value => session[:user_id] %>
-			    <%= f.hidden_field :sent_by, :value => "WebUser" %>
+			  <% if user_signed_in? %>
+ 				<%= f.hidden_field :FromUserId, :value => current_user.id %>
+				  	<% @selected_center = UsersServiceCenter.where(:user_id => current_user.id) %>
+		         			<% @selected_center.each do |selected| %>   
+		            		<% @selected_id =  selected.service_center_id %>
+	         		<% end %>
+			    	<%= f.hidden_field :service_center_id, :value => @selected_id %>
+				<% end %>
+				    <%= f.hidden_field :sent_by, :value => "WebUser" %>
 			    <%#= f.hidden_field 'ToUserId' %>
 			  <!--/div-->
 			  <div class="form-group">
@@ -38,9 +44,10 @@
 
 
 			  </div>
-			 
+
 			    <!--%= f.label :MessageContent %><br-->
 			    <%= f.text_area :MessageContent %>
+
 			 	<%#= link_to 'Back', messages_path , :class=>"back_button" %>
 			  <div class="form-group align-right">
 				  <input type="reset" class="clear" value="Clear">

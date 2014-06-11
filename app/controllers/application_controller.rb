@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
   
   def authenticate
-      if current_user!=nil && current_user.Role=='admin'
+      if current_user!=nil && current_user.Role=='admin' or current_user.Role=='DispatchUser'
        return true
       else
           authenticate_or_request_with_http_token do |token, options|
