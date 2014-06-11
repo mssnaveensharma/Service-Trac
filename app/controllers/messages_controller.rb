@@ -170,19 +170,33 @@ class MessagesController < ApplicationController
 def all_messages
   if params[:user_id] != '' and params[:user_id] != nil and params[:service_center_id] and params[:service_center_id] != nil
    messages = Array.new
-    @messages = Message.where('"ToUserId" = ? OR "FromUserId" = ? AND service_center_id = ?', params[:user_id],params[:user_id],params[:service_center_id])
+    @messages = Message.where('"FromUserId" = ? or "ToUserId" = ?', params[:user_id], params[:user_id])
       if @messages.length != 0
+        @users = User.where(:id => params[:user_id])
+        @users.each do |user|
+          @user_name = user.FirstName
+        end
         @messages.each do |message| 
           @center_name = Admin::ServiceCenter.where(:id => params[:service_center_id])
-            @center_name.each do |center|
-              @service_center = center.Name
-                response = Hash.new
-                response[:service_center]=@service_center
-                response[:message]=message.MessageContent
-                response[:messageId]=message.id
-                messages.push(response)
-            end
-            @messageArray = messages.uniq{|x| x[:messageId]}
+              @center_name.each do |center|
+                @service_center = center.Name
+                @center_id = center.id
+              end
+                  #if params[:service_center_id]@center_id
+                    response = Hash.new
+                    response[:service_center]=@service_center
+                    response[:message]=message.MessageContent
+                    response[:messageId]=message.id
+                    response[:username]=@user_name
+                    response[:sent_by]=message.sent_by
+                    response[:service_center_id]=message.service_center_id
+                    #response[:Service]=params[:service_center_id]
+                    messages.push(response)
+
+                #end
+             
+              
+            @messageArray = messages
         end
           return render :json => {:success => true, :messages => @messageArray}
       else
