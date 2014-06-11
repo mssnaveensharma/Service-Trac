@@ -392,7 +392,7 @@ function edit_assist(){
           <ul class="list-group">
                <li class="list-ctnt">
                     <h4 class="bg-msg">INFO</h4>
-                    <a> edit</a>
+                    <a href="/edit_alert?id=<%= params[:id] %>"> edit</a>
                </li>
                <li class="list-group-item"><h4>Contact# </h4><input type="hidden" id="driver_contact_text" class="inline-edit" value=""><p id="driver_contact">904-999-999</p><a  href="javascript:void(0);"></a></li>
                <li class="list-group-item"><h4>Truck Year </h4><input type="hidden" id="truck_year_text" class="inline-edit" value=""><p id="truck_year">2013</p><a  href="javascript:void(0);"></a></li>
@@ -401,7 +401,7 @@ function edit_assist(){
             <ul class="list-group">
                <li class="list-ctnt">
                     <h4>electronics</h4>
-                    <a> edit</a>
+                    <a href="/edit_alert"> edit</a>
                </li>
                <li class="list-group-item"><h4>eobr </h4><input type="hidden" id="eobr_make_text" class="inline-edit" value=""><p id="eobr_make">Omnitraces</p><a onclick="edit_make()" href="javascript:void(0);"></a></li>
                <li class="list-group-item"><h4>unit model</h4><input type="hidden" id="eobr_model_text" class="inline-edit" value=""><p id="eobr_model">MCP 100</p><a  href="javascript:void(0);"></a></li>

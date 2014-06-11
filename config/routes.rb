@@ -72,7 +72,7 @@ Servicetrac::Application.routes.draw do
 
   post 'recover_password' => 'users#recover_password'
   
-  post 'edit_alert' => 'alert_details#edit_alert'
+  get 'edit_alert' => 'alert_details#edit_alert'
 
   match 'admin/manage_dispatch_user' => 'admin/admin#manage_dispatch_user',  :via => :get
 
