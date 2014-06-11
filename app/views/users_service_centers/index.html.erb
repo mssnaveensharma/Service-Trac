@@ -1,0 +1,25 @@
+<h1>Listing users_service_centers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users_service_centers.each do |users_service_center| %>
+      <tr>
+        <td><%= link_to 'Show', users_service_center %></td>
+        <td><%= link_to 'Edit', edit_users_service_center_path(users_service_center) %></td>
+        <td><%= link_to 'Destroy', users_service_center, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Users service center', new_users_service_center_path %>

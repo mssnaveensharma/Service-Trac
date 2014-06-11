@@ -15,6 +15,7 @@ Servicetrac::Application.routes.draw do
 
   devise_for :users 
 
+  resources :users_service_centers
  
   resources :service_alerts
 
@@ -70,6 +71,10 @@ Servicetrac::Application.routes.draw do
   post 'recover_password' => 'users#recover_password'
   
   post 'edit_alert' => 'alert_details#edit_alert'
+
+  match 'admin/manage_dispatch_user' => 'admin/admin#manage_dispatch_user',  :via => :get
+
+  match 'admin/manage_dispatch_user_edit' => 'admin/admin#manage_dispatch_user_edit',  :via => :get
   #post 'distance' => 'service_alerts#distance'
   #resources :users
 

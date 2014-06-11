@@ -1,0 +1,49 @@
+    <div class="container">
+
+    <div class="serch-fld">
+          <label class="margin-top">Dashboard </label>
+           <span class="align-right">
+              <input class="form-control" type="search">
+                <input value="" class="search-submit" type="submit" />
+            </span>
+           
+        </div>  
+        <ol class="breadcrumb">
+      <li class="active"> Main</li>
+      </ol>
+        <div class="form-group subcontainer">        
+        <% if flash[:notice] %>
+            <p style="color:#fff;"><%= flash[:notice] %></p>
+        <% end %>
+        <% @all_info = User.where(:id => params[:id]) %>
+        <% @selected_center = UsersServiceCenter.where(:user_id => params[:id]) %>
+         <% @selected_center.each do |selected| %>   
+            <% @selected_id =  selected.service_center_id %>
+         <% end %>
+            <% @all_info.each do |rara| %>
+                <form method="POST" action="/users_service_centers">
+                <input type="hidden" name="user_id" value="<%= params[:id] %>">
+                <label>FirstName</label>
+                    <input type="text" name="FirstName" value="<%= rara.FirstName %>"></br>
+                <label>LastName</label>
+                    <input type="text" name="LastName" value="<%= rara.LastName %>"></br>
+                <label>Contact</label>
+                    <input type="text" name="Contact" value="<%= rara.Contact %>"></br>
+                <label>Service Center</label>
+                    <select name="service_center_id">
+                        <option>Select Service Center</option>
+                        <% @service_centers.each do |service_center| %>
+                            <% if(service_center.id == @selected_id) %>
+                                <% @selected = "selected=selected"%>
+                            <% else %>
+                                <% @selected = "" %>
+                            <% end %>
+                            <option value="<%= service_center.id %>" <%= @selected%>><%= service_center.Name %></option>
+                        <% end %>
+                    </select></br>
+                <input type="submit" name="commit" value="Update">
+                </form>
+            <% end %>
+        </div>
+      </div>
+
