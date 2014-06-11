@@ -7,7 +7,10 @@ class ServiceAlertsController < ApplicationController
   # GET /service_alerts
   # GET /service_alerts.json
   def index
-    @service_alerts = ServiceAlert.where('(status != ? )', "cancel")
+    if user_signed_in?
+      @user = current_user.id
+    end
+      @service_alerts = ServiceAlert.where('(status != ? )', "cancel")
   end
 
   # GET /service_alerts/1

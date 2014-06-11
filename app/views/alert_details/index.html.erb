@@ -12,7 +12,7 @@ return urlparam[1];
 </script>
 <script>
 $(document).ready(function(){
-  $('#driver_contact_text').focusout(function (){
+  /*$('#driver_contact_text').focusout(function (){
     $(this).attr("type","hidden");
     $('#driver_contact').show();
   });
@@ -40,9 +40,9 @@ $(document).ready(function(){
     $('#driver_assist_text').focusout( function (){
     $(this).attr("type","hidden");
     $('#driver_assist').show(); 
-  });
+  });*/
 
-  $('#driver_contact_text').change(function (){
+  /*$('#driver_contact_text').change(function (){
     $(this).attr("type","hidden");
     $('#driver_contact').show();
       var new_contact = $(this).val();
@@ -112,7 +112,7 @@ $(document).ready(function(){
               }
             });
           }
-    });
+    });*/
 
      /*$('#eobr_make_text').change( function (){
      $(this).attr("type","hidden");
@@ -293,7 +293,7 @@ function attachInstructionText(marker, text) {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-function edit_contact(){
+/*function edit_contact(){
   //alert("ok working");
   $('#driver_contact_text').attr("type","text");
   $('#driver_contact').hide();
@@ -334,7 +334,7 @@ function edit_assist(){
   $('#driver_assist_text').attr("type","text");
   $('#driver_assist').hide();
   $('#driver_assist_text').focus();
-} 
+} */
 </script>
 
     <div class="container main-padding">
@@ -394,9 +394,9 @@ function edit_assist(){
                     <h4 class="bg-msg">INFO</h4>
                     <a> edit</a>
                </li>
-               <li class="list-group-item"><h4>Contact# </h4><input type="hidden" id="driver_contact_text" class="inline-edit" value=""><p id="driver_contact">904-999-999</p><a onclick="edit_contact()" href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>Truck Year </h4><input type="hidden" id="truck_year_text" class="inline-edit" value=""><p id="truck_year">2013</p><a onclick="edit_truck_year()" href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>Truck Make  </h4><input type="hidden" id="truck_make_text" class="inline-edit" value=""><p id="truck_make">Kenworth</p><a onclick="edit_truck_make()" href="javascript:void(0);"></a></li>
+               <li class="list-group-item"><h4>Contact# </h4><input type="hidden" id="driver_contact_text" class="inline-edit" value=""><p id="driver_contact">904-999-999</p><a  href="javascript:void(0);"></a></li>
+               <li class="list-group-item"><h4>Truck Year </h4><input type="hidden" id="truck_year_text" class="inline-edit" value=""><p id="truck_year">2013</p><a  href="javascript:void(0);"></a></li>
+               <li class="list-group-item"><h4>Truck Make  </h4><input type="hidden" id="truck_make_text" class="inline-edit" value=""><p id="truck_make">Kenworth</p><a  href="javascript:void(0);"></a></li>
             </ul>
             <ul class="list-group">
                <li class="list-ctnt">
@@ -404,9 +404,9 @@ function edit_assist(){
                     <a> edit</a>
                </li>
                <li class="list-group-item"><h4>eobr </h4><input type="hidden" id="eobr_make_text" class="inline-edit" value=""><p id="eobr_make">Omnitraces</p><a onclick="edit_make()" href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>unit model</h4><input type="hidden" id="eobr_model_text" class="inline-edit" value=""><p id="eobr_model">MCP 100</p><a onclick="edit_model()" href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>serial #</h4><input type="hidden" id="eobr_number_text" class="inline-edit" value=""><p id="eobr_number">20758968</p><a onclick="edit_number()" href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>driver asst.</h4><input type="hidden" id="driver_assist_text" class="inline-edit" value=""><p id="driver_assist">MobilEye</p><a onclick="edit_assist()" href="javascript:void(0);"></a></li>
+               <li class="list-group-item"><h4>unit model</h4><input type="hidden" id="eobr_model_text" class="inline-edit" value=""><p id="eobr_model">MCP 100</p><a  href="javascript:void(0);"></a></li>
+               <li class="list-group-item"><h4>serial #</h4><input type="hidden" id="eobr_number_text" class="inline-edit" value=""><p id="eobr_number">20758968</p><a  href="javascript:void(0);"></a></li>
+               <li class="list-group-item"><h4>driver asst.</h4><input type="hidden" id="driver_assist_text" class="inline-edit" value=""><p id="driver_assist">MobilEye</p><a  href="javascript:void(0);"></a></li>
             </ul>
              <ul class="list-group">
                <li class="list-ctnt">
