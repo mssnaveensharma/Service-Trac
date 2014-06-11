@@ -34,7 +34,7 @@
                     <% @service_alerts.each do |service_alert| %>
                       <tr>
                         <% @drivers = User.where('("Role" = ? AND id = ? )', "AppUser",service_alert.user_id) %>
-                            <% if(@drivers.length != 0) %>
+                            <% if(@drivers.length != 0) and service_alert.status != 'Complete' %>
                             <td><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></td>
                               <% @drivers.each do |driver| %>
                                <%#=debug service_alert %>
@@ -84,7 +84,7 @@
                 </tbody>
             </table>
      <% if @service_alerts.length == 0 %>   
-      <h3 style="text-align:center;color:#fff">Currently you have no service alerts</h3>
+      <h3 style="text-align:center;color:#fff">Currently you have no active service alerts</h3>
      <% end %>
 
         </div>

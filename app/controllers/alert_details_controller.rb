@@ -101,6 +101,9 @@ class AlertDetailsController < ApplicationController
                   response[:eobr_make]=@eobr_make_name
                   response[:eobr_model]=@eobr_model_name
                   response[:driver_assist]=@driver_assist
+                  response[:service_center]=center.Name
+                  response[:city_state]=center.City+"/"+center.State
+                  response[:last_alert]=alert.updated_at.strftime("%d/%m/%y")
                   data.push(response)
                 end
         end

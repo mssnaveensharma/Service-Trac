@@ -203,26 +203,31 @@ function calcRoute(id) {
             center_lat = value[i]['center_lat'];
             center_lan = value[i]['center_lan'];
             $('#driver_contact').html(value[i]['contact']);
-            $("#driver_contact_text").val(value[i]['contact']);
+            //$("#driver_contact_text").val(value[i]['contact']);
 
             $('#truck_year').html(value[i]['truck_year']);
-            $('#truck_year_text').val(value[i]['truck_year']);
+            //$('#truck_year_text').val(value[i]['truck_year']);
 
             $('#truck_make').html(value[i]['truck_make']);
-            $('#truck_make_text').val(value[i]['truck_make']);
+            //$('#truck_make_text').val(value[i]['truck_make']);
 
             $('#eobr_make').html(value[i]['eobr_make']);
-            $('#eobr_make_text').val(value[i]['eobr_make']);
+            //$('#eobr_make_text').val(value[i]['eobr_make']);
 
             $('#eobr_model').html(value[i]['eobr_model']);
-            $('#eobr_model_text').val(value[i]['eobr_model']);
+            //$('#eobr_model_text').val(value[i]['eobr_model']);
 
             $('#eobr_number').html(value[i]['eobr_number']);
-            $('#eobr_number_text').val(value[i]['eobr_number']);
+            //$('#eobr_number_text').val(value[i]['eobr_number']);
 
             $('#driver_assist').html(value[i]['driver_assist']);
-            $('#driver_assist_text').val(value[i]['driver_assist']);
+            //$('#driver_assist_text').val(value[i]['driver_assist']);
 
+            $('#service_center').html(value[i]['service_center']);
+
+            $('#city_state').html(value[i]['city_state']);
+
+            $('#last_alert').html(value[i]['last_alert']);
 
           }
           //console.log(value.lan);
@@ -358,6 +363,8 @@ function edit_assist(){
             </div>
               <input type="hidden" id="alert_id_hidden" name="alert_id_hidden">
             <div class="table-responsive">
+            <% @time = Time.now + 5.hours %>
+            <%=debug Time.parse('1 day 12 hours') %>
               <table class="table-striped table-bordered table-condensed" width="100%">
               <thead>
                     <tr>
@@ -368,8 +375,8 @@ function edit_assist(){
                 </thead>
                 <tbody>
                         <% @alert_details.each do |alert| %>
-                            <% @driver = User.where(:id => alert.user_id) %>  
-                                <% if @driver.length != 0 %>
+                          <% @driver = User.where(:id => alert.user_id) %>  
+                          <% if @driver.length != 0 and alert.status != 'Complete' %>
                           <% if(params[:id] == alert.id.to_s) %>
                           <tr class="active-row" id="<%= alert.id %>">
                           <% else %>
@@ -395,26 +402,26 @@ function edit_assist(){
                     <h4 class="bg-msg">INFO</h4>
                     <a class="edit_alert" href=""> edit</a>
                </li>
-               <li class="list-group-item"><h4>Contact# </h4><input type="hidden" id="driver_contact_text" class="inline-edit" value=""><p id="driver_contact">904-999-999</p><a  href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>Truck Year </h4><input type="hidden" id="truck_year_text" class="inline-edit" value=""><p id="truck_year">2013</p><a  href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>Truck Make  </h4><input type="hidden" id="truck_make_text" class="inline-edit" value=""><p id="truck_make">Kenworth</p><a  href="javascript:void(0);"></a></li>
+               <li class="list-group-item"><h4>Contact# </h4><input type="hidden" id="driver_contact_text" class="inline-edit" value=""><p id="driver_contact">904-999-999</p></a></li>
+               <li class="list-group-item"><h4>Truck Year </h4><input type="hidden" id="truck_year_text" class="inline-edit" value=""><p id="truck_year">2013</p></li>
+               <li class="list-group-item"><h4>Truck Make  </h4><input type="hidden" id="truck_make_text" class="inline-edit" value=""><p id="truck_make">Kenworth</p></a></li>
             </ul>
             <ul class="list-group">
                <li class="list-ctnt">
                     <h4>electronics</h4>
                     <a class="edit_alert" href=""> edit</a>
                </li>
-               <li class="list-group-item"><h4>eobr </h4><input type="hidden" id="eobr_make_text" class="inline-edit" value=""><p id="eobr_make">Omnitraces</p><a onclick="edit_make()" href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>unit model</h4><input type="hidden" id="eobr_model_text" class="inline-edit" value=""><p id="eobr_model">MCP 100</p><a  href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>serial #</h4><input type="hidden" id="eobr_number_text" class="inline-edit" value=""><p id="eobr_number">20758968</p><a  href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>driver asst.</h4><input type="hidden" id="driver_assist_text" class="inline-edit" value=""><p id="driver_assist">MobilEye</p><a  href="javascript:void(0);"></a></li>
+               <li class="list-group-item"><h4>eobr </h4><input type="hidden" id="eobr_make_text" class="inline-edit" value=""><p id="eobr_make">Omnitraces</p></li>
+               <li class="list-group-item"><h4>unit model</h4><input type="hidden" id="eobr_model_text" class="inline-edit" value=""><p id="eobr_model">MCP 100</p></li>
+               <li class="list-group-item"><h4>serial #</h4><input type="hidden" id="eobr_number_text" class="inline-edit" value=""><p id="eobr_number">20758968</p></li>
+               <li class="list-group-item"><h4>driver asst.</h4><input type="hidden" id="driver_assist_text" class="inline-edit" value=""><p id="driver_assist">MobilEye</p></li>
             </ul>
              <ul class="list-group">
                <li class="list-ctnt">
                     <h4>Current Location</h4>
                     <a class="refresh" href="javascript:void(0);"> </a>
                </li>
-              <div id="map-canvas" style="width:320px;height:230px;"></div>
+              <div id="map-canvas" style="width:320px;height:264px;"></div>
 
             </ul>
         </div>
@@ -426,20 +433,21 @@ function edit_assist(){
                     <h4>Service ticket</h4>
                     <a> edit</a>
                </li>
-               <li class="list-group-item"><h4>Status </h4><p>In-Route</p><a href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>Corporate PO# </h4><p>20758968</p><a class="tick" href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>Qualcomm REF #  </h4><p>20758968</p><a href="javascript:void(0);"></a></li>
-               <li class="list-group-item itm-ques"><h4>was tech support called?  </h4><p>Yes</p><a href="javascript:void(0);"></a></li>
+               <li class="list-group-item"><h4>Status </h4><p>In-Route</p></li>
+               <li class="list-group-item"><h4>Corporate PO# </h4><p>20758968</p></li>
+               <li class="list-group-item"><h4>Qualcomm REF #  </h4><p>20758968</p></li>
+               <li class="list-group-item itm-ques"><h4>was tech support called?  </h4><p>Yes</p></li>
             </ul>
             <ul class="list-group">
                <li class="list-ctnt">
                     <h4 class="bg-msg bg-msg-pstn">Service Center </h4>
                     <a> edit</a>
                </li>
-               <li class="list-group-item"><h4>eobr </h4><p>Omnitraces</p><a href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>unit model </h4><p>MCP 100</p><a href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>serial #</h4><p>20758968</p><a href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>driver asst.</h4><p>MobilEye</p><a href="javascript:void(0);"></a></li>
+               <li class="list-group-item"><h4>SERVICE CENTER </h4><p id="service_center">Omnitraces</p></li>
+               <li class="list-group-item"><h4>CITY/STATE </h4><p id="city_state">MCP 100</p></li>
+               <li class="list-group-item"><h4>EST Service Date</h4><p>05/15/14</p></li>
+               <li class="list-group-item"><h4>EST ARRIVAL</h4><p>1:30 AM</p></li>
+               <li class="list-group-item"><h4>Last Date of Service</h4><p id="last_alert">03/14/2014</p></li>
             </ul>
              <ul class="list-group">
                <li class="list-ctnt">

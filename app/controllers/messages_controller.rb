@@ -46,9 +46,9 @@ class MessagesController < ApplicationController
   # GET /messages/1.json
   def show
 
-  Urbanairship.application_key = 'qTvHh56aRoehg63Bukh-MA'
-  Urbanairship.application_secret = 'application-secret'
-  Urbanairship.master_secret = '_51FhNYhSkSmSH-LBzql9Q'
+  Urbanairship.application_key = '53Pt_cxLQV6bqCXiiVg6vw'
+  Urbanairship.application_secret = 'hJ6V06wKR4OS6kynceEYJQ'
+  Urbanairship.master_secret = 'lkzV_HDDS1qut3wENMMV2w'
   Urbanairship.logger = Rails.logger
   Urbanairship.request_timeout = 5 # default
     

@@ -90,6 +90,7 @@ class ServiceAlertsController < ApplicationController
                                     @distance_count.each do |new_distance| 
                                       @distance =  new_distance['distance']['text'].gsub(/\s.+/, '').to_i   #lotal distance in kms
                                       @time = new_distance['duration']['text'] #total time 
+                                      
                               end 
                             end
       
@@ -100,11 +101,11 @@ class ServiceAlertsController < ApplicationController
                                  @status = ""
                                     if(@distance >= 1 and @alert_status == 'New')
                                       @status = "In Route"
-                                    elsif(@distance <= 1 and @alert_status == 'In Route')
+                                    elsif(@distance < 1 and @alert_status == 'In Route')
                                       @status = "Service"
                                     elsif (@distance > 1 and @alert_status == 'Service')
                                       @status = "Complete"
-                                    elsif (@distance <= 1 and @alert_status == 'Service')
+                                    elsif (@distance < 1 and @alert_status == 'Service')
                                       @status = "Service"
                                     elsif (@distance > 1 and @alert_status == 'Complete')
                                       @status = "Complete"
