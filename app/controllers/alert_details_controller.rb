@@ -111,9 +111,34 @@ class AlertDetailsController < ApplicationController
   end
 
   def edit_alert
-    
+    @eobr_makes = Admin::EobrMake.all
+    @eobr_models = Admin::EobrModel.all
+    @tech_supports = Admin::TechSupport.all
   end
 
+  def update_alert
+    @id = params[:id]
+    if (params[:id] and params[:id] !='' and params[:user_id] and params[:user_id] !='' and params[:Contact] and params[:Contact] !='' and params[:TruckYear] and params[:TruckYear] !='' and params[:TruckMake] and params[:TruckMake] !='' and params[:eobr_make_id] and params[:eobr_make_id] !='' and params[:eobr_model_id] !='' and params[:eobr_model_id] !=nil and params[:EobrNumber] and [:EobrNumber] !='' and params[:tech_support_id] and params[:tech_support_id] !='')
+      @update = User.where(:id => params[:user_id]).update_all(Contact: params[:Contact], TruckYear: params[:TruckYear], TruckMake: params[:TruckMake], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], EobrNumber: params[:EobrNumber], tech_support_id: params[:tech_support_id])
+        if(@update == 1)
+          respond_to do |format|
+              format.html { redirect_to '/alert_details?id='+@id, notice: 'Alert is updated successfully' }
+              format.json { render json: @message.errors, status: :unprocessable_entity }
+          end
+        else
+          respond_to do |format|
+              format.html { redirect_to '/edit_alert?id='+@id, notice: 'Required fields are missing' }
+              format.json { render json: @message.errors, status: :unprocessable_entity }
+          end
+        end
+            
+      else
+        respond_to do |format|
+          format.html { redirect_to '/edit_alert?id='+@id, notice: 'Required fields are missing' }
+          format.json { render json: @message.errors, status: :unprocessable_entity }
+        end
+      end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_alert_detail

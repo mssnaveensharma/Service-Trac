@@ -1,3 +1,33 @@
+ <script type="text/javascript">
+function getModal(id) {       // get the the modals on selecting the make
+    var make_id = id;
+      if(make_id != '' && make_id != null) {
+        $.ajax({
+          url:"/admin/eobr_makes/getmodal?make_id="+make_id,
+          dataType: "json",
+          success: function (modal) {
+            //console.log(modal);
+            var modal_length = modal.length;
+            var modal_id = "";
+            var modal_name = "";
+            var modal_list = "";
+            $.each([modal], function(index, value){
+              for(var i = 0; i < modal_length; i++) {
+                //console.log(value);
+                var modal_id = modal[i].id;
+                var modal_name = modal[i].Name;
+                  modal_list+='<option value="'+modal_id+'">'+modal_name+'</option>';
+              }
+              var modal_first = "<option>Select Modal</option>"
+              $('#user_eobr_model_id').children().remove().end().append(modal_first+modal_list);
+            });
+          },error: function(xhr, text) {
+            console.log("Error http code is "+xhr.status);
+          }
+        });
+      }
+  }
+ </script>
     <div class="container main-padding">
 
     <div class="serch-fld">
@@ -9,15 +39,74 @@
       
       <li class="active">>> Main</li>
     </ol>
-    	<form method="POST" action="/edit_alert">
+    <% if flash[:notice] %>
+    	<p style="color:#fff"><%= flash[:notice] %></p>
+    <% end %>
+    	<form method="POST" action="/update_alert">
     		<% @alert_detail = ServiceAlert.where(:id => params[:id]) %>
-    			<%=debug @alert_detail %>
+    			<input type="hidden" name="id" value="<%=params[:id]%>">
+    			<%#=debug @alert_detail %>
     			<% @alert_detail.each do |alert| %>
-					<% @user = User.where(:id => alert.id) %>    			
+					<% @user_id = alert.user_id%>
+					<% @user = User.where(:id => @user_id) %>    			
 						<% @user.each do |userInfo| %>
-							<label>Contact#</label>
-							<input type="text" name="contact" value="<%= userInfo.Contact %>"
+							<% @contact = userInfo.Contact %>
+							<% @truckyear = userInfo.TruckYear %>
+							<% @truckmake = userInfo.TruckMake %>
+							<% @eobr_make = userInfo.eobr_make_id %>
+							<% @eobr_model = userInfo.eobr_model_id %>
+							<% @eobr_number = userInfo.EobrNumber %>
+							<% @driver_assist = userInfo.tech_support_id %>
 						<% end %>
     			<% end %>
+    			<input type="hidden" name="user_id" value="<%= @user_id %>">
+    			<label>Contact#</label>
+				<input type="text" name="Contact" value="<%= @contact %>"><br>
+				<label>Truck Year</label>
+				<input type="text" name="TruckYear" value="<%= @truckyear %>"><br>
+				<label>Truck Make</label>
+				<input type="text" name="TruckMake" value="<%= @truckmake %>"><br>
+				<label>Eobr Make</label>
+					<select name="eobr_make_id" onchange="getModal(this.value)">
+						<option value="">Select Make</option>
+						<% @eobr_makes.each do |eobr_make|%>
+							<% if(eobr_make.id == @eobr_make) %>
+                                <% @selected = "selected=selected"%>
+                            <% else %>
+                                <% @selected = "" %>
+                            <% end %>
+							<option value="<%= eobr_make.id %>" <%= @selected%>><%= eobr_make.Name %></option>
+						<% end %>
+					</select>
+				<!-- <input type="text" name="eobr_make_id" value="<%= @eobr_make %>"> --><br>
+				<label>Eobr Model</label>
+					<select name="eobr_model_id" id="user_eobr_model_id">
+						<option value="">Select Model</option>
+						<% @eobr_models.each do |eobr_model|%>
+							<% if(eobr_model.id == @eobr_model) %>
+                                <% @selected = "selected=selected"%>
+                            <% else %>
+                                <% @selected = "" %>
+                            <% end %>
+							<option value="<%= eobr_model.id %>" <%= @selected%>><%= eobr_model.Name %></option>
+						<% end %>
+					</select>
+				<!-- <input type="text" name="eobr_model_id" value="<%= @eobr_model %>"> --><br>
+				<label>Eobr Number</label>
+				<input type="text" name="EobrNumber" value="<%= @eobr_number %>"><br>
+				<label>Driver Assist</label>
+					<select name="tech_support_id" >
+						<option value="">Select Driver Assist</option>
+						<% @tech_supports.each do |tech_support|%>
+							<% if(tech_support.id == @driver_assist) %>
+                                <% @selected = "selected=selected"%>
+                            <% else %>
+                                <% @selected = "" %>
+                            <% end %>
+							<option value="<%= tech_support.id %>" <%= @selected%>><%= tech_support.SupportDescription %></option>
+						<% end %>
+					</select>
+				<!-- <input type="text" name="tech_support_id" value="<%= @driver_assist %>"> --><br>
+				<input type="submit" name="commit" value="Update">
     	</form>
     </div>

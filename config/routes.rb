@@ -74,6 +74,8 @@ Servicetrac::Application.routes.draw do
   
   get 'edit_alert' => 'alert_details#edit_alert'
 
+  post 'update_alert' => 'alert_details#update_alert'
+
   match 'admin/manage_dispatch_user' => 'admin/admin#manage_dispatch_user',  :via => :get
 
   match 'admin/manage_dispatch_user_edit' => 'admin/admin#manage_dispatch_user_edit',  :via => :get
