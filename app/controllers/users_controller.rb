@@ -122,7 +122,7 @@ def settings
  elsif(params[:user_id] != '' and params[:email] !='' and params[:password] !='' and params[:FirstName] !='' and params[:LastName] !='' and params[:EobrNumber] !='' and params[:eobr_make_id] !='' and params[:eobr_model_id] !='' and params[:TruckNumber] !='' and params[:TruckModel] !='' and params[:truckmake] !='' and params[:TruckYear] !='' and params[:TruckOwner] !='' and params[:company_id] !='' and params[:tech_support] !='' and params[:Contact] !='' and params[:device_type] !='' and params[:device_token] !='' and params[:Language] != '')
        if params[:device_type] == 'wp' 
         if params[:wp_notification_url] != ''
-          @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], truckmake: params[:truckmake], company_id: params[:CompanyName], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], wp_notification_url: params[:wp_notification_url], plain_password: params[:password])
+          @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], TruckMake: params[:truckmake], company_id: params[:CompanyName], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], wp_notification_url: params[:wp_notification_url], plain_password: params[:password])
           user = User.update_password(params[:email], params[:new_password])
       if(@response == 1 and user != nil and user != '')
         @update_pass = User.where('id= ?', params[:user_id]).update_all(encrypted_password: user)
@@ -139,7 +139,7 @@ def settings
         return render :json => {:success => "false", :message => "Device uri is required"}
     end
     else
-          @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], truckmake: params[:truckmake], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], company_id: params[:CompanyName], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], plain_password: params[:password])
+          @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], TruckMake: params[:truckmake], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], company_id: params[:CompanyName], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], plain_password: params[:password])
             user = User.update_password(params[:email], params[:new_password])
            if(@response == 1 and user != nil and user != '')
                   @update_pass = User.where('id= ?', params[:user_id]).update_all(encrypted_password: user)
@@ -156,7 +156,7 @@ def settings
   end
 end
 
-def retrieve_password
+def recover_password
   if params[:email] != '' and params[:email] != nil
     @pass = User.where(:email => params[:email])
       if @pass.length != 0
@@ -183,7 +183,7 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       #params.require(:user).permit!
-      params.require(:user).permit(:eobr_make_id,:eobr_model_id,:EobrNumber,:TruckNumber,:truckmake,:TruckYear,:TruckOwner,:TruckModel,:CompanyName,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language,:device_type,:device_token,:wp_notification_url)
+      params.require(:user).permit(:eobr_make_id,:eobr_model_id,:EobrNumber,:TruckNumber,:TruckMake,:TruckYear,:TruckOwner,:TruckModel,:CompanyName,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language,:device_type,:device_token,:wp_notification_url)
     end
     
 end

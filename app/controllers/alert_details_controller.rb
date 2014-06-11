@@ -1,6 +1,7 @@
 class AlertDetailsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_action :set_alert_detail, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate, only: [:get_route]
 
   # GET /alert_details
   # GET /alert_details.json
@@ -71,8 +72,21 @@ class AlertDetailsController < ApplicationController
             @users = User.where(:id => alert.user_id)
               @users.each do |user|
                 @contact = user.Contact
+                @eobr_number = user.EobrNumber
                 @truck_year = user.TruckYear
                 @truck_make = user.TruckMake
+                  @eobr_make = Admin::EobrMake.where(:id => user.eobr_make_id)
+                    @eobr_make.each do |make|
+                      @eobr_make_name = make.Name
+                    end
+                    @eobr_model = Admin::EobrModel.where(:id => user.eobr_model_id)
+                      @eobr_model.each do |model|
+                        @eobr_model_name = model.Name
+                      end
+                    @tech_support = Admin::TechSupport.where(:id => user.tech_support_id)
+                      @tech_support.each do |driver_support|
+                        @driver_assist = driver_support.SupportDescription
+                      end
               end
                 @center_location.each do |center|
                   response = Hash.new
@@ -83,12 +97,57 @@ class AlertDetailsController < ApplicationController
                   response[:contact]=@contact
                   response[:truck_year]=@truck_year
                   response[:truck_make]=@truck_make
+                  response[:eobr_number]=@eobr_number
+                  response[:eobr_make]=@eobr_make_name
+                  response[:eobr_model]=@eobr_model_name
+                  response[:driver_assist]=@driver_assist
                   data.push(response)
                 end
         end
       return render :json =>  data
     else
-      return render :json => {:success => "false", :data => "Required fields are missing "}     
+      return render :json => {:success => false, :data => "Required fields are missing "}     
+    end
+  end
+
+  def edit_alert
+    if params[:alert_id] !='' and params[:contact] and params[:contact] !='' and params[:contact] !=nil
+      @alert = ServiceAlert.where(:id => params[:alert_id])
+        @alert.each do |alert_user|
+          @user_id = alert_user.user_id
+            @update_contact = User.where('id= ?', @user_id).update_all(Contact: params[:contact])
+              if @update_contact ==1
+                return render :json => {:success => true, :message => "Driver contact is updated successfully", :user_id =>@user_id}
+              else
+                return render :json => {:success => false, :message => "contact is not updated"}
+              end
+        end
+    
+    elsif params[:alert_id] !='' and params[:truck_year] and params[:truck_year] != '' and params[:truck_year] != nil
+      @alert = ServiceAlert.where(:id => params[:alert_id])
+        @alert.each do |alert_user|
+          @user_id = alert_user.user_id
+            @update_contact = User.where('id= ?', @user_id).update_all(TruckYear: params[:truck_year])
+              if @update_contact ==1
+                return render :json => {:success => true, :message => "truck year is updated successfully", :user_id =>@user_id }
+              else
+                return render :json => {:success => false, :message => "truck year is not updated"}
+              end
+        end
+      return render :json => {:success => false, :message => "required perameters are missing"}     
+    
+    elsif params[:alert_id] !='' and params[:truck_make] and params[:truck_make] != '' and params[:truck_make] != nil
+      @alert = ServiceAlert.where(:id => params[:alert_id])
+        @alert.each do |alert_user|
+          @user_id = alert_user.user_id
+            @update_contact = User.where('id= ?', @user_id).update_all(TruckMake: params[:truck_make])
+              if @update_contact ==1
+                return render :json => {:success => true, :message => "truck make is updated successfully", :user_id =>@user_id}
+              else
+                return render :json => {:success => false, :message => "truck make is not updated"}
+              end
+        end
+      return render :json => {:success => false, :message => "required perameters are missing"}     
     end
   end
 

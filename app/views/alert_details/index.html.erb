@@ -15,20 +15,129 @@ $(document).ready(function(){
   $('#driver_contact_text').focusout(function (){
     $(this).attr("type","hidden");
     $('#driver_contact').show();
+  });
+    $('#truck_year_text').focusout(function (){
+    $(this).attr("type","hidden");
+    $('#truck_year').show();
+  });
+   $('#truck_make_text').focusout( function (){
+   $(this).attr("type","hidden");
+   $('#truck_make').show(); 
+  });
+
+    $('#eobr_make_text').focusout(function (){
+    $(this).attr("type","hidden");
+    $('#eobr_make').show();
+  });
+    $('#eobr_model_text').focusout(function (){
+    $(this).attr("type","hidden");
+    $('#eobr_model').show();
+  });
+    $('#eobr_number_text').focusout( function (){
+    $(this).attr("type","hidden");
+    $('#eobr_number').show(); 
+  });
+    $('#driver_assist_text').focusout( function (){
+    $(this).attr("type","hidden");
+    $('#driver_assist').show(); 
+  });
+
+  $('#driver_contact_text').change(function (){
+    $(this).attr("type","hidden");
+    $('#driver_contact').show();
       var new_contact = $(this).val();
+      var alert_id = $("#alert_id_hidden").val();
       //console.log(new_contact);
         if(new_contact != '' && new_contact != undefined){
-          $.ajax
+          $.ajax({
+            url: "/edit_alert",
+            type: "POST",
+            dataType: "json",
+            data: { contact: new_contact, alert_id: alert_id },
+            success: function (resopnse) {
+              if(resopnse.success == true) {
+                $('#driver_contact_text').val(new_contact);
+                $('#driver_contact').html(new_contact);
+                console.log(new_contact);
+              }
+            },error: function (xhr, txt) {
+              console.log("Error code is ",xhr.status);
+            }
+          });
         }
   });
-    $('#truck_year_text').focusout( function (){
+    $('#truck_year_text').change( function (){
      $(this).attr("type","hidden");
       $('#truck_year').show(); 
+        var new_year = $(this).val();
+        var alert_id = $("#alert_id_hidden").val();
+          if(new_year != '' && new_year != undefined){
+            $.ajax({
+              url: "/edit_alert",
+              type: "POST",
+              dataType: "json",
+              data: { truck_year: new_year, alert_id: alert_id },
+              success: function (resopnse) {
+                if(resopnse.success == true) {
+                  $('#truck_year_text').val(new_year);
+                  $('#truck_year').html(new_year);
+                  
+                }
+              },error: function (xhr, txt) {
+                console.log("Error code is ",xhr.status);
+              }
+            });
+          }
     });
-    $('#truck_make_text').focusout( function (){
+     
+     $('#truck_make_text').change( function (){
      $(this).attr("type","hidden");
       $('#truck_make').show(); 
+        var new_make = $(this).val();
+        var alert_id = $("#alert_id_hidden").val();
+          if(new_make != '' && new_make != undefined){
+            $.ajax({
+              url: "/edit_alert",
+              type: "POST",
+              dataType: "json",
+              data: { truck_make: new_make, alert_id: alert_id },
+              success: function (resopnse) {
+                if(resopnse.success == true) {
+                  $('#truck_make_text').val(new_make);
+                  $('#truck_make').html(new_make);
+                  
+                }
+              },error: function (xhr, txt) {
+                console.log("Error code is ",xhr.status);
+              }
+            });
+          }
     });
+
+     /*$('#eobr_make_text').change( function (){
+     $(this).attr("type","hidden");
+      $('#eobr_make').show(); 
+        var new_eobr_make = $(this).val();
+        var alert_id = $("#alert_id_hidden").val();
+          if(new_make != '' && new_make != undefined){
+            $.ajax({
+              url: "/edit_alert",
+              type: "POST",
+              dataType: "json",
+              data: { eobr_make: new_eobr_make, alert_id: alert_id },
+              success: function (resopnse) {
+                if(resopnse.success == true) {
+                  $('#eobr_make_text').val(new_make);
+                  $('#eobr_make').html(new_make);
+                  
+                }
+              },error: function (xhr, txt) {
+                console.log("Error code is ",xhr.status);
+              }
+            });
+          }
+    });*/
+
 });
 var map;
 var directionsDisplay;
@@ -76,6 +185,7 @@ $(function () {
 function calcRoute(id) {
   var alert_id = id;
   if(alert_id !='' && alert_id != null && alert_id != undefined ) {
+    $("#alert_id_hidden").val(alert_id);
     $("tr").removeClass("active-row");
     $("#"+id).addClass("active-row");
     $.ajax({
@@ -93,10 +203,25 @@ function calcRoute(id) {
             center_lan = value[i]['center_lan'];
             $('#driver_contact').html(value[i]['contact']);
             $("#driver_contact_text").val(value[i]['contact']);
+
             $('#truck_year').html(value[i]['truck_year']);
             $('#truck_year_text').val(value[i]['truck_year']);
+
             $('#truck_make').html(value[i]['truck_make']);
-            $('#truck_make_text').val(value[i]['truck_make'])
+            $('#truck_make_text').val(value[i]['truck_make']);
+
+            $('#eobr_make').html(value[i]['eobr_make']);
+            $('#eobr_make_text').val(value[i]['eobr_make']);
+
+            $('#eobr_model').html(value[i]['eobr_model']);
+            $('#eobr_model_text').val(value[i]['eobr_model']);
+
+            $('#eobr_number').html(value[i]['eobr_number']);
+            $('#eobr_number_text').val(value[i]['eobr_number']);
+
+            $('#driver_assist').html(value[i]['driver_assist']);
+            $('#driver_assist_text').val(value[i]['driver_assist']);
+
 
           }
           //console.log(value.lan);
@@ -172,18 +297,45 @@ function edit_contact(){
   //alert("ok working");
   $('#driver_contact_text').attr("type","text");
   $('#driver_contact').hide();
+  $('#driver_contact_text').focus();
 }
 function edit_truck_year(){
   //alert("ok working");
   $('#truck_year_text').attr("type","text");
   $('#truck_year').hide();
+  $('#truck_year_text').focus();
 } 
 function edit_truck_make(){
   //alert("ok working");
   $('#truck_make_text').attr("type","text");
   $('#truck_make').hide();
+  $('#truck_make_text').focus();
 } 
-    </script>
+function edit_make(){
+  //alert("ok working");
+  $('#eobr_make_text').attr("type","text");
+  $('#eobr_make').hide();
+  $('#eobr_make_text').focus();
+}
+function edit_model(){
+  //alert("ok working");
+  $('#eobr_model_text').attr("type","text");
+  $('#eobr_model').hide();
+  $('#eobr_model_text').focus();
+} 
+function edit_number(){
+  //alert("ok working");
+  $('#eobr_number_text').attr("type","text");
+  $('#eobr_number').hide();
+  $('#eobr_number_text').focus();
+} 
+function edit_assist(){
+  //alert("ok working");
+  $('#driver_assist_text').attr("type","text");
+  $('#driver_assist').hide();
+  $('#driver_assist_text').focus();
+} 
+</script>
 
     <div class="container main-padding">
 
@@ -203,6 +355,7 @@ function edit_truck_make(){
                 <input class="input-dtl-srch" type="text">
                 <input class="search-submit d-search" value="" type="submit" />
             </div>
+              <input type="hidden" id="alert_id_hidden" name="alert_id_hidden">
             <div class="table-responsive">
               <table class="table-striped table-bordered table-condensed" width="100%">
               <thead>
@@ -250,10 +403,10 @@ function edit_truck_make(){
                     <h4>electronics</h4>
                     <a> edit</a>
                </li>
-               <li class="list-group-item"><h4>eobr </h4><p>Omnitraces</p><a href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>unit model </h4><p>MCP 100</p><a href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>serial #</h4><p>20758968</p><a href="javascript:void(0);"></a></li>
-               <li class="list-group-item"><h4>driver asst.</h4><p>MobilEye</p><a href="javascript:void(0);"></a></li>
+               <li class="list-group-item"><h4>eobr </h4><input type="hidden" id="eobr_make_text" class="inline-edit" value=""><p id="eobr_make">Omnitraces</p><a onclick="edit_make()" href="javascript:void(0);"></a></li>
+               <li class="list-group-item"><h4>unit model</h4><input type="hidden" id="eobr_model_text" class="inline-edit" value=""><p id="eobr_model">MCP 100</p><a onclick="edit_model()" href="javascript:void(0);"></a></li>
+               <li class="list-group-item"><h4>serial #</h4><input type="hidden" id="eobr_number_text" class="inline-edit" value=""><p id="eobr_number">20758968</p><a onclick="edit_number()" href="javascript:void(0);"></a></li>
+               <li class="list-group-item"><h4>driver asst.</h4><input type="hidden" id="driver_assist_text" class="inline-edit" value=""><p id="driver_assist">MobilEye</p><a onclick="edit_assist()" href="javascript:void(0);"></a></li>
             </ul>
              <ul class="list-group">
                <li class="list-ctnt">

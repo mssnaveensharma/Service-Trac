@@ -56,7 +56,7 @@ Servicetrac::Application.routes.draw do
 
   post 'login' => 'users#login'
 
-  post 'driver_status' => 'service_alerts#driver_status'
+  match 'driver-status' => 'service_alerts#driver_status',  :via => :post
 
   post 'post_review' => 'service_center_reviews#post_review'
 
@@ -64,10 +64,13 @@ Servicetrac::Application.routes.draw do
 
   post 'post_message' => 'messages#post_message'
 
+  get 'all_messages' => 'messages#all_messages'
+
   post 'settings' => 'users#settings'
 
-  post 'retrieve_password' => 'users#retrieve_password'
+  post 'recover_password' => 'users#recover_password'
   
+  post 'edit_alert' => 'alert_details#edit_alert'
   #post 'distance' => 'service_alerts#distance'
   #resources :users
 
