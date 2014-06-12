@@ -1,7 +1,41 @@
+   <script type="text/javascript">
+ 
+
+    $(document).ready(function(){
+
+      $('#table').tablesorter();
+
+    $('input[name="search"]').keyup(function(){
+
+      var searchterm = $(this).val();
+
+      if(searchterm.length > 3) {
+
+       var match = $('tr.data-row:contains("' + searchterm +'")');
+
+       var nomatch = $('tr.data-row:not(:contains("' + searchterm + '"))');
+
+       match.addClass('selected');
+
+       nomatch.css("display", "none");
+
+      } else {
+
+       $("tr.data-row").css("display", "");
+
+       $("tr.data-row").removeClass("selected");
+
+      }
+
+    });
+
+    });
+
+</script>
     <div class="container">
 
     <div class="serch-fld">
-          <label class="margin-top">Service Alert </label>
+          <label class="margin-top">Service Centers </label>
            <span class="align-right">
               <input class="form-control" type="search">
                 <input value="" class="search-submit" type="submit" />
@@ -11,7 +45,7 @@
 <div class="table-responsive">
    <table class="table-striped table-bordered table-condensed" width="100%"> 
     <thead>
-    <tr>
+    <tr class="data-header">
       <th>Name</th>
       <th>Address</th>
       <th>City/State</th>
@@ -29,7 +63,7 @@
 
   <tbody>
     <% @admin_service_centers.each do |admin_service_center| %>
-      <tr>
+      <tr class="data-row">
         <td><%= admin_service_center.Name %></td>
         <td><%= admin_service_center.StreetAddress %></td>
         <td><%= admin_service_center.City %>/<%= admin_service_center.State %></td>

@@ -1,9 +1,11 @@
-<%#= javascript_include_tag "jquery.tablesorter.min.js" %>
-<%#= javascript_include_tag "jquery.tablesorter.widgets.min.js" %>
+<%= javascript_include_tag "jquery.tablesorter.min.js" %>
+<%= javascript_include_tag "jquery.tablesorter.widgets.min.js" %>
 <script type="text/javascript">
  
 
     $(document).ready(function(){
+
+      $('#table').tablesorter();
 
     $('input[name="search"]').keyup(function(){
 
@@ -43,7 +45,7 @@
            
         </div>  
         <div class="table-responsive">
-          <table class="tablesorter table-striped table-bordered table-condensed" width="100%">
+          <table id="table" class="tablesorter table-striped table-bordered table-condensed" width="100%">
               <thead>
                     <tr class="data-header">
                         <th><h4>DATE/TIME</h4></th>

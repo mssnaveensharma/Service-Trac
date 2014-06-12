@@ -1,7 +1,41 @@
+  <script type="text/javascript">
+ 
+
+    $(document).ready(function(){
+
+      $('#table').tablesorter();
+
+    $('input[name="search"]').keyup(function(){
+
+      var searchterm = $(this).val();
+
+      if(searchterm.length > 3) {
+
+       var match = $('tr.data-row:contains("' + searchterm +'")');
+
+       var nomatch = $('tr.data-row:not(:contains("' + searchterm + '"))');
+
+       match.addClass('selected');
+
+       nomatch.css("display", "none");
+
+      } else {
+
+       $("tr.data-row").css("display", "");
+
+       $("tr.data-row").removeClass("selected");
+
+      }
+
+    });
+
+    });
+
+</script>
     <div class="container">
 
     <div class="serch-fld">
-          <label class="margin-top">Service Alert </label>
+          <label class="margin-top">Eobr Models </label>
            <span class="align-right">
               <input class="form-control" type="search">
                 <input value="" class="search-submit" type="submit" />
@@ -11,7 +45,7 @@
 <div class="table-responsive">
    <table class="table-striped table-bordered table-condensed" width="100%">
   <thead>
-    <tr>
+    <tr class="data-header">
       <th>Name</th>
       <th>Eobrmake</th>
       <th>Actions</th>
@@ -22,7 +56,7 @@
 
   <tbody>
     <% @admin_eobr_models.each do |admin_eobr_model| %>
-       <tr>
+       <tr class="data-row">
         <td><%= admin_eobr_model.Name %></td>
         <% @make = Admin::EobrMake.where(:id => admin_eobr_model.EobrMake_id) %>
           <% @make.each do |m| %>
