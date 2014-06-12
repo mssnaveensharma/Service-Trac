@@ -87,6 +87,8 @@ Servicetrac::Application.routes.draw do
   get 'service_ticket' => 'alert_details#service_ticket'
 
   post 'update_ticket' => 'alert_details#update_ticket'
+
+  match 'create_user' => 'admin/admin#create_user',  :via => :post
   
   #   get 'register' => 'welcome#index'
   # Example of regular route:

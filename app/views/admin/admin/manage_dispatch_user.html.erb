@@ -13,7 +13,7 @@
       </ol>
        <% if flash[:notice] %>
             <p style="color:#fff;"><%= flash[:notice] %></p>
-        <% end %>
+        <% end %><a href="/admin/manage_dispatch_user_edit">Add New</a>
         <div class="table-responsive">
           <table class="table-striped table-bordered table-condensed" width="100%">
             <% @users.each do |usr| %>

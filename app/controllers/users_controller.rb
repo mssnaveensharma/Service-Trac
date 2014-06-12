@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         if params[:wp_notification_url] != ''
           @response = User.create({
               :email=>params[:email],
-              :password=>params[:password],
+              :password=>params[:password].encrypted_password,
               :FirstName=>params[:FirstName],
               :LastName=>params[:LastName],
               :EobrNumber=>params[:EobrNumber],
@@ -33,7 +33,6 @@ class UsersController < ApplicationController
               :device_token=>params[:device_token],
               :wp_notification_url=>params[:wp_notification_url],
               :plain_password=>params[:password]
-
             });
 
       if(@response.id !='' and @response.id != nil)
@@ -171,6 +170,7 @@ def recover_password
       return render :json => {:success => false, :message => "User id is required"}
   end
 end
+
 
 
 
