@@ -652,3 +652,113 @@ a.table-link{
 	font-size:16px !important;
 	font-weight:normal; 
 } 
+
+
+/* Sign in form start 11 june 2014  */
+.login-form-c {
+    background: none repeat scroll 0 0 #FFFFFF;
+    margin-top: 20px;
+    min-height: 500px;
+    padding: 20px;
+}
+.login-form {
+    background: none repeat scroll 0 0 #FFFFFF;
+    margin: 20px auto 0;
+    max-width: 429px;
+    min-height: 400px;
+}
+.login-form h2 {
+    border-bottom: 1px dashed #DDDDDD;
+    font-size: 26px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+.login-form label
+{
+	margin-bottom:5px;
+}
+.form-group
+{
+	margin-bottom:12px;
+}
+.form-group label
+{
+	width:100%;
+}
+.form-group input
+{
+	border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    padding: 7px;
+    width: 100%;
+}
+.post-form
+{
+	padding:20px 0px;
+}
+.form-group.remmber-pswd input, .form-group.remmber-pswd label
+{
+	width:auto;
+	display:inline-block;
+}
+.btn.login-btn
+{
+	width:100%;
+	text-align:center;
+	background: #ED1C24; 
+	padding: 10px; 
+	color: #fff; 
+	text-transform: uppercase;
+	border:none;
+	font-size: 16px;
+}
+.frgt-links
+{
+	margin-top:10px;
+}
+.frgt-links > a {
+    display: inline-block;
+    margin-right: 10px;
+    width: auto;
+	text-decoration:underline;
+}
+.frgt-links > a:hover
+{
+	text-decoration:none;
+}
+a.sign-up-lnk
+{
+	color:#ED1C24;
+	border-right: 1px solid #000000;
+    line-height: 10px;
+	text-decoration:none;
+    padding-right: 15px;
+}
+.frgt-links.sign-in-lnk
+{
+	margin-top:0px;
+	margin-bottom:30px;
+}
+.frgt-links.sign-in-lnk a
+{
+	text-decoration:underline;
+}
+.frgt-links.sign-in-lnk a:hover
+{
+	text-decoration:none;
+}
+.max-btn-sz
+{
+	max-width:110px;
+}
+.eml-inst
+{
+	width:100%;
+	text-align:center;
+	margin-bottom:20px;
+}
+.align-center
+{
+	text-align:center;
+}
+/* Sign in form end 11 june 2014 */
