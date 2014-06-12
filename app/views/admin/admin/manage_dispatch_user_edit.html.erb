@@ -27,9 +27,6 @@ $(document).ready(function () {
       <li class="active"> Main</li>
       </ol>
         <div class="form-group subcontainer">        
-        <% if flash[:notice] %>
-            <p style="color:#fff;"><%= flash[:notice] %></p>
-        <% end %>
         <% @all_info = User.where(:id => params[:id]) %>
             <% @all_info.each do |rara| %>
                 <% @firsname = rara.FirstName %>

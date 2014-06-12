@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token
   
-  #before_action :set_user, only: [:show, :edit, :update, :destroy]
-  #before_action :authenticate
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate
   def index
   end
 
@@ -172,7 +172,78 @@ def recover_password
 end
 
 
+def create_user
+    if params[:FirstName] !='' and params[:LastName] !='' and params[:service_center_id] !='' and params[:user_id] and params[:user_id] !='' and params[:Contact] !=''
+        @chk_center = UsersServiceCenter.where(:user_id => params[:user_id])
+        @update = User.where(:id => params[:user_id]).update_all(:FirstName =>params[:FirstName], :LastName => params[:LastName], :Contact =>params[:Contact])
+        if @chk_center.length == 0
+          @create = UsersServiceCenter.create({
+            :service_center_id => params[:service_center_id],
+            :user_id => params[:user_id],
+            :status => "Active"
+          })
 
+              if @create.id !='' and @create.id != nil
+                 redirect_to '/admin/manage_dispatch_user', :notice => 'Users service center was successfully updated.'
+              else
+                redirect_to "/admin/manage_dispatch_user_edit?id="+params[:user_id], :notice => 'Users service center was successfully updated.'
+          end
+
+        else
+          @update = UsersServiceCenter.where(:user_id => params[:user_id]).update_all(service_center_id: params[:service_center_id])
+
+              if(@update == 1)
+                redirect_to '/admin/manage_dispatch_user', :notice => 'User was updated succesfully.'
+
+              else
+                redirect_to '/admin/manage_dispatch_user_edit', :notice => 'Required fields are missing.'
+                end
+     
+        end            
+    elsif params[:FirstName] !='' and params[:LastName] !='' and params[:service_center_id] !='' and params[:Contact] !='' and params[:password] !='' and params[:email] !=''
+      @response = User.create({
+              :email=>params[:email],
+              :password=>params[:password],
+              :FirstName=>params[:FirstName],
+              :LastName=>params[:LastName],
+              :EobrNumber=>"1",
+              :Contact=>params[:Contact],
+              :eobr_make_id=>"1",
+              :eobr_model_id=>"1",
+              :TruckNumber=>"1",
+              :TruckMake=>"1",
+              :TruckYear=>"1",
+              :TruckOwner=>"1",
+              :TruckModel=>"1",
+              :company_id=>"1",
+              :tech_support_id=>"1",
+              :Language=>"1",
+              :Role=>"DispatchUser",
+              :device_type=>"1",
+              :device_token=>"1",
+              :wp_notification_url=>"1",
+              :plain_password=>params[:password]
+            });
+              if(@response.id != nil)
+                  @create = UsersServiceCenter.create({
+                    :service_center_id => params[:service_center_id],
+                    :user_id => @response.id,
+                    :status => "Active"
+                  })
+               end  
+                  if(@response.id != nil and @response.id != '')
+                   redirect_to '/admin/manage_dispatch_user', :notice => 'New user created successfully'
+                  else
+                      redirect_to '/admin/manage_dispatch_user_edit', :notice => 'Email is already taken'
+                  end
+                  #redirect_to '/admin/manage_dispatch_user_edit', :notice => 'New user created successfully'
+        else
+         
+           redirect_to '/admin/manage_dispatch_user_edit', :notice => 'Required fields are missing last.'
+         
+        end  
+    
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
