@@ -186,6 +186,7 @@ function calcRoute(id) {
   var alert_id = id;
   if(alert_id !='' && alert_id != null && alert_id != undefined ) {
     $(".edit_alert").attr("href","/edit_alert?id="+alert_id);
+    $(".refresh").attr("id",alert_id);
     $("#alert_id_hidden").val(alert_id);
     $("tr").removeClass("active-row");
     $("#"+id).addClass("active-row");
@@ -202,6 +203,9 @@ function calcRoute(id) {
             driver_lan = value[i]['driver_lan'];
             center_lat = value[i]['center_lat'];
             center_lan = value[i]['center_lan'];
+            
+            $("#service_center_edit").attr("href","/edit_service_center?id="+value[i]['service_center_id']+"&alert="+alert_id);
+
             $('#driver_contact').html(value[i]['contact']);
             //$("#driver_contact_text").val(value[i]['contact']);
 
@@ -358,6 +362,9 @@ function edit_assist(){
       
       <li class="active">>> Main</li>
     </ol>
+      <% if flash[:notice] %>
+        <p style="color:#fff"><%= flash[:notice]%></p>
+      <% end %>
     <div class="no-padding">
       <div class="col-sm-4 right-border sttc-hyt">
           <div class="top-search">
@@ -365,6 +372,7 @@ function edit_assist(){
                 <input class="input-dtl-srch" type="text">
                 <input class="search-submit d-search" value="" type="submit" />
             </div>
+
               <input type="hidden" id="alert_id_hidden" name="alert_id_hidden">
             <div class="table-responsive">
             <%# @time = Time.now + 5.hours %>
@@ -403,7 +411,7 @@ function edit_assist(){
         <div class="col-sm-4 padding-2 sttc-hyt">
           <ul class="list-group">
                <li class="list-ctnt">
-                    <h4 class="bg-msg">INFO</h4>
+                    <h4 class="">INFO<a class="msg-dvt" href="/messages"></a></h4>
                     <a class="edit_alert" href=""> edit</a>
                </li>
                <li class="list-group-item"><h4>Contact# </h4><input type="hidden" id="driver_contact_text" class="inline-edit" value=""><p id="driver_contact">904-999-999</p></a></li>
@@ -423,7 +431,7 @@ function edit_assist(){
              <ul class="list-group">
                <li class="list-ctnt">
                     <h4>Current Location</h4>
-                    <a class="refresh" href="javascript:void(0);"> </a>
+                    <a id="" class="refresh" onclick="calcRoute(this.id)" href="javascript:void(0);"> </a>
                </li>
               <div id="map-canvas" style="width:320px;height:264px;"></div>
 
@@ -444,8 +452,8 @@ function edit_assist(){
             </ul>
             <ul class="list-group">
                <li class="list-ctnt">
-                    <h4 class="bg-msg bg-msg-pstn">Service Center </h4>
-                    <a> edit</a>
+                    <h4 class="bg-msg-pstn">Service Center <a class="msg-dvt" href="/messages"></a></h4>
+                    <a href="" id="service_center_edit"> edit</a>
                </li>
                <li class="list-group-item"><h4>SERVICE CENTER </h4><p id="service_center">Omnitraces</p></li>
                <li class="list-group-item"><h4>CITY/STATE </h4><p id="city_state">MCP 100</p></li>

@@ -184,6 +184,7 @@ def all_messages
                 end
                 if message.service_center_id.to_i == params[:service_center_id].to_i
                     response = Hash.new
+                    response[:date]=message.created_at.strftime("%d/%m/%y %I:%M %p")
                     response[:service_center]=@service_center
                     response[:message]=message.MessageContent
                     response[:messageId]=message.id

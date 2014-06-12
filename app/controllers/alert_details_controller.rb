@@ -77,6 +77,12 @@ class AlertDetailsController < ApplicationController
                 @eobr_number = user.EobrNumber
                 @truck_year = user.TruckYear
                 @truck_make = user.TruckMake
+                @tech_support = user.tech_support_id
+                if @tech_support != 0
+                  @tech_support_call = "Yes"
+                else
+                  @tech_support_call = "No"
+                end
                   @eobr_make = Admin::EobrMake.where(:id => user.eobr_make_id)
                     @eobr_make.each do |make|
                       @eobr_make_name = make.Name
@@ -109,6 +115,8 @@ class AlertDetailsController < ApplicationController
                   response[:last_alert]=alert.created_at.strftime("%d/%m/%y")
                   response[:asst_time]=@asst_time.strftime("%I:%M %p")
                   response[:asst_date]=Date.today.strftime("%d/%m/%y")
+                  response[:alert_status]=alert.status
+                  response[:tech_called]=@tech_support_call
                   data.push(response)
                 end
         end
@@ -149,8 +157,32 @@ class AlertDetailsController < ApplicationController
   end
 
   def edit_service_center
-    
   end
+
+  def update_service_center
+    @id = params[:id]
+    @alert = params[:alert_id]
+    if params[:id] and params[:id] != '' and params[:Name] and params[:Name] != '' and params[:State] and params[:State] != '' and params[:StreetAddress] and params[:StreetAddress] != '' and params[:StateCode] and params[:StateCode] != '' and params[:City] and params[:City] != '' and params[:Pin] and params[:Pin] != '' and params[:Tel] and params[:Tel] != '' and params[:Fax] and params[:Fax] != '' and params[:Email] and params[:Email] != '' and params[:Url] and params[:Url] != '' and params[:ContactPerson] and params[:ContactPerson] != '' and params[:lat] and params[:lan] != ''
+      @update = Admin::ServiceCenter.where(:id => params[:id]).update_all(Name: params[:Name], State: params[:State], StreetAddress: params[:StreetAddress], StateCode: params[:StateCode], City: params[:City], Pin: params[:Pin], Tel: params[:Tel], Fax: params[:Fax], Email: params[:Email], Url: params[:Url], ContactPerson: params[:ContactPerson], lat: params[:lat], lan: params[:lan])
+        if @update == 1
+          respond_to do |format|
+              format.html { redirect_to '/alert_details?id='+@alert, notice: 'Service center updated successfully' }
+              format.json { render json: @message.errors, status: :unprocessable_entity }
+          end
+        else
+          respond_to do |format|
+              format.html { redirect_to '/edit_service_center?id='+@id, notice: 'Service center is not updated' }
+              format.json { render json: @message.errors, status: :unprocessable_entity }
+          end
+        end
+    else
+      respond_to do |format|
+          format.html { redirect_to '/edit_service_center?id='+@id, notice: 'Required fields are missing' }
+          format.json { render json: @message.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_alert_detail

@@ -8,63 +8,71 @@
             </span>
            
         </div>  
-<form accept-charset="UTF-8" action="/admin/service_centers/1" class="edit_admin_service_center" id="edit_admin_service_center_1" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="_method" type="hidden" value="patch" /><input name="authenticity_token" type="hidden" value="WhiqDRuoUNsupuYXDFgRJCAVlGZsYboEJUb9u3NbS5M=" /></div>
+<% if params[:id] != '' %>
+  <% @service_centers = Admin::ServiceCenter.where(:id => params[:id]) %>
+    <% @service_centers.each do |service_center| %>
+<form accept-charset="UTF-8" action="/update_service_center" class="edit_service_center" id="edit_service_center" method="post">
 
   <div class="field">
+    <input type="hidden" name="id" value="<%= params[:id] %>">
+    <input type="hidden" name="alert_id" value="<%= params[:alert] %>">
     <label for="admin_service_center_Name">Name</label><br>
-    <input id="admin_service_center_Name" name="admin_service_center[Name]" type="text" value="New Center" />
+    <input id="admin_service_center_Name" name="Name" type="text" value="<%= service_center.Name%>" />
   </div>
   <div class="field">
     <label for="admin_service_center_State">State</label><br>
-    <input id="admin_service_center_State" name="admin_service_center[State]" type="text" value="NY" />
+    <input id="admin_service_center_State" name="State" type="text" value="<%= service_center.State%>" />
   </div>
   <div class="field">
     <label for="admin_service_center_StreetAddress">Streetaddress</label><br>
-    <input id="admin_service_center_StreetAddress" name="admin_service_center[StreetAddress]" type="text" value="#123" />
+    <input id="admin_service_center_StreetAddress" name="StreetAddress" type="text" value="<%= service_center.StreetAddress%>" />
   </div>
     <div class="field">
     <label for="admin_service_center_StateCode">Statecode</label><br>
-    <input id="admin_service_center_StateCode" name="admin_service_center[StateCode]" type="text" value="111" />
+    <input id="admin_service_center_StateCode" name="StateCode" type="text" value="<%= service_center.StateCode%>" />
   </div>
   <div class="field">
     <label for="admin_service_center_City">City</label><br>
-    <input id="admin_service_center_City" name="admin_service_center[City]" type="text" value="NY" />
+    <input id="admin_service_center_City" name="City" type="text" value="<%= service_center.City%>" />
   </div>
   <div class="field">
     <label for="admin_service_center_Pin">Pin</label><br>
-    <input id="admin_service_center_Pin" name="admin_service_center[Pin]" type="text" value="16001" />
+    <input id="admin_service_center_Pin" name="Pin" type="text" value="<%= service_center.Pin%>" />
   </div>
   <div class="field">
     <label for="admin_service_center_Tel">Tel</label><br>
-    <input id="admin_service_center_Tel" name="admin_service_center[Tel]" type="text" value="2132144" />
+    <input id="admin_service_center_Tel" name="Tel" type="text" value="<%= service_center.Tel%>" />
   </div>
   <div class="field">
     <label for="admin_service_center_Fax">Fax</label><br>
-    <input id="admin_service_center_Fax" name="admin_service_center[Fax]" type="text" value="231231213" />
+    <input id="admin_service_center_Fax" name="Fax" type="text" value="<%= service_center.Fax%>" />
   </div>
   <div class="field">
     <label for="admin_service_center_Email">Email</label><br>
-    <input id="admin_service_center_Email" name="admin_service_center[Email]" type="text" value="service@center.com" />
+    <input id="admin_service_center_Email" name="Email" type="text" value="<%= service_center.Email%>" />
   </div>
   <div class="field">
     <label for="admin_service_center_Url">Url</label><br>
-    <input id="admin_service_center_Url" name="admin_service_center[Url]" type="text" value="http://servicecenter.com" />
+    <input id="admin_service_center_Url" name="Url" type="text" value="<%= service_center.Url%>" />
   </div>
   <div class="field">
-    <label for="admin_service_center_ContactPerson">Contactperson</label><br>
-    <input id="admin_service_center_ContactPerson" name="admin_service_center[ContactPerson]" type="text" value="Randhir Singh" />
+    <label for="admin_service_center_ContactPerson">Contact {erson</label><br>
+    <input id="admin_service_center_ContactPerson" name="ContactPerson" type="text" value="<%= service_center.ContactPerson%>" />
   </div>
   <div class="field">
     <label for="admin_service_center_lat">Lat</label><br>
-    <input id="admin_service_center_lat" name="admin_service_center[lat]" type="text" value="30.642550" />
+    <input id="admin_service_center_lat" name="lat" type="text" value="<%= service_center.lat%>" />
   </div>
   <div class="field">
     <label for="admin_service_center_lan">Lan</label><br>
-    <input id="admin_service_center_lan" name="admin_service_center[lan]" type="text" value="76.817336" />
+    <input id="admin_service_center_lan" name="lan" type="text" value="<%= service_center.lan%>" />
   </div>
   <div class="actions">
     <input name="commit" type="submit" value="Update Service center" />
   </div>
-</form><a href="/admin/service_centers">Back</a>
+</form>
+  <% end %>
+<% end %>
+<a href="/alert_details?id=<%= params[:id] %>">Back</a>
 <%#= link_to 'Back', admin_service_centers_path %>
 </div>

@@ -79,9 +79,10 @@ Servicetrac::Application.routes.draw do
   match 'admin/manage_dispatch_user' => 'admin/admin#manage_dispatch_user',  :via => :get
 
   match 'admin/manage_dispatch_user_edit' => 'admin/admin#manage_dispatch_user_edit',  :via => :get
-  #post 'distance' => 'service_alerts#distance'
-  #resources :users
+  
+  get 'edit_service_center' => 'alert_details#edit_service_center'
 
+  post 'update_service_center' => 'alert_details#update_service_center'  
   
   #   get 'register' => 'welcome#index'
   # Example of regular route:

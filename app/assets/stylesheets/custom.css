@@ -569,3 +569,12 @@ label.margin-top
 .inline-edit {
 	width: 93px;
 }
+.list-ctnt a.msg-dvt
+{
+	width: auto;
+	display: inline-block;
+	padding: 8px 11px;
+	margin-left: 3px;
+	margin-top: 2px;
+	background:url(email.png) no-repeat;
+}
