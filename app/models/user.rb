@@ -52,5 +52,4 @@ def self.update_password(email,new_password)
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
   end
-  
 end
