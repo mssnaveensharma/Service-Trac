@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :verify_authenticity_token
+   skip_before_action :verify_authenticity_token
   
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate
@@ -161,6 +161,9 @@ def recover_password
       if @pass.length != 0
         @pass.each do |password|
           @user_pass = password.plain_password
+          user=password
+          #send the password in mail
+          UserMailer.sendpassword(user,request.protocol, request.host_with_port).deliver
         end
           return render :json => {:success => true, :password => @user_pass}
       else
