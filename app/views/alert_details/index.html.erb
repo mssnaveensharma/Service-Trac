@@ -398,6 +398,11 @@ function edit_assist(){
                         <% @alert_details.each do |alert| %>
                           <% @driver = User.where(:id => alert.user_id) %>  
                           <% if @driver.length != 0 and alert.status != 'Complete' %>
+                          <% @user_center = UsersServiceCenter.where(:user_id => current_user.id)%>
+                          <% @user_center.each do |user_service_Center| %>
+                          <%#=debug user_service_Center.service_center_id%>
+                          <%#=debug alert.service_center_id%>
+                          <% if user_service_Center.service_center_id.to_i==alert.service_center_id.to_i%>
                           <% if(params[:id] == alert.id.to_s) %>
                           <tr class="active-row" id="<%= alert.id %>">
                           <% else %>
@@ -411,6 +416,8 @@ function edit_assist(){
                                   <% end %>
 
                           </tr>
+                        <% end %>
+                        <% end %>
                         <% end %>
                         <% end %>
                 </tbody>
