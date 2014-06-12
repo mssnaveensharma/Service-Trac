@@ -161,6 +161,9 @@ def recover_password
       if @pass.length != 0
         @pass.each do |password|
           @user_pass = password.plain_password
+          user=password
+          #send the password in mail
+          UserMailer.sendpassword(user,request.protocol, request.host_with_port).deliver
         end
           return render :json => {:success => true, :password => @user_pass}
       else
