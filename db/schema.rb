@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611135222) do
+ActiveRecord::Schema.define(version: 20140612055006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(version: 20140611135222) do
     t.string   "lat"
     t.string   "asstimate_time"
     t.string   "asstimate_date"
+    t.string   "ticket_po_no"
+    t.string   "ticket_ref_no"
   end
 
   create_table "service_center_reviews", force: true do |t|

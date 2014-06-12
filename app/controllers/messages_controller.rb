@@ -137,7 +137,7 @@ class MessagesController < ApplicationController
             content: @user_msg,
             params: {
                 any_data: 2,
-                another_key: "Hum..."
+                another_key: "Servicetrac alert notification"
             }
         }
 
@@ -240,10 +240,10 @@ def all_messages
         end
           return render :json => {:success => true, :messages => @messageArray}
       else
-        return render :json => {:success => false, :messages => "no messages for this user"}
+        return render :json => {:success => false, :message => 'no messages for this user'}
       end
   else
-    return render :json => {:success => false, :message => "User id is required"}
+    return render :json => {:success => false, :messages => 'User id is required'}
   end
 end
   private

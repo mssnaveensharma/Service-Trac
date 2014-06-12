@@ -1,3 +1,25 @@
+<%= javascript_include_tag "jquery.validate.min.js" %>
+ <script type="text/javascript">
+  jQuery(document).ready(function() {
+    $(".edit_service_center").validate({
+      errorElement: "label",
+    rules: {
+       "Name": "required",
+       "State": "required",
+       "StreetAddress": "required",
+       "StateCode": "required",
+       "City": "required",
+       "Pin": {required:true,number:true,maxlength: 20},
+       "Tel": {required:true,number:true,maxlength: 15},
+       "Fax": {required:true,number:true,maxlength: 15},
+       "Email":{required:true,email:true},
+       "Url":{required:true,url:true},
+       "ContactPerson":{required:true},
+       "lat":{required:true,number:true,maxlength: 15},
+       "lan":{required:true,number:true,maxlength: 15}
+      }});
+  }); 
+</script>
     <div class="container">
 
     <div class="serch-fld">

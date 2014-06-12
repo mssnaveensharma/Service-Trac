@@ -85,6 +85,8 @@ Servicetrac::Application.routes.draw do
   post 'update_service_center' => 'alert_details#update_service_center'  
 
   get 'service_ticket' => 'alert_details#service_ticket'
+
+  post 'update_ticket' => 'alert_details#update_ticket'
   
   #   get 'register' => 'welcome#index'
   # Example of regular route:

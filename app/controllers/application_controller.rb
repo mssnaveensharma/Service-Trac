@@ -21,6 +21,12 @@ class ApplicationController < ActionController::Base
       end 
   end
   
+  def disallowdispatchuser
+      if current_user!=nil && (current_user.Role=='DispatchUser' ||current_user.Role=='AppUser')
+       flash[:notice] = 'You are not authorized to access this location'
+       redirect_to new_user_session_path
+      end 
+  end
   
   def allow_admin_access
       if current_user!=nil && !current_user.Role=='admin'

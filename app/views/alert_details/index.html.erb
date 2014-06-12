@@ -186,6 +186,7 @@ function calcRoute(id) {
   var alert_id = id;
   if(alert_id !='' && alert_id != null && alert_id != undefined ) {
     $(".edit_alert").attr("href","/edit_alert?id="+alert_id);
+    $("#service_ticket").attr("href","/service_ticket?id="+alert_id);
     $(".refresh").attr("id",alert_id);
     $("#alert_id_hidden").val(alert_id);
     $("tr").removeClass("active-row");
@@ -240,6 +241,10 @@ function calcRoute(id) {
             $('#status').html(value[i]['alert_status']);
 
             $('#tech_support').html(value[i]['tech_called']);
+
+            $('#ticket_po_no').html(value[i]['ticket_po_no']);
+
+            $('#ticket_ref_no').html(value[i]['ticket_ref_no']);
 
           }
           //console.log(value.lan);
@@ -447,11 +452,11 @@ function edit_assist(){
             <ul class="list-group">
                <li class="list-ctnt">
                     <h4>Service ticket</h4>
-                    <a> edit</a>
+                    <a id="service_ticket" href=""> edit</a>
                </li>
                <li class="list-group-item"><h4>Status </h4><p id="status">In-Route</p></li>
-               <li class="list-group-item"><h4>Corporate PO# </h4><p>20758968</p></li>
-               <li class="list-group-item"><h4>Qualcomm REF #  </h4><p>20758968</p></li>
+               <li class="list-group-item"><h4>Corporate PO# </h4><p id="ticket_po_no">20758968</p></li>
+               <li class="list-group-item"><h4>Qualcomm REF #  </h4><p id="ticket_ref_no">20758968</p></li>
                <li class="list-group-item itm-ques"><h4>was tech support called?  </h4><p id="tech_support">Yes</p></li>
             </ul>
             <ul class="list-group">

@@ -1,6 +1,7 @@
 class AlertDetailsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_action :set_alert_detail, only: [:show, :edit, :update, :destroy]
+
   #before_action :authenticate, only: [:get_route]
 
   # GET /alert_details
@@ -111,6 +112,8 @@ class AlertDetailsController < ApplicationController
                   response[:driver_assist]=@driver_assist
                   response[:service_center]=center.Name
                   response[:service_center_id]=center.id
+                  response[:ticket_ref_no]=alert.ticket_ref_no
+                  response[:ticket_po_no]=alert.ticket_po_no
                   response[:city_state]=center.City+"/"+center.State
                   response[:last_alert]=alert.created_at.strftime("%d/%m/%y")
                   response[:asst_time]=@asst_time.strftime("%I:%M %p")
@@ -134,24 +137,25 @@ class AlertDetailsController < ApplicationController
 
   def update_alert
     @id = params[:id]
+    
     if (params[:id] and params[:id] !='' and params[:user_id] and params[:user_id] !='' and params[:Contact] and params[:Contact] !='' and params[:TruckYear] and params[:TruckYear] !='' and params[:TruckMake] and params[:TruckMake] !='' and params[:eobr_make_id] and params[:eobr_make_id] !='' and params[:eobr_model_id] !='' and params[:eobr_model_id] !=nil and params[:EobrNumber] and [:EobrNumber] !='' and params[:tech_support_id] and params[:tech_support_id] !='')
       @update = User.where(:id => params[:user_id]).update_all(Contact: params[:Contact], TruckYear: params[:TruckYear], TruckMake: params[:TruckMake], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], EobrNumber: params[:EobrNumber], tech_support_id: params[:tech_support_id])
         if(@update == 1)
           respond_to do |format|
               format.html { redirect_to '/alert_details?id='+@id, notice: 'Alert is updated successfully' }
-              format.json { render json: @message.errors, status: :unprocessable_entity }
+              format.json { render json: @update.errors, status: :unprocessable_entity }
           end
         else
           respond_to do |format|
               format.html { redirect_to '/edit_alert?id='+@id, notice: 'Required fields are missing' }
-              format.json { render json: @message.errors, status: :unprocessable_entity }
+              format.json { render json: @update.errors, status: :unprocessable_entity }
           end
         end
             
       else
         respond_to do |format|
           format.html { redirect_to '/edit_alert?id='+@id, notice: 'Required fields are missing' }
-          format.json { render json: @message.errors, status: :unprocessable_entity }
+          format.json { render json: @update.errors, status: :unprocessable_entity }
         end
       end
   end
@@ -167,23 +171,46 @@ class AlertDetailsController < ApplicationController
         if @update == 1
           respond_to do |format|
               format.html { redirect_to '/alert_details?id='+@alert, notice: 'Service center updated successfully' }
-              format.json { render json: @message.errors, status: :unprocessable_entity }
+              format.json { render json: @update.errors, status: :unprocessable_entity }
           end
         else
           respond_to do |format|
               format.html { redirect_to '/edit_service_center?id='+@id, notice: 'Service center is not updated' }
-              format.json { render json: @message.errors, status: :unprocessable_entity }
+              format.json { render json: @update.errors, status: :unprocessable_entity }
           end
         end
     else
       respond_to do |format|
           format.html { redirect_to '/edit_service_center?id='+@id, notice: 'Required fields are missing' }
-          format.json { render json: @message.errors, status: :unprocessable_entity }
+          format.json { render json: @update.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def service_ticket
+  end
+
+  def update_ticket
+    @id = params[:id]
+    if params[:id] and params[:id] != '' and params[:ticket_po_no] and params[:ticket_po_no] != '' and params[:ticket_ref_no] and params[:ticket_ref_no] != ''
+      @update = ServiceAlert.where(:id => params[:id]).update_all(ticket_po_no: params[:ticket_po_no], ticket_ref_no: params[:ticket_ref_no])
+        if @update == 1
+          respond_to do |format|
+            format.html { redirect_to '/alert_details?id='+@id, notice: 'Service ticket is updated succesfully' }
+            format.json { render json: @update.errors, status: :unprocessable_entity }
+          end          
+        else
+          respond_to do |format|
+            format.html { redirect_to '/service_ticket?id='+@id, notice: 'Service ticket is not updated' }
+            format.json { render json: @update.errors, status: :unprocessable_entity }
+          end          
+        end
+    else
+        respond_to do |format|
+          format.html { redirect_to '/service_ticket?id='+@id, notice: 'Required fields are missing' }
+          format.json { render json: @update.errors, status: :unprocessable_entity }
+        end
+    end
   end
 
   private

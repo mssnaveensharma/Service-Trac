@@ -578,3 +578,6 @@ label.margin-top
 	margin-top: 2px;
 	background:url(email.png) no-repeat;
 }
+label.error{
+	color: red;
+}

@@ -1,5 +1,6 @@
 class Admin::AdminController < ApplicationController
   before_action :authenticate_user!
+  before_action :disallowdispatchuser, only: [:index,:manage_dispatch_user, :manage_dispatch_user_edit]
   def index
     
   end
