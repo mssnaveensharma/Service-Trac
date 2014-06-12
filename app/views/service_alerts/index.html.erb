@@ -38,14 +38,14 @@
                             <% @user_center = UsersServiceCenter.where(:user_id => current_user.id)%>
                           <% @user_center.each do |user_service_Center| %>
                           <%#=debug user_service_Center.service_center_id%>
-                          <%#=debug alert.service_center_id%>
-                          <%# if user_service_Center.service_center_id.to_i==alert.service_center_id.to_i%>
+                          <%#=debug service_alert.service_center_id%>
+                          <% if user_service_Center.service_center_id==service_alert.service_center_id%>
                               <% end %>
                             <td><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></td>
                               <% @drivers.each do |driver| %>
                                <%#=debug service_alert %>
                                 <td><%= driver.TruckNumber %></td>
-                                <td><a href="/alert_details?id=<%= service_alert.id %>"><%= driver.FirstName%>&nbsp;&nbsp;<%= driver.LastName%></a></td>
+                                <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= driver.FirstName%>&nbsp;&nbsp;<%= driver.LastName%></a></td>
                                 <td><%= driver.Contact %></td>
                               <% end %>
                           <% @centers = Admin::ServiceCenter.where(:id => service_alert.service_center_id)%>
@@ -77,7 +77,19 @@
                                 end
 
                                %>
-                                <td><%= @ratings %></td>       
+                                <% if @ratings == 1 %>
+                                  <td><%= image_tag("1.png") %></td>       
+                                <% elsif @ratings == 2  %>
+                                  <td><%= image_tag("2.png") %></td>  
+                                <% elsif @ratings == 3  %>
+                                  <td><%= image_tag("3.png") %></td>  
+                                <% elsif @ratings == 4  %>
+                                  <td><%= image_tag("4.png") %></td>  
+                                <% elsif @ratings == 5  %>
+                                  <td><%= image_tag("5.png") %></td>  
+                                <% else  %>
+                                  <td><%= image_tag("zero.png") %></td>  
+                                <% end %>
                                 <td><%= service_alert.status %></td>
                               <% end %>
                             <% else %>
@@ -86,7 +98,7 @@
                             <% end %>
                       </tr>
                     <% end %>
-                  <%# end %>
+                  <% end %>
              
                 <% end %>
                 </tbody>

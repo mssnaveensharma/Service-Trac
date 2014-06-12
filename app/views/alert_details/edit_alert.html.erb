@@ -64,10 +64,7 @@ function getModal(id) {       // get the the modals on selecting the make
       
       <li class="active">>> Main</li>
     </ol>
-    <% if flash[:notice] %>
-    	<p style="color:#fff"><%= flash[:notice] %></p>
-    <% end %>
-    	<form method="POST" action="/update_alert" class="edit_alert">
+       	<form method="POST" action="/update_alert" class="edit_alert">
     		<% @alert_detail = ServiceAlert.where(:id => params[:id]) %>
     			<input type="hidden" name="id" value="<%=params[:id]%>">
     			<%#=debug @alert_detail %>
