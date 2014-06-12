@@ -1,4 +1,29 @@
+<%= javascript_include_tag "jquery.validate.min.js" %>
+<%= javascript_include_tag "jquery-ui.js" %>
+<%= stylesheet_link_tag "jquery-ui.css" %>
  <script type="text/javascript">
+  jQuery(document).ready(function() {
+    $(".edit_alert").validate({
+      errorElement: "label",
+    rules: {
+       "Contact": {required:true,number:true},
+       "TruckYear": {required:true,date:true},
+       "TruckMake": "required",
+       "eobr_make_id": "required",
+       "eobr_model_id": "required",
+       "EobrNumber": "required"
+      }});
+  }); 
+</script>
+ <script type="text/javascript">
+     $('#TruckYear').datepicker({
+         dateFormat: 'dd-mm-yy' ,
+        'autoclose': true,
+        changeMonth: true,
+        changeYear: true
+    });
+</script>
+<script>
 function getModal(id) {       // get the the modals on selecting the make
     var make_id = id;
       if(make_id != '' && make_id != null) {
@@ -42,7 +67,7 @@ function getModal(id) {       // get the the modals on selecting the make
     <% if flash[:notice] %>
     	<p style="color:#fff"><%= flash[:notice] %></p>
     <% end %>
-    	<form method="POST" action="/update_alert">
+    	<form method="POST" action="/update_alert" class="edit_alert">
     		<% @alert_detail = ServiceAlert.where(:id => params[:id]) %>
     			<input type="hidden" name="id" value="<%=params[:id]%>">
     			<%#=debug @alert_detail %>
@@ -63,7 +88,7 @@ function getModal(id) {       // get the the modals on selecting the make
     			<label>Contact#</label>
 				<input type="text" name="Contact" value="<%= @contact %>"><br>
 				<label>Truck Year</label>
-				<input type="text" name="TruckYear" value="<%= @truckyear %>"><br>
+				<input type="text" id="TruckYear" name="TruckYear" value="<%= @truckyear %>"><br>
 				<label>Truck Make</label>
 				<input type="text" name="TruckMake" value="<%= @truckmake %>"><br>
 				<label>Eobr Make</label>

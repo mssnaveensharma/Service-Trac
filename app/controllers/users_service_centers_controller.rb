@@ -27,6 +27,7 @@ class UsersServiceCentersController < ApplicationController
   def create
     if params[:FirstName] !='' and params[:LastName] !='' and params[:service_center_id] !='' and params[:user_id] !='' and params[:Contact] !=''
         @chk_center = UsersServiceCenter.where(:user_id => params[:user_id])
+        @update = User.where(:id => params[:user_id]).update_all(:FirstName =>params[:FirstName], :LastName => params[:LastName])
         if @chk_center.length == 0
           @create = UsersServiceCenter.create({
             :service_center_id => params[:service_center_id],
