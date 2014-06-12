@@ -7,11 +7,11 @@
       errorElement: "label",
     rules: {
        "Contact": {required:true,number:true},
-       "TruckYear": {required:true,date:true},
-       "TruckMake": "required",
+       "TruckYear": {required:true,date:true,messages:"format should be dd/mm/yy"},
+       "TruckMake": {required:true,maxlength: 15},
        "eobr_make_id": "required",
        "eobr_model_id": "required",
-       "EobrNumber": "required"
+       "EobrNumber": {required:true,maxlength: 15}
       }});
   }); 
 </script>
