@@ -67,6 +67,9 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
+    <% if flash[:notice] %>
+			<div class=""><h4 align="center" class="flash"><%= flash[:notice]%></div>
+	 <%end%>
 <%= yield %>
 
 </body>

@@ -77,4 +77,12 @@ Servicetrac::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :address => "email-smtp.us-west-2.amazonaws.com",
+      :user_name => "AKIAJZ557T6WQWIJZHDQ",
+      :password => "AtjuD40eQ1H96irPGEGolxkoF7G8XZasYfMXGq0qzQiO",
+      :authentication => :login,
+      :enable_starttls_auto => true
+  }
 end
