@@ -636,3 +636,13 @@ label.error{
 a.table-link{
 	color: #000;
 }
+.new-com
+{
+	text-align:right;
+}
+.new-com a
+{
+	color:#fff;
+	margin-right:20px;
+	font-size:18px;
+}
