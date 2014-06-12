@@ -581,6 +581,24 @@ label.margin-top
 label.error{
 	color: red;
 }
+.trac-link a {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #ED1C24;
+    cursor: pointer;
+    float: left;
+    font-size: 16px;
+    line-height: 60px;
+    margin-right: 10px;
+    margin-top: 20px;
+    padding-top: 60px;
+    text-align: center;
+    text-decoration: none !important;
+    width: 15.8%;
+}
+.trac-link a:last-child
+{
+	margin-right:0px;
+}
 .flash {
 	color: #fff;	
 }
