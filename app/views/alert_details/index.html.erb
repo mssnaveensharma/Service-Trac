@@ -237,6 +237,10 @@ function calcRoute(id) {
 
             $('#asst_time').html(value[i]['asst_time']);
 
+            $('#status').html(value[i]['alert_status']);
+
+            $('#tech_support').html(value[i]['tech_called']);
+
           }
           //console.log(value.lan);
         });
@@ -445,10 +449,10 @@ function edit_assist(){
                     <h4>Service ticket</h4>
                     <a> edit</a>
                </li>
-               <li class="list-group-item"><h4>Status </h4><p>In-Route</p></li>
+               <li class="list-group-item"><h4>Status </h4><p id="status">In-Route</p></li>
                <li class="list-group-item"><h4>Corporate PO# </h4><p>20758968</p></li>
                <li class="list-group-item"><h4>Qualcomm REF #  </h4><p>20758968</p></li>
-               <li class="list-group-item itm-ques"><h4>was tech support called?  </h4><p>Yes</p></li>
+               <li class="list-group-item itm-ques"><h4>was tech support called?  </h4><p id="tech_support">Yes</p></li>
             </ul>
             <ul class="list-group">
                <li class="list-ctnt">

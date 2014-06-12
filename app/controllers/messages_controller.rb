@@ -46,9 +46,9 @@ class MessagesController < ApplicationController
   # GET /messages/1.json
   def show
 
-  Urbanairship.application_key = '53Pt_cxLQV6bqCXiiVg6vw'
-  Urbanairship.application_secret = 'hJ6V06wKR4OS6kynceEYJQ'
-  Urbanairship.master_secret = 'lkzV_HDDS1qut3wENMMV2w'
+  Urbanairship.application_key = 'mkmnPV4XT9OQF6afE2Ac2A'
+  Urbanairship.application_secret = 'TE_V6elVQ9qdI3KlG6bkBw'
+  Urbanairship.master_secret = 'ZjNzdvofSPOiXdYEfssBvQ'
   Urbanairship.logger = Rails.logger
   Urbanairship.request_timeout = 5 # default
     
@@ -108,6 +108,48 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     respond_to do |format|
      if @message.save
+      Urbanairship.application_key = 'mkmnPV4XT9OQF6afE2Ac2A'
+      Urbanairship.application_secret = 'TE_V6elVQ9qdI3KlG6bkBw'
+      Urbanairship.master_secret = 'ZjNzdvofSPOiXdYEfssBvQ'
+      Urbanairship.logger = Rails.logger
+      Urbanairship.request_timeout = 5 # default
+      @users = User.all
+       @user = User.find(@message.ToUserId) 
+       @d_type = @user.device_type 
+       @d_token = @user.device_token 
+       @user_msg = @message.MessageContent 
+    
+     if @d_type == 'iphone' 
+     Urbanairship.register_device(@d_token)
+     notification = { 
+       :schedule_for => [1.second.from_now],  
+       :device_tokens => [@d_token], 
+       :aps => {:alert => @user_msg, :badge => 1} 
+       } 
+      @response = Urbanairship.push(notification) 
+      
+       else @d_type == 'wp' 
+       @url = @user.wp_notification_url 
+        uri = @url
+        #@user_msg = "Service alert notification"
+        options = {
+            title: "Servicetrac alert notification",
+            content: @user_msg,
+            params: {
+                any_data: 2,
+                another_key: "Hum..."
+            }
+        }
+
+    # response is an Net::HTTP object
+    @reponse = MicrosoftPushNotificationService.send_notification uri, :toast, options
+     end 
+    #notification = {
+    #:schedule_for => [1.second.from_now],
+    #:device_tokens => ['7d84912fd8b2d7318ef2d04529fc87f71a28ca82f2c15e2e5267c0e13dc25b80'],
+    #:aps => {:alert => 'bnde hai hum uske..hmpe kiska jor..', :badge => 1}
+  #}
+  #Urbanairship.push(notification)
         format.html { redirect_to '/messages', notice: 'Message was send successfully.' }
         format.json { head :no_content }
        else
