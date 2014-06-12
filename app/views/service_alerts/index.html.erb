@@ -31,6 +31,78 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                <% if current_user.Role == "admin" %>
+                
+                    <% @service_alerts.each do |service_alert| %>
+                      <tr>
+                        <% @drivers = User.where('("Role" = ? AND id = ? )', "AppUser",service_alert.user_id) %>
+                            <% if(@drivers.length != 0) and service_alert.status != 'Complete' %>
+                            <td><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></td>
+                              <% @drivers.each do |driver| %>
+                               <%#=debug service_alert %>
+                                <td><%= driver.TruckNumber %></td>
+                                <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= driver.FirstName%>&nbsp;&nbsp;<%= driver.LastName%></a></td>
+                                <td><%= driver.Contact %></td>
+                              <% end %>
+                          <% @centers = Admin::ServiceCenter.where(:id => service_alert.service_center_id)%>
+                            <% if(@centers.length !=0 ) %>
+                              <%#=debug @centers  %>
+                              <% @centers.each do |center| %>
+                                
+                                <td><%= center.Name %></td>
+                                <td><%= center.City %>/<%= center.State %></td>
+                               <%
+
+                               @rate_one = ServiceCenterReview.where(:ratings => 1,:service_center_id => service_alert.service_center_id)
+                                @rate_two = ServiceCenterReview.where(:ratings => 2,:service_center_id => service_alert.service_center_id)
+                                @rate_three = ServiceCenterReview.where(:ratings => 3,:service_center_id => service_alert.service_center_id)
+                                @rate_four = ServiceCenterReview.where(:ratings => 4,:service_center_id => service_alert.service_center_id)
+                                @rate_five = ServiceCenterReview.where(:ratings => 5,:service_center_id => service_alert.service_center_id)
+                                @total_count = ServiceCenterReview.where(:service_center_id => service_alert.service_center_id)
+                                  @one_star = @rate_one.length
+                                  @two_star = @rate_two.length
+                                  @three_star = @rate_three.length
+                                  @four_star = @rate_four.length
+                                  @five_star = @rate_five.length
+                                  @total_star = @total_count.length
+                                  if(@total_star == 0)
+                                    @ratings = 0
+                                  else
+                                    @ratings = (5*@five_star + 4*@four_star + 3*@three_star + 2*@two_star + 1*@one_star) / @total_star
+                                  
+                                end
+
+                               %>
+                                <% if @ratings == 1 %>
+                                  <td><%= image_tag("1.png") %></td>       
+                                <% elsif @ratings == 2  %>
+                                  <td><%= image_tag("2.png") %></td>  
+                                <% elsif @ratings == 3  %>
+                                  <td><%= image_tag("3.png") %></td>  
+                                <% elsif @ratings == 4  %>
+                                  <td><%= image_tag("4.png") %></td>  
+                                <% elsif @ratings == 5  %>
+                                  <td><%= image_tag("5.png") %></td>  
+                                <% else  %>
+                                  <td><%= image_tag("zero.png") %></td>  
+                                <% end %>
+                                <td><%= service_alert.status %></td>
+                              <% end %>
+                            <% else %>
+                                <td></td>
+                                <td></td>
+                            <% end %>
+                      </tr>
+                    <% end %>
+
+             
+                <% end %>
+
+
+
+                <% else %>
+
                     <% @service_alerts.each do |service_alert| %>
                       <tr>
                         <% @drivers = User.where('("Role" = ? AND id = ? )', "AppUser",service_alert.user_id) %>
@@ -100,6 +172,8 @@
                     <% end %>
                   <% end %>
              
+                <% end %>
+
                 <% end %>
                 </tbody>
             </table>
