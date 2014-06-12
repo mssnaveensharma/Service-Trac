@@ -1,3 +1,14 @@
+<%= javascript_include_tag "jquery.validate.min.js" %>
+ <script type="text/javascript">
+  jQuery(document).ready(function() {
+    $(".service_ticket").validate({
+      errorElement: "label",
+    rules: {
+       "ticket_ref_no": {required:true,number:true,maxlength: 15},
+       "ticket_po_no": {required:true,number:true,maxlength: 15}
+      }});
+  }); 
+</script>
     <div class="container main-padding">
 
     <div class="serch-fld">
@@ -24,7 +35,7 @@
                 <% @ref_no = "" %>
             <% end %>
         <% end %>
-          <form action="/update_ticket" method="POST">
+          <form action="/update_ticket" method="POST" class="service_ticket">
             <label>Corporate PO#</label>
               <input type="text" name="ticket_po_no" value="<%= @po_no %>"><br>
             <label>Qualcomm REF #</label>

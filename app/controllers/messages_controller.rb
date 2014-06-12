@@ -238,12 +238,12 @@ def all_messages
               @messageArray = messages
             end
         end
-          return render :json => {:success => true, :messages => @messageArray}
+          return render :json => {:success => true, :message => @messageArray}
       else
-        return render :json => {:success => false, :messages => 'no messages for this user'}
+        return render :json => {:success => false, :message => 'no messages for this user'}
       end
   else
-    return render :json => {:success => false, :messages => 'User id is required'}
+    return render :json => {:success => false, :message => 'User id is required'}
   end
 end
   private
