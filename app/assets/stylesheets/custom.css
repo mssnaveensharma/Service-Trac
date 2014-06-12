@@ -246,6 +246,7 @@ table tbody
 	display:inline-block;
 	margin:0px;
 	font-size:13px;
+	word-wrap:break-word;
 	margin-top:-3px;
 }
 .list-group-item a
