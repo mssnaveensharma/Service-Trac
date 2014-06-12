@@ -1,3 +1,4 @@
+<%= javascript_include_tag "jquery.validate.min.js" %>
 <% if params[:id] and params[:id] !='' and params[:id] !=nil %>
 <script type="text/javascript">
 $(document).ready(function () {
@@ -12,7 +13,20 @@ $(document).ready(function () {
     $('#password').val('');
 });
 </script>
-
+ <script type="text/javascript">
+  jQuery(document).ready(function() {
+    $(".create_dispatch_user").validate({
+      errorElement: "label",
+    rules: {
+       "FirstName": {required:true},
+       "LastName": {required:true},
+       "email": {required:true,email:true},
+       "password": "required",
+       "Contact": {required:true,number:true,maxlength: 15},
+       "service_center_id": "required"
+      }});
+  }); 
+</script>
 <% end %>
   <div class="container">
    <div class="serch-fld">
@@ -39,7 +53,7 @@ $(document).ready(function () {
                 <% @selected_id =  selected.service_center_id %>
              <% end %>
             
-                <form method="POST" action="/create_user">
+                <form method="POST" class="create_dispatch_user" action="/create_user">
                 <input type="hidden" name="user_id" value="<%= params[:id] %>">
                 <label>FirstName</label>
                     <input type="text" name="FirstName" value="<%= @firsname %>"></br>
@@ -53,7 +67,7 @@ $(document).ready(function () {
                     <input type="text" name="Contact" value="<%= @contact%>"></br>
                 <label>Service Center</label>
                     <select name="service_center_id">
-                        <option>Select Service Center</option>
+                        <option value="">Select Service Center</option>
                         <% @service_centers.each do |service_center| %>
                             <% if(service_center.id == @selected_id) %>
                                 <% @selected = "selected=selected"%>

@@ -581,3 +581,6 @@ label.margin-top
 label.error{
 	color: red;
 }
+.flash {
+	color: #fff;	
+}
