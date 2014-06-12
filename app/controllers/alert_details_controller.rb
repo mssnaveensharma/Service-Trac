@@ -1,7 +1,7 @@
 class AlertDetailsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_action :set_alert_detail, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate, only: [:get_route]
+  #before_action :authenticate, only: [:get_route]
 
   # GET /alert_details
   # GET /alert_details.json
@@ -104,6 +104,7 @@ class AlertDetailsController < ApplicationController
                   response[:eobr_model]=@eobr_model_name
                   response[:driver_assist]=@driver_assist
                   response[:service_center]=center.Name
+                  response[:service_center_id]=center.id
                   response[:city_state]=center.City+"/"+center.State
                   response[:last_alert]=alert.created_at.strftime("%d/%m/%y")
                   response[:asst_time]=@asst_time.strftime("%I:%M %p")
@@ -145,6 +146,10 @@ class AlertDetailsController < ApplicationController
           format.json { render json: @message.errors, status: :unprocessable_entity }
         end
       end
+  end
+
+  def edit_service_center
+    
   end
   private
     # Use callbacks to share common setup or constraints between actions.
