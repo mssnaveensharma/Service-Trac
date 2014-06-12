@@ -246,6 +246,7 @@ table tbody
 	display:inline-block;
 	margin:0px;
 	font-size:13px;
+	word-wrap:break-word;
 	margin-top:-3px;
 }
 .list-group-item a
@@ -588,7 +589,7 @@ label.error{
     float: left;
     font-size: 16px;
     line-height: 60px;
-    margin-right: 10px;
+    margin-right: 1%;
     margin-top: 20px;
     padding-top: 60px;
     text-align: center;
@@ -616,7 +617,7 @@ label.error{
 .trac-link a + a + a
 {
 	background:url(make.png) center no-repeat #FFFFFF;
-}
+}  
 .trac-link a + a + a + a
 {
 	background:url(modal.png) center no-repeat #FFFFFF;
@@ -635,3 +636,19 @@ label.error{
 a.table-link{
 	color: #000;
 }
+.new-com
+{
+	text-align:right;
+}
+.new-com a
+{
+	color:#ED1C24;
+	margin-right:20px;
+	font-size:16px;
+	font-weight:normal;
+}
+.cmp-nm
+{
+	font-size:16px !important;
+	font-weight:normal; 
+} 

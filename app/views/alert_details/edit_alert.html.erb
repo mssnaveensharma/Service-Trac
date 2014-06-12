@@ -6,7 +6,7 @@
     $(".edit_alert").validate({
       errorElement: "label",
     rules: {
-       "Contact": {required:true,number:true},
+       "Contact": {required:true,number:true,maxlength: 15},
        "TruckYear": {required:true,date:true,messages:"format should be dd/mm/yy"},
        "TruckMake": {required:true,maxlength: 15},
        "eobr_make_id": "required",

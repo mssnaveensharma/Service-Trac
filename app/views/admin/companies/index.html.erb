@@ -12,10 +12,10 @@
    <table class="table-striped table-bordered table-condensed" width="100%"> 
   <thead>
     <tr>
-      <th>Companyname</th>
+      <th class="cmp-nm">Company Name</th>
       <th></th>
       <th></th>
-      <th></th>
+      <th class="new-com"><%= link_to 'New Company', new_admin_company_path %></th>
     </tr>
   </thead>
 
@@ -32,5 +32,5 @@
 </table>
 </div>
 <br>
-<%= link_to 'New Company', new_admin_company_path %>
+
 </div>

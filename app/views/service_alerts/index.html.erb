@@ -1,16 +1,43 @@
 <%#= javascript_include_tag "jquery.tablesorter.min.js" %>
 <%#= javascript_include_tag "jquery.tablesorter.widgets.min.js" %>
 <script type="text/javascript">
-//  jQuery(document).ready(function () {
-  //  jQuery('.tablesorter').tablesorter();
-  //});
+ 
+
+    $(document).ready(function(){
+
+    $('input[name="search"]').keyup(function(){
+
+      var searchterm = $(this).val();
+
+      if(searchterm.length > 3) {
+
+       var match = $('tr.data-row:contains("' + searchterm +'")');
+
+       var nomatch = $('tr.data-row:not(:contains("' + searchterm + '"))');
+
+       match.addClass('selected');
+
+       nomatch.css("display", "none");
+
+      } else {
+
+       $("tr.data-row").css("display", "");
+
+       $("tr.data-row").removeClass("selected");
+
+      }
+
+    });
+
+    });
+
 </script>
     <div class="container">
 
     <div class="serch-fld">
           <label class="margin-top">Service Alert </label>
            <span class="align-right">
-              <input class="form-control" type="search">
+              <input class="form-control" type="text" name="search" >
                 <input value="" class="search-submit" type="submit" />
             </span>
            
@@ -18,7 +45,7 @@
         <div class="table-responsive">
           <table class="tablesorter table-striped table-bordered table-condensed" width="100%">
               <thead>
-                    <tr>
+                    <tr class="data-header">
                         <th><h4>DATE/TIME</h4></th>
                         <th><h4>TRUCK #</h4></th>
                         <th><h4>DRIVER NAME</h4></th>
@@ -35,7 +62,7 @@
                 <% if current_user.Role == "admin" %>
                 
                     <% @service_alerts.each do |service_alert| %>
-                      <tr>
+                      <tr class="data-row">
                         <% @drivers = User.where('("Role" = ? AND id = ? )', "AppUser",service_alert.user_id) %>
                             <% if(@drivers.length != 0) and service_alert.status != 'Complete' %>
                             <td><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></td>
