@@ -642,7 +642,13 @@ a.table-link{
 }
 .new-com a
 {
-	color:#fff;
+	color:#ED1C24;
 	margin-right:20px;
-	font-size:18px;
+	font-size:16px;
+	font-weight:normal;
 }
+.cmp-nm
+{
+	font-size:16px !important;
+	font-weight:normal; 
+} 
