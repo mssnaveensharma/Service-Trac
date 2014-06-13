@@ -29,7 +29,7 @@ class Admin::EobrMakesController < ApplicationController
     respond_to do |format|
       if @admin_eobr_make.save
         format.html { redirect_to @admin_eobr_make, notice: 'Eobr make was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @admin_eobr_make }
+        format.json { render action: 'index', status: :created, location: @admin_eobr_make }
       else
         format.html { render action: 'new' }
         format.json { render json: @admin_eobr_make.errors, status: :unprocessable_entity }

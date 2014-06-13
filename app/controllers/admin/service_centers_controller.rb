@@ -94,7 +94,7 @@ class Admin::ServiceCentersController < ApplicationController
     respond_to do |format|
       if @admin_service_center.save
         format.html { redirect_to @admin_service_center, notice: 'Service center was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @admin_service_center }
+        format.json { render action: 'index', status: :created, location: @admin_service_center }
       else
         format.html { render action: 'new' }
         format.json { render json: @admin_service_center.errors, status: :unprocessable_entity }

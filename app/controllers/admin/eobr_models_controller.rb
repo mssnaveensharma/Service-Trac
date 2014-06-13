@@ -31,7 +31,7 @@ class Admin::EobrModelsController < ApplicationController
     respond_to do |format|
       if @admin_eobr_model.save
         format.html { redirect_to @admin_eobr_model, notice: 'Eobr model was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @admin_eobr_model }
+        format.json { render action: 'index', status: :created, location: @admin_eobr_model }
       else
         format.html { render action: 'new' }
         format.json { render json: @admin_eobr_model.errors, status: :unprocessable_entity }
