@@ -559,7 +559,7 @@ label.margin-top
 	padding-bottom:40px;
 }
 .table-responsive {
-    overflow-y: auto;
+    overflow: hidden;
 }
 .srvc-mn-hyt
 {
@@ -966,4 +966,25 @@ a.sign-up-lnk
 {
 	background: none repeat scroll 0 0 #E4151D;
     color: #FFFFFF;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Service center */
+.srvc-tb-cntr td:last-child
+{
+	
 }
