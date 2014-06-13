@@ -814,7 +814,7 @@ a.sign-up-lnk
 	font-size:20px;
 	margin-bottom:8px;	
 }
-.edit-cmp-form input
+.edit-cmp-form input.comp-nm-txt
 {
 	width:100%;
 	padding:5px 0px;
@@ -832,12 +832,14 @@ a.sign-up-lnk
 	background:#ED1C24;
 	color:#fff;
 	min-width:80px;
+	text-align:center;
 }
 .edit-cmp-form .actions a
 {
 	display:inline-block;
 	padding:6px 10px;
 	background:#555;
+	text-align:center;
 	color:#fff;
 	min-width:80px;
 	margin-left:15px;
