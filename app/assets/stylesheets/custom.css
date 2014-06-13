@@ -823,11 +823,11 @@ a.sign-up-lnk
 .edit-cmp-form select.comp-nm-slct
 {
 	width:100%;
-	padding:7px 0px;
+	padding:7px 8px;
 	border-radius:5px;
 	-webkit-border-radius:5px;
+	margin-bottom:10px;
 	-ms-border-radius:5px;
-	text-indent:10px;
 	border:1px solid #ddd;
 }
 .edit-cmp-form input.comp-nm-txt
