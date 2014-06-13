@@ -53,6 +53,7 @@ $(document).ready(function(){
               dataType: 'json',
               success: function(response){
                 var Centerlength = response.length; 
+                //var len = response['hours'].length;
                     $.each([response], function( index, value ){
                       for(var i=0; i< Centerlength; i++){ 
                         $("h4#name").html(value[i]['name']);
@@ -65,19 +66,42 @@ $(document).ready(function(){
                         $("#url").html(value[i]['url']);
                         $("#email").html(value[i]['email']);
                         $("#ContactPerson").html(value[i]['contact']);
-                      }
-                    });
+                      //console.log(value[i].hours);
+                          $.each([value[i].hours], function( index, new_val ){
+                            var len = value[i].hours.length;
+                                for(var k=0; k< len; k++ ){
+                                    $("#mon_start").html(new_val[k]['mon_start']);
+                                    $("#mon_close").html(new_val[k]['mon_close']);
+                                    $("#tue_start").html(new_val[k]['tue_start']);
+                                    $("#tue_close").html(new_val[k]['tue_close']);
+                                    $("#wed_start").html(new_val[k]['wed_start']);
+                                    $("#wed_close").html(new_val[k]['wed_close']);
+                                    $("#thu_start").html(new_val[k]['thu_start']);
+                                    $("#thu_close").html(new_val[k]['thu_close']);
+                                    $("#fri_start").html(new_val[k]['fri_start']);
+                                    $("#fri_close").html(new_val[k]['fri_close']);
+                                    $("#sat_start").html(new_val[k]['sat_start']);
+                                    $("#sat_close").html(new_val[k]['sat_close']);
 
+                                    //alert(new_val[k]['mon_start'])     
+                                }
+
+                            });
+
+                          }
+  
+                });
+    
                     $.ajax({
-                        url: "get-reviews",
-                        type:"POST",
+                        url: "get-reviews/"+center_id,
+                        type:"get",
                         dataType:"json",
-                        data: {service_center_id: center_id},
+                        //data: {},
                         success: function(reviews){
+                           if(reviews.success != false) {
                             var reviewsLength = reviews.service_center_reviews.length;
-                            //console.log(reviewsLength);
                              $.each([reviews.service_center_reviews], function( index, value ){
-                                 for(var i=0; i< 5; i++){ 
+                                 for(var i=0; i< reviewsLength; i++){ 
                                     var image;
                                     if(reviews.service_center_reviews[i]['ratings'] == 1){
                                         image = "1.png";
@@ -97,10 +121,13 @@ $(document).ready(function(){
                                     $("#reviews").append(reviewsData);
                                  }
                             }); 
+                            }else{
+                                $("#reviews").append("<div class=reviews-cntnt><p>Serice center currently has no reviews</p></div>");
+                            }
                         },error: function(xhr,txt){
                             console.log("Error code is ",xhr.status);            
                         }
-                    })
+                    });
 
               },error:function(xhr,txt){
                 console.log("Error code is ",xhr.status);
@@ -181,17 +208,17 @@ $(document).ready(function(){
             </ul>
             <div class="hourly-rt">
             	<h4> Monday </h4>
-                <p>8:00 <time>am</time> / 5:00 <time>pm</time> </p>
+                <p id="mon_start">8:00 </p> /<p id="mon_close"> 5:00  </p>
                 <h4> Tuesday </h4>
-                <p>8:00 <time>am</time> / 5:00 <time>pm</time> </p>
+                <p id="tue_start">8:00 </p> /<p id="tue_close"> 5:00  </p>
                 <h4> Wednesday </h4>
-                <p>8:00 <time>am</time> / 5:00 <time>pm</time> </p>
+                <p id="wed_start">8:00 </p> /<p id="wed_close"> 5:00  </p>
                 <h4> Thursday </h4>
-                <p>8:00 <time>am</time> / 5:00 <time>pm</time> </p>
+                <p id="thu_start">8:00 </p> /<p id="thu_close"> 5:00  </p>
                 <h4> Friday </h4>
-                <p>8:00 <time>am</time> / 5:00 <time>pm</time> </p>
+                <p id="fri_start">8:00 </p> /<p id="fri_close"> 5:00  </p>
                 <h4> Saturday </h4>
-                <p>Closed </p>
+                <p id="sat_start">8:00 </p> /<p id="sat_close"> 5:00  </p>
                 <h4> Sunday </h4>
                 <p>Closed </p>
             </div>

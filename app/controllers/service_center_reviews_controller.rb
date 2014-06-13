@@ -153,6 +153,7 @@ class ServiceCenterReviewsController < ApplicationController
               response[:url]=center.Url
               response[:email]=center.Email
               response[:contact]=center.ContactPerson
+              response[:hours]=JSON.parse(center.WorkingHours)
               center_info.push(response)
             end
               return render :json =>  center_info
