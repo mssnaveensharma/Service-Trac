@@ -648,7 +648,9 @@ a.table-link{
 }
 .new-com
 {
-	text-align:right;
+	background:#B8B5B6;
+    padding: 10px;
+    text-align: right;
 }
 .new-com a
 {
@@ -657,11 +659,6 @@ a.table-link{
 	font-size:16px;
 	font-weight:normal;
 }
-.cmp-nm
-{
-	font-size:16px !important;
-	font-weight:normal; 
-} 
 
 
 /* Sign in form start 11 june 2014  */
@@ -776,3 +773,7 @@ a.sign-up-lnk
 	color:#ED1C24;
 }
 /* Sign in form end 11 june 2014 */
+.th-align-center
+{
+	text-align:center;
+}
