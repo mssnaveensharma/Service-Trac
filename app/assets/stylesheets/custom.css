@@ -88,6 +88,10 @@ ul
 {
 	background:url(home.png) no-repeat;
 }
+.dashboard-icon
+{
+	background:url(dashboard.png) no-repeat;
+}
 .home:hover
 {
 	background:url(home-hover.png) no-repeat;
