@@ -625,27 +625,27 @@ label.error{
 }
 .trac-link a
 {
-	background:url(company.png) center no-repeat #FFFFFF;
+	background:url(company.png) center no-repeat #ddd;
 }
 .trac-link a + a
 {
-	background:url(driver.png) center no-repeat #FFFFFF;
+	background:url(driver.png) center no-repeat #ddd;
 }
 .trac-link a + a + a
 {
-	background:url(make.png) center no-repeat #FFFFFF;
+	background:url(make.png) center no-repeat #ddd;
 }  
 .trac-link a + a + a + a
 {
-	background:url(modal.png) center no-repeat #FFFFFF;
+	background:url(modal.png) center no-repeat #ddd;
 }
 .trac-link a + a + a + a + a 
 {
-	background:url(service.png) center no-repeat #FFFFFF;
+	background:url(service.png) center no-repeat #ddd;
 }
 .trac-link a + a + a + a + a + a
 {
-	background:url(dispatch.png) center no-repeat #FFFFFF;
+	background:url(dispatch.png) center no-repeat #ddd;
 }
 .flash {
 	color: #fff;	
