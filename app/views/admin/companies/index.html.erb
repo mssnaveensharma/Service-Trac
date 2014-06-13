@@ -37,7 +37,7 @@
     <div class="serch-fld">
           <label class="margin-top">Manage Companies </label>
            <span class="align-right">
-              <input class="form-control" type="search">
+               
                 <input class="form-control" type="text" name="search">
             </span>
            
@@ -46,10 +46,9 @@
    <table class="table-striped table-bordered table-condensed" width="100%"> 
   <thead>
     <tr class="data-header">
-      <th class="cmp-nm">Company Name</th>
-      <th></th>
-      <th></th>
-      <th class="new-com"><%= link_to 'New Company', new_admin_company_path %></th>
+      <th width="85%">Company Name</th>
+      <th class="th-align-center">Action</th>
+      
     </tr>
   </thead>
 
@@ -57,13 +56,20 @@
     <% @admin_companies.each do |admin_company| %>
       <tr class="data-row">
         <td><%= admin_company.CompanyName %></td>
-        <td><%= link_to 'Show', admin_company %></td>
-        <td><%= link_to 'Edit', edit_admin_company_path(admin_company) %></td>
-        <td><%= link_to 'Destroy', admin_company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!--<td><%= link_to 'Show', admin_company %></td>-->
+        <td class="th-align-center">
+			<%= link_to '', edit_admin_company_path(admin_company), :class => "edit-icon" %>
+			<%= link_to '', admin_company, method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete-icon" %>
+		
+		</td>
+        
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
+<div class="new-com">
+	<%= link_to 'New Company', new_admin_company_path %>
 </div>
 <br>
 

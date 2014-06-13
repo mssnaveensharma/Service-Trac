@@ -88,7 +88,17 @@ ul
 {
 	background:url(home.png) no-repeat;
 }
-.home:hover
+.dashboard-icon
+{
+	background:url(dashboard.png) no-repeat;
+	background-size:32px !important;
+	background-position:0 9px !important;
+}
+.dashboard-icon:hover
+{
+	background:url(dashboard-hover.png) no-repeat;
+}
+.home:hover 
 {
 	background:url(home-hover.png) no-repeat;
 }
@@ -638,7 +648,9 @@ a.table-link{
 }
 .new-com
 {
-	text-align:right;
+	background:#B8B5B6;
+    padding: 10px;
+    text-align: right;
 }
 .new-com a
 {
@@ -647,11 +659,6 @@ a.table-link{
 	font-size:16px;
 	font-weight:normal;
 }
-.cmp-nm
-{
-	font-size:16px !important;
-	font-weight:normal; 
-} 
 
 
 /* Sign in form start 11 june 2014  */
@@ -692,7 +699,7 @@ a.table-link{
     padding: 7px;
     width: 100%;
 }
-.new-user
+.new_user
 {
 	padding:20px 0px;
 }
@@ -761,4 +768,87 @@ a.sign-up-lnk
 {
 	text-align:center;
 }
+.frgt-links a
+{
+	color:#ED1C24;
+}
 /* Sign in form end 11 june 2014 */
+.th-align-center
+{
+	text-align:center;
+}
+.edit-icon
+{
+	background:url(edit-icon.png) no-repeat ;
+	padding:10px;
+	display:inline-block;
+	background-position:center;
+}
+.edit-icon, .delete-icon
+{
+	opacity:0.7;
+}
+.delete-icon
+{
+	background:url(delete-icon.png) no-repeat ;
+	padding:10px;
+	display:inline-block;
+	margin-left:5px;
+	background-position:center;
+}
+.edit-cmny-dtl
+{
+	padding:20px;
+	background:#fff;
+	margin-top:20px;
+	min-height:400px;
+}
+.edit-cmp-form
+{
+	max-width:400px;
+	margin:0 auto;
+	margin-top:20px;
+}
+.edit-cmp-form label
+{
+	font-size:20px;
+	margin-bottom:8px;	
+}
+.edit-cmp-form input.comp-nm-txt
+{
+	width:100%;
+	padding:5px 0px;
+	text-indent:10px;
+	border:1px solid #ddd;
+}
+.edit-cmp-form .actions
+{
+	margin-top:10px;
+}
+.edit-cmp-form .actions input
+{
+	display:inline-block;
+	padding:6px 10px;
+	background:#ED1C24;
+	color:#fff;
+	min-width:80px;
+	text-align:center;
+}
+.edit-cmp-form .actions a
+{
+	display:inline-block;
+	padding:6px 10px;
+	background:#555;
+	text-align:center;
+	color:#fff;
+	min-width:80px;
+	margin-left:15px;
+}
+
+
+
+
+
+
+
+

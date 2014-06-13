@@ -2,6 +2,7 @@ class ServiceCenterReviewsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_action :set_service_center_review, only: [:show, :edit, :update, :destroy]
   before_action :authenticate, only: [:post_review]
+  before_action :authenticate, only: [:get_reviews]
 
   # GET /service_center_reviews
   # GET /service_center_reviews.json
@@ -128,6 +129,10 @@ class ServiceCenterReviewsController < ApplicationController
     else
       return render :json => {:success => false, :message => "required fields are missing"}
     end
+  end
+
+  def service_center
+
   end
 
   private

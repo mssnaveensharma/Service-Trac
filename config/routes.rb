@@ -62,7 +62,9 @@ Servicetrac::Application.routes.draw do
 
   post 'post_review' => 'service_center_reviews#post_review'
 
-  post 'get_reviews' => 'service_center_reviews#get_reviews'  
+  #post 'get_reviews' => 'service_center_reviews#get_reviews'  
+
+  match 'get-reviews' => 'service_center_reviews#get_reviews',  :via => :post,  :defaults => { :format => 'json' }
 
   post 'post_message' => 'messages#post_message'
 
@@ -89,7 +91,10 @@ Servicetrac::Application.routes.draw do
   post 'update_ticket' => 'alert_details#update_ticket'
 
   match 'create_user' => 'users#create_user',  :via => :post
+
+  get 'service_center' => 'service_center_reviews#service_center'
   
+  post 'getCenter' => 'service_center_reviews#getCenter'
   #   get 'register' => 'welcome#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
