@@ -11,7 +11,33 @@ return urlparam[1];
 }
 </script>
 <script>
-$(document).ready(function(){
+
+    $(document).ready(function(){
+
+    $('input[name="search"]').keyup(function(){
+
+      var searchterm = $(this).val();
+
+      if(searchterm.length > 3) {
+
+       var match = $('tr.data-row:contains("' + searchterm +'")');
+
+       var nomatch = $('tr.data-row:not(:contains("' + searchterm + '"))');
+
+       match.addClass('selected');
+
+       nomatch.css("display", "none");
+
+      } else {
+
+       $("tr.data-row").css("display", "");
+
+       $("tr.data-row").removeClass("selected");
+
+      }
+
+    });
+
   /*$('#driver_contact_text').focusout(function (){
     $(this).attr("type","hidden");
     $('#driver_contact').show();
@@ -378,7 +404,7 @@ function edit_assist(){
       <div class="col-sm-4 right-border sttc-hyt">
           <div class="top-search">
                 <label>SEARCH</label>
-                <input class="input-dtl-srch" type="text">
+                <input class="input-dtl-srch" type="text" name="search">
                 <input class="search-submit d-search" value="" type="submit" />
             </div>
 
@@ -388,7 +414,7 @@ function edit_assist(){
             <%#=debug Time.parse('1 day 12 hours') %>
               <table class="table-striped table-bordered table-condensed" width="100%">
               <thead>
-                    <tr>
+                    <tr class="data-header">
                         <th><h4>DATE/TIME</h4></th>
                         <th><h4>TRUCK #</h4></th>
                         <th><h4>DRIVER NAME</h4></th>
@@ -402,9 +428,9 @@ function edit_assist(){
                           <% if @driver.length != 0 and alert.status != 'Complete' %>
                                                  
                           <% if(params[:id] == alert.id.to_s) %>
-                          <tr class="active-row" id="<%= alert.id %>">
+                          <tr class="active-row data-row" id="<%= alert.id %>">
                           <% else %>
-                          <tr id="<%= alert.id %>">
+                          <tr id="<%= alert.id %>" class="data-row">
                           <% end %>
                             <td><%= alert.created_at.strftime("%d/%m/%y %I:%M %p") %></td>
                             
