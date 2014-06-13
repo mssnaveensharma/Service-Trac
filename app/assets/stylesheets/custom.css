@@ -1059,7 +1059,15 @@ a.sign-up-lnk
 {
 	float:right;
 }
-
+.servc-msg-scroll td 
+{
+	vertical-align:top;
+}
+.servc-msg-scroll td + td
+{
+	max-width:120px;
+	word-wrap:break-word;
+}
 
 
 
