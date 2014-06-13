@@ -94,7 +94,7 @@ Servicetrac::Application.routes.draw do
 
   get 'service_center' => 'service_center_reviews#service_center'
   
-  post 'getCenter'
+  post 'getCenter' => 'service_center_reviews#getCenter'
   #   get 'register' => 'welcome#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
