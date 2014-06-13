@@ -974,7 +974,16 @@ a.sign-up-lnk
 	background: none repeat scroll 0 0 #E4151D;
     color: #FFFFFF;
 }
-
+.add-dispatch-user
+{
+	padding:10px;
+	text-align:right;
+}
+.add-dispatch-user
+{
+	font-size:16px;
+	color:#ED1C24;
+}
 
 
 
