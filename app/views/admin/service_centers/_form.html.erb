@@ -6,6 +6,14 @@
         'timeFormat': 'g:ia'
     });
   });
+  function addTimings(){
+    alert($("#mon_start").val();
+    if($("#mon_start").val !='' && $("#mon_close").val !='' && $("#tue_start").val !='' && $("#tue_close").val !='' && $("#wed_start").val !='' && $("#wed_close").val !='' && $("#thu_start").val !='' && $("#thu_close").val !='' && $("#fri_start").val !='' && $("#fri_close").val !=''){
+
+    } else {
+      alert("Please select the service center timings");
+    }
+  }
 </script>
     <div class="container">
     <div class="serch-fld">
@@ -85,50 +93,55 @@
   </div>
     <div class="field">
     <label>Working Hours Mon</label><br>
-    <input type="text" class="time" name"mon_hours_start" placeholder="start time">
-    <input type="text" class="time" name"mon_hours_close" placeholder="close time">
+    <input type="text" id="mon_start" class="time" name="mon_hours_start" placeholder="start time">
+    <input type="text" id="mon_close" class="time" name="mon_hours_close" placeholder="close time">
   </div>
   <div class="field">
     <label>Working Hours Tue</label><br>
-    <input type="text" class="time" name"tue_hours_start" placeholder="start time">
-    <input type="text" class="time" name"tue_hours_close" placeholder="close time">
+    <input type="text" id="tue_start" class="time" name="tue_hours_start" placeholder="start time">
+    <input type="text" id="tue_close" class="time" name="tue_hours_close" placeholder="close time">
   </div>
   <div class="field">
     <label>Working Hours Wed</label><br>
-    <input type="text" class="time" name"wed_hours_start" placeholder="start time">
-    <input type="text" class="time" name"wed_hours_close" placeholder="close time">
+    <input type="text" id="wed_start" class="time" name="wed_hours_start" placeholder="start time">
+    <input type="text" id="wed_close" class="time" name="wed_hours_close" placeholder="close time">
   </div>
   <div class="field">
     <label>Working Hours Thu</label><br>
-    <input type="text" class="time" name"thu_hours_start" placeholder="start time">
-    <input type="text" class="time" name"thu_hours_close" placeholder="close time">
+    <input type="text" id="thu_start" class="time" name="thu_hours_start" placeholder="start time">
+    <input type="text" id="thu_close" class="time" name="thu_hours_close" placeholder="close time">
   </div>
   <div class="field">
     <label>Working Hours Fri</label><br>
-    <input type="text" class="time" name"fri_hours_start" placeholder="start time">
-    <input type="text" class="time" name"fri_hours_close" placeholder="close time">
+    <input type="text" id="fri_start" class="time" name="fri_hours_start" placeholder="start time">
+    <input type="text" id="fri_close" class="time" name="fri_hours_close" placeholder="close time">
   </div>
   <div class="field">
     <label>Working Hours Sat</label><br>
-    <input type="text" class="time" name"sat_hours_start" placeholder="start time">
-    <input type="text" class="time" name"sat_hours_close" placeholder="close time">
+      <input type="radio" name="sat_holiday" value="1">Yes
+      <input type="radio" name="sat_holiday" value="0">NO
+        <div class="sat_working" style="display:none">
+          <input type="text" class="time" name="sat_hours_start" placeholder="start time">
+          <input type="text" class="time" name="sat_hours_close" placeholder="close time">
+        </div>
   </div>
   <div class="field">
     <label>Working Hours Sun</label><br>
-    <input type="text" class="time" name"sun_hours_start" placeholder="start time">
-    <input type="text" class="time" name"sun_hours_close" placeholder="close time">
+      <input type="radio" name="sun_holiday" value="1">Yes
+      <input type="radio" name="sun_holiday" value="0">NO
+        <div class="sunday_working" style="display:none">
+          <input type="text" class="time" name="sun_hours_start" placeholder="start time">
+          <input type="text" class="time" name="sun_hours_close" placeholder="close time">
+        </div>
   </div>
-  <div class="field">
-    <label>Working Hours Monday</label><br>
-    <input type="text" class="time" name"moday_hours_start" placeholder="start time">
-    <input type="text" class="time" name"moday_hours_start" placeholder="close time">
+
+  <div class="actions">
+    <a href="javascript:void(0)" onclick="addTimings()">Add Timings</a>
   </div>
   <div class="actions">
-    <button name="button">Add Timings</button>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-	<%= link_to 'Back', admin_service_centers_path %>
+
+    <%= f.submit :class => "edit-btn-comp" %>
+	<%= link_to 'Back', admin_service_centers_path, :class => "back-btn-comp" %>
   </div>
 <% end %>
 

@@ -238,7 +238,11 @@ def all_messages
               @messageArray = messages
             end
         end
-          return render :json => {:success => true, :messages => @messageArray}
+          if @messageArray !="" and @messageArray != nil
+            return render :json => {:success => true, :messages => @messageArray}
+          else
+            return render :json => {:success => false, :message => 'no messages for this user'}
+          end
       else
         return render :json => {:success => false, :message => 'no messages for this user'}
       end
