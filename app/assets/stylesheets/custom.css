@@ -838,6 +838,15 @@ a.sign-up-lnk
     padding: 8px 25px;
     text-align: center;
 }
+.edit-cmp-form .actions input:hover
+{
+	background:#e4151d;
+}
+.edit-cmp-form .actions a:hover
+{
+	background:#444;
+	text-decoration:none;
+}
 .edit-cmp-form .actions a
 {
 	 background:#555555;
