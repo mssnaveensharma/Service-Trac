@@ -46,9 +46,9 @@
    <table class="table-striped table-bordered table-condensed" width="100%">
   <thead>
     <tr class="data-header">
-      <th>Name</th>
-      <th>Eobrmake</th>
-      <th>Actions</th>
+      <th width="50%">Name</th>
+      <th width="30%">Eobrmake</th>
+      <th class="th-align-center">Actions</th>
 <!--       <th></th>
       <th></th> -->
     </tr>
@@ -62,14 +62,13 @@
           <% @make.each do |m| %>
             <td><%= m.Name.capitalize %></td>
           <% end %>
-        <td><%= link_to 'Edit', edit_admin_eobr_model_path(admin_eobr_model) %>
-        <%= link_to 'Destroy', admin_eobr_model, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="th-align-center"><%= link_to 'Edit', edit_admin_eobr_model_path(admin_eobr_model), :class => "edit-icon" %>
+        <%= link_to 'Destroy', admin_eobr_model, method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete-icon" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
+<div class="new-com">
 <%= link_to 'New Eobr model', new_admin_eobr_model_path %>
+</div>
 </div>
