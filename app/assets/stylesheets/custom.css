@@ -801,9 +801,52 @@ a.sign-up-lnk
 	padding:20px;
 	background:#fff;
 	margin-top:20px;
+	min-height:400px;
 }
 .edit-cmp-form
 {
 	max-width:400px;
 	margin:0 auto;
+	margin-top:20px;
 }
+.edit-cmp-form label
+{
+	font-size:20px;
+	margin-bottom:8px;	
+}
+.edit-cmp-form input
+{
+	width:100%;
+	padding:5px 0px;
+	text-indent:10px;
+	border:1px solid #ddd;
+}
+.edit-cmp-form .actions
+{
+	margin-top:10px;
+}
+.edit-cmp-form .actions input
+{
+	display:inline-block;
+	padding:6px 10px;
+	background:#ED1C24;
+	color:#fff;
+	min-width:80px;
+}
+.edit-cmp-form .actions a
+{
+	display:inline-block;
+	padding:6px 10px;
+	background:#555;
+	color:#fff;
+	min-width:80px;
+	margin-left:15px;
+}
+
+
+
+
+
+
+
+
