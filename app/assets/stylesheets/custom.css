@@ -619,11 +619,11 @@ label.error{
 }
 .trac-link a + a + a + a + a 
 {
-	background:url(dispatch.png) center no-repeat #FFFFFF;
+	background:url(service.png) center no-repeat #FFFFFF;
 }
 .trac-link a + a + a + a + a + a
 {
-	background:url(service.png) center no-repeat #FFFFFF;
+	background:url(dispatch.png) center no-repeat #FFFFFF;
 }
 .flash {
 	color: #fff;	
