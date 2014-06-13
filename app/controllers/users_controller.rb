@@ -165,7 +165,7 @@ def recover_password
           #send the password in mail
           UserMailer.sendpassword(user,request.protocol, request.host_with_port).deliver
         end
-          return render :json => {:success => true, :password => @user_pass}
+          return render :json => {:success => true, :message => "please check your mail to get your password"}
       else
           return render :json => {:success => false, :message => "Invalid user id"}
       end
