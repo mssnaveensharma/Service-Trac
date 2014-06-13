@@ -1035,7 +1035,12 @@ a.sign-up-lnk
 	display:inline-block;
 	margin-bottom:10px;
 }
-
+.wrkng-hr-dtl p
+{
+	margin:20px 0px;
+	margin-top:30px;
+	color:#ED1C24;
+}
 
 
 
