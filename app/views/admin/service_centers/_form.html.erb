@@ -6,19 +6,19 @@
         'showDuration': true,
         'timeFormat': 'g:ia'
     });
-    $(".satday").click(function () { //alert("working");
+/*    $(".satday").click(function () { //alert("working");
       if($(this).val()==1){ //alert($(this).val());
         $(".sat_working").hide();
       }else{ //alert($(this).val());
         $(".sat_working").show();
       }
-    });
-/*    $("#submit").click(function() {
+    });*/
+    $("#submit").click(function() {
       if($("#timings_hidden").val()=="" || $("#timings_hidden").val()==null){
-        alert("Please selct the timings");
+        alert("Please click on add timmings to add center timings");
         return false;
       }
-    });*/
+    });
 /*      $(".sunday").click(function () { //alert("working");
         if($(this).val()==1){ //alert($(this).val());
           $(".sunday_working").hide();
@@ -62,7 +62,7 @@
     //alert($("#mon_start").val());
     if($("#mon_start").val() !='' && $("#mon_close").val() !='' && $("#tue_start").val() !='' && $("#tue_close").val() !='' && $("#wed_start").val() !='' && $("#wed_close").val() !='' && $("#thu_start").val() !='' && $("#thu_close").val() !='' && $("#fri_start").val() !='' && $("#fri_close").val() !=''){
           //alert("ok working");
-          if($('input[name=sat_holiday]:checked').val()==0 && $("#sat_start").val() !='' && $("#sat_close").val() !='') {
+          /*if($('input[name=sat_holiday]:checked').val()==0 && $("#sat_start").val() !='' && $("#sat_close").val() !='') {*/
             var timings = new Array ();
             timings.push({"mon_start":$("#mon_start").val()});
             timings.push({"mon_close":$("#mon_close").val()});
@@ -78,7 +78,7 @@
             timings.push({"sat_close":$("#sat_close").val()});
           //console.log(timings);
            $("#timings_hidden").val(JSON.stringify(timings));
-        }else if ($('input[name=sat_holiday]:checked').val()==1){
+        /*}else if ($('input[name=sat_holiday]:checked').val()==1){
             var timings = new Array ();
             timings.push({"mon_start":$("#mon_start").val()});
             timings.push({"mon_close":$("#mon_close").val()});
@@ -96,7 +96,7 @@
            $("#timings_hidden").val(JSON.stringify(timings));
         }else {
             alert("Please select the service center timings");    
-        }
+        }*/
     } else {
       alert("Please select the service center timings");
     }
