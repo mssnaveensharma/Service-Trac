@@ -8,6 +8,7 @@
             </span>
            
         </div>  
+<div class="">
 <%= form_for(@admin_company) do |f| %>
   <% if @admin_company.errors.any? %>
     <div id="error_explanation">
@@ -31,4 +32,5 @@
   <%= link_to 'Back', admin_companies_path %>
 
 <% end %>
+</div>
 </div>

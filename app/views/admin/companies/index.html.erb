@@ -47,7 +47,7 @@
   <thead>
     <tr class="data-header">
       <th width="76%">Company Name</th>
-      <th class="th-align-center" colspan="3">Action</th>
+      <th class="th-align-center" colspan="2">Action</th>
       
     </tr>
   </thead>
@@ -56,9 +56,9 @@
     <% @admin_companies.each do |admin_company| %>
       <tr class="data-row">
         <td><%= admin_company.CompanyName %></td>
-        <td><%= link_to 'Show', admin_company %></td>
-        <td><%= link_to 'Edit', edit_admin_company_path(admin_company) %></td>
-        <td><%= link_to 'Destroy', admin_company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!--<td><%= link_to 'Show', admin_company %></td>-->
+        <td><%= link_to 'Edit', :class => "edit-icon", edit_admin_company_path(admin_company) %></td>
+        <td><%= link_to 'Destroy', :class => "delete-icon", admin_company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

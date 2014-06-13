@@ -777,3 +777,16 @@ a.sign-up-lnk
 {
 	text-align:center;
 }
+.edit-icon
+{
+	background:url(edit-icon.png) no-repeat ;
+	padding:10px;
+	display:inline-block;
+}
+.delete-icon
+{
+	background:url(delete-icon.png) no-repeat ;
+	padding:10px;
+	display:inline-block;
+	margin-left:15px;
+}
