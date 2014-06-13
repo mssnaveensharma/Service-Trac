@@ -801,7 +801,7 @@ a.sign-up-lnk
 	padding:20px;
 	background:#fff;
 	margin-top:20px;
-	min-height:300px;
+	min-height:400px;
 }
 .edit-cmp-form
 {
@@ -895,7 +895,20 @@ a.sign-up-lnk
 	margin-bottom:20px;
 	text-align:center;
 }
-
+#error_explanation h2
+{
+	color: #FF0000;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    text-align: center;	
+}
+.edit-cmp-form #error_explanation ul
+{
+	color: #4FC114;
+    margin-bottom: 20px;
+    text-align: center;
+}
 
 
 
