@@ -936,3 +936,34 @@ a.sign-up-lnk
     padding: 7px 8px;
     width: 100%;
 }
+.srvc-frm > .actions input
+{
+	 background: none repeat scroll 0 0 #ED1C24;
+    border: medium none;
+    color: #FFFFFF;
+    display: inline-block;
+    min-width: 80px;
+    padding: 8px 25px;
+    text-align: center;
+}
+.srvc-frm > .actions a
+{
+	background: none repeat scroll 0 0 #555555;
+    color: #FFFFFF;
+    display: inline-block;
+    margin-left: 15px;
+    min-width: 80px;
+    padding: 8px 30px 7px;
+    text-align: center;
+}
+.srvc-frm > .actions a:hover
+{
+	background: none repeat scroll 0 0 #444444;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.srvc-frm > .actions input
+{
+	background: none repeat scroll 0 0 #E4151D;
+    color: #FFFFFF;
+}
