@@ -64,7 +64,7 @@ Servicetrac::Application.routes.draw do
 
   #post 'get_reviews' => 'service_center_reviews#get_reviews'  
 
-  match 'get-reviews' => 'service_center_reviews#get_reviews',  :via => :post,  :defaults => { :format => 'json' }
+  match 'get-reviews/:service_center_id' => 'service_center_reviews#get_reviews',  :via => :get,  :defaults => { :format => 'json' }
 
   post 'post_message' => 'messages#post_message'
 
