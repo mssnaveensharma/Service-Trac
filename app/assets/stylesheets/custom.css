@@ -636,16 +636,8 @@ label.error{
 a.table-link{
 	color: #000;
 }
-
-.cmp-nm
-{
-	font-size:16px !important;
-	font-weight:normal; 
-} 
 .new-com
 {
-	width:100%;
-	display:inline-block;
 	text-align:right;
 }
 .new-com a
@@ -655,3 +647,8 @@ a.table-link{
 	font-size:16px;
 	font-weight:normal;
 }
+.cmp-nm
+{
+	font-size:16px !important;
+	font-weight:normal; 
+} 
