@@ -1047,7 +1047,12 @@ a.sign-up-lnk
 	display:inline-block;
 	margin-right:5px;
 }
-
+.srvc-sntr-ch
+{
+	width:auto;
+	display:inline-block;
+	margin-right:25px;
+}
 
 
 
