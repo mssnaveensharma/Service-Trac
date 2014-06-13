@@ -1041,6 +1041,12 @@ a.sign-up-lnk
 	margin-top:30px;
 	color:#ED1C24;
 }
+.srvc-frm .field > input.satday
+{
+	width:auto;
+	display:inline-block;
+	margin-right:5px;
+}
 
 
 
