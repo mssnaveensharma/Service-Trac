@@ -74,14 +74,15 @@
         <td><%= admin_service_center.ContactPerson %></td>
         <!-- <td><%= admin_service_center.lat %>/<%= admin_service_center.lan %></td> -->
         <!-- <td><%= link_to 'Show', admin_service_center %></td> -->
-        <td><%= link_to 'Edit', edit_admin_service_center_path(admin_service_center) %>
-        <%= link_to 'Destroy', admin_service_center, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '', edit_admin_service_center_path(admin_service_center), :class => "edit-icon" %>
+        <%= link_to '', admin_service_center, method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete-icon" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 </div>
-<br>
 
+<div class="new-com">
 <%= link_to 'New Service center', new_admin_service_center_path %>
+</div>
 </div>
