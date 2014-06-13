@@ -46,10 +46,10 @@
    <table class="table-striped table-bordered table-condensed" width="100%"> 
   <thead>
     <tr class="data-header">
-      <th class="cmp-nm">Company Name</th>
+      <th class="th-align-center" width="70%">Company Name</th>
+      <th colspan="3"></th>
       <th></th>
       <th></th>
-      <th class="new-com"><%= link_to 'New Company', new_admin_company_path %></th>
     </tr>
   </thead>
 
@@ -64,6 +64,9 @@
     <% end %>
   </tbody>
 </table>
+</div>
+<div class="new-com">
+	<%= link_to 'New Company', new_admin_company_path %>
 </div>
 <br>
 
