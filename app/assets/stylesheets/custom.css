@@ -91,9 +91,10 @@ ul
 .dashboard-icon
 {
 	background:url(dashboard.png) no-repeat;
-	background-size:32px;
-	background-position:0 9px;
+	background-size:32px !important;
+	background-position:0 9px !important;
 }
+.dashboard-icon:hover
 {
 	background:url(dashboard-hover.png) no-repeat;
 }
