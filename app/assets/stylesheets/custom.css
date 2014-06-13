@@ -649,6 +649,6 @@ a.table-link{
 }
 .cmp-nm
 {
-	font-size:16px;
+	font-size:16px !important;
 	font-weight:normal; 
 } 
