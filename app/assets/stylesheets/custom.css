@@ -1029,7 +1029,12 @@ a.sign-up-lnk
 	width:100%;
 	display:inline-block;
 }
-
+.wrkng-hr-dtl
+{
+	width:100%;
+	display:inline-block;
+	margin-bottom:10px;
+}
 
 
 
