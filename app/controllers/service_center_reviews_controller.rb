@@ -115,7 +115,7 @@ class ServiceCenterReviewsController < ApplicationController
                   @service_center = center_name.Name
                 end
                 response = Hash.new
-                response[:date]=@date
+                response[:date]=@date.strftime("%d/%m/%y")
                 response[:username]=@username
                 response[:ratings]=@ratings
                 response[:comments]=@comments
@@ -132,9 +132,37 @@ class ServiceCenterReviewsController < ApplicationController
   end
 
   def service_center
-
+     @service_centers = Admin::ServiceCenter.all
   end
 
+  def getCenter
+    if params[:id] and params[:id] != '' and params[:id] != nil
+     center_info = Array.new
+      @service_centers = Admin::ServiceCenter.where(:id =>params[:id])
+        if @service_centers.length != 0
+            @service_centers.each do |center|
+              response = Hash.new
+              response[:name]=center.Name
+              response[:street]=center.StreetAddress
+              response[:city]=center.City
+              response[:state]=center.State
+              response[:statecode]=center.StateCode
+              response[:pin]=center.Pin
+              response[:tel]=center.Tel
+              response[:fax]=center.Fax
+              response[:url]=center.Url
+              response[:email]=center.Email
+              response[:contact]=center.ContactPerson
+              center_info.push(response)
+            end
+              return render :json =>  center_info
+        else
+            return render :json => {:success => false, :message => "service center not found"}
+        end
+    else
+      return render :json => {:success => false, :message => "Required fields are missing"}
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_service_center_review

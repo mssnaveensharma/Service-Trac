@@ -1,5 +1,13 @@
+<%= javascript_include_tag "jquery.timepicker.js" %>
+<script type="text/javascript">
+  $(document).ready(function (){
+      $('.time').timepicker({
+        'showDuration': true,
+        'timeFormat': 'g:ia'
+    });
+  });
+</script>
     <div class="container">
-
     <div class="serch-fld">
           <label class="margin-top">Add/Update Service Center </label>
            <span class="align-right">
@@ -72,6 +80,49 @@
   <div class="field">
     <%= f.label :lan %><br>
     <%= f.text_field :lan %>
+  </div>
+    <div class="field">
+    <label>Working Hours Mon</label><br>
+    <input type="text" class="time" name"mon_hours_start" placeholder="start time">
+    <input type="text" class="time" name"mon_hours_close" placeholder="close time">
+  </div>
+  <div class="field">
+    <label>Working Hours Tue</label><br>
+    <input type="text" class="time" name"tue_hours_start" placeholder="start time">
+    <input type="text" class="time" name"tue_hours_close" placeholder="close time">
+  </div>
+  <div class="field">
+    <label>Working Hours Wed</label><br>
+    <input type="text" class="time" name"wed_hours_start" placeholder="start time">
+    <input type="text" class="time" name"wed_hours_close" placeholder="close time">
+  </div>
+  <div class="field">
+    <label>Working Hours Thu</label><br>
+    <input type="text" class="time" name"thu_hours_start" placeholder="start time">
+    <input type="text" class="time" name"thu_hours_close" placeholder="close time">
+  </div>
+  <div class="field">
+    <label>Working Hours Fri</label><br>
+    <input type="text" class="time" name"fri_hours_start" placeholder="start time">
+    <input type="text" class="time" name"fri_hours_close" placeholder="close time">
+  </div>
+  <div class="field">
+    <label>Working Hours Sat</label><br>
+    <input type="text" class="time" name"sat_hours_start" placeholder="start time">
+    <input type="text" class="time" name"sat_hours_close" placeholder="close time">
+  </div>
+  <div class="field">
+    <label>Working Hours Sun</label><br>
+    <input type="text" class="time" name"sun_hours_start" placeholder="start time">
+    <input type="text" class="time" name"sun_hours_close" placeholder="close time">
+  </div>
+  <div class="field">
+    <label>Working Hours Monday</label><br>
+    <input type="text" class="time" name"moday_hours_start" placeholder="start time">
+    <input type="text" class="time" name"moday_hours_start" placeholder="close time">
+  </div>
+  <div class="actions">
+    <button name="button">Add Timings</button>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -11,7 +11,11 @@ return urlparam[1];
 </script>
 <script>
 
-    $(document).ready(function(){
+$(document).ready(function(){
+  url_id = GetParameterValues('id');
+    if(url_id !='' && url_id != null){ 
+        getCenter(url_id);
+    }
 
     $('input[name="search"]').keyup(function(){
 
@@ -40,27 +44,64 @@ return urlparam[1];
     function getCenter(id) {
         var center_id = id;
           if(center_id !='' && center_id != null && center_id != undefined ) {
-            //$(".edit_alert").attr("href","/edit_alert?id="+alert_id);
-            //$("#service_ticket").attr("href","/service_ticket?id="+alert_id);
-            //$(".refresh").attr("id",alert_id);
-            //$("#alert_id_hidden").val(alert_id);
             $("tr").removeClass("service-active-row");
             $("#"+id).addClass("service-active-row");
             $.ajax({
-              url:"/service_center_reviews/getCenter",
+              url:"/getCenter",
               type:"POST",
               data: {id: center_id},
-              async: false,
-              success: function(route){
-                var length = route.length;
-                $.each([route], function( index, value ){
-                  for(var i=0; i< length; i++){
-                    
+              dataType: 'json',
+              success: function(response){
+                var Centerlength = response.length; 
+                    $.each([response], function( index, value ){
+                      for(var i=0; i< Centerlength; i++){ 
+                        $("h4#name").html(value[i]['name']);
+                        $("#street").html(value[i]['street']);
+                        $("#city").html(value[i]['city']);
+                        $("#state").html(value[i]['state']);
+                        $("#StateCode").html(value[i]['statecode']);
+                        $("#fax").html(value[i]['fax']);
+                        $("#tel").html(value[i]['tel']);
+                        $("#url").html(value[i]['url']);
+                        $("#email").html(value[i]['email']);
+                        $("#ContactPerson").html(value[i]['contact']);
+                      }
+                    });
 
-                  }
-                  //console.log(value.lan);
-                });
-                //console.log(route.lan);
+                    $.ajax({
+                        url: "get-reviews",
+                        type:"POST",
+                        dataType:"json",
+                        data: {service_center_id: center_id},
+                        success: function(reviews){
+                            var reviewsLength = reviews.service_center_reviews.length;
+                            //console.log(reviewsLength);
+                             $.each([reviews.service_center_reviews], function( index, value ){
+                                 for(var i=0; i< reviewsLength; i++){ 
+                                    var image;
+                                    if(reviews.service_center_reviews[i]['ratings'] == 1){
+                                        image = "1.png";
+                                    }else if(reviews.service_center_reviews[i]['ratings'] == 2){
+                                        image = "2.png";
+                                    }else if (reviews.service_center_reviews[i]['ratings'] == 3){
+                                        image = "3.png";
+                                    }else if (reviews.service_center_reviews[i]['ratings'] == 4){
+                                        image = "4.png";
+                                    }else if (reviews.service_center_reviews[i]['ratings'] == 5){
+                                        image = "5.png";
+                                    }else {
+                                        image = "zero.png";
+                                    }
+                                    //alert(reviews.service_center_reviews[i]['ratings']);
+                                    var reviewsData = "<div class=reviews-cntnt><label> "+reviews.service_center_reviews[i]['date']+"</label><a href=javascript:void(0); class=pull-right> <image src='/assets/"+image+"'></a><i>"+reviews.service_center_reviews[i]['username']+"</i><p> "+reviews.service_center_reviews[i]['comments']+"</p></div>";
+                                    $("#reviews").append(reviewsData);
+                                 }
+                            }); 
+                        },error: function(xhr,txt){
+                            console.log("Error code is ",xhr.status);            
+                        }
+                    })
+
               },error:function(xhr,txt){
                 console.log("Error code is ",xhr.status);
               }
@@ -98,7 +139,6 @@ return urlparam[1];
                     </tr>
                 </thead>
                 <tbody>
-                    <% @service_centers = Admin::ServiceCenter.all %>
                        <% if @service_centers.length != 0 %>
                             <% @service_centers.each do |service_center| %>
                              <% if(params[:id].to_i == service_center.id.to_i) %>
@@ -123,13 +163,13 @@ return urlparam[1];
                </li>
             </ul>
             <div class="contct-info">
-            	<h4>SelectComm, Inc.</h4>
-                <p>14476 Duval Place West <br />Suit 109<br /> Jacksonville, FL 3226</p>
-                <p style="margin-bottom:0px;"> Tel. 904-999-999</p>
-                <p> Fax  904-999-999</p>
-                <i> info@selectcommusa.com</i>
-                <i> www.selectcommusa.com</i>
-                <i> Contact: Hugh Grant </i>
+            	<h4 id="name">SelectComm, Inc.</h4>
+                <p id="street">14476 Duval Place West</p><p id="city">Suit 109</p><p id="state">Jacksonville, </p><p id="StateCode">FL 3226</p>
+                <p style="margin-bottom:0px;" > Tel. <i id="tel">904-999-999</i></p>
+                <p > Fax  <i id="fax">904-999-999</i></p>
+                <i id="email"> info@selectcommusa.com</i>
+                <i id="url"> www.selectcommusa.com</i><br>
+                <i> Contact: </i><i id="ContactPerson">Hugh Grant </i><br>
                 <em>Trailer Accessible? Yes</em>
                 <em>No appointment needed for service.</em>
                 <em>Please call to schedule installation.</em>
@@ -166,7 +206,8 @@ return urlparam[1];
                     <a> Add Reviews</a>
                </li>
             </ul>
-            <div class="reviews-cntnt">
+            <div id="reviews">
+            <!-- <div class="reviews-cntnt">
             	<label> 03/14/2014</label>
                 <a href="javascript:void(0);" class="pull-right"> <img src="img/rating-review.png"></a>
                 <i>Wermer Driver</i>
@@ -183,8 +224,8 @@ return urlparam[1];
                 <a href="javascript:void(0);" class="pull-right"> <img src="img/rating-review.png"></a>
                 <i>Wermer Driver</i>
                 <p> I had one of the best experience at a service center when visiting SelectComm. They really went over the top to ensure i was back on the road in no time.</p>
+            </div> -->
             </div>
-            
             
              
         </div>
