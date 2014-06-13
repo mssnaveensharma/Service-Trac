@@ -873,7 +873,12 @@ a.sign-up-lnk
 {
 	margin-top:20px;
 }
-
+#notice
+{
+	color:#91cb05;
+	margin-bottom:20px;
+	text-align:center;
+}
 
 
 
