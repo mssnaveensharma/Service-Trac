@@ -1,3 +1,74 @@
+ <script type="text/javascript">
+function GetParameterValues(param) {
+var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+for (var i = 0; i < url.length; i++) {
+var urlparam = url[i].split('=');
+if (urlparam[0] == param) {
+return urlparam[1];
+}
+}
+}
+</script>
+<script>
+
+    $(document).ready(function(){
+
+    $('input[name="search"]').keyup(function(){
+
+      var searchterm = $(this).val();
+
+      if(searchterm.length > 3) {
+
+       var match = $('tr.data-row:contains("' + searchterm +'")');
+
+       var nomatch = $('tr.data-row:not(:contains("' + searchterm + '"))');
+
+       match.addClass('selected');
+
+       nomatch.css("display", "none");
+
+      } else {
+
+       $("tr.data-row").css("display", "");
+
+       $("tr.data-row").removeClass("selected");
+
+      }
+
+    });
+});
+    function getCenter(id) {
+        var center_id = id;
+          if(center_id !='' && center_id != null && center_id != undefined ) {
+            //$(".edit_alert").attr("href","/edit_alert?id="+alert_id);
+            //$("#service_ticket").attr("href","/service_ticket?id="+alert_id);
+            //$(".refresh").attr("id",alert_id);
+            //$("#alert_id_hidden").val(alert_id);
+            $("tr").removeClass("service-active-row");
+            $("#"+id).addClass("service-active-row");
+            $.ajax({
+              url:"/service_center_reviews/getCenter",
+              type:"POST",
+              data: {id: center_id},
+              async: false,
+              success: function(route){
+                var length = route.length;
+                $.each([route], function( index, value ){
+                  for(var i=0; i< length; i++){
+                    
+
+                  }
+                  //console.log(value.lan);
+                });
+                //console.log(route.lan);
+              },error:function(xhr,txt){
+                console.log("Error code is ",xhr.status);
+              }
+            });
+            
+        }
+    }
+</script>
  <div class="container main-padding">
 
 		<div class="serch-fld">
@@ -27,13 +98,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% @service_centers = Admin::ServiceCernter.all %>
+                    <% @service_centers = Admin::ServiceCenter.all %>
                        <% if @service_centers.length != 0 %>
                             <% @service_centers.each do |service_center| %>
-                             <tr class="service-active-row">
-                                <td><%= service_center.Name %></td>
+                             <% if(params[:id].to_i == service_center.id.to_i) %>
+                                <tr class="service-active-row data-row" id="<%= service_center.id %>">
+                             <% else %>
+                                <tr id="<%= service_center.id %>" class="data-row">
+                             <% end %>
+                                <td><a id="<%= service_center.id %>" onclick="getCenter(this.id)" href="javascript:void(0)"><%= service_center.Name %></td>
                                 <td><%= service_center.City %>/<%= service_center.State %></td>
-                                <td><%= service_center.Name %></td>
+                                <td><%= service_center.Tel %></td>
                             </tr>
                             <% end %>
                        <% end %>  
