@@ -807,48 +807,128 @@ a.sign-up-lnk
 {
 	max-width:400px;
 	margin:0 auto;
-	margin-top:20px;
+	margin-top:30px;
 }
 .edit-cmp-form label
 {
 	font-size:20px;
-	margin-bottom:8px;	
+	margin-bottom:20px;	
+}
+.edit-cmp-form label.comp-nm-lbl
+{
+	font-size:16px;
+	margin-bottom:10px;
+	width:100%;
+}
+.edit-cmp-form select.comp-nm-slct
+{
+	width:100%;
+	padding:7px 8px;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	margin-bottom:10px;
+	-ms-border-radius:5px;
+	border:1px solid #ddd;
 }
 .edit-cmp-form input.comp-nm-txt
 {
 	width:100%;
-	padding:5px 0px;
+	padding:7px 0px;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-ms-border-radius:5px;
 	text-indent:10px;
 	border:1px solid #ddd;
 }
 .edit-cmp-form .actions
 {
-	margin-top:10px;
+	margin-top:20px;
 }
-.edit-cmp-form .actions input
+.edit-cmp-form .actions input, .edit-btn-comp
 {
-	display:inline-block;
-	padding:6px 10px;
 	background:#ED1C24;
-	color:#fff;
-	min-width:80px;
-	text-align:center;
+    border: medium none;
+    color: #FFFFFF;
+    display: inline-block;
+    min-width: 80px;
+    padding: 8px 25px;
+    text-align: center;
 }
-.edit-cmp-form .actions a
+.edit-cmp-form .actions input:hover, .edit-btn-comp:hover
 {
-	display:inline-block;
-	padding:6px 10px;
-	background:#555;
-	text-align:center;
+	background:#e4151d;
 	color:#fff;
-	min-width:80px;
-	margin-left:15px;
 }
-
-
-
-
-
-
-
-
+.edit-cmp-form .actions a:hover, .back-btn-comp:hover
+{
+	background:#444;
+	color:#fff;
+	text-decoration:none;
+}
+.edit-cmp-form .actions a, .back-btn-comp 
+{
+	 background:#555555;
+    color: #FFFFFF;
+    display: inline-block;
+    margin-left: 15px;
+    min-width: 80px;
+    padding: 8px 30px;
+	padding-bottom:7px;
+    text-align: center;
+}
+.flash {
+    background: none repeat scroll 0 0 #FFEB9D;
+    border-radius: 5px;
+    color: #774D04;
+    font-size: 16px;
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 6px 20px;
+}
+.show-actions
+{
+	margin-top:20px;
+}
+#notice
+{
+	color:#91cb05;
+	margin-bottom:20px;
+	text-align:center;
+}
+#error_explanation h2
+{
+	color: #FF0000;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    text-align: center;	
+}
+.edit-cmp-form #error_explanation ul
+{
+	color: #4FC114;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.srvc-cntr-fld
+{
+	margin-top:20px;
+	background:#fff;	
+}
+.srvc-frm
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+    margin: 0 auto;
+    max-width: 700px;
+    padding: 40px;
+}
+.srvc-frm .field {
+    display: inline-block;
+    width: 49%;
+}
+.srvc-frm .field > input {
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 7px 8px;
+    width: 100%;
+}

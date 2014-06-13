@@ -8,6 +8,8 @@
             </span>
            
         </div>  
+<div class="edit-cmny-dtl">
+<div class="edit-cmp-form">		
 <%= form_for(@admin_eobr_model) do |f| %>
   <% if @admin_eobr_model.errors.any? %>
     <div id="error_explanation">
@@ -21,20 +23,22 @@
     </div>
   <% end %>
   <div class="field">
-  <%= f.label :EobrMake_id %>
-  <%= select("admin_eobr_model", "EobrMake_id", Admin::EobrMake.all.collect {|e| [ e.Name, e.id ] }, { include_blank: "Select Make" }, :class => "slct" ) %>
+  <%= f.label :EobrMake_id, :class => "comp-nm-lbl" %>
+  <%= select("admin_eobr_model", "EobrMake_id", Admin::EobrMake.all.collect {|e| [ e.Name, e.id ] }, { include_blank: "Select Make" }, :class => "slct comp-nm-slct" ) %>
 </div>
 <!--   <div class="field">
-    <%= f.label :EobrMake_id %><br>
-    <%= f.text_field :EobrMake_id %>
+    <%= f.label :EobrMake_id, :class => "comp-nm-lbl" %><br>
+    <%= f.text_field :EobrMake_id, :class => "comp-nm-txt" %>
   </div> -->
   <div class="field">
-    <%= f.label :Name %>
-    <%= f.text_field :Name %>
+    <%= f.label :Name, :class => "comp-nm-lbl" %>
+    <%= f.text_field :Name, :class => "comp-nm-txt" %>
   </div>
 
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>
+</div>
 </div>

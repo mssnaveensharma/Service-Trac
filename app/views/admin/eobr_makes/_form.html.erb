@@ -8,6 +8,8 @@
             </span>
            
         </div>  
+<div class="edit-cmny-dtl">
+<div class="edit-cmp-form">		
 <%= form_for(@admin_eobr_make) do |f| %>
   <% if @admin_eobr_make.errors.any? %>
     <div id="error_explanation">
@@ -23,10 +25,10 @@
 
   <div class="field">
     <%= f.label :Name %><br>
-    <%= f.text_field :Name %>
+    <%= f.text_field :Name, :class => "comp-nm-txt" %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-</div>
+</div></div></div>
