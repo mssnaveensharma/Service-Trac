@@ -883,6 +883,10 @@ a.sign-up-lnk
 	padding-bottom:7px;
     text-align: center;
 }
+.breadcrumb > li
+{
+	color:#999;
+}
 .flash {
     background: none repeat scroll 0 0 #FFEB9D;
     border-radius: 5px;
@@ -1003,7 +1007,10 @@ a.sign-up-lnk
     padding: 7px;
     width: 100%;
 }
-
+.lnk-clr a
+{
+	color:#000;
+}
 
 
 
