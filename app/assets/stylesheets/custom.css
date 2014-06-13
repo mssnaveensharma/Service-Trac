@@ -1087,9 +1087,22 @@ a.sign-up-lnk
 {
 	margin-bottom:10px;	
 }
-
-
-
+.edit_alert
+{
+	padding: 20px 0;
+}
+.container .indx-scrl-tbl td + td
+{
+	max-width:240px;
+	word-wrap:break-word;
+}
+.login-form edit-alert select
+{
+	border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    padding: 7px;
+    width: 100%;
+}
 /* Service center */
 .srvc-tb-cntr td:last-child
 {

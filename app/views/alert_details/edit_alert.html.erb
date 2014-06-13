@@ -64,6 +64,8 @@ function getModal(id) {       // get the the modals on selecting the make
       
       <li class="active">>> Main</li>
     </ol>
+	<div class="login-form-c">
+	<div class="login-form">
        	<form method="POST" action="/update_alert" class="edit_alert">
     		<% @alert_detail = ServiceAlert.where(:id => params[:id]) %>
     			<input type="hidden" name="id" value="<%=params[:id]%>">
@@ -82,12 +84,19 @@ function getModal(id) {       // get the the modals on selecting the make
 						<% end %>
     			<% end %>
     			<input type="hidden" name="user_id" value="<%= @user_id %>">
+				<div class="form-group">
     			<label>Contact#</label>
-				<input type="text" name="Contact" value="<%= @contact %>"><br>
+				<input type="text" name="Contact" value="<%= @contact %>">
+				</div>
+				<div class="form-group">
 				<label>Truck Year</label>
-				<input type="text" id="TruckYear" name="TruckYear" value="<%= @truckyear %>"><br>
+				<input type="text" id="TruckYear" name="TruckYear" value="<%= @truckyear %>">
+				</div>
+				<div class="form-group">
 				<label>Truck Make</label>
-				<input type="text" name="TruckMake" value="<%= @truckmake %>"><br>
+				<input type="text" name="TruckMake" value="<%= @truckmake %>">
+				</div>
+				<div class="form-group">
 				<label>Eobr Make</label>
 					<select name="eobr_make_id" onchange="getModal(this.value)">
 						<option value="">Select Make</option>
@@ -100,7 +109,9 @@ function getModal(id) {       // get the the modals on selecting the make
 							<option value="<%= eobr_make.id %>" <%= @selected%>><%= eobr_make.Name %></option>
 						<% end %>
 					</select>
-				<!-- <input type="text" name="eobr_make_id" value="<%= @eobr_make %>"> --><br>
+				</div>	
+				<!-- <input type="text" name="eobr_make_id" value="<%= @eobr_make %>"> -->
+				<div class="form-group">
 				<label>Eobr Model</label>
 					<select name="eobr_model_id" id="user_eobr_model_id">
 						<option value="">Select Model</option>
@@ -113,9 +124,13 @@ function getModal(id) {       // get the the modals on selecting the make
 							<option value="<%= eobr_model.id %>" <%= @selected%>><%= eobr_model.Name %></option>
 						<% end %>
 					</select>
-				<!-- <input type="text" name="eobr_model_id" value="<%= @eobr_model %>"> --><br>
+				</div>	
+				<div class="form-group">
+				<!-- <input type="text" name="eobr_model_id" value="<%= @eobr_model %>"> -->
 				<label>Eobr Number</label>
-				<input type="text" name="EobrNumber" value="<%= @eobr_number %>"><br>
+				<input type="text" name="EobrNumber" value="<%= @eobr_number %>">
+				</div>
+				<div class="form-group">
 				<label>Driver Assist</label>
 					<select name="tech_support_id" >
 						<option value="">Select Driver Assist</option>
@@ -128,7 +143,10 @@ function getModal(id) {       // get the the modals on selecting the make
 							<option value="<%= tech_support.id %>" <%= @selected%>><%= tech_support.SupportDescription %></option>
 						<% end %>
 					</select>
-				<!-- <input type="text" name="tech_support_id" value="<%= @driver_assist %>"> --><br>
+				</div>	
+				<!-- <input class="btn btn-default login-btn" type="text" name="tech_support_id" value="<%= @driver_assist %>"> -->
 				<input type="submit" name="commit" value="Update">
     	</form>
+		</div>
+		</div>
     </div>
