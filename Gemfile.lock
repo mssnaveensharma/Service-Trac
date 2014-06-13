@@ -26,7 +26,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.2)
-    bcrypt (3.1.7)
+    bcrypt (3.1.7-x86-mingw32)
     builder (3.1.4)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -66,7 +66,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     orm_adapter (0.5.0)
-    pg (0.17.1)
+    pg (0.17.1-x86-mingw32)
     polyglot (0.3.5)
     pushmeup (0.2.0)
       httparty
@@ -131,6 +131,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
