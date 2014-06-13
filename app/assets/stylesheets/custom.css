@@ -796,3 +796,14 @@ a.sign-up-lnk
 	margin-left:5px;
 	background-position:center;
 }
+.edit-cmny-dtl
+{
+	padding:20px;
+	background:#fff;
+	margin-top:20px;
+}
+.edit-cmp-form
+{
+	max-width:400px;
+	margin:0 auto;
+}
