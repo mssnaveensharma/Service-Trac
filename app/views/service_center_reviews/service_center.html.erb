@@ -27,87 +27,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Selectcomm</td>
-                        <td>Jackonville </td>
-                        <td>904-999-999 </td>
-                    </tr>
-                    <tr>
-                        <td>Selectcomm</td>
-                        <td>Jackonville </td>
-                        <td>904-999-999 </td>
-                    </tr>
-                     <tr>
-                        <td>Selectcomm</td>
-                        <td>Jackonville </td>
-                        <td>904-999-999 </td>
-                    </tr>
-                     <tr class="service-active-row">
-                        <td>Selectcomm</td>
-                        <td>Jackonville</td>
-                        <td>904-999-999 </td>
-                    </tr>
-                     <tr>
-                        <td>Selectcomm</td>
-                        <td>Jackonville </td>
-                        <td>904-999-999 </td>
-                    </tr>
-                    <tr>
-                        <td>Selectcomm</td>
-                        <td>Jackonville </td>
-                        <td>904-999-999 </td>
-                    </tr>
-                    <tr>
-                        <td>Selectcomm</td>
-                        <td>Jackonville </td>
-                        <td>904-999-999 </td>
-                    </tr>
-                   <tr>
-                        <td>Selectcomm</td>
-                        <td>Jackonville </td>
-                        <td>904-999-999 </td>
-                    </tr>
-                     <tr>
-                        <td>Selectcomm</td>
-                        <td>Jackonville </td>
-                        <td>904-999-999 </td>
-                    </tr>
-                    <tr>
-                        <td>Selectcomm</td>
-                        <td>Jackonville </td>
-                        <td>904-999-999 </td>
-                    </tr>
-                     <tr>
-                        <td>Selectcomm</td>
-                        <td>Jackonville </td>
-                        <td>904-999-999 </td>
-                    </tr>
-                    <tr>
-                        <td>Selectcomm</td>
-                        <td>Jackonville </td>
-                        <td>904-999-999 </td>
-                    </tr>
-                     <tr>
-                        <td>Selectcomm</td>
-                        <td>Jackonville </td>
-                        <td>904-999-999 </td>
-                    </tr>
-                    <tr>
-                        <td>Selectcomm</td>
-                        <td>Jackonville </td>
-                        <td>904-999-999 </td>
-                    </tr>
-                     <tr>
-                        <td>Selectcomm</td>
-                        <td>Jackonville </td>
-                        <td>904-999-999 </td>
-                    </tr>
-                     <tr>
-                        <td>Selectcomm</td>
-                        <td>Jackonville </td>
-                        <td>904-999-999 </td>
-                    </tr>
-                     
+                    <% @service_centers = Admin::ServiceCernter.all %>
+                       <% if @service_centers.length != 0 %>
+                            <% @service_centers.each do |service_center| %>
+                             <tr class="service-active-row">
+                                <td><%= service_center.Name %></td>
+                                <td><%= service_center.City %>/<%= service_center.State %></td>
+                                <td><%= service_center.Name %></td>
+                            </tr>
+                            <% end %>
+                       <% end %>  
                  </tbody>
             </table>
             </div>
