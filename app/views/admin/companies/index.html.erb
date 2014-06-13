@@ -8,14 +8,17 @@
             </span>
            
         </div>  
+<div class="new-com">
+<%= link_to 'New Company', new_admin_company_path %>
+</div>		
 <div class="table-responsive">
    <table class="table-striped table-bordered table-condensed" width="100%"> 
   <thead>
     <tr>
-      <th class="cmp-nm">Company Name</th>
+      <th width="76%">Company Name</th>
+      <th colspan="3">Action</th>
       <th></th>
       <th></th>
-      <th class="new-com"><%= link_to 'New Company', new_admin_company_path %></th>
     </tr>
   </thead>
 
