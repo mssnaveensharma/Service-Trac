@@ -648,7 +648,9 @@ a.table-link{
 }
 .new-com
 {
-	text-align:right;
+	background:#B8B5B6;
+    padding: 10px;
+    text-align: right;
 }
 .new-com a
 {
