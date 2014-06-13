@@ -599,6 +599,10 @@ label.error{
 {
 	margin-right:0px;
 }
+.trac-link a
+{
+	background:url(service.png) no-repeat;
+}
 .flash {
 	color: #fff;	
 }
