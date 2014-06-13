@@ -909,7 +909,26 @@ a.sign-up-lnk
     margin-bottom: 20px;
     text-align: center;
 }
-
-
-
-
+.srvc-cntr-fld
+{
+	margin-top:20px;
+	background:#fff;	
+}
+.srvc-frm
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+    margin: 0 auto;
+    max-width: 700px;
+    padding: 40px;
+}
+.srvc-frm .field {
+    display: inline-block;
+    width: 49%;
+}
+.srvc-frm .field > input {
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 7px 8px;
+    width: 100%;
+}
