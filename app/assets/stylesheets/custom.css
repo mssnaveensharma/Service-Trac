@@ -1076,7 +1076,17 @@ a.sign-up-lnk
 {
 	margin-bottom:15px;
 }
-
+#message_ToUserId
+{
+	border: 1px solid #DDDDDD;
+    margin-left: 5px;
+    padding: 5px 10px;
+    width: 90%;
+}
+#new_message input
+{
+	margin-bottom:10px;	
+}
 
 
 
