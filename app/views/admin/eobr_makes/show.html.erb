@@ -1,3 +1,6 @@
+<div class="container">
+<div class="edit-cmny-dtl">
+<div class="edit-cmp-form align-center">
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -5,5 +8,8 @@
   <%= @admin_eobr_make.Name %>
 </p>
 
-<%= link_to 'Edit', edit_admin_eobr_make_path(@admin_eobr_make) %> |
-<%= link_to 'Back', admin_eobr_makes_path %>
+<%= link_to 'Edit', edit_admin_eobr_make_path(@admin_eobr_make), :class => "edit-btn-comp" %> |
+<%= link_to 'Back', admin_eobr_makes_path, :class => "back-btn-comp" %>
+</div>
+</div>
+</div>
