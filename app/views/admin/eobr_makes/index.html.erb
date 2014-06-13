@@ -46,8 +46,8 @@
    <table class="table-striped table-bordered table-condensed" width="100%">
   <thead>
     <tr class="data-header">
-      <th>Name</th>
-      <th>Actions</th>
+      <th width="85%">Name</th>
+      <th class="th-align-center">Actions</th>
 <!--       <th></th>
       <th></th>
  -->    </tr>
@@ -59,7 +59,7 @@
         <td><%= link_to (admin_eobr_make.Name), edit_admin_eobr_make_path(admin_eobr_make) %></td>
         <!-- <td><%= link_to 'Show', admin_eobr_make %></td>
         <td><%= link_to 'Edit', edit_admin_eobr_make_path(admin_eobr_make) %></td> -->
-        <td><%= link_to 'Destroy', admin_eobr_make, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="th-align-center"><%= link_to 'Destroy', admin_eobr_make, method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete-icon" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -67,6 +67,7 @@
 
 <br>
 </div>
-
+<div class="new-com">
 <%= link_to 'New Eobr make', new_admin_eobr_make_path %>
+</div>
 </div>
