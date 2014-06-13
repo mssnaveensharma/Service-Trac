@@ -92,7 +92,7 @@ ul
 {
 	background:url(dashboard.png) no-repeat;
 }
-.home:hover
+.home:hover 
 {
 	background:url(home-hover.png) no-repeat;
 }
