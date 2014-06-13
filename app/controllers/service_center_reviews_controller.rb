@@ -130,6 +130,10 @@ class ServiceCenterReviewsController < ApplicationController
     end
   end
 
+  def service_center
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_service_center_review

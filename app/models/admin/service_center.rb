@@ -1,8 +1,8 @@
 class Admin::ServiceCenter < ActiveRecord::Base
-	validates :Name, presence: true,length: { maximum: 50 }
-	validates :State, presence: true,length: { maximum: 50 }
-	validates :StateCode, presence: true,length: { maximum: 50 }
-	validates :City, presence: true,length: { maximum: 50 }
+	validates :Name, presence: true,length: { maximum: 20 }
+	validates :State, presence: true,length: { maximum: 20 }
+	validates :StateCode, presence: true,length: { maximum: 15 }
+	validates :City, presence: true,length: { maximum: 20 }
 	validates :Pin, presence: true, numericality: { only_integer: true, message: "is not a valid number" },length: { maximum: 15 }
 	validates :Tel, presence: true, numericality: { only_integer: true, message: "is not a valid number" },length: { maximum: 15 }
 	validates :Fax, presence: true, numericality: { only_integer: true, message: "is not a valid number" },length: { maximum: 15 }

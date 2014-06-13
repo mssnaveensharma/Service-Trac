@@ -79,7 +79,7 @@
                               <%#=debug @centers  %>
                               <% @centers.each do |center| %>
                                 
-                                <td><%= center.Name %></td>
+                                <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= center.Name %></a></td>
                                 <td><%= center.City %>/<%= center.State %></td>
                                <%
 
