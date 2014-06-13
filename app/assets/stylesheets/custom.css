@@ -814,6 +814,11 @@ a.sign-up-lnk
 	font-size:20px;
 	margin-bottom:20px;	
 }
+.edit-cmp-form label.comp-nm-lbl
+{
+	font-size:16px;
+	margin-bottom:10px;
+}
 .edit-cmp-form input.comp-nm-txt
 {
 	width:100%;
