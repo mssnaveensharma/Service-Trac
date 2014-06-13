@@ -1,5 +1,5 @@
 class Admin::ServiceCenter < ActiveRecord::Base
-	validates :Name, presence: true,length: { maximum: 15 }
+	validates :Name, presence: true,length: { maximum: 25 }
 	validates :State, presence: true,length: { maximum: 15 }
 	validates :StateCode, presence: true,length: { maximum: 15 }
 	validates :City, presence: true,length: { maximum: 15 }
@@ -12,4 +12,5 @@ class Admin::ServiceCenter < ActiveRecord::Base
 	validates :lat, presence: true, numericality: {only_float: true, message: "is not a valid latitude"},length: { maximum: 20 }
 	validates :lan, presence: true, numericality: {only_float: true, message: "is not a valid longnitude"},length: { maximum: 20 }
 	validates :StreetAddress, presence: true,length: { maximum: 30 }
+	validates :WorkingHours, presence: true
 end

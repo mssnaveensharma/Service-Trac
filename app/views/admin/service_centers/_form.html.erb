@@ -29,6 +29,19 @@
   $(".new_admin_service_center").validate({
     errorElement: "label",
   rules: {
+     "admin_service_center[State]": {required:true},
+     "admin_service_center[City]": {required:true},
+     "admin_service_center[Name]": {required:true},
+     "admin_service_center[StateCode]": {required:true},
+     "admin_service_center[StreetAddress]": {required:true},
+     "admin_service_center[Tel]": {required:true,number:true},
+     "admin_service_center[Fax]": {required:true,number:true},
+     "admin_service_center[Pin]": {required:true,number:true},
+     "admin_service_center[Email]": {required:true,email:true},
+     "admin_service_center[Url]": {required:true,url:true},
+     "admin_service_center[ContactPerson]": {required:true},
+     "admin_service_center[lat]": {required:true,number:true},
+     "admin_service_center[lan]": {required:true,number:true},
      "mon_hours_start": {required:true},
      "mon_hours_close": {required:true},
      "tue_hours_start": {required:true},
@@ -225,7 +238,7 @@
     <a href="javascript:void(0)" onclick="addTimings()">Add Timings</a>
   </div>
   </div>
-  <input type="hidden" value="" name="WorkingHours" id="timings_hidden">
+  <input type="hidden" value="" name="admin_service_center[WorkingHours]" id="timings_hidden">
   
   <div class="actions">
 
