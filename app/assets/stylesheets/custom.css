@@ -625,27 +625,27 @@ label.error{
 }
 .trac-link a
 {
-	background:url(company.png) center no-repeat #FFFFFF;
+	background:url(company.png) center no-repeat #eee;
 }
 .trac-link a + a
 {
-	background:url(driver.png) center no-repeat #FFFFFF;
+	background:url(driver.png) center no-repeat #eee;
 }
 .trac-link a + a + a
 {
-	background:url(make.png) center no-repeat #FFFFFF;
+	background:url(make.png) center no-repeat #eee;
 }  
 .trac-link a + a + a + a
 {
-	background:url(modal.png) center no-repeat #FFFFFF;
+	background:url(modal.png) center no-repeat #eee;
 }
 .trac-link a + a + a + a + a 
 {
-	background:url(service.png) center no-repeat #FFFFFF;
+	background:url(service.png) center no-repeat #eee;
 }
 .trac-link a + a + a + a + a + a
 {
-	background:url(dispatch.png) center no-repeat #FFFFFF;
+	background:url(dispatch.png) center no-repeat #eee;
 }
 .flash {
 	color: #fff;	
@@ -1014,14 +1014,33 @@ a.sign-up-lnk
 .logout
 {
 	display: inline-block;
-    padding: 3px 16px;
+    padding: 0px 16px;
+	line-height:22px;
     text-indent: -1200px;
     width: 20px;
 	background:url(logout.png) no-repeat ;
 }
-
-
-
+.logout:hover
+{
+	background:url(logout-hover.png) no-repeat;	
+}
+.cntr-frm-fl
+{
+	width:100%;
+	display:inline-block;
+}
+.wrkng-hr-dtl
+{
+	width:100%;
+	display:inline-block;
+	margin-bottom:10px;
+}
+.wrkng-hr-dtl p
+{
+	margin:20px 0px;
+	margin-top:30px;
+	color:#ED1C24;
+}
 
 
 

@@ -37,6 +37,7 @@
           <label class="margin-top">Driver Assitance </label>
            <span class="align-right">
                <input class="form-control" type="text" name="search">
+			   <input type="submit" class="search-submit" value="">
             </span>
            
         </div> 
@@ -44,9 +45,9 @@
           <table class="table-striped table-bordered table-condensed" width="100%">
   <thead>
     <tr class="data-header">
-      <th>Date/Time</th>
-      <th>Supportdescription</th>
-      <th>Actions</th>
+      <th width="45%">Date/Time</th>
+      <th>Support Description</th>
+      <th class="th-align-center">Actions</th>
       <!-- <th></th> -->
     </tr>
   </thead>
@@ -56,14 +57,14 @@
       <tr class="data-row">
         <td><%= admin_tech_support.created_at %></td>
         <td><%= admin_tech_support.SupportDescription %></td>
-        <td><%= link_to 'Edit', edit_admin_tech_support_path(admin_tech_support) %>
-        <%= link_to 'Destroy', admin_tech_support, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="th-align-center"><%= link_to '', edit_admin_tech_support_path(admin_tech_support), :class => "edit-icon" %>
+        <%= link_to '', admin_tech_support, method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete-icon" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 </div>
-<br>
-
+<div class="new-com">
 <%= link_to 'New Tech support', new_admin_tech_support_path %>
+</div>
 </div>
