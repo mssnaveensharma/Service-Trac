@@ -925,6 +925,10 @@ a.sign-up-lnk
     display: inline-block;
     width: 49%;
 }
+.srvc-frm .field:nth-child(odd)
+{
+	float:right;
+}
 .srvc-frm .field > input {
     border: 1px solid #DDDDDD;
     border-radius: 5px;
