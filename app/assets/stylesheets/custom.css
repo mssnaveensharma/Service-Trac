@@ -801,11 +801,11 @@ a.sign-up-lnk
 	padding:20px;
 	background:#fff;
 	margin-top:20px;
-	min-height:400px;
+	min-height:300px;
 }
 .edit-cmp-form
 {
-	max-width:300px;
+	max-width:400px;
 	margin:0 auto;
 	margin-top:30px;
 }
@@ -869,7 +869,10 @@ a.sign-up-lnk
     max-width: 400px;
     padding: 6px 20px;
 }
-
+.show-actions
+{
+	margin-top:20px;
+}
 
 
 
