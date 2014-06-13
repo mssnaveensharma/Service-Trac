@@ -784,6 +784,10 @@ a.sign-up-lnk
 	display:inline-block;
 	background-position:center;
 }
+.edit-icon, .delete-icon
+{
+	opacity:0.7;
+}
 .delete-icon
 {
 	background:url(delete-icon.png) no-repeat ;
