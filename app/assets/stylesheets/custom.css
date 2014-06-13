@@ -988,11 +988,20 @@ a.sign-up-lnk
 .dsptch-usr-fld
 {
 	background:#fff;
+	display:inline-block;
+	width:100%;
 }
 .dsptch-usr-frm
 {
 	max-width:440px;
-	margin:20px auto;
+	margin:40px auto;
+}
+.form-group select.dspch-slct
+{
+	border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    padding: 7px;
+    width: 100%;
 }
 
 
