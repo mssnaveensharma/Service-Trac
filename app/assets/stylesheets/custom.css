@@ -573,9 +573,15 @@ label.margin-top
 {
 	width:100%;
 }
-.srvc-tb-cntr th:last-child, .srvc-tb-cntr td:last-child
+/*.srvc-tb-cntr th:last-child, .srvc-tb-cntr td:last-child
 {
 	white-space:nowrap;
+}*/
+.srvc-tb-cntr th:last-child, .srvc-tb-cntr td:last-child
+{
+	max-width: 90px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 .inline-edit {
 	width: 93px;
