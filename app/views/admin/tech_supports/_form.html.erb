@@ -7,6 +7,8 @@
             </span>
            
         </div>  
+<div class="edit-cmny-dtl">
+<div class="edit-cmp-form">		
 <%= form_for(@admin_tech_support) do |f| %>
   <% if @admin_tech_support.errors.any? %>
     <div id="error_explanation">
@@ -22,7 +24,7 @@
 
   <div class="field">
     <%= f.label :SupportDescription %><br>
-    <%= f.text_field :SupportDescription %>
+    <%= f.text_field :SupportDescription, :class => "comp-nm-txt" %>
   </div>
   <div class="actions">
     <%= f.submit %>
@@ -30,4 +32,4 @@
   </div>
 
 <% end %>
-</div>
+</div></div></div>
