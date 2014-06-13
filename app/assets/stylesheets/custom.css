@@ -594,6 +594,8 @@ label.error{
     text-align: center;
     text-decoration: none !important;
     width: 15.8%;
+	background-size:40px 40px !important;
+	background-position:center 26px !important;
 }
 .trac-link a:last-child
 {
