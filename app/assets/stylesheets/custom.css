@@ -1007,7 +1007,10 @@ a.sign-up-lnk
     padding: 7px;
     width: 100%;
 }
-
+.lnk-clr a
+{
+	color:#000;
+}
 
 
 
