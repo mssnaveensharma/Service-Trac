@@ -1011,6 +1011,14 @@ a.sign-up-lnk
 {
 	color:#000;
 }
+.logout
+{
+	display: inline-block;
+    padding: 3px 16px;
+    text-indent: -1200px;
+    width: 20px;
+	background:url(logout.png) no-repeat ;
+}
 
 
 
