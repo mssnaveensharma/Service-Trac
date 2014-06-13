@@ -1020,6 +1020,10 @@ a.sign-up-lnk
     width: 20px;
 	background:url(logout.png) no-repeat ;
 }
+.logout
+{
+	background:url(logout-hover.png) no-repeat;	
+}
 
 
 
