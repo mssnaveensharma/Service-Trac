@@ -31,7 +31,7 @@ class Admin::TechSupportsController < ApplicationController
     respond_to do |format|
       if @admin_tech_support.save
         format.html { redirect_to @admin_tech_support, notice: 'Tech support was successfully created.' }
-        format.json { render action: 'inde', status: :created, location: @admin_tech_support }
+        format.json { render action: 'index', status: :created, location: @admin_tech_support }
       else
         format.html { render action: 'new' }
         format.json { render json: @admin_tech_support.errors, status: :unprocessable_entity }
