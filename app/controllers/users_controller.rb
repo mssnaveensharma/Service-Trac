@@ -122,7 +122,7 @@ def settings
        if params[:device_type] == 'wp' 
         if params[:wp_notification_url] != ''
           @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], TruckMake: params[:truckmake], company_id: params[:CompanyName], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], wp_notification_url: params[:wp_notification_url], plain_password: params[:password])
-          user = User.update_password(params[:email], params[:new_password])
+          user = User.update_password(params[:email], params[:password])
       if(@response == 1 and user != nil and user != '')
         @update_pass = User.where('id= ?', params[:user_id]).update_all(encrypted_password: user)
                   if @update_pass == 1
@@ -139,7 +139,7 @@ def settings
     end
     else
           @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], TruckMake: params[:truckmake], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], company_id: params[:CompanyName], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], plain_password: params[:password])
-            user = User.update_password(params[:email], params[:new_password])
+            user = User.update_password(params[:email], params[:password])
            if(@response == 1 and user != nil and user != '')
                   @update_pass = User.where('id= ?', params[:user_id]).update_all(encrypted_password: user)
                   if @update_pass == 1
@@ -165,7 +165,7 @@ def recover_password
           #send the password in mail
           UserMailer.sendpassword(user,request.protocol, request.host_with_port).deliver
         end
-          return render :json => {:success => true, :message => "please check your mail to get your password"}
+          return render :json => {:success => true, :message => "Please check your mail to get your password"}
       else
           return render :json => {:success => false, :message => "Invalid user id"}
       end
