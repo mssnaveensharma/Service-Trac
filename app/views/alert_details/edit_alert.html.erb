@@ -64,8 +64,8 @@ function getModal(id) {       // get the the modals on selecting the make
       
       <li class="active">>> Main</li>
     </ol>
-	<div class="login-form-c">
-	<div class="login-form">
+	<div class="alrt-form-c">
+	<div class="alrt-txt-form">
        	<form method="POST" action="/update_alert" class="edit_alert">
     		<% @alert_detail = ServiceAlert.where(:id => params[:id]) %>
     			<input type="hidden" name="id" value="<%=params[:id]%>">
@@ -145,7 +145,7 @@ function getModal(id) {       // get the the modals on selecting the make
 					</select>
 				</div>	
 				<!-- <input class="btn btn-default login-btn" type="text" name="tech_support_id" value="<%= @driver_assist %>"> -->
-				<input type="submit" name="commit" value="Update">
+				<input class="btn btn-default login-btn" type="submit" name="commit" value="Update">
     	</form>
 		</div>
 		</div>

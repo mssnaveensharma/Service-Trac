@@ -33,68 +33,73 @@
 <% if params[:id] != '' %>
   <% @service_centers = Admin::ServiceCenter.where(:id => params[:id]) %>
     <% @service_centers.each do |service_center| %>
+	<div class="alrt-form-c srvc-mrgn">
+	<div class="alrt-txt-form srvc-trc-ls">
 <form accept-charset="UTF-8" action="/update_service_center" class="edit_service_center" id="edit_service_center" method="post">
 
-  <div class="field">
+  <div class="form-group">
     <input type="hidden" name="id" value="<%= params[:id] %>">
     <input type="hidden" name="alert_id" value="<%= params[:alert] %>">
     <label for="admin_service_center_Name">Name</label><br>
     <input id="admin_service_center_Name" name="Name" type="text" value="<%= service_center.Name%>" />
   </div>
-  <div class="field">
+  <div class="form-group">
     <label for="admin_service_center_State">State</label><br>
     <input id="admin_service_center_State" name="State" type="text" value="<%= service_center.State%>" />
   </div>
-  <div class="field">
+  <div class="form-group">
     <label for="admin_service_center_StreetAddress">Streetaddress</label><br>
     <input id="admin_service_center_StreetAddress" name="StreetAddress" type="text" value="<%= service_center.StreetAddress%>" />
   </div>
-    <div class="field">
+    <div class="form-group">
     <label for="admin_service_center_StateCode">Statecode</label><br>
     <input id="admin_service_center_StateCode" name="StateCode" type="text" value="<%= service_center.StateCode%>" />
   </div>
-  <div class="field">
+  <div class="form-group">
     <label for="admin_service_center_City">City</label><br>
     <input id="admin_service_center_City" name="City" type="text" value="<%= service_center.City%>" />
   </div>
-  <div class="field">
+  <div class="form-group">
     <label for="admin_service_center_Pin">Pin</label><br>
     <input id="admin_service_center_Pin" name="Pin" type="text" value="<%= service_center.Pin%>" />
   </div>
-  <div class="field">
+  <div class="form-group">
     <label for="admin_service_center_Tel">Tel</label><br>
     <input id="admin_service_center_Tel" name="Tel" type="text" value="<%= service_center.Tel%>" />
   </div>
-  <div class="field">
+  <div class="form-group">
     <label for="admin_service_center_Fax">Fax</label><br>
     <input id="admin_service_center_Fax" name="Fax" type="text" value="<%= service_center.Fax%>" />
   </div>
-  <div class="field">
+  <div class="form-group">
     <label for="admin_service_center_Email">Email</label><br>
     <input id="admin_service_center_Email" name="Email" type="text" value="<%= service_center.Email%>" />
   </div>
-  <div class="field">
+  <div class="form-group">
     <label for="admin_service_center_Url">Url</label><br>
     <input id="admin_service_center_Url" name="Url" type="text" value="<%= service_center.Url%>" />
   </div>
-  <div class="field">
+  <div class="form-group">
     <label for="admin_service_center_ContactPerson">Contact {erson</label><br>
     <input id="admin_service_center_ContactPerson" name="ContactPerson" type="text" value="<%= service_center.ContactPerson%>" />
   </div>
-  <div class="field">
+  <div class="form-group">
     <label for="admin_service_center_lat">Lat</label><br>
     <input id="admin_service_center_lat" name="lat" type="text" value="<%= service_center.lat%>" />
   </div>
-  <div class="field">
+  <div class="form-group">
     <label for="admin_service_center_lan">Lan</label><br>
     <input id="admin_service_center_lan" name="lan" type="text" value="<%= service_center.lan%>" />
   </div>
-  <div class="actions">
+  <div class="actions srvc-ip-btn-an">
     <input name="commit" type="submit" value="Update Service center" />
+	<a href="/alert_details?id=<%= params[:id] %>">Back</a>
+	<%#= link_to 'Back', admin_service_centers_path %>
+  </div>
+  </div>
   </div>
 </form>
   <% end %>
 <% end %>
-<a href="/alert_details?id=<%= params[:id] %>">Back</a>
-<%#= link_to 'Back', admin_service_centers_path %>
+
 </div>

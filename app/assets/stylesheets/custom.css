@@ -389,31 +389,38 @@ h4.bg-msg.bg-msg-pstn
 .hourly-rt
 {
 	padding:0px 10px;
-	text-align:center;
+	text-align:left;
 }
 .hourly-rt p
 {
-	width:47.9%;
-	padding:5px 0px;
-	border-bottom:1px solid #f69679;
-	margin:0px;
-	padding-left:10px;
-	font-size:16px;
-	text-align:center;
-	display:inline-block;
+	 border-bottom: 1px solid #F69679;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0 0 0 -12px;
+    padding: 5px 0 5px 22px;
+    text-align: left;
+    vertical-align: top;
+    width: 32%;
 }
 .hourly-rt h4
 {
-	width:100%;
-	text-align:center;
-	padding:5px 0px;
-	line-height:22px;
-	font-size:16px;
-	color:#414142;
-	margin:0px;
-	border-right:none;
-	border-bottom:1px solid #f69679;
-	display:inline-block;
+	border-bottom: 1px solid #F69679;
+    border-right: 1px solid #F69679;
+    color: #414142;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0;
+    padding: 5px 0;
+    text-align: left;
+    vertical-align: top;
+    width: 38%;
+}
+.srvc-tb-cntr td + td
+{
+	max-width:155px;
+	word-wrap:break-word;
 }
 .reviews-cntnt
 {
@@ -1087,21 +1094,67 @@ a.sign-up-lnk
 {
 	margin-bottom:10px;	
 }
-.edit_alert
+form.edit_alert
 {
 	padding: 20px 0;
 }
 .container .indx-scrl-tbl td + td
 {
-	max-width:240px;
+	max-width:230px;
 	word-wrap:break-word;
 }
-.login-form edit-alert select
+.alrt-form-c select
 {
 	border: 1px solid #DDDDDD;
     border-radius: 5px;
     padding: 7px;
     width: 100%;
+}
+.alrt-form-c
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+    padding: 20px;
+	padding-bottom:50px;
+}
+.alrt-txt-form
+{
+    margin: 20px auto 0;
+    max-width: 429px;
+}
+.alrt-txt-form.srvc-trc-ls
+{
+	max-width:680px;
+}
+.alrt-txt-form.srvc-trc-ls .form-group {
+    display: inline-block;
+    width: 48%;
+}
+.alrt-txt-form.srvc-trc-ls .form-group:nth-child(even) {
+    float: right;
+}
+.srvc-ip-btn-an input
+{
+	background: none repeat scroll 0 0 #ED1C24;
+    border: medium none;
+    color: #FFFFFF;
+    display: inline-block;
+    min-width: 80px;
+    padding: 8px 25px;
+    text-align: center;
+}
+.srvc-ip-btn-an a
+{
+	background: none repeat scroll 0 0 #555555;
+    color: #FFFFFF;
+    display: inline-block;
+    margin-left: 15px;
+    min-width: 80px;
+    padding: 8px 30px 7px;
+    text-align: center;
+}
+.srvc-mrgn
+{
+	margin-top:20px;
 }
 /* Service center */
 .srvc-tb-cntr td:last-child
