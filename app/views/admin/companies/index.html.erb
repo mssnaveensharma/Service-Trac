@@ -46,8 +46,8 @@
    <table class="table-striped table-bordered table-condensed" width="100%"> 
   <thead>
     <tr class="data-header">
-      <th width="76%">Company Name</th>
-      <th class="th-align-center" colspan="3">Action</th>
+      <th width="85%">Company Name</th>
+      <th class="th-align-center">Action</th>
       
     </tr>
   </thead>
@@ -56,9 +56,13 @@
     <% @admin_companies.each do |admin_company| %>
       <tr class="data-row">
         <td><%= admin_company.CompanyName %></td>
-        <td><%= link_to 'Show', admin_company %></td>
-        <td><%= link_to 'Edit', edit_admin_company_path(admin_company) %></td>
-        <td><%= link_to 'Destroy', admin_company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!--<td><%= link_to 'Show', admin_company %></td>-->
+        <td class="th-align-center">
+			<%= link_to '', edit_admin_company_path(admin_company), :class => "edit-icon" %>
+			<%= link_to '', admin_company, method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete-icon" %>
+		
+		</td>
+        
       </tr>
     <% end %>
   </tbody>
