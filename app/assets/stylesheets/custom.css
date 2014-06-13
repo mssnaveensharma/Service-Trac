@@ -617,7 +617,7 @@ label.error{
 .trac-link a + a + a
 {
 	background:url(make.png) center no-repeat #FFFFFF;
-}
+} 
 .trac-link a + a + a + a
 {
 	background:url(modal.png) center no-repeat #FFFFFF;
