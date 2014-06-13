@@ -828,7 +828,7 @@ a.sign-up-lnk
 {
 	margin-top:20px;
 }
-.edit-cmp-form .actions input
+.edit-cmp-form .actions input, .edit-btn-comp
 {
 	background:#ED1C24;
     border: medium none;
@@ -838,16 +838,16 @@ a.sign-up-lnk
     padding: 8px 25px;
     text-align: center;
 }
-.edit-cmp-form .actions input:hover
+.edit-cmp-form .actions input:hover, .edit-btn-comp:hover
 {
 	background:#e4151d;
 }
-.edit-cmp-form .actions a:hover
+.edit-cmp-form .actions a:hover, .back-btn-comp:hover
 {
 	background:#444;
 	text-decoration:none;
 }
-.edit-cmp-form .actions a
+.edit-cmp-form .actions a, .back-btn-comp 
 {
 	 background:#555555;
     color: #FFFFFF;
