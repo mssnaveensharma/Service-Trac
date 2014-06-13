@@ -1024,7 +1024,11 @@ a.sign-up-lnk
 {
 	background:url(logout-hover.png) no-repeat;	
 }
-
+.cntr-frm-fl
+{
+	width:100%;
+	display:inline-block;
+}
 
 
 
