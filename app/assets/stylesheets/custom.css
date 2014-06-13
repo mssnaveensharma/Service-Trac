@@ -858,7 +858,15 @@ a.sign-up-lnk
 	padding-bottom:7px;
     text-align: center;
 }
-
+.flash {
+    background: none repeat scroll 0 0 #FFEB9D;
+    border-radius: 5px;
+    color: #774D04;
+    font-size: 16px;
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 6px 20px;
+}
 
 
 
