@@ -1014,7 +1014,8 @@ a.sign-up-lnk
 .logout
 {
 	display: inline-block;
-    padding: 3px 16px;
+    padding: 0px 16px;
+	line-height:22px;
     text-indent: -1200px;
     width: 20px;
 	background:url(logout.png) no-repeat ;
