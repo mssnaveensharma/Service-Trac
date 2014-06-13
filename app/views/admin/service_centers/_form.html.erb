@@ -1,30 +1,89 @@
 <%= javascript_include_tag "jquery.timepicker.js" %>
+<%= javascript_include_tag "jquery.validate.min.js" %>
 <script type="text/javascript">
   $(document).ready(function (){
       $('.time').timepicker({
         'showDuration': true,
         'timeFormat': 'g:ia'
     });
-      $(".sunday").click(function () { //alert("working");
+    $(".satday").click(function () { //alert("working");
+      if($(this).val()==1){ //alert($(this).val());
+        $(".sat_working").hide();
+      }else{ //alert($(this).val());
+        $(".sat_working").show();
+      }
+    });
+/*    $("#submit").click(function() {
+      if($("#timings_hidden").val()=="" || $("#timings_hidden").val()==null){
+        alert("Please selct the timings");
+        return false;
+      }
+    });*/
+/*      $(".sunday").click(function () { //alert("working");
         if($(this).val()==1){ //alert($(this).val());
           $(".sunday_working").hide();
         }else{ //alert($(this).val());
           $(".sunday_working").show();
         }
-      });
-         $(".satday").click(function () { //alert("working");
-          if($(this).val()==1){ //alert($(this).val());
-            $(".sat_working").hide();
-          }else{ //alert($(this).val());
-            $(".sat_working").show();
-          }
-        });
+      });*/
+  $(".new_admin_service_center").validate({
+    errorElement: "label",
+  rules: {
+     "mon_hours_start": {required:true},
+     "mon_hours_close": {required:true},
+     "tue_hours_start": {required:true},
+     "tue_hours_close": {required:true},
+     "wed_hours_start": {required:true},
+     "wed_hours_close": {required:true},
+     "thu_hours_start": {required:true},
+     "thu_hours_close": {required:true},
+     "fri_hours_start": {required:true},
+     "fri_hours_close": {required:true},
+     "WorkingHours":{required:true}
+
+    }});
 
   });
+
   function addTimings(){
     //alert($("#mon_start").val());
     if($("#mon_start").val() !='' && $("#mon_close").val() !='' && $("#tue_start").val() !='' && $("#tue_close").val() !='' && $("#wed_start").val() !='' && $("#wed_close").val() !='' && $("#thu_start").val() !='' && $("#thu_close").val() !='' && $("#fri_start").val() !='' && $("#fri_close").val() !=''){
-      alert("ok working");
+          //alert("ok working");
+          if($('input[name=sat_holiday]:checked').val()==0 && $("#sat_start").val() !='' && $("#sat_close").val() !='') {
+            var timings = new Array ();
+            timings.push({"mon_start":$("#mon_start").val()});
+            timings.push({"mon_close":$("#mon_close").val()});
+            timings.push({"tue_start":$("#tue_start").val()});
+            timings.push({"tue_close":$("#tue_close").val()});
+            timings.push({"wed_start":$("#wed_start").val()});
+            timings.push({"wed_close":$("#wed_close").val()});
+            timings.push({"thu_start":$("#thu_start").val()});
+            timings.push({"thu_close":$("#thu_close").val()});
+            timings.push({"fri_start":$("#fri_start").val()});
+            timings.push({"fri_close":$("#fri_close").val()});
+            timings.push({"sat_start":$("#sat_start").val()});
+            timings.push({"sat_close":$("#sat_close").val()});
+          //console.log(timings);
+           $("#timings_hidden").val(JSON.stringify(timings));
+        }else if ($('input[name=sat_holiday]:checked').val()==1){
+            var timings = new Array ();
+            timings.push({"mon_start":$("#mon_start").val()});
+            timings.push({"mon_close":$("#mon_close").val()});
+            timings.push({"tue_start":$("#tue_start").val()});
+            timings.push({"tue_close":$("#tue_close").val()});
+            timings.push({"wed_start":$("#wed_start").val()});
+            timings.push({"wed_close":$("#wed_close").val()});
+            timings.push({"thu_start":$("#thu_start").val()});
+            timings.push({"thu_close":$("#thu_close").val()});
+            timings.push({"fri_start":$("#fri_start").val()});
+            timings.push({"fri_close":$("#fri_close").val()});
+            timings.push({"sat_start":"off"});
+            timings.push({"sat_close":"off"});
+          //console.log(timings);
+           $("#timings_hidden").val(JSON.stringify(timings));
+        }else {
+            alert("Please select the service center timings");    
+        }
     } else {
       alert("Please select the service center timings");
     }
@@ -132,18 +191,19 @@
     <input type="text" id="fri_close" class="time" name="fri_hours_close" placeholder="close time">
   </div>
   <div class="field">
-    <label>Working Hours Sat</label><br>
+    <label>Saterday Holiday</label><br>
       <input type="radio" class="satday" name="sat_holiday" value="1">Yes
       <input type="radio" class="satday" name="sat_holiday" value="0">NO
         <div class="sat_working" style="display:none">
           <div class="field">
-            <input type="text" class="time" name="sat_hours_start" placeholder="start time">
-            <input type="text" class="time" name="sat_hours_close" placeholder="close time">
+          <label>Working Hours Sat</label><br>
+            <input type="text" id="sat_start" class="time" name="sat_hours_start" placeholder="start time">
+            <input type="text" id="sat_close" class="time" name="sat_hours_close" placeholder="close time">
           </div>
         </div>
 
   </div>
-  <div class="field">
+  <!-- <div class="field">
     <label>Working Hours Sun</label><br>
       <input type="radio" class="sunday" name="sun_holiday" value="1">Yes
       <input type="radio" class="sunday" name="sun_holiday" value="0">NO
@@ -152,15 +212,16 @@
             <input type="text" class="time" name="sun_hours_start" placeholder="start time">
             <input type="text" class="time" name="sun_hours_close" placeholder="close time">
           </div>
-        </div>
-  </div>
-
+        </div> -->
   <div class="actions">
     <a href="javascript:void(0)" onclick="addTimings()">Add Timings</a>
   </div>
+  </div>
+  <input type="hidden" value="" name="WorkingHours" id="timings_hidden">
+  
   <div class="actions">
 
-    <%= f.submit :class => "edit-btn-comp" %>
+    <%= f.submit :class => "edit-btn-comp", :id => "submit"%>
 	<%= link_to 'Back', admin_service_centers_path, :class => "back-btn-comp" %>
   </div>
 <% end %>

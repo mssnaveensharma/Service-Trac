@@ -41,9 +41,9 @@ Servicetrac::Application.routes.draw do
 
   match 'api/eobr-makes' => 'admin/eobr_makes#index',  :via => :get,  :defaults => { :format => 'json' }
 
-  match 'api/eobr-models' => 'admin/eobr_models#index',  :via => :get,  :defaults => { :format => 'json' }
+  match 'api/eobr-models/:id' => 'admin/eobr_models#index',  :via => :get,  :defaults => { :format => 'json' }
 
-  match 'api/companies' => 'admin/companies#index',  :via => :get,  :defaults => { :format => 'json' }
+  match 'api/companies/:id' => 'admin/companies#index',  :via => :get,  :defaults => { :format => 'json' }
 
   match 'api/service-centers' => 'admin/service_centers#index',  :via => :get,  :defaults => { :format => 'json' }
   
