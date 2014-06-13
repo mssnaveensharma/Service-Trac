@@ -395,6 +395,30 @@ function edit_assist(){
                     </tr>
                 </thead>
                 <tbody>
+                  <% if current_user.Role == "admin" %>
+                  
+                          <% @alert_details.each do |alert| %>
+                          <% @driver = User.where(:id => alert.user_id) %>  
+                          <% if @driver.length != 0 and alert.status != 'Complete' %>
+                                                 
+                          <% if(params[:id] == alert.id.to_s) %>
+                          <tr class="active-row" id="<%= alert.id %>">
+                          <% else %>
+                          <tr id="<%= alert.id %>">
+                          <% end %>
+                            <td><%= alert.created_at.strftime("%d/%m/%y %I:%M %p") %></td>
+                            
+                                  <% @driver.each do |truck_info| %>
+                                    <td><%= truck_info.TruckNumber %></td>
+                                    <td><a id="<%= alert.id %>" onclick="calcRoute(this.id)" href="javascript:void(0)"><%= truck_info.FirstName %>&nbsp;<%= truck_info.LastName %></a></td>
+                                  <% end %>
+
+                          </tr>
+                        <% end %>
+                        <% end %>
+                     
+                  <% else %>
+
                         <% @alert_details.each do |alert| %>
                           <% @driver = User.where(:id => alert.user_id) %>  
                           <% if @driver.length != 0 and alert.status != 'Complete' %>
@@ -419,6 +443,8 @@ function edit_assist(){
                         <% end %>
                         <% end %>
                         <% end %>
+                        <% end %>
+
                         <% end %>
                 </tbody>
             </table>
