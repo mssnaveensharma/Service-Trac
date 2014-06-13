@@ -782,6 +782,7 @@ a.sign-up-lnk
 	background:url(edit-icon.png) no-repeat ;
 	padding:10px;
 	display:inline-block;
+	background-position:center;
 }
 .delete-icon
 {
@@ -789,4 +790,5 @@ a.sign-up-lnk
 	padding:10px;
 	display:inline-block;
 	margin-left:15px;
+	background-position:center;
 }
