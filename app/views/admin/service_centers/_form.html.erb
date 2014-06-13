@@ -5,11 +5,26 @@
         'showDuration': true,
         'timeFormat': 'g:ia'
     });
+      $(".sunday").click(function () { //alert("working");
+        if($(this).val()==1){ //alert($(this).val());
+          $(".sunday_working").hide();
+        }else{ //alert($(this).val());
+          $(".sunday_working").show();
+        }
+      });
+         $(".satday").click(function () { //alert("working");
+          if($(this).val()==1){ //alert($(this).val());
+            $(".sat_working").hide();
+          }else{ //alert($(this).val());
+            $(".sat_working").show();
+          }
+        });
+
   });
   function addTimings(){
-    alert($("#mon_start").val();
-    if($("#mon_start").val !='' && $("#mon_close").val !='' && $("#tue_start").val !='' && $("#tue_close").val !='' && $("#wed_start").val !='' && $("#wed_close").val !='' && $("#thu_start").val !='' && $("#thu_close").val !='' && $("#fri_start").val !='' && $("#fri_close").val !=''){
-
+    //alert($("#mon_start").val());
+    if($("#mon_start").val() !='' && $("#mon_close").val() !='' && $("#tue_start").val() !='' && $("#tue_close").val() !='' && $("#wed_start").val() !='' && $("#wed_close").val() !='' && $("#thu_start").val() !='' && $("#thu_close").val() !='' && $("#fri_start").val() !='' && $("#fri_close").val() !=''){
+      alert("ok working");
     } else {
       alert("Please select the service center timings");
     }
@@ -118,20 +133,25 @@
   </div>
   <div class="field">
     <label>Working Hours Sat</label><br>
-      <input type="radio" name="sat_holiday" value="1">Yes
-      <input type="radio" name="sat_holiday" value="0">NO
+      <input type="radio" class="satday" name="sat_holiday" value="1">Yes
+      <input type="radio" class="satday" name="sat_holiday" value="0">NO
         <div class="sat_working" style="display:none">
-          <input type="text" class="time" name="sat_hours_start" placeholder="start time">
-          <input type="text" class="time" name="sat_hours_close" placeholder="close time">
+          <div class="field">
+            <input type="text" class="time" name="sat_hours_start" placeholder="start time">
+            <input type="text" class="time" name="sat_hours_close" placeholder="close time">
+          </div>
         </div>
+
   </div>
   <div class="field">
     <label>Working Hours Sun</label><br>
-      <input type="radio" name="sun_holiday" value="1">Yes
-      <input type="radio" name="sun_holiday" value="0">NO
+      <input type="radio" class="sunday" name="sun_holiday" value="1">Yes
+      <input type="radio" class="sunday" name="sun_holiday" value="0">NO
         <div class="sunday_working" style="display:none">
-          <input type="text" class="time" name="sun_hours_start" placeholder="start time">
-          <input type="text" class="time" name="sun_hours_close" placeholder="close time">
+          <div class="field">
+            <input type="text" class="time" name="sun_hours_start" placeholder="start time">
+            <input type="text" class="time" name="sun_hours_close" placeholder="close time">
+          </div>
         </div>
   </div>
 
