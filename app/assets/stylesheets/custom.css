@@ -392,18 +392,18 @@ h4.bg-msg.bg-msg-pstn
 }
 .hourly-rt p
 {
-	width:60%;
+	width:49.3%;
 	padding:5px 0px;
 	border-bottom:1px solid #f69679;
 	margin:0px;
 	padding-left:10px;
-	margin-left:-4px;
 	font-size:16px;
 	display:inline-block;
 }
 .hourly-rt h4
 {
-	width:38%;
+	width:100%;
+	text-align:center;
 	padding:5px 0px;
 	line-height:22px;
 	font-size:16px;
