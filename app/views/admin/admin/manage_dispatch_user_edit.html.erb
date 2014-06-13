@@ -40,7 +40,9 @@ $(document).ready(function () {
         <ol class="breadcrumb">
       <li class="active"> Main</li>
       </ol>
-        <div class="form-group subcontainer">        
+	  <div class="dsptch-usr-fld">
+	  	<div class="dsptch-usr-frm">
+        <div class="subcontainer">        
         <% @all_info = User.where(:id => params[:id]) %>
             <% @all_info.each do |rara| %>
                 <% @firsname = rara.FirstName %>
@@ -55,18 +57,29 @@ $(document).ready(function () {
             
                 <form method="POST" class="create_dispatch_user" action="/create_user">
                 <input type="hidden" name="user_id" value="<%= params[:id] %>">
+				<div class="form-group">
                 <label>FirstName</label>
-                    <input type="text" name="FirstName" value="<%= @firsname %>"></br>
+                    <input type="text" name="FirstName" value="<%= @firsname %>">
+				</div>	
+				<div class="form-group">
                 <label>LastName</label>
-                    <input type="text" name="LastName" value="<%= @lasname %>"></br>
+                    <input type="text" name="LastName" value="<%= @lasname %>">
+				</div>
+				<div class="form-group">	
                 <label>Email</label>
-                    <input type="email" id="email" name="email" value="<%= @email %>"></br>
+                    <input type="email" id="email" name="email" value="<%= @email %>">
+				</div>
+				<div class="form-group">	
                 <label class="password">Password</label>
-                    <input type="password" id="password" class="password" name="password" value=""></br>
+                    <input type="password" id="password" class="password" name="password" value="">
+					</div>
+				<div class="form-group">	
                 <label>Contact</label>
-                    <input type="text" name="Contact" value="<%= @contact%>"></br>
+                    <input type="text" name="Contact" value="<%= @contact%>">
+					</div>
+				<div class="form-group">	
                 <label>Service Center</label>
-                    <select name="service_center_id">
+                    <select class="dspch-slct" name="service_center_id">
                         <option value="">Select Service Center</option>
                         <% @service_centers.each do |service_center| %>
                             <% if(service_center.id == @selected_id) %>
@@ -76,9 +89,14 @@ $(document).ready(function () {
                             <% end %>
                             <option value="<%= service_center.id %>" <%= @selected%>><%= service_center.Name %></option>
                         <% end %>
-                    </select></br>
-                <input type="submit" name="commit" value="Update"><a href="/admin/manage_dispatch_user">Back</a>
+                    </select>
+				</div>	
+				<div class="actions"> 
+                	<input class="edit-btn-comp" type="submit" name="commit" value="Update"><a class="back-btn-comp " href="/admin/manage_dispatch_user">Back</a>
+				</div>
                 </form>
         </div>
       </div>
+	  </div>
+	  	  </div>
 

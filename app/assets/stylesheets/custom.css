@@ -437,6 +437,7 @@ h4.bg-msg.bg-msg-pstn
 	color:#5c5c5f;
 	margin-top:10px;
 	display:inline-block;
+	word-wrap:break-word;
 }
 label.margin-top
 {
@@ -559,7 +560,7 @@ label.margin-top
 	padding-bottom:40px;
 }
 .table-responsive {
-    overflow-y: auto;
+    overflow: hidden;
 }
 .srvc-mn-hyt
 {
@@ -573,9 +574,15 @@ label.margin-top
 {
 	width:100%;
 }
-.srvc-tb-cntr th:last-child, .srvc-tb-cntr td:last-child
+/*.srvc-tb-cntr th:last-child, .srvc-tb-cntr td:last-child
 {
 	white-space:nowrap;
+}*/
+.srvc-tb-cntr th:last-child, .srvc-tb-cntr td:last-child
+{
+	max-width: 90px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 .inline-edit {
 	width: 93px;
@@ -925,10 +932,92 @@ a.sign-up-lnk
     display: inline-block;
     width: 49%;
 }
+.srvc-frm .field:nth-child(odd)
+{
+	float:right;
+}
 .srvc-frm .field > input {
     border: 1px solid #DDDDDD;
     border-radius: 5px;
     margin-bottom: 10px;
     padding: 7px 8px;
     width: 100%;
+}
+.srvc-frm > .actions input
+{
+	 background: none repeat scroll 0 0 #ED1C24;
+    border: medium none;
+    color: #FFFFFF;
+    display: inline-block;
+    min-width: 80px;
+    padding: 8px 25px;
+    text-align: center;
+}
+.srvc-frm > .actions a
+{
+	background: none repeat scroll 0 0 #555555;
+    color: #FFFFFF;
+    display: inline-block;
+    margin-left: 15px;
+    min-width: 80px;
+    padding: 8px 30px 7px;
+    text-align: center;
+}
+.srvc-frm > .actions a:hover
+{
+	background: none repeat scroll 0 0 #444444;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.srvc-frm > .actions input
+{
+	background: none repeat scroll 0 0 #E4151D;
+    color: #FFFFFF;
+}
+.add-dispatch-user
+{
+	padding:10px;
+	text-align:right;
+}
+.add-dispatch-user a
+{
+	font-size:16px;
+	color:#ED1C24;
+}
+
+.dsptch-usr-fld
+{
+	background:#fff;
+	display:inline-block;
+	width:100%;
+}
+.dsptch-usr-frm
+{
+	max-width:440px;
+	margin:40px auto;
+}
+.form-group select.dspch-slct
+{
+	border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    padding: 7px;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Service center */
+.srvc-tb-cntr td:last-child
+{
+	
 }
