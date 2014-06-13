@@ -57,8 +57,8 @@
       <tr class="data-row">
         <td><%= admin_company.CompanyName %></td>
         <!--<td><%= link_to 'Show', admin_company %></td>-->
-        <td><%= link_to 'Edit', :class => "edit-icon", edit_admin_company_path(admin_company) %></td>
-        <td><%= link_to 'Destroy', :class => "delete-icon", admin_company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_admin_company_path(admin_company) %></td>
+        <td><%= link_to 'Destroy', admin_company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
