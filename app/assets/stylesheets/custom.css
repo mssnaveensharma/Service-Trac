@@ -597,6 +597,10 @@ label.error{
 	background-size:40px 40px !important;
 	background-position:center 26px !important;
 }
+.trac-link a:hover
+{
+	background-color:#ccc;
+}
 .trac-link a:last-child
 {
 	margin-right:0px;
