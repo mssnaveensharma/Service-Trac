@@ -392,7 +392,7 @@ h4.bg-msg.bg-msg-pstn
 }
 .hourly-rt p
 {
-	width:49.3%;
+	width:47.9%;
 	padding:5px 0px;
 	border-bottom:1px solid #f69679;
 	margin:0px;
@@ -409,7 +409,7 @@ h4.bg-msg.bg-msg-pstn
 	font-size:16px;
 	color:#414142;
 	margin:0px;
-	border-right:1px solid #f69679;
+	border-right:none;
 	border-bottom:1px solid #f69679;
 	display:inline-block;
 }
