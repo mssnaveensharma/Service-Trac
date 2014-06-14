@@ -5734,11 +5734,7 @@ button.close {
   td.visible-sm {
     display: table-cell !important;
   }
-  .container .servc-msg-scroll td + td
-{
-	max-width:116px;
-	word-wrap:break-word;
-}
+
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .visible-md {
@@ -5754,6 +5750,11 @@ button.close {
   td.visible-md {
     display: table-cell !important;
   }
+    .container .servc-msg-scroll td + td
+{
+	max-width:116px;
+	word-wrap:break-word;
+}
 }
 @media (min-width: 1200px) {
   .visible-lg {
