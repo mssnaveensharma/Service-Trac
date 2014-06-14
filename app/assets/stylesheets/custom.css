@@ -1057,7 +1057,15 @@ a.sign-up-lnk
 	display:inline-block;
 	margin-right:25px;
 }
-
+.srvc-frm .cntr-frm-fl .field > input
+{
+	width:48%;
+	display:inline-block;
+}
+.srvc-frm .cntr-frm-fl .field > input:nth-child(even)
+{
+	float:right;
+}
 
 
 
