@@ -65,7 +65,7 @@ function getModal(id) {       // get the the modals on selecting the make
       <li class="active">>> Main</li>
     </ol>
 	<div class="alrt-form-c">
-	<div class="login-form">
+	<div class="alrt-txt-form">
        	<form method="POST" action="/update_alert" class="edit_alert">
     		<% @alert_detail = ServiceAlert.where(:id => params[:id]) %>
     			<input type="hidden" name="id" value="<%=params[:id]%>">

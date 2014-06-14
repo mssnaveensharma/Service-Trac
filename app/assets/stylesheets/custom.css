@@ -1106,9 +1106,13 @@ a.sign-up-lnk
 .alrt-form-c
 {
 	background: none repeat scroll 0 0 #FFFFFF;
-    min-height: 500px;
     padding: 20px;
 	padding-bottom:50px;
+}
+.alrt-txt-form
+{
+    margin: 20px auto 0;
+    max-width: 429px;
 }
 /* Service center */
 .srvc-tb-cntr td:last-child
