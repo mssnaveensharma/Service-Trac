@@ -33,7 +33,7 @@
 <% if params[:id] != '' %>
   <% @service_centers = Admin::ServiceCenter.where(:id => params[:id]) %>
     <% @service_centers.each do |service_center| %>
-	<div class="alrt-form-c">
+	<div class="alrt-form-c srvc-mrgn">
 	<div class="alrt-txt-form srvc-trc-ls">
 <form accept-charset="UTF-8" action="/update_service_center" class="edit_service_center" id="edit_service_center" method="post">
 
