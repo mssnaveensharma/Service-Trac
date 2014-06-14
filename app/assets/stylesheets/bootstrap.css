@@ -5755,7 +5755,7 @@ button.close {
 	max-width:116px;
 	word-wrap:break-word;
 }
-.indx-scrl-tbl td + td
+.container .indx-scrl-tbl td + td
 {
 	max-width:240px;
 	word-wrap:break-word;
