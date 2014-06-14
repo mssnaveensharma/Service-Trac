@@ -562,7 +562,7 @@ label.margin-top
 	padding-bottom:40px;
 }
 .table-responsive {
-    overflow: hidden;
+    overflow-y:auto;
 }
 .srvc-mn-hyt
 {
