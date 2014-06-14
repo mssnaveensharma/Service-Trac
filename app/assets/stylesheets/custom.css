@@ -417,6 +417,11 @@ h4.bg-msg.bg-msg-pstn
     vertical-align: top;
     width: 38%;
 }
+.srvc-tb-cntr td + td
+{
+	max-width:155px;
+	word-wrap:break-word;
+}
 .reviews-cntnt
 {
 	padding:5px 10px 0;
