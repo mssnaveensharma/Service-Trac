@@ -1087,8 +1087,10 @@ a.sign-up-lnk
 {
 	margin-bottom:10px;	
 }
-
-
+.edit_alert
+{
+	padding: 20px 0;
+}
 
 /* Service center */
 .srvc-tb-cntr td:last-child
