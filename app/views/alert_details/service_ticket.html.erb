@@ -35,13 +35,21 @@
                 <% @ref_no = "" %>
             <% end %>
         <% end %>
+		<div class="alrt-form-c">
+	<div class="login-form">
           <form action="/update_ticket" method="POST" class="service_ticket">
+		  <div class="form-group">
             <label>Corporate PO#</label>
-              <input type="text" name="ticket_po_no" value="<%= @po_no %>"><br>
+              <input type="text" name="ticket_po_no" value="<%= @po_no %>">
+			  </div>
+			  <div class="form-group">
             <label>Qualcomm REF #</label>
-              <input type="text" name="ticket_ref_no" value="<%= @ref_no %>"><br>
+              <input type="text" name="ticket_ref_no" value="<%= @ref_no %>">
               <input type="hidden" name="id" value="<%= params[:id] %>">
-              <input type="submit" name="commit" value="Update">
+			  </div>
+              <input class="btn btn-default login-btn" type="submit" name="commit" value="Update">
           </form>
       </div>
+      </div>
+	  </div>
       </div>

@@ -1108,6 +1108,7 @@ a.sign-up-lnk
 	background: none repeat scroll 0 0 #FFFFFF;
     min-height: 500px;
     padding: 20px;
+	padding-bottom:50px;
 }
 /* Service center */
 .srvc-tb-cntr td:last-child
