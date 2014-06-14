@@ -1122,7 +1122,7 @@ a.sign-up-lnk
     display: inline-block;
     width: 48%;
 }
-.form-group:nth-child(even) {
+.alrt-txt-form.srvc-trc-ls .form-group:nth-child(even) {
     float: right;
 }
 .srvc-ip-btn-an input
