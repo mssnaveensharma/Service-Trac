@@ -5734,6 +5734,11 @@ button.close {
   td.visible-sm {
     display: table-cell !important;
   }
+  .container .servc-msg-scroll td + td
+{
+	max-width:116px;
+	word-wrap:break-word;
+}
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .visible-md {
