@@ -60,7 +60,9 @@ Servicetrac::Application.routes.draw do
 
   match 'driver-status' => 'service_alerts#driver_status',  :via => :post
 
-  post 'post_review' => 'service_center_reviews#post_review'
+  #post 'post_review' => 'service_center_reviews#post_review'
+
+  match 'post-review' => 'service_center_reviews#post_review',  :via => :post
 
   #post 'get_reviews' => 'service_center_reviews#get_reviews'  
 

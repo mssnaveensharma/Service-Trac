@@ -99,6 +99,7 @@ $(document).ready(function(){
                         //data: {},
                         success: function(reviews){
                            if(reviews.success != false) {
+                            $("#reviews").html('');
                             var reviewsLength = reviews.service_center_reviews.length;
                              $.each([reviews.service_center_reviews], function( index, value ){
                                  for(var i=0; i< reviewsLength; i++){ 
@@ -118,6 +119,7 @@ $(document).ready(function(){
                                     }
                                     //alert(reviews.service_center_reviews[i]['ratings']);
                                     var reviewsData = "<div class=reviews-cntnt><label> "+reviews.service_center_reviews[i]['date']+"</label><a href=javascript:void(0); class=pull-right> <image src='/assets/"+image+"'></a><i>"+reviews.service_center_reviews[i]['username']+"</i><p> "+reviews.service_center_reviews[i]['comments']+"</p></div>";
+                                    
                                     $("#reviews").append(reviewsData);
                                  }
                             }); 
