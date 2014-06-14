@@ -1114,6 +1114,38 @@ a.sign-up-lnk
     margin: 20px auto 0;
     max-width: 429px;
 }
+.alrt-txt-form.srvc-trc-ls
+{
+	max-width:680px;
+}
+.alrt-txt-form.srvc-trc-ls .form-group {
+    display: inline-block;
+    width: 48%;
+}
+.form-group:nth-child(even) {
+    float: right;
+}
+.srvc-ip-btn-an input
+{
+	background: none repeat scroll 0 0 #ED1C24;
+    border: medium none;
+    color: #FFFFFF;
+    display: inline-block;
+    min-width: 80px;
+    padding: 8px 25px;
+    text-align: center;
+}
+.srvc-ip-btn-an a
+{
+	background: none repeat scroll 0 0 #555555;
+    color: #FFFFFF;
+    display: inline-block;
+    margin-left: 15px;
+    min-width: 80px;
+    padding: 8px 30px 7px;
+    text-align: center;
+}
+
 /* Service center */
 .srvc-tb-cntr td:last-child
 {

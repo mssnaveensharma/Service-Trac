@@ -34,7 +34,7 @@
   <% @service_centers = Admin::ServiceCenter.where(:id => params[:id]) %>
     <% @service_centers.each do |service_center| %>
 	<div class="alrt-form-c">
-	<div class="alrt-txt-form">
+	<div class="alrt-txt-form srvc-trc-ls">
 <form accept-charset="UTF-8" action="/update_service_center" class="edit_service_center" id="edit_service_center" method="post">
 
   <div class="form-group">
@@ -91,14 +91,15 @@
     <label for="admin_service_center_lan">Lan</label><br>
     <input id="admin_service_center_lan" name="lan" type="text" value="<%= service_center.lan%>" />
   </div>
-  <div class="actions">
+  <div class="actions srvc-ip-btn-an">
     <input name="commit" type="submit" value="Update Service center" />
+	<a href="/alert_details?id=<%= params[:id] %>">Back</a>
+	<%#= link_to 'Back', admin_service_centers_path %>
   </div>
   </div>
   </div>
 </form>
   <% end %>
 <% end %>
-<a href="/alert_details?id=<%= params[:id] %>">Back</a>
-<%#= link_to 'Back', admin_service_centers_path %>
+
 </div>
