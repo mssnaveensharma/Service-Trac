@@ -1083,6 +1083,10 @@ a.sign-up-lnk
     padding: 5px 10px;
     width: 90%;
 }
+#new_message input
+{
+	margin-bottom:10px;	
+}
 
 
 
