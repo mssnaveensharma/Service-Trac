@@ -5,13 +5,11 @@
 					<label class="margin-top">Listing messages</label>
 			</div> 
 			<ol class="breadcrumb">
-			<li class="active"> Main</li>
+			<li class="active"> >> <a href="/"> Home </a> >> <a href="/messages"> Messages </a></li>
 			</ol>
 	<div class="col-sm-4 white-bg message-center" id="new">
 		<h4>New message</h4>
- <% if(flash[:notice]) %>
- 	<%= flash[:notice] %>
- <% end %>
+
  			<div class="form-group">
 					<%= form_for(@message) do |f| %>
 			  <% if @message.errors.any? %>
