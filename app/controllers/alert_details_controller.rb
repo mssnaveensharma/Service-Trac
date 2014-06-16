@@ -239,9 +239,16 @@ class AlertDetailsController < ApplicationController
 
   def get_notes
     if params[:alert_id] and params[:alert_id] != ''
+      notesArray = Array.new
       @notes = AlertNotes.where(:alert_id => params[:alert_id]).limit(3)
       if @notes.length != 0
-        return render :json => {:success => true, :notes => @notes}
+          @notes.each do |note|
+            response = Hash.new
+            response[:created_at]=note.created_at.strftime("%d/%m/%y %I:%M %p")
+            response[:description]=note.description
+            notesArray.push(response)
+          end
+        return render :json => {:success => true, :notes => notesArray}
       else
         return render :json => {:success => false, :message => "Currently the service haven't the notes"}
       end
