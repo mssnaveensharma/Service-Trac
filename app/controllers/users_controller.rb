@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         if params[:wp_notification_url] != ''
           @response = User.create({
               :email=>params[:email],
-              :password=>params[:password].encrypted_password,
+              :password=>params[:password],
               :FirstName=>params[:FirstName],
               :LastName=>params[:LastName],
               :EobrNumber=>params[:EobrNumber],

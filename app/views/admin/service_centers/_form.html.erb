@@ -14,7 +14,7 @@
       }
     });*/
     $("#submit").click(function() {
-      if($("#timings_hidden").val()=="" || $("#timings_hidden").val()==null){
+      if($("#admin_service_center_WorkingHours").val()=="" || $("#admin_service_center_WorkingHours").val()==null){
         alert("Please click on add timmings to add center timings");
         return false;
       }
@@ -58,7 +58,10 @@
 
   });
 
-  function addTimings(){
+</script>
+<% if action_name=="new" %>
+<script>
+function addTimings(){
     //alert($("#mon_start").val());
     if($("#mon_start").val() !='' && $("#mon_close").val() !='' && $("#tue_start").val() !='' && $("#tue_close").val() !='' && $("#wed_start").val() !='' && $("#wed_close").val() !='' && $("#thu_start").val() !='' && $("#thu_close").val() !='' && $("#fri_start").val() !='' && $("#fri_close").val() !=''){
           //alert("ok working");
@@ -102,6 +105,7 @@
     }
   }
 </script>
+<% end %>
     <div class="container">
     <div class="serch-fld">
           <label class="margin-top">Add/Update Service Center </label>
@@ -205,7 +209,8 @@
     <input type="text" id="fri_start" class="time" name="fri_hours_start" placeholder="start time">
     <input type="text" id="fri_close" class="time" name="fri_hours_close" placeholder="close time">
   </div>
-  <input type="hidden" value="" name="admin_service_center[WorkingHours]" id="timings_hidden">
+  <%= f.hidden_field :WorkingHours %>
+<!--   <input type="hidden" value="" name="admin_service_center[WorkingHours]" id="timings_hidden"> -->
   <!-- <div class="field">
     <label>Working Hours Sat</label><br>
 		<div class="srvc-sntr-ch">

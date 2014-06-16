@@ -30,6 +30,9 @@
             </span>
            
         </div>  
+     <ol class="breadcrumb">
+       <li class="active">>> <a href="/">Home</a> >> <a href="/alert_details?id=<%= params[:alert]%>"> Alert Details</a> >> <a href="/edit_service_center?id=<%= params[:id]%>">Update Service Center</a></li>
+    </ol>
 <% if params[:id] != '' %>
   <% @service_centers = Admin::ServiceCenter.where(:id => params[:id]) %>
     <% @service_centers.each do |service_center| %>

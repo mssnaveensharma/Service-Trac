@@ -395,7 +395,7 @@ function edit_assist(){
         <div>
         <ol class="breadcrumb">
       
-      <li class="active">>> Main</li>
+      <li class="active">>> <a href="/">Home</a> >> <a href="/alert_details?id=<%= params[:id]%>">Alert Details</a></li>
     </ol>
       <% if flash[:notice] %>
         <p style="color:#fff"><%= flash[:notice]%></p>
@@ -576,6 +576,17 @@ function edit_assist(){
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <%=javascript_include_tag "bootstrap.min.js"%>
+<%= javascript_include_tag "jquery.tablesorter.js" %>
+<%#= javascript_include_tag "jquery.tablesorter.pager.js" %>
+  <script type="text/javascript">
+  var noconflict = $.noConflict();
+  noconflict(function() {
+    noconflict("table")
+      .tablesorter({widthFixed: true, widgets: ['zebra']})
+      //.tablesorterPager({container: noconflict("#pager")});
+  });
+  </script>
+
   </body>
 </html>
 

@@ -147,9 +147,9 @@ $(document).ready(function(){
 		
         <div>
         <ol class="breadcrumb">
-      		<li class="active">>> Main</li>
-            <li class="active">>> Anderson, A</li>
-            <li class="active">>> Selectcomm</li>
+      		<li class="active">>> <a href="/"> Home </a></li>
+            <li class="active">>> <a href="/service_center?id=<%= params[:id]%>"> Service Center Detail </a></li>
+<!--             <li class="active">>> Selectcomm</li> -->
     	</ol>
     <div class="no-padding">
     	<div class="col-sm-4 right-border srvc-mn-hyt">
@@ -272,5 +272,15 @@ $(document).ready(function(){
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <%= javascript_include_tag "bootstrap.min.js" %>
+<%= javascript_include_tag "jquery.tablesorter.js" %>
+<%#= javascript_include_tag "jquery.tablesorter.pager.js" %>
+  <script type="text/javascript">
+  var noconflict = $.noConflict();
+  noconflict(function() {
+    noconflict("table")
+      .tablesorter({widthFixed: true, widgets: ['zebra']})
+      //.tablesorterPager({container: noconflict("#pager")});
+  });
+  </script>
   </body>
 </html>
