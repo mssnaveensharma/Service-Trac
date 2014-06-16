@@ -213,6 +213,43 @@ class AlertDetailsController < ApplicationController
     end
   end
 
+  def add_notes
+    if params[:user_id] and params[:user_id] !='' and params[:description] and params[:description] != '' and params[:alert_id] and params[:alert_id] !=''
+      if params[:sent_by] and params[:sent_by]=="WebUser"
+        @sentBy = "WebUser"
+      else
+        @sentBy = "AppUser"
+      end
+        @create = AlertNotes.create({
+            :user_id =>params[:user_id],
+            :alert_id =>params[:alert_id],
+            :description => params[:description],
+            :sent_by => @sentBy
+          });
+
+          if @create.id != '' and @create.id != nil
+            return render :json => {:success => true, :message => "Note was added successfully", :note_id => @create.id}      
+          else
+            return render :json => {:success => false, :message => @create.errors}
+          end
+    else
+      return render :json => {:success => false, :message => "Required perameters are missing"}
+    end
+  end
+
+  def get_notes
+    if params[:alert_id] and params[:alert_id] != ''
+      @notes = AlertNotes.where(:alert_id => params[:alert_id]).limit(3)
+      if @notes.length != 0
+        return render :json => {:success => true, :notes => @notes}
+      else
+        return render :json => {:success => false, :message => "Currently the service haven't the notes"}
+      end
+    else
+      return render :json => {:success => false, :message => "Alert id is required"}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_alert_detail
