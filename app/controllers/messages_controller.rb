@@ -129,8 +129,8 @@ class MessagesController < ApplicationController
       @response = Urbanairship.push(notification) 
       
        else @d_type == 'wp' 
-       @url = @user.wp_notification_url 
-        uri = @url
+       #@url = @user.wp_notification_url 
+        @uri = "http://dm2.notify.live.net/throttledthirdparty/01.00/AQG1so170LoxTLZaBni2ZC30AgAAAAADAQAAAAQUZm52OkJCMjg1QTg1QkZDMkUxREQFBlVTTkMwMQ"
         #@user_msg = "Service alert notification"
         options = {
             title: "Servicetrac alert notification",
@@ -142,7 +142,7 @@ class MessagesController < ApplicationController
         }
 
     # response is an Net::HTTP object
-    @reponse = MicrosoftPushNotificationService.send_notification uri, :toast, options
+    @reponse = MicrosoftPushNotificationService.send_notification @uri, :toast, options
      end 
     #notification = {
     #:schedule_for => [1.second.from_now],
