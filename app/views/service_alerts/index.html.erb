@@ -67,10 +67,10 @@
                       <tr class="data-row">
                         <% @drivers = User.where('("Role" = ? AND id = ? )', "AppUser",service_alert.user_id) %>
                             <% if(@drivers.length != 0) and service_alert.status != 'Complete' %>
-                            <td><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></td>
+                            <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></a></td>
                               <% @drivers.each do |driver| %>
                                <%#=debug service_alert %>
-                                <td><%= driver.TruckNumber %></td>
+                                <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= driver.TruckNumber %></a></td>
                                 <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= driver.FirstName%>&nbsp;&nbsp;<%= driver.LastName%></a></td>
                                 <td><%= driver.Contact %></td>
                               <% end %>
@@ -80,7 +80,7 @@
                               <% @centers.each do |center| %>
                                 
                                 <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= center.Name %></a></td>
-                                <td><%= center.City %>/<%= center.State %></td>
+                                <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= center.City %>/<%= center.State %></a></td>
                                <%
 
                                @rate_one = ServiceCenterReview.where(:ratings => 1,:service_center_id => service_alert.service_center_id)
@@ -104,17 +104,17 @@
 
                                %>
                                 <% if @ratings == 1 %>
-                                  <td><%= image_tag("1.png") %></td>       
+                                  <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= image_tag("1.png") %></a></td>       
                                 <% elsif @ratings == 2  %>
-                                  <td><%= image_tag("2.png") %></td>  
+                                  <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= image_tag("2.png") %></a></td>  
                                 <% elsif @ratings == 3  %>
-                                  <td><%= image_tag("3.png") %></td>  
+                                  <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= image_tag("3.png") %></a></td>  
                                 <% elsif @ratings == 4  %>
-                                  <td><%= image_tag("4.png") %></td>  
+                                  <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= image_tag("4.png") %></a></td>  
                                 <% elsif @ratings == 5  %>
-                                  <td><%= image_tag("5.png") %></td>  
+                                  <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= image_tag("5.png") %></a></td>  
                                 <% else  %>
-                                  <td><%= image_tag("zero.png") %></td>  
+                                  <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= image_tag("zero.png") %></a></td>  
                                 <% end %>
                                 <td><%= service_alert.status %></td>
                               <% end %>
@@ -142,10 +142,10 @@
                           <%#=debug service_alert.service_center_id%>
                           <% if user_service_Center.service_center_id==service_alert.service_center_id%>
                               <% end %>
-                            <td><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></td>
+                            <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></a></td>
                               <% @drivers.each do |driver| %>
                                <%#=debug service_alert %>
-                                <td><%= driver.TruckNumber %></td>
+                                <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= driver.TruckNumber %></a></td>
                                 <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= driver.FirstName%>&nbsp;&nbsp;<%= driver.LastName%></a></td>
                                 <td><%= driver.Contact %></td>
                               <% end %>
@@ -154,8 +154,8 @@
                               <%#=debug @centers  %>
                               <% @centers.each do |center| %>
                                 
-                                <td><%= center.Name %></td>
-                                <td><%= center.City %>/<%= center.State %></td>
+                                <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= center.Name %></a></td>
+                                <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= center.City %>/<%= center.State %></a></td>
                                <%
 
                                @rate_one = ServiceCenterReview.where(:ratings => 1,:service_center_id => service_alert.service_center_id)
@@ -179,17 +179,17 @@
 
                                %>
                                 <% if @ratings == 1 %>
-                                  <td><%= image_tag("1.png") %></td>       
+                                  <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= image_tag("1.png") %></a></td>       
                                 <% elsif @ratings == 2  %>
-                                  <td><%= image_tag("2.png") %></td>  
+                                  <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= image_tag("2.png") %></a></td>  
                                 <% elsif @ratings == 3  %>
-                                  <td><%= image_tag("3.png") %></td>  
+                                  <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= image_tag("3.png") %></a></td>  
                                 <% elsif @ratings == 4  %>
-                                  <td><%= image_tag("4.png") %></td>  
+                                  <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= image_tag("4.png") %></a></td>  
                                 <% elsif @ratings == 5  %>
-                                  <td><%= image_tag("5.png") %></td>  
+                                  <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= image_tag("5.png") %></a></td>  
                                 <% else  %>
-                                  <td><%= image_tag("zero.png") %></td>  
+                                  <td><a class="table-link" href="/service_center?id=<%= center.id%>"><%= image_tag("zero.png") %></a></td>  
                                 <% end %>
                                 <td><%= service_alert.status %></td>
                               <% end %>
