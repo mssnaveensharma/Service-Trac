@@ -118,9 +118,9 @@ def settings
         return render :json => {:success => false, :message => "Invalid user id"}
       end
 
- elsif(params[:user_id] != '' and params[:email] !='' and params[:device_type] == 'wp' and params[:password] !='' and params[:FirstName] !='' and params[:LastName] !='' and params[:EobrNumber] !='' and params[:eobr_make_id] !='' and params[:eobr_model_id] !='' and params[:TruckNumber] !='' and params[:TruckModel] !='' and params[:truckmake] !='' and params[:TruckYear] !='' and params[:TruckOwner] !='' and params[:company_id] !='' and params[:tech_support] !='' and params[:Contact] !='' and params[:device_type] !='' and params[:device_token] !='' and params[:Language] != '')
+ elsif(params[:user_id] != '' and params[:email] !='' and params[:device_type] == 'wp' and params[:password] !='' and params[:FirstName] !='' and params[:LastName] !='' and params[:EobrNumber] !='' and params[:eobr_make_id] !='' and params[:eobr_model_id] !='' and params[:TruckNumber] !='' and params[:TruckModel] !='' and params[:truckmake] and params[:truckmake] !='' and params[:TruckYear] !='' and params[:TruckOwner] !='' and params[:company_id] !='' and params[:tech_support] !='' and params[:Contact] !='' and params[:device_type] !='' and params[:device_token] !='' and params[:Language] != '' and params[:wp_notification_url] and params[:wp_notification_url] != '')
 
-          @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], TruckMake: params[:truckmake], company_id: params[:CompanyName], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], wp_notification_url: params[:wp_notification_url], plain_password: params[:password])
+          @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], TruckMake: params[:truckmake], company_id: params[:company_id], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], wp_notification_url: params[:wp_notification_url], plain_password: params[:password])
           user = User.find(params[:user_id])
               if(@response == 1 and user != nil and user != '')
                 password_salt = BCrypt::Engine.generate_salt
@@ -135,7 +135,7 @@ def settings
                   return render :json => {:success => false, :message => "Invalid user id" }
               end
     elsif(params[:user_id] != '' and params[:email] !='' and params[:password] !='' and params[:FirstName] !='' and params[:LastName] !='' and params[:EobrNumber] !='' and params[:eobr_make_id] !='' and params[:eobr_model_id] !='' and params[:TruckNumber] !='' and params[:TruckModel] !='' and params[:truckmake] !='' and params[:TruckYear] !='' and params[:TruckOwner] !='' and params[:company_id] !='' and params[:tech_support] !='' and params[:Contact] !='' and params[:device_type] !='' and params[:device_type] =="iphone" and params[:device_token] !='' and params[:Language] != '')
-          @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], TruckMake: params[:truckmake], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], company_id: params[:CompanyName], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], plain_password: params[:password])
+          @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], TruckMake: params[:truckmake], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], company_id: params[:company_id], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], plain_password: params[:password])
             user = User.find(params[:user_id])
            if(@response == 1 and user != nil)
                 password_salt = BCrypt::Engine.generate_salt
@@ -150,7 +150,7 @@ def settings
                 return render :json => {:success => false, :message => "Invalid user id" }
             end
       else
-       return render :json => {:success => "false", :message => "Required perameters are missing in the request last"}
+       return render :json => {:success => "false", :message => "Required perameters are missing in the request"}
       end
 end
 
