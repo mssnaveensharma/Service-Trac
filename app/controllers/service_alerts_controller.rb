@@ -91,6 +91,7 @@ class ServiceAlertsController < ApplicationController
                                       @distance =  new_distance['distance']['text'].gsub(/\s.+/, '').to_i   #lotal distance in kms
                                       @time = new_distance['duration']['text'] #total time 
                                       @asst_time = new_distance['duration']['text'].gsub(/\s.+/, '').to_i
+                                      @asst_distance =  new_distance['distance']['text']
 
                               end 
                             end
@@ -114,7 +115,7 @@ class ServiceAlertsController < ApplicationController
                                       @status = "In Route"
                                     end
                                     @update_alert = ServiceAlert.where('id= ?', params[:alert_id]).update_all(service_center_id: params[:service_center_id], status: @status, asstimate_time: @asst_time, asstimate_date: @asst_time)  #update the alert status
-                                      return render :json => {:success => "true", :message => "Alert is updated succesfully", :status => @alert_status, :distance => @distance, :time => @time,:mystatus => @status} #return the response to api
+                                      return render :json => {:success => "true", :message => "Alert is updated succesfully", :status => @alert_status, :distance => @asst_distance, :time => @time,:mystatus => @status} #return the response to api
                           else
                               return render :json => {:success => "false", :message => "Location information is incorrect", :status => "null", :distance => "", :time => ""}  #if invalid lat,lan
                           end

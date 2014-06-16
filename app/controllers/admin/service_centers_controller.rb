@@ -20,7 +20,7 @@ class Admin::ServiceCentersController < ApplicationController
                               @distance_array.each do |distance| 
                                  @distance_count = distance['legs'] 
                                     @distance_count.each do |new_distance| 
-                                      @distance =  new_distance['distance']['text'].gsub(/\s.+/, '').to_i   #lotal distance in kms
+                                      @distance =  new_distance['distance']['text']   #lotal distance in kms
                                       @time = new_distance['duration']['text'] #total time 
                                       response = Hash.new
                                       response[:Name]=center.Name

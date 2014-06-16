@@ -540,6 +540,7 @@ label.margin-top
 .para-repeat p
 {
 	margin-bottom:10px;
+	word-wrap: break-word;
 }
 .mail-icon
 {
