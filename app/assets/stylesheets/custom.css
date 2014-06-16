@@ -659,6 +659,7 @@ label.error{
 }
 .flash {
 	color: #fff;	
+	margin-bottom: 10px !important;
 }
 a.table-link{
 	color: #000;
@@ -1167,4 +1168,32 @@ form.edit_alert
 }
 .header {
 	cursor: pointer;
+}
+.dercp-nt
+{
+	width: 100%;
+	display: inline-block;	
+	margin-bottom: 10px;
+}
+.dercp-nt label
+{
+	width: 100%;
+	margin-bottom: 5px;
+}
+.dercp-nt textarea
+{
+	border: 1px solid #ddd;
+	height: 120px;
+	resize:none;
+	min-width: 300px;
+	width: 54%;
+}
+.dercp-nt input
+{
+	width: auto;
+	padding:8px 15px;
+	background: #ED1C24;
+	color: #fff;
+	border: none;
+
 }

@@ -301,7 +301,7 @@ def add_notes_web
       end
     else
       respond_to do |format|
-            format.html { redirect_to '/notes?alert='+@alert, notice: 'Required perameters are missing' }
+            format.html { redirect_to '/notes?alert='+@alert, notice: 'Description is required' }
         end
     end
 end
