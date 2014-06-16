@@ -118,51 +118,40 @@ def settings
         return render :json => {:success => false, :message => "Invalid user id"}
       end
 
- elsif(params[:user_id] != '' and params[:email] !='' and params[:password] !='' and params[:FirstName] !='' and params[:LastName] !='' and params[:EobrNumber] !='' and params[:eobr_make_id] !='' and params[:eobr_model_id] !='' and params[:TruckNumber] !='' and params[:TruckModel] !='' and params[:truckmake] !='' and params[:TruckYear] !='' and params[:TruckOwner] !='' and params[:company_id] !='' and params[:tech_support] !='' and params[:Contact] !='' and params[:device_type] !='' and params[:device_token] !='' and params[:Language] != '')
-       if params[:device_type] == 'wp' 
-        if params[:wp_notification_url] != ''
+ elsif(params[:user_id] != '' and params[:email] !='' and params[:device_type] == 'wp' and params[:password] !='' and params[:FirstName] !='' and params[:LastName] !='' and params[:EobrNumber] !='' and params[:eobr_make_id] !='' and params[:eobr_model_id] !='' and params[:TruckNumber] !='' and params[:TruckModel] !='' and params[:truckmake] !='' and params[:TruckYear] !='' and params[:TruckOwner] !='' and params[:company_id] !='' and params[:tech_support] !='' and params[:Contact] !='' and params[:device_type] !='' and params[:device_token] !='' and params[:Language] != '')
+
           @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], TruckMake: params[:truckmake], company_id: params[:CompanyName], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], wp_notification_url: params[:wp_notification_url], plain_password: params[:password])
-          user = User.update_password(params[:email], params[:password])
-            
-             if(@response == 1 and user != nil and user != '')
-                
+          user = User.find(params[:user_id])
+              if(@response == 1 and user != nil and user != '')
                 password_salt = BCrypt::Engine.generate_salt
                 password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
-              
                   @update_pass = user.update_attributes(encrypted_password: password_hash)
-                  if @update_pass == 1
-                    return render :json => {:success => "true", :message => "Profile information is updated successfully"}
+                  if @update_pass == true
+                    return render :json => {:success => "true", :message => "Profile information is updated successfully", :response => user }
                   else
-                    return render :json => {:success => false, :message => "Current password is incorrect" }
+                    return render :json => {:success => false, :message => "Password is not updated" }
                   end
-              return render :json => {:success => "true", :message => "Profile information is updated successfully" }
-      else
-        return render :json => {:success => "false", :message => "Required fields are missing in the request"}
-      end
-    else
-        return render :json => {:success => "false", :message => "Device uri is required"}
-    end
-    else
+              else
+                  return render :json => {:success => false, :message => "Invalid user id" }
+              end
+    elsif(params[:user_id] != '' and params[:email] !='' and params[:password] !='' and params[:FirstName] !='' and params[:LastName] !='' and params[:EobrNumber] !='' and params[:eobr_make_id] !='' and params[:eobr_model_id] !='' and params[:TruckNumber] !='' and params[:TruckModel] !='' and params[:truckmake] !='' and params[:TruckYear] !='' and params[:TruckOwner] !='' and params[:company_id] !='' and params[:tech_support] !='' and params[:Contact] !='' and params[:device_type] !='' and params[:device_type] =="iphone" and params[:device_token] !='' and params[:Language] != '')
           @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], TruckMake: params[:truckmake], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], company_id: params[:CompanyName], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], plain_password: params[:password])
-            user = User.update_password(params[:email], params[:password])
-           if(@response == 1 and user != nil and user != '')
-
+            user = User.find(params[:user_id])
+           if(@response == 1 and user != nil)
                 password_salt = BCrypt::Engine.generate_salt
                 password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
-              
                   @update_pass = user.update_attributes(encrypted_password: password_hash)
-
-                  if @update_pass == 1
-                    return render :json => {:success => "true", :message => "Profile information is updated successfully", :pass => user }
+                  if @update_pass == true
+                    return render :json => {:success => "true", :message => "Profile information is updated successfully", :response => user }
                   else
-                    return render :json => {:success => false, :message => "Current password is incorrect", :pass => user }
+                    return render :json => {:success => false, :message => "Password is not updated"}
                   end
-              return render :json => {:success => "true", :message => "Profile information is updated successfully", :pass => user }
             else
-              return render :json => {:success => "false", :message => "Required perameters are mssing in the request"}
+                return render :json => {:success => false, :message => "Invalid user id" }
             end
-    end
-  end
+      else
+       return render :json => {:success => "false", :message => "Required perameters are missing in the request last"}
+      end
 end
 
 def recover_password

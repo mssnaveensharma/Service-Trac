@@ -1,3 +1,10 @@
+<%= javascript_include_tag "jquery.dataTables.js" %>
+<script type="text/javascript" language="javascript" class="init">
+$(document).ready(function() {
+  $('#ServiceAlerts').dataTable();
+ 
+} );
+  </script>
 <script type="text/javascript">
      $(document).ready(function(){
       //$('#table').tablesorter();
@@ -26,7 +33,7 @@
            
         </div>  
         <div class="table-responsive">
-          <table id="table" class="tablesorter table-striped table-bordered table-condensed indx-scrl-tbl" width="100%">
+          <table id="ServiceAlerts" class="tablesorter table-striped table-bordered table-condensed indx-scrl-tbl" width="100%">
               <thead>
                     <tr class="data-header">
                         <th><h4>DATE/TIME</h4></th>

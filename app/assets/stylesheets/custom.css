@@ -1161,3 +1161,9 @@ form.edit_alert
 {
 	
 }
+#ServiceAlerts_length, #ServiceAlerts_filter {
+	display: none;
+}
+.header {
+	cursor: pointer;
+}
