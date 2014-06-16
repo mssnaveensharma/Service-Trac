@@ -213,60 +213,7 @@ class AlertDetailsController < ApplicationController
     end
   end
 
-  def add_notes       #to add notes from app user
-    if params[:user_id] and params[:user_id] !='' and params[:description] and params[:description] != '' and params[:alert_id] and params[:alert_id] !=''
-      @chk_user = User.where(:id => params[:user_id])
-      @chk_alert = ServiceAlert.where(:id => params[:alert_id])
-      if @chk_user.length !=0 and @chk_alert !=0
-          if params[:sent_by] and params[:sent_by]=="WebUser"
-            @sentBy = "WebUser"
-          else
-            @sentBy = "AppUser"
-          end
-            @create = AlertNotes.create({
-                :user_id =>params[:user_id],
-                :alert_id =>params[:alert_id],
-                :description => params[:description],
-                :sent_by => @sentBy
-              });
-
-          respond_to do |format|
-              if @create.id != '' and @create.id != nil
-                format.html { redirect_to '/alert_details?id='+@alert, notice: 'Service center updated successfully' }
-                format.json { render json: @update.errors, status: :unprocessable_entity }
-              else
-                return render :json => {:success => false, :message => @create.errors}
-              end
-          end
-      else
-        return render :json => {:success => false, :message => "User not exists or invalid alert id"}
-      end
-    else
-      return render :json => {:success => false, :message => "Required perameters are missing"}
-    end
-  end
-
-  def get_notes #add notes by web user
-    if params[:alert_id] and params[:alert_id] != ''
-      notesArray = Array.new
-      @notes = AlertNotes.where(:alert_id => params[:alert_id]).limit(3)
-      if @notes.length != 0
-          @notes.each do |note|
-            response = Hash.new
-            response[:created_at]=note.created_at.strftime("%d/%m/%y %I:%M %p")
-            response[:description]=note.description
-            notesArray.push(response)
-          end
-        return render :json => {:success => true, :notes => notesArray}
-      else
-        return render :json => {:success => false, :message => "Currently the service haven't the notes"}
-      end
-    else
-      return render :json => {:success => false, :message => "Alert id is required"}
-    end
-  end
-
-  def notes  #add notes by web user
+  def add_notes
     if params[:user_id] and params[:user_id] !='' and params[:description] and params[:description] != '' and params[:alert_id] and params[:alert_id] !=''
       @chk_user = User.where(:id => params[:user_id])
       @chk_alert = ServiceAlert.where(:id => params[:alert_id])
@@ -295,6 +242,64 @@ class AlertDetailsController < ApplicationController
       return render :json => {:success => false, :message => "Required perameters are missing"}
     end
   end
+
+  def get_notes
+    if params[:alert_id] and params[:alert_id] != ''
+      notesArray = Array.new
+      @notes = AlertNotes.where(:alert_id => params[:alert_id]).limit(3)
+      if @notes.length != 0
+          @notes.each do |note|
+            response = Hash.new
+            response[:created_at]=note.created_at.strftime("%d/%m/%y %I:%M %p")
+            response[:description]=note.description
+            notesArray.push(response)
+          end
+        return render :json => {:success => true, :notes => notesArray}
+      else
+        return render :json => {:success => false, :message => "Currently the service haven't the notes"}
+      end
+    else
+      return render :json => {:success => false, :message => "Alert id is required"}
+    end
+  end
+
+def notes
+end
+
+def add_notes_web
+@alert =params[:alert_id]
+    if params[:user_id] and params[:user_id] !='' and params[:description] and params[:description] != '' and params[:alert_id] and params[:alert_id] !=''
+      @chk_user = User.where(:id => params[:user_id])
+      @chk_alert = ServiceAlert.where(:id => params[:alert_id])
+      if @chk_user.length !=0 and @chk_alert !=0
+          if params[:sent_by] and params[:sent_by]=="WebUser"
+            @sentBy = "WebUser"
+          else
+            @sentBy = "AppUser"
+          end
+            @create = AlertNotes.create({
+                :user_id =>params[:user_id],
+                :alert_id =>params[:alert_id],
+                :description => params[:description],
+                :sent_by => @sentBy
+              });
+
+          respond_to do |format|
+              if @create.id != '' and @create.id != nil
+                format.html { redirect_to '/alert_details?id='+@alert, notice: 'Alert was updated successfully' }
+                #format.json { render json: @update.errors, status: :unprocessable_entity }
+              else
+                 format.html { redirect_to '/notes?alert='+@alert, notice: 'Notes was not added' }
+                 format.json { render json: @update.errors, status: :unprocessable_entity }
+              end
+          end
+      else
+        return render :json => {:success => false, :message => "User not exists or invalid alert id"}
+      end
+    else
+      return render :json => {:success => false, :message => "Required perameters are missing"}
+    end
+end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_alert_detail

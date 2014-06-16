@@ -262,9 +262,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
       
       <li class="active">>> <a href="/">Home</a> >> <a href="/alert_details?id=<%= params[:id]%>">Alert Details</a></li>
     </ol>
-      <% if flash[:notice] %>
-        <p style="color:#fff"><%= flash[:notice]%></p>
-      <% end %>
+
     <div class="no-padding">
       <div class="col-sm-4 right-border sttc-hyt">
           <div class="top-search">
