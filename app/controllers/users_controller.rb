@@ -125,7 +125,7 @@ def settings
               if(@response == 1 and user != nil and user != '')
                 password_salt = BCrypt::Engine.generate_salt
                 password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
-                  @update_pass = user.update_attributes(encrypted_password: password_hash)
+                  @update_pass = user.update_attributes(password_hash: password_hash)
                   #@update_hash = user.update_attributes(password_hash: password_hash)
                   if @update_pass == true
                     return render :json => {:success => true, :message => "Profile information is updated successfully" }
@@ -141,7 +141,7 @@ def settings
            if(@response == 1 and user != nil)
                 password_salt = BCrypt::Engine.generate_salt
                 password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
-                  @update_pass = user.update_attributes(encrypted_password: password_hash)
+                  @update_pass = user.update_attributes(password_hash: password_hash)
                   #@update_hash = user.update_attributes(password_hash: password_hash)
                   if @update_pass == true
                     return render :json => {:success => "true", :message => "Profile information is updated successfully"}
