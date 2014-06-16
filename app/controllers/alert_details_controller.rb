@@ -252,6 +252,7 @@ class AlertDetailsController < ApplicationController
             response = Hash.new
             response[:created_at]=note.created_at.strftime("%d/%m/%y %I:%M %p")
             response[:description]=note.description
+            response[:sent_by]=note.sent_by
             notesArray.push(response)
           end
         return render :json => {:success => true, :notes => notesArray}
