@@ -267,7 +267,7 @@ def notes
 end
 
 def add_notes_web
-@alert =params[:alert_id]
+  @alert =params[:alert_id]
     if params[:user_id] and params[:user_id] !='' and params[:description] and params[:description] != '' and params[:alert_id] and params[:alert_id] !=''
       @chk_user = User.where(:id => params[:user_id])
       @chk_alert = ServiceAlert.where(:id => params[:alert_id])
@@ -294,10 +294,14 @@ def add_notes_web
               end
           end
       else
-        return render :json => {:success => false, :message => "User not exists or invalid alert id"}
+        respond_to do |format|
+            format.html { redirect_to '/notes?alert='+@alert, notice: 'Invalid alert id' }
+        end
       end
     else
-      return render :json => {:success => false, :message => "Required perameters are missing"}
+      respond_to do |format|
+            format.html { redirect_to '/notes?alert='+@alert, notice: 'Required perameters are missing' }
+        end
     end
 end
   private

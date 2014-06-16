@@ -103,6 +103,8 @@ Servicetrac::Application.routes.draw do
   match 'get-notes' => 'alert_details#get_notes', :via => :get, :defaults => { :format => 'json' }
 
   get 'notes' => 'alert_details#notes'
+
+  post 'add_notes_web' => 'alert_details#add_notes_web'
   #   get 'register' => 'welcome#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -10,6 +10,20 @@
 
     	<div class="srvc-cntr-fld">	
 			<div class="srvc-frm">	
+				<form method="post" action="/">
+					<div class="field">
+						<label>Description</label>
+						<input type="text" name="description">
+						<input type="hidden" name="alert_id" value="<%= params[:alert]%>">
+						<input type="hidden" name="sent_by" value="WebUser">
+						<% if user_signed_in? %>
+							<input type="hidden" name="user_id" value="<%= current_user.id%>">
+						<% end %>
+					</div>
+					<div class="field">
+						<input type="submit" name="commit" value="Add Note">
+					</div>
+				</form>
 			</div>
 		</div>
 </div>
