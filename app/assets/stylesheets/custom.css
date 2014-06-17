@@ -665,6 +665,10 @@ a.table-link{
 	color: #000;
 	text-decoration: none;
 }
+.breadcrumb a{
+	color: #A7A9AC;
+	text-decoration: none;
+}
 .new-com
 {
 	background:#B8B5B6;
