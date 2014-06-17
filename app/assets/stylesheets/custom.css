@@ -663,6 +663,7 @@ label.error{
 }
 a.table-link{
 	color: #000;
+	text-decoration: none;
 }
 .new-com
 {

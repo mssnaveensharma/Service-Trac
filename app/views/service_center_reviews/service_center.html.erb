@@ -175,7 +175,7 @@ $(document).ready(function(){
                              <% else %>
                                 <tr id="<%= service_center.id %>" class="data-row">
                              <% end %>
-                                <td><a id="<%= service_center.id %>" onclick="getCenter(this.id)" href="javascript:void(0)"><%= service_center.Name %></td>
+                                <td><a class="table-link" id="<%= service_center.id %>" onclick="getCenter(this.id)" href="javascript:void(0)"><%= service_center.Name %></td>
                                 <td><%= service_center.City %>/<%= service_center.State %></td>
                                 <td><%= service_center.Tel %></td>
                             </tr>
