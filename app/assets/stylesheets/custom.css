@@ -349,6 +349,7 @@ h4.bg-msg.bg-msg-pstn
 .right-border
 {
 	border-right:2px solid #545555;
+	max-height: 610px;
 }
 .list-group-item.itm-ques h4
 {
@@ -1248,9 +1249,9 @@ form.edit_alert
     width: 149px !important;
     word-wrap: break-word;
 }
-#ServiceAlertsD td:nth-child(2) {
-    max-width: 120px;
-    width: 149px !important;
+#ServiceAlertsD td:nth-child(3) {
+    max-width: 135px;
+    width: 135px !important;
     word-wrap: break-word;
     text-overflow: ellipsis;
 }
