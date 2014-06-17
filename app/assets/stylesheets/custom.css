@@ -1244,7 +1244,7 @@ form.edit_alert
 }
 
 #ServiceAlerts td:nth-child(2) {
-    max-width: 74px;
+    max-width: 110px;
     width: 149px !important;
     word-wrap: break-word;
 }
@@ -1264,4 +1264,7 @@ form.edit_alert
     vertical-align: top;
     width: 32%;
     word-wrap: break-word;
+}
+#notes {
+    min-height: 180px;
 }
