@@ -1247,3 +1247,14 @@ form.edit_alert
 }
 
 
+.list-group-item p {
+    display: inline-block;
+    font-size: 13px;
+    height: 23px;
+    margin: -3px 0 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    width: 32%;
+    word-wrap: break-word;
+}
