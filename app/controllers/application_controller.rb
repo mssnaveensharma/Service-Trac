@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
   
   def authenticate
-      if current_user!=nil && (current_user.Role=='admin' or current_user.Role=='DispatchUser')
+      if current_user!=nil && (current_user.Role=='admin' or current_user.Role=='CompanyUser')
        return true
       else
           authenticate_or_request_with_http_token do |token, options|
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
   
   def disallowdispatchuser
-      if current_user!=nil && (current_user.Role=='DispatchUser' ||current_user.Role=='AppUser')
+      if current_user!=nil && (current_user.Role=='CompanyUser' ||current_user.Role=='AppUser')
        
        redirect_to new_user_session_path ,:notice => 'You are not authorized to access this location'
       end 

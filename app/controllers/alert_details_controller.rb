@@ -8,6 +8,8 @@ class AlertDetailsController < ApplicationController
   # GET /alert_details.json
   def index
     @alert_details = ServiceAlert.where('(status != ? )', "cancel")
+    #@company = UsersServiceCenter.where(:user_id => current_user.id)
+    #@app_users = User.where('("Role" = ?)',"AppUser")
   end
 
   # GET /alert_details/1
@@ -246,7 +248,7 @@ class AlertDetailsController < ApplicationController
   def get_notes
     if params[:alert_id] and params[:alert_id] != ''
       notesArray = Array.new
-      @notes = AlertNotes.where(:alert_id => params[:alert_id]).limit(3)
+      @notes = AlertNotes.where(:alert_id => params[:alert_id]).limit(2).order("created_at DESC")
       if @notes.length != 0
           @notes.each do |note|
             response = Hash.new

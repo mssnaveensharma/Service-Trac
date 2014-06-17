@@ -177,34 +177,34 @@ end
 
 
 def create_user
-    if params[:FirstName] !='' and params[:LastName] !='' and params[:service_center_id] !='' and params[:user_id] and params[:user_id] !='' and params[:Contact] !=''
+    if params[:FirstName] !='' and params[:LastName] !='' and params[:company_id] !='' and params[:user_id] and params[:user_id] !='' and params[:Contact] !=''
         @chk_center = UsersServiceCenter.where(:user_id => params[:user_id])
         @update = User.where(:id => params[:user_id]).update_all(:FirstName =>params[:FirstName], :LastName => params[:LastName], :Contact =>params[:Contact])
         if @chk_center.length == 0
           @create = UsersServiceCenter.create({
-            :service_center_id => params[:service_center_id],
+            :company_id => params[:company_id],
             :user_id => params[:user_id],
             :status => "Active"
           })
 
               if @create.id !='' and @create.id != nil
-                 redirect_to '/admin/manage_dispatch_user', :notice => 'Users service center was successfully updated.'
+                 redirect_to '/admin/manage_company_user', :notice => 'Users service center was successfully updated.'
               else
-                redirect_to "/admin/manage_dispatch_user_edit?id="+params[:user_id], :notice => 'Users service center was successfully updated.'
+                redirect_to "/admin/edit_company_user?id="+params[:user_id], :notice => 'Users service center was successfully updated.'
           end
 
         else
-          @update = UsersServiceCenter.where(:user_id => params[:user_id]).update_all(service_center_id: params[:service_center_id])
+          @update = UsersServiceCenter.where(:user_id => params[:user_id]).update_all(company_id: params[:company_id])
 
               if(@update == 1)
-                redirect_to '/admin/manage_dispatch_user', :notice => 'User was updated succesfully.'
+                redirect_to '/admin/manage_company_user', :notice => 'User was updated succesfully.'
 
               else
-                redirect_to '/admin/manage_dispatch_user_edit', :notice => 'Required fields are missing.'
+                redirect_to '/admin/edit_company_user', :notice => 'Required fields are missing.'
                 end
      
         end            
-    elsif params[:FirstName] !='' and params[:LastName] !='' and params[:service_center_id] !='' and params[:Contact] !='' and params[:password] !='' and params[:email] !=''
+    elsif params[:FirstName] !='' and params[:LastName] !='' and params[:company_id] !='' and params[:Contact] !='' and params[:password] !='' and params[:email] !=''
       @response = User.create({
               :email=>params[:email],
               :password=>params[:password],
@@ -222,7 +222,7 @@ def create_user
               :company_id=>"1",
               :tech_support_id=>"1",
               :Language=>"1",
-              :Role=>"DispatchUser",
+              :Role=>"CompanyUser",
               :device_type=>"1",
               :device_token=>"1",
               :wp_notification_url=>"1",
@@ -230,20 +230,20 @@ def create_user
             });
               if(@response.id != nil)
                   @create = UsersServiceCenter.create({
-                    :service_center_id => params[:service_center_id],
+                    :company_id => params[:company_id],
                     :user_id => @response.id,
                     :status => "Active"
                   })
                end  
                   if(@response.id != nil and @response.id != '')
-                   redirect_to '/admin/manage_dispatch_user', :notice => 'New user created successfully'
+                   redirect_to '/admin/manage_company_user', :notice => 'New user created successfully'
                   else
-                      redirect_to '/admin/manage_dispatch_user_edit', :notice => 'Email is already taken'
+                      redirect_to '/admin/edit_company_user', :notice => 'Email is already taken'
                   end
                   #redirect_to '/admin/manage_dispatch_user_edit', :notice => 'New user created successfully'
         else
          
-           redirect_to '/admin/manage_dispatch_user_edit', :notice => 'Required fields are missing last.'
+           redirect_to '/admin/manage_company_user', :notice => 'Required fields are missing last.'
          
         end  
     

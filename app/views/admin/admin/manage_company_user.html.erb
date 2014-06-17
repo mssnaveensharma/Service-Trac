@@ -35,7 +35,7 @@
     <div class="container">
 
     <div class="serch-fld">
-          <label class="margin-top">Dipatch Users </label>
+          <label class="margin-top">Company Users </label>
            <span class="align-right">
                
             </span>
@@ -46,13 +46,13 @@
 	   <li class="active"> Dispatch User</li>
       </ol>-->
 	  <div class="add-dispatch-user">
-      	<a href="/admin/manage_dispatch_user_edit">Add New</a>
+      	<a href="/admin/edit_company_user">Add New</a>
 	  </div>
         <div class="table-responsive">
           <table class="table-striped table-bordered table-condensed" width="100%">
             <% @users.each do |usr| %>
            <tr class="data-row"><td>
-              <a style="color:#000" href="manage_dispatch_user_edit?id=<%= usr.id %>"><%= usr.FirstName %>&nbsp;<%= usr.LastName %></a>
+              <a style="color:#000" href="edit_company_user?id=<%= usr.id %>"><%= usr.FirstName %>&nbsp;<%= usr.LastName %></a>
               </td></tr>
             <% end %>
             </table>

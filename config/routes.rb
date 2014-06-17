@@ -80,9 +80,9 @@ Servicetrac::Application.routes.draw do
 
   post 'update_alert' => 'alert_details#update_alert'
 
-  match 'admin/manage_dispatch_user' => 'admin/admin#manage_dispatch_user',  :via => :get
+  match 'admin/manage_company_user' => 'admin/admin#manage_company_user',  :via => :get
 
-  match 'admin/manage_dispatch_user_edit' => 'admin/admin#manage_dispatch_user_edit',  :via => :get
+  match 'admin/edit_company_user' => 'admin/admin#edit_company_user',  :via => :get
   
   get 'edit_service_center' => 'alert_details#edit_service_center'
 
@@ -105,6 +105,10 @@ Servicetrac::Application.routes.draw do
   get 'notes' => 'alert_details#notes'
 
   post 'add_notes_web' => 'alert_details#add_notes_web'
+
+  get 'add_review' => 'service_center_reviews#add_review'
+
+  post 'update_review' => 'service_center_reviews#update_review'
   #   get 'register' => 'welcome#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

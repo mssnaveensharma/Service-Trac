@@ -46,6 +46,7 @@ $(document).ready(function(){
           if(center_id !='' && center_id != null && center_id != undefined ) {
             $("tr").removeClass("service-active-row");
             $("#"+id).addClass("service-active-row");
+            $("#add-review").attr("href","/add_review?id="+center_id);
             $.ajax({
               url:"/getCenter",
               type:"POST",
@@ -233,7 +234,7 @@ $(document).ready(function(){
             <ul class="list-group">
                <li class="list-ctnt">
                     <h4>Reviews</h4>
-                    <a> Add Reviews</a>
+                    <a href="" id="add-review"> Add Reviews</a>
                </li>
             </ul>
             <div id="reviews">

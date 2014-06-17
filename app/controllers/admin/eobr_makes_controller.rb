@@ -83,6 +83,6 @@ def getmodal      #get the modal when the make is selected
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_eobr_make_params
-      params.require(:admin_eobr_make).permit(:Name)
+      params.require(:admin_eobr_make).permit(:Name,:Contact)
     end
 end

@@ -853,6 +853,17 @@ a.sign-up-lnk
 	-ms-border-radius:5px;
 	border:1px solid #ddd;
 }
+.edit-cmp-form select.rvw-nm-slct
+{
+	width:75%;
+	padding:7px 8px;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	margin-bottom:10px;
+	-ms-border-radius:5px;
+	border:1px solid #ddd;
+}
+
 .edit-cmp-form input.comp-nm-txt
 {
 	width:100%;
@@ -1168,7 +1179,7 @@ form.edit_alert
 {
 	
 }
-#ServiceAlerts_length, #ServiceAlerts_filter {
+#ServiceAlerts_length, #ServiceAlerts_filter, #ServiceAlerts_info {
 	display: none;
 }
 .header {
@@ -1202,3 +1213,15 @@ form.edit_alert
 	border: none;
 
 }
+#not-allowed {
+	text-align: center;
+	color: #fff;
+	display: none;
+}
+.sorting, .sorting_asc, .sorting_desc {
+	cursor: pointer;
+}
+/*#notes {
+    max-height: 179px;
+    min-height: 179px;
+}*/

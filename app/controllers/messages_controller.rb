@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
     @messages = Message.find(:all, :order => "created_at DESC")
     @messages_l = @messages.length
     @message = Message.new
-    @users = User.where(:Role => "AppUser")
+    @users = User.all
     @service_centers = Admin::ServiceCenter.all
       arr = Array.new
          @messages.each do |message| 

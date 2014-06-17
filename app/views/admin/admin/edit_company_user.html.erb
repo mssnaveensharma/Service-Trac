@@ -23,7 +23,7 @@ $(document).ready(function () {
        "email": {required:true,email:true},
        "password": "required",
        "Contact": {required:true,number:true,maxlength: 15},
-       "service_center_id": "required"
+       "company_id": "required"
       }});
   }); 
 </script>
@@ -38,7 +38,7 @@ $(document).ready(function () {
            
         </div>  
         <ol class="breadcrumb">
-      <li class="active">>> <a href="/admin"> Dashboard</a> >> </li><li><a href="/admin/manage_dispatch_user"> Dispatch Users</a> >> </li><li> Add/Update</li>
+      <li class="active">>> <a href="/admin"> Dashboard</a> >> </li><li><a href="/admin/manage_company_user"> Company Users</a> >> </li><li> Add/Update</li>
       </ol>
 	  <div class="dsptch-usr-fld">
 	  	<div class="dsptch-usr-frm">
@@ -50,20 +50,20 @@ $(document).ready(function () {
                 <% @email = rara.email %>
                 <% @contact = rara.Contact %>
              <% end %>
-        <% @selected_center = UsersServiceCenter.where(:user_id => params[:id]) %>
-             <% @selected_center.each do |selected| %>   
-                <% @selected_id =  selected.service_center_id %>
+        <% @selected_company = UsersServiceCenter.where(:user_id => params[:id]) %>
+             <% @selected_company.each do |selected| %>   
+                <% @selected_id =  selected.company_id %>
              <% end %>
             
                 <form method="POST" class="create_dispatch_user" action="/create_user">
                 <input type="hidden" name="user_id" value="<%= params[:id] %>">
 				<div class="form-group">
                 <label>FirstName</label>
-                    <input type="text" name="First Name" value="<%= @firsname %>">
+                    <input type="text" name="FirstName" value="<%= @firsname %>">
 				</div>	
 				<div class="form-group">
                 <label>LastName</label>
-                    <input type="text" name="Last Name" value="<%= @lasname %>">
+                    <input type="text" name="LastName" value="<%= @lasname %>">
 				</div>
 				<div class="form-group">	
                 <label>Email</label>
@@ -79,20 +79,20 @@ $(document).ready(function () {
 					</div>
 				<div class="form-group">	
                 <label>Service Center</label>
-                    <select class="dspch-slct" name="service_center_id">
-                        <option value="">Select Service Center</option>
-                        <% @service_centers.each do |service_center| %>
-                            <% if(service_center.id == @selected_id) %>
+                    <select class="dspch-slct" name="company_id">
+                        <option value="">Select Company</option>
+                        <% @companies.each do |company| %>
+                            <% if(company.id == @selected_id) %>
                                 <% @selected = "selected=selected"%>
                             <% else %>
                                 <% @selected = "" %>
                             <% end %>
-                            <option value="<%= service_center.id %>" <%= @selected%>><%= service_center.Name %></option>
+                            <option value="<%= company.id %>" <%= @selected%>><%= company.CompanyName %></option>
                         <% end %>
                     </select>
 				</div>	
 				<div class="actions"> 
-                	<input class="edit-btn-comp" type="submit" name="commit" value="Update"><a class="back-btn-comp " href="/admin/manage_dispatch_user">Back</a>
+                	<input class="edit-btn-comp" type="submit" name="commit" value="Update"><a class="back-btn-comp " href="/admin/manage_company_user">Back</a>
 				</div>
                 </form>
         </div>

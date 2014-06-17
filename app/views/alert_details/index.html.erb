@@ -1,3 +1,10 @@
+<%= javascript_include_tag "jquery.dataTables.js" %>
+<script type="text/javascript" language="javascript" class="init">
+$(document).ready(function() {
+  $('#ServiceAlerts').dataTable();
+ 
+} );
+  </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
  <script type="text/javascript">
 function GetParameterValues(param) {
@@ -253,16 +260,18 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
     <div class="container main-padding">
 
-    <div class="serch-fld">
+        <div class="serch-fld">
           <label>Service Alert </label>
         </div>  
     
-        <div>
         <ol class="breadcrumb">
       
       <li class="active">>> <a href="/">Home</a> >> <a href="/alert_details?id=<%= params[:id]%>">Alert Details</a></li>
     </ol>
 
+    <h4 id="not-allowed">You are not authorized to view this page</h4>
+
+<div id="all-page">
     <div class="no-padding">
       <div class="col-sm-4 right-border sttc-hyt">
           <div class="top-search">
@@ -275,7 +284,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
             <div class="table-responsive">
             <%# @time = Time.now + 5.hours %>
             <%#=debug Time.parse('1 day 12 hours') %>
-              <table class="table-striped table-bordered table-condensed servc-msg-scroll" width="100%">
+              <table id="ServiceAlerts" class="table-striped table-bordered table-condensed servc-msg-scroll" width="100%">
               <thead>
                     <tr class="data-header">
                         <th><h4>DATE/TIME</h4></th>
@@ -285,55 +294,89 @@ google.maps.event.addDomListener(window, 'load', initialize);
                 </thead>
                 <tbody>
                   <% if current_user.Role == "admin" %>
+                        
                           <% @alert_details.each do |alert| %>
+                        
                           <% @driver = User.where(:id => alert.user_id) %>  
+                        
                           <% if @driver.length != 0 and alert.status != 'Complete' %>
                                                  
                           <% if(params[:id] == alert.id.to_s) %>
+                        
                           <tr class="active-row data-row" id="<%= alert.id %>">
+                        
                           <% else %>
+                        
                           <tr id="<%= alert.id %>" class="data-row">
+                        
                           <% end %>
+                        
                             <td><%= alert.created_at.strftime("%d/%m/%y %I:%M %p") %></td>
                             
                                   <% @driver.each do |truck_info| %>
+                        
                                     <td><%= truck_info.TruckNumber %></td>
+                        
                                     <td><a class="table-link" id="<%= alert.id %>" onclick="calcRoute(this.id)" href="javascript:void(0)"><%= truck_info.FirstName %>&nbsp;<%= truck_info.LastName %></a></td>
+                        
                                   <% end %>
 
                           </tr>
                         <% end %>
+                        
                         <% end %>
                      
                   <% else %>
 
-                        <% @alert_details.each do |alert| %>
-                          <% @driver = User.where(:id => alert.user_id) %>  
-                          <% if @driver.length != 0 and alert.status != 'Complete' %>
-                          <% @user_center = UsersServiceCenter.where(:user_id => current_user.id)%>
-                          <% @user_center.each do |user_service_Center| %>
-                          <%#=debug user_service_Center.service_center_id%>
-                          <%#=debug alert.service_center_id%>
-                          <% if user_service_Center.service_center_id==alert.service_center_id%>
-                          <% if(params[:id] == alert.id.to_s) %>
-                          <tr class="active-row" id="<%= alert.id %>">
-                          <% else %>
-                          <tr id="<%= alert.id %>">
-                          <% end %>
-                            <td><%= alert.created_at.strftime("%d/%m/%y %I:%M %p") %></td>
+                        <% @alert_details.each do |alert| %> <!-- loop the service alerts -->
+ 
+                          <% @driver = User.where(:id => alert.user_id) %>  <!-- get the user info from users table -->
+
+                          <% if @driver.length != 0 and alert.status != 'Complete' %> <!-- ignore the alerts which are completed -->
+                          
+                            <%@driver.each do |driver_company| %><!-- get the company selected by user -->
+                          
+                              <% @selected_company = driver_company.company_id %>
+                          
+                            <% end %>
+
+                          <% @user_companies = UsersServiceCenter.where(:user_id => current_user.id)%><!-- get the company assigned to logged in user -->
+                          
+                            <% @user_companies.each do |user_company| %> <!-- if driver selected company is equal to logged user assigned company -->
+ 
+                              <% if user_company.company_id.to_i==@selected_company.to_i%>
+                          
+                                <% if(params[:id] == alert.id.to_s) %> <!--make seleted row active-->
+                          
+                                  <tr class="active-row" id="<%= alert.id %>">
+                          
+                                <% else %>
+                          
+                                  <tr id="<%= alert.id %>">
+                          
+                                <% end %>
+                          
+                                    <td><%= alert.created_at.strftime("%d/%m/%y %I:%M %p") %></td>
                             
                                   <% @driver.each do |truck_info| %>
+                          
                                     <td><%= truck_info.TruckNumber %></td>
+                          
                                     <td><a class="table-link" id="<%= alert.id %>" onclick="calcRoute(this.id)" href="javascript:void(0)"><%= truck_info.FirstName %>&nbsp;<%= truck_info.LastName %></a></td>
+                          
                                   <% end %>
 
-                          </tr>
-                        <% end %>
-                        <% end %>
-                        <% end %>
-                        <% end %>
+                                    </tr>
 
-                        <% end %>
+                               <% end %>
+                        
+                              <% end %>
+                        
+                            <% end %> <!--end the user compny loop-->
+                        
+                          <% end %><!--end the length if-->
+
+                        <% end %><!--end alert loop-->
                 </tbody>
             </table>
             </div>
@@ -363,7 +406,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                     <h4>Current Location</h4>
                     <a id="" class="refresh" onclick="calcRoute(this.id)" href="javascript:void(0);"> </a>
                </li>
-              <div id="map-canvas" style="width:320px;height:264px;"></div>
+              <div id="map-canvas" style="width:317px;height:258px;"></div>
 
             </ul>
         </div>
@@ -431,9 +474,47 @@ google.maps.event.addDomListener(window, 'load', initialize);
         
       <!-- Main component for a primary marketing message or call to action -->
       
-
+        </div><!--/all-page-->
     </div> <!-- /container -->
 
+<% @alerts = ServiceAlert.where(:id => params[:id]) %>
+  
+  <% if @alerts.length !=0 %>
+  
+    <% @alerts.each do |alert| %>
+      
+      <% @drivers = User.where(:id => alert.user_id) %>
+              
+        <% @drivers.each do |driver|%>
+
+          <% $driver_company = driver.company_id %>
+        
+          <% @user_company = UsersServiceCenter.where(:user_id => current_user.id) %>
+
+            <% @user_company.each do |assigned_company| %>
+              
+              <% $user_company_id = assigned_company.company_id %>
+
+            <% if $driver_company.to_i != $user_company_id.to_i %>
+              <script type="text/javascript">
+              $("#all-page").hide();
+              $("#not-allowed").show();
+              </script>
+            <% end %>
+
+
+            <% end %>
+
+         <% end %>
+
+    <% end %>
+  
+  <% else %>
+    <script type="text/javascript">
+    $("#all-page").hide();
+    $("#not-allowed").show();
+    </script>
+ <% end %>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -441,13 +522,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <%=javascript_include_tag "bootstrap.min.js"%>
 <%= javascript_include_tag "jquery.tablesorter.js" %>
-<%#= javascript_include_tag "jquery.tablesorter.pager.js" %>
   <script type="text/javascript">
   var noconflict = $.noConflict();
   noconflict(function() {
     noconflict("table")
       .tablesorter({widthFixed: true, widgets: ['zebra']})
-      //.tablesorterPager({container: noconflict("#pager")});
   });
   </script>
 

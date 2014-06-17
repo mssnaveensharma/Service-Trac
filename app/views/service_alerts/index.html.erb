@@ -1,7 +1,7 @@
-<%#= javascript_include_tag "jquery.dataTables.js" %>
+<%= javascript_include_tag "jquery.dataTables.js" %>
 <script type="text/javascript" language="javascript" class="init">
 $(document).ready(function() {
-  //$('#ServiceAlerts').dataTable();
+  $('#ServiceAlerts').dataTable();
  
 } );
   </script>
@@ -121,12 +121,15 @@ $(document).ready(function() {
                       <tr>
                         <% @drivers = User.where('("Role" = ? AND id = ? )', "AppUser",service_alert.user_id) %>
                             <% if(@drivers.length != 0) and service_alert.status != 'Complete' %>
-                            <% @user_center = UsersServiceCenter.where(:user_id => current_user.id)%>
-                          <% @user_center.each do |user_service_Center| %>
+                                <%@drivers.each do |driver_company| %>
+                                  <% @selected_company = driver_company.company_id %>
+                                <% end %>
+                            <% @user_companies = UsersServiceCenter.where(:user_id => current_user.id)%>
+                          <% @user_companies.each do |user_company| %>
                           <%#=debug user_service_Center.service_center_id%>
                           <%#=debug service_alert.service_center_id%>
-                          <% if user_service_Center.service_center_id==service_alert.service_center_id%>
-                              <% end %>
+                          <% if user_company.company_id.to_i==@selected_company.to_i%>
+                             
                             <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></a></td>
                               <% @drivers.each do |driver| %>
                                <%#=debug service_alert %>
@@ -182,6 +185,7 @@ $(document).ready(function() {
                                 <td></td>
                                 <td></td>
                             <% end %>
+                             <% end %>
                       </tr>
                     <% end %>
                   <% end %>
@@ -208,14 +212,14 @@ $(document).ready(function() {
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <%=javascript_include_tag "bootstrap.min.js"%>
-<%= javascript_include_tag "jquery.tablesorter.js" %>
-<%#= javascript_include_tag "jquery.tablesorter.pager.js" %>
+ 
+
   <script type="text/javascript">
   var noconflict = $.noConflict();
   noconflict(function() {
     noconflict("table")
       .tablesorter({widthFixed: true, widgets: ['zebra']})
-      //.tablesorterPager({container: noconflict("#pager")});
+  //    .tablesorterPager({container: noconflict("#pager")});
   });
   </script>
 

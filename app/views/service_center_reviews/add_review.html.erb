@@ -1,0 +1,40 @@
+<div class="container">
+   <div class="serch-fld">
+          <label class="margin-top">Add/Update User </label>
+           <span class="align-right">
+              <!-- <input class="form-control" type="search">
+                <input value="" class="search-submit" type="submit" /> -->
+            </span>
+           
+        </div>  
+        <ol class="breadcrumb">
+      <li class="active">>> <a href="/"> Home</a> >> </li><li><a href="/service_center?id=<%= params[:id]%>"> Service Centers</a> >> </li><li> Add Review</li>
+      </ol>
+	  <div class="dsptch-usr-fld">
+	  	<div class="edit-cmp-form" style="margin-bottom: 20px;">
+          <form method="POST" class="create_dispatch_user" action="/update_review">
+              <input type="hidden" name="user_id" value="<%= current_user.id %>">
+              <input type="hidden" name="service_center_id" value="<%= params[:id] %>">
+                <div class="form-group">
+                  <label>Ratings</label>
+                    <select class="slct rvw-nm-slct" name="ratings">
+                      <option value="">No Ratings</option>
+                      <option value="1">One Star</option>
+                      <option value="2">Two Star</option>
+                      <option value="3">Three Star</option>
+                      <option value="4">Four Star</option>
+                      <option value="5">Five Star</option>
+                    </select>
+                </div>  
+               
+                <div class="dercp-nt">  
+                  <label>Comments</label>
+                    <textarea name="comments" ></textarea>
+               </div>
+
+               <div class="actions">
+                  <input type="submit" name="commit" value="Add Review">
+               </div>
+      </div>
+    </div>
+</div>

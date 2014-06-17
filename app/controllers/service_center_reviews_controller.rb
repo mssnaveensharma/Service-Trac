@@ -164,6 +164,47 @@ class ServiceCenterReviewsController < ApplicationController
       return render :json => {:success => false, :message => "Required fields are missing"}
     end
   end
+
+  def add_review
+
+  end
+
+  def update_review
+    @center_id = params[:service_center_id]
+      if params[:service_center_id] and params[:service_center_id] != '' and params[:user_id] and params[:user_id] !='' and params[:ratings] and params[:ratings] !='' and params[:comments] and params[:comments] !=''
+        @ext_review = ServiceCenterReview.where(:user_id => params[:user_id]).where(:service_center_id => params[:service_center_id])
+          if @ext_review.length !=0
+            @update = ServiceCenterReview.where(:user_id => params[:user_id]).where(:service_center_id => params[:service_center_id]).update_all(ratings: params[:ratings], comments: params[:comments])
+              respond_to do |format|
+                format.html { redirect_to "/service_center?id="+@center_id, notice: 'Service center review was successfully updated.' }
+                format.json { head :no_content }
+              end
+          else
+            @create = ServiceCenterReview.create({
+                :service_center_id => params[:service_center_id],
+                :user_id => params[:user_id],
+                :ratings => params[:ratings],
+                :comments => params[:comments]
+              });
+                if @create.id !='' and @create.id != nil
+                  respond_to do |format|
+                    format.html { redirect_to "/service_center?id="+@center_id, notice: 'Service center review was added successfully.' }
+                    format.json { head :no_content }
+                  end
+                else
+                  respond_to do |format|
+                    format.html { redirect_to "/add_review?id="+@center_id, notice: 'Review was not added to service center' }
+                    format.json { head :no_content }
+                  end
+                end
+          end
+      else
+        respond_to do |format|
+            format.html { redirect_to "/add_review?id="+@center_id, notice: 'Required fields are missing' }
+            format.json { head :no_content }
+        end
+      end       
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_service_center_review

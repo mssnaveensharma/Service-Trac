@@ -5,12 +5,12 @@ class Admin::AdminController < ApplicationController
     
   end
 
-  def manage_dispatch_user
-     @users = User.where('("Role" = ? )', "DispatchUser")
+  def manage_company_user
+     @users = User.where('("Role" = ? )', "CompanyUser")
   end
 
-  def manage_dispatch_user_edit
-     @service_centers = Admin::ServiceCenter.all
+  def edit_company_user
+     @companies = Admin::Company.all
   end
 
 end
