@@ -44,6 +44,7 @@ $(document).ready(function(){
     function getCenter(id) {
         var center_id = id;
           if(center_id !='' && center_id != null && center_id != undefined ) {
+            $("#loader").show();
             $("tr").removeClass("service-active-row");
             $("#"+id).addClass("service-active-row");
             $("#add-review").attr("href","/add_review?id="+center_id);
@@ -123,10 +124,11 @@ $(document).ready(function(){
                                     
                                     $("#reviews").append(reviewsData);
                                  }
-                            }); 
+                              }); 
                             }else{
                                 $("#reviews").append("<div class=reviews-cntnt><p>Serice center currently has no reviews</p></div>");
                             }
+                            $("#loader").hide();
                         },error: function(xhr,txt){
                             console.log("Error code is ",xhr.status);            
                         }

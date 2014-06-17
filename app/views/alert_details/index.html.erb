@@ -92,6 +92,7 @@ $(function () {
 function calcRoute(id) {
   var alert_id = id;
   if(alert_id !='' && alert_id != null && alert_id != undefined ) {
+    $("#loader").show();
     $(".edit_alert").attr("href","/edit_alert?id="+alert_id);
     $("#service_ticket").attr("href","/service_ticket?id="+alert_id);
     $(".refresh").attr("id",alert_id);
@@ -190,6 +191,7 @@ function calcRoute(id) {
             });
         });
         //console.log(route.lan);
+        $("#loader").hide();
       },error:function(xhr,txt){
         console.log("Error code is ",xhr.status);
       }
