@@ -1292,3 +1292,26 @@ form.edit_alert
     text-indent: 1000px;
     width: 25px;
 }
+#ServiceAlertsD_paginate {
+	overflow: hidden;
+	margin-top: 5px;
+}
+#ServiceAlertsD_paginate span {
+	display: none;
+}
+#ServiceAlertsD_previous {
+    background: url(up_arrow.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #000;
+    display: inline-block;
+    height: 16px;
+    text-indent: 1000px;
+    width: 25px;
+}
+#ServiceAlertsD_next {
+    background: url(down_arrow.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #000;
+    display: inline-block;
+    height: 16px;
+    text-indent: 1000px;
+    width: 25px;
+}
