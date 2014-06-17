@@ -1,7 +1,7 @@
 <%= javascript_include_tag "jquery.dataTables.js" %>
 <script type="text/javascript" language="javascript" class="init">
 $(document).ready(function() {
-  $('#ServiceAlerts').dataTable();
+  $('#ServiceAlertsD').dataTable();
  
 } );
   </script>
@@ -286,7 +286,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
             <div class="table-responsive">
             <%# @time = Time.now + 5.hours %>
             <%#=debug Time.parse('1 day 12 hours') %>
-              <table id="ServiceAlerts" class="table-striped table-bordered table-condensed servc-msg-scroll" width="100%">
+              <table id="ServiceAlertsD" class="table-striped table-bordered table-condensed servc-msg-scroll" width="100%">
               <thead>
                     <tr class="data-header">
                         <th><h4>DATE/TIME</h4></th>

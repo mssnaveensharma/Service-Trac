@@ -1182,6 +1182,9 @@ form.edit_alert
 #ServiceAlerts_length, #ServiceAlerts_filter, #ServiceAlerts_info {
 	display: none;
 }
+#ServiceAlertsD_length, #ServiceAlertsD_filter, #ServiceAlertsD_info {
+	display: none;
+}
 .header {
 	cursor: pointer;
 }
@@ -1245,7 +1248,11 @@ form.edit_alert
     width: 149px !important;
     word-wrap: break-word;
 }
-
+#ServiceAlertsD td:nth-child(2) {
+    max-width: 74px;
+    width: 149px !important;
+    word-wrap: break-word;
+}
 
 .list-group-item p {
     display: inline-block;
