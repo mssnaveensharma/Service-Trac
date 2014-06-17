@@ -13,7 +13,7 @@
 				<form method="post" action="/add_notes_web">
 					<div class="dercp-nt">
 						<label>Description</label>
-						<textarea></textarea>
+						<textarea name="description"></textarea>
 						<input type="hidden" name="alert_id" value="<%= params[:alert]%>">
 						<input type="hidden" name="sent_by" value="WebUser">
 						<% if user_signed_in? %>
