@@ -1249,9 +1249,10 @@ form.edit_alert
     word-wrap: break-word;
 }
 #ServiceAlertsD td:nth-child(2) {
-    max-width: 74px;
+    max-width: 120px;
     width: 149px !important;
     word-wrap: break-word;
+    text-overflow: ellipsis;
 }
 
 .list-group-item p {
