@@ -1316,3 +1316,9 @@ form.edit_alert
     text-indent: 1000px;
     width: 25px;
 }
+#ServiceAlertsD tr td {
+    height: 21px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+}

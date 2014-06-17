@@ -1,3 +1,16 @@
+<%= javascript_include_tag "jPages.js" %>
+  <script>
+  $(function(){
+    $("div.holder").jPages({
+      containerID : "itemContainer",
+      previous : "←",
+      next : "→",
+      perPage : 20,
+      delay : 20
+    });
+  });
+  </script>
+
  <script type="text/javascript">
 function GetParameterValues(param) {
 var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -259,7 +272,7 @@ $(document).ready(function(){
                 <p> I had one of the best experience at a service center when visiting SelectComm. They really went over the top to ensure i was back on the road in no time.</p>
             </div> -->
             </div>
-            
+            <div class="holder"></div>
              
         </div>
     </div>
