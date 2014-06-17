@@ -1235,3 +1235,15 @@ form.edit_alert
     z-index: 999;
     display: none;
 }
+
+#ServiceAlerts th:nth-child(5) {
+    width: 186px !important;
+}
+
+#ServiceAlerts td:nth-child(2) {
+    max-width: 74px;
+    width: 149px !important;
+    word-wrap: break-word;
+}
+
+
