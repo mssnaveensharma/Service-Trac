@@ -1269,3 +1269,26 @@ form.edit_alert
 #notes {
     min-height: 180px;
 }
+#ServiceAlerts_paginate {
+	overflow: hidden;
+	margin-top: 5px;
+}
+#ServiceAlerts_paginate span {
+	display: none;
+}
+#ServiceAlerts_previous {
+    background: url(up_arrow.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #000;
+    display: inline-block;
+    height: 16px;
+    text-indent: 1000px;
+    width: 25px;
+}
+#ServiceAlerts_next {
+    background: url(down_arrow.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #000;
+    display: inline-block;
+    height: 16px;
+    text-indent: 1000px;
+    width: 25px;
+}
