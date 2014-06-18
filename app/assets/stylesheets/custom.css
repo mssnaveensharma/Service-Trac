@@ -1322,3 +1322,6 @@ form.edit_alert
     text-overflow: ellipsis;
     word-wrap: normal;
 }
+#ReviewContainer {
+	padding-left: 0px;
+}
