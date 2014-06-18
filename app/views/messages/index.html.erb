@@ -81,7 +81,8 @@
 		<div class="para-content">
 		<%#=debug @messages_l%>
 		<%#=debug @new_users.length %>
-			<% @new_users.each do |message| %>
+		<% @new = @new_users.sort_by{|e| e[:from]} %>
+			<% @new.each do |message| %>
 					<div class="para-repeat">
 						<!-- <p><%#= message[:id]  %></p> -->
 						<h4><%= message[:date] %></h4>

@@ -19,6 +19,8 @@ class MessagesController < ApplicationController
                   @truck = user.TruckNumber
                       response = Hash.new
                       response[:id]=message.id
+                      response[:from]=message.FromUserId
+                      response[:to]=message.ToUserId
                       response[:truck]=@truck
                       response[:date]=message.created_at
                       response[:name]=@name
@@ -29,6 +31,8 @@ class MessagesController < ApplicationController
                   @truck = user.TruckNumber
                       response = Hash.new
                       response[:id]=message.id
+                      response[:from]=message.FromUserId
+                      response[:to]=message.ToUserId
                       response[:truck]=@truck
                       response[:date]=message.created_at
                       response[:name]=@name
