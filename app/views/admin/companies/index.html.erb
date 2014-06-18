@@ -1,3 +1,10 @@
+<%= javascript_include_tag "jquery.dataTables.js" %>
+<script type="text/javascript" language="javascript" class="init">
+$(document).ready(function() {
+  $('#company').dataTable();
+ 
+} );
+  </script>
  <script type="text/javascript">
  
 
@@ -47,7 +54,7 @@
       <li class="active">>> <a href="/admin">Dashboard</a> >></li><li> <a href="/admin/companies"> Companies </a></li>
     </ol> 
 <div class="table-responsive">
-   <table class="table-striped table-bordered table-condensed" width="100%"> 
+   <table id="company" class="table-striped table-bordered table-condensed" width="100%"> 
   <thead>
     <tr class="data-header">
       <th width="85%">Company Name</th>
@@ -78,3 +85,6 @@
 <br>
 
 </div>
+  <% if @admin_companies.length <= 10 %>
+    <style type="text/css">#company_paginate{display:none;}</style>
+  <% end %>

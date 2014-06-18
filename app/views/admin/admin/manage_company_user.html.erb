@@ -1,6 +1,12 @@
+<%= javascript_include_tag "jquery.dataTables.js" %>
+<script type="text/javascript" language="javascript" class="init">
+$(document).ready(function() {
+  $('#company').dataTable();
+ 
+} );
+  </script>
  <script type="text/javascript">
  
-
     $(document).ready(function(){
 
       $('#table').tablesorter();
@@ -41,12 +47,12 @@
             </span>
            
         </div>  
-              <ol class="breadcrumb">
+    <ol class="breadcrumb">
       <li class="active">>> <a href="/admin">Dashboard</a> >></li><li> <a href="/admin/manage_company_user"> Company Users </a></li>
     </ol> 
 
         <div class="table-responsive">
-          <table class="table-striped table-bordered table-condensed" width="100%">
+          <table id="company" class="table-striped table-bordered table-condensed" width="100%">
             <% @users.each do |usr| %>
            <tr class="data-row"><td>
               <a style="color:#000" href="edit_company_user?id=<%= usr.id %>"><%= usr.FirstName %>&nbsp;<%= usr.LastName %></a>
@@ -59,4 +65,6 @@
             </div>
         </div>
       </div>
-
+  <% if @users.length <= 10 %>
+    <style type="text/css">#company_paginate{display:none;}</style>
+  <% end %>

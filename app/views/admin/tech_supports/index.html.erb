@@ -1,3 +1,10 @@
+<%= javascript_include_tag "jquery.dataTables.js" %>
+<script type="text/javascript" language="javascript" class="init">
+$(document).ready(function() {
+  $('#company').dataTable();
+ 
+} );
+  </script>
   <script type="text/javascript">
  
 
@@ -45,7 +52,7 @@
       <li class="active">>> <a href="/admin">Dashboard</a> >></li><li> <a href="/admin/tech_supports"> Driver Assistance </a></li>
     </ol> 
  <div class="table-responsive">
-          <table class="table-striped table-bordered table-condensed" width="100%">
+          <table id="company" class="table-striped table-bordered table-condensed" width="100%">
   <thead>
     <tr class="data-header">
       <th width="45%">Date/Time</th>
@@ -71,3 +78,6 @@
 <%= link_to 'New Tech support', new_admin_tech_support_path %>
 </div>
 </div>
+  <% if @admin_tech_supports.length <= 10 %>
+    <style type="text/css">#company_paginate{display:none;}</style>
+  <% end %>
