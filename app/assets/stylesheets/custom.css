@@ -1328,3 +1328,6 @@ form.edit_alert
 	margin-left: 5px;
 	cursor: pointer;
 }
+#error_explanation li {
+	text-align: center;
+}
