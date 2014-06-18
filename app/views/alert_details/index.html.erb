@@ -190,7 +190,11 @@ function calcRoute(id) {
                             delay : 20
                           });
                         });
-                        $(".holder-note").css("display","block");
+                          if (NotesLen <= 2) {
+                            $(".holder-note").css("display","none");
+                          }else{
+                            $(".holder-note").css("display","block");
+                          }
                 }else{
                   var noNotes = '<li class="list-notes"><span class="notes-cntnt"><strong>No notes for selected alert</strong></span></li>';
                   $("#notes").html('');
