@@ -1324,6 +1324,7 @@ form.edit_alert
 }
 #ReviewContainer {
 	padding-left: 0px;
+	min-height: 615px;
 }
 .holder a {
     margin-left: 5px;
