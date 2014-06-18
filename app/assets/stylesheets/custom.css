@@ -1325,3 +1325,6 @@ form.edit_alert
 #ReviewContainer {
 	padding-left: 0px;
 }
+.holder a {
+    margin-left: 5px;
+}
