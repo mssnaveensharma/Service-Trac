@@ -1329,5 +1329,7 @@ form.edit_alert
 	cursor: pointer;
 }
 #error_explanation li {
-	text-align: center;
+	color: #FF0000;
+    font-size: 16px;
+    text-align: center;
 }
