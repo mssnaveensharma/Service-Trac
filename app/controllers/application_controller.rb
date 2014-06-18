@@ -35,4 +35,9 @@ class ApplicationController < ActionController::Base
        return
      end
  end
+
+ def local_request?
+   false
+ end
+
 end
