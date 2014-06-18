@@ -1,3 +1,16 @@
+<%= javascript_include_tag "jquery.validate.min.js" %>
+ <script type="text/javascript">
+  jQuery(document).ready(function() {
+    $(".new_user").validate({
+      errorElement: "label",
+    rules: {
+       "user[password]": {required:true,minlength: 8},
+        "user[password_confirmation]":{
+	       equalTo:'#user_password'
+	       }
+      }});
+  }); 
+</script>
 <div class="container">
 	<div class="login-form-c">
 		<div class="login-form"> 
