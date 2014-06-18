@@ -1302,8 +1302,13 @@ form.edit_alert
 	min-height: 615px !important;
 	max-height: 615px !important;
 }
+.holder a {
+	margin-left: 5px;
+	cursor: pointer;
+}
 .holder-note a {
     margin-left: 5px;
+    cursor: pointer;
 }
 #notes {
     max-height: 170px;
