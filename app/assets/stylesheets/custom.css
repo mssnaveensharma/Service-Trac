@@ -1335,7 +1335,7 @@ form.edit_alert
 	min-height: 615px !important;
 	max-height: 615px !important;
 }
-.holder a {
+.holder-note a {
     margin-left: 5px;
 }
 #notes {
