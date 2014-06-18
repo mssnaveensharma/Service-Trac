@@ -1330,3 +1330,7 @@ form.edit_alert
 .holder a {
     margin-left: 5px;
 }
+#notes {
+    max-height: 170px;
+    min-height: 170px;
+}

@@ -1,4 +1,5 @@
 <%= javascript_include_tag "jquery.dataTables.js" %>
+<%= javascript_include_tag "jPages.js" %>
 <script type="text/javascript" language="javascript" class="init">
 $(document).ready(function() {
   $('#ServiceAlertsD').dataTable();
@@ -172,7 +173,7 @@ function calcRoute(id) {
                         if (value[i]['sent_by']=="AppUser"){
                           sender = "DRIVER";
                         }else{
-                          sender ="DISPATCH";
+                          sender ="COMPANY";
                         }
                           var notes = '<li class="list-notes"><span class="notes-cntnt"><h4>'+sender+' </h4><i>'+value[i]["created_at"]+'</i><p>'+value[i]["description"]+'</p></span></li>';
                           $("#notes").append(notes);
@@ -180,10 +181,22 @@ function calcRoute(id) {
                       }
 
                     });
+                        $(function(){
+                          $("div.holder").jPages({
+                            containerID : "notes",
+                            previous : "",
+                            next : "",
+                            perPage : 2,
+                            delay : 20
+                          });
+                        });
+                        $(".holder").css("display","block");
+                        $("#notes").css("max-height","150px !important");
                 }else{
                   var noNotes = '<li class="list-notes"><span class="notes-cntnt"><strong>No notes for selected alert</strong></span></li>';
                   $("#notes").html('');
                   $("#notes").append(noNotes);
+                  $(".holder").css("display","none");
                 }
               },error: function(xhr,txt){
                 console.log("Error code is ",xhr.status);
@@ -317,7 +330,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                             
                                   <% @driver.each do |truck_info| %>
                         
-                                    <td><%= truck_info.TruckNumber %></td>
+                                    <td><a class="table-link" id="<%= alert.id %>" onclick="calcRoute(this.id)" href="javascript:void(0)"><%= truck_info.TruckNumber %></a></td>
                         
                                     <td><a class="table-link" id="<%= alert.id %>" onclick="calcRoute(this.id)" href="javascript:void(0)"><%= truck_info.FirstName %>&nbsp;<%= truck_info.LastName[0,1] %></a></td>
                         
@@ -362,7 +375,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                             
                                   <% @driver.each do |truck_info| %>
                           
-                                    <td><%= truck_info.TruckNumber %></td>
+                                    <td><a class="table-link" id="<%= alert.id %>" onclick="calcRoute(this.id)" href="javascript:void(0)"><%= truck_info.TruckNumber %></a></td>
                           
                                     <td><a class="table-link" id="<%= alert.id %>" onclick="calcRoute(this.id)" href="javascript:void(0)"><%= truck_info.FirstName %>&nbsp;<%= truck_info.LastName %></a></td>
                           
@@ -441,8 +454,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
                     <h4>Notes</h4>
                     <a href="/notes?alert=<%= params[:id]%>">add </a>
                </li>
-               <div id="notes">
-              <li class="list-notes">
+               </ul>
+               <ul id="notes" class="list-group">
+              <!-- <li class="list-notes">
                 <span class="notes-cntnt">
                   <h4>Driver </h4>
                     <i>01/15/14 1:36 AM</i>
@@ -468,9 +482,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
                       Coming soon.
                     </p>
                 </span>
-              </li>
-              </div>
+              </li> -->
             </ul>
+              <div class="holder"></div>
         </div>
     </div>
         
