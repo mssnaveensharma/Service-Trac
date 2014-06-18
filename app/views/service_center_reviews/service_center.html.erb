@@ -127,15 +127,16 @@ $(document).ready(function(){
                                  }
                               }); 
 
-    $(function(){
-    $("div.holder").jPages({
-      containerID : "ReviewContainer",
-      previous : "prev",
-      next : "next",
-      perPage : 5,
-      delay : 20
-    });
-  });
+                                    $(function(){
+                                    $("div.holder").jPages({
+                                      containerID : "ReviewContainer",
+                                      previous : "",
+                                      next : "",
+                                      perPage : 4,
+                                      delay : 20
+                                    });
+                                  });
+
                             }else{
                                 $("#reviews").append("<div class=reviews-cntnt><p>Serice center currently has no reviews</p></div>");
                             }

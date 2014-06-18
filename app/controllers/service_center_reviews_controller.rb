@@ -100,7 +100,7 @@ class ServiceCenterReviewsController < ApplicationController
   def get_reviews
     if params[:service_center_id] != '' and params[:service_center_id] != nil
       service_center_reviews = Array.new
-      @centers = ServiceCenterReview.where(:service_center_id => params[:service_center_id])
+      @centers = ServiceCenterReview.where(:service_center_id => params[:service_center_id]).order("created_at DESC")
         if @centers.length != 0
            @centers.each do |center|
             @ratings = center.ratings
