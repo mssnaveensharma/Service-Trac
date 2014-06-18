@@ -1,5 +1,20 @@
+<%= javascript_include_tag "jquery.validate.min.js" %>
+ <script type="text/javascript">
+  jQuery(document).ready(function() {
+    $(".new_admin_eobr_make").validate({
+      errorElement: "label",
+      rules: {
+         "admin_eobr_make[Name]": "required",
+         "admin_eobr_make[Contact]":"required"
+      },
+      messages: {
+         "admin_eobr_make[Name]": "Eorb make name is required",
+         "admin_eobr_make[Contact]": "Make Contact is required" 
+      }
+    });
+  }); 
+</script>
     <div class="container">
-
     <div class="serch-fld">
           <label class="margin-top">Add/Update Eorb Make </label>
            <span class="align-right">
@@ -36,6 +51,8 @@
   </div>
   <div class="actions">
     <%= f.submit %>
+
+    <%= link_to 'Back', admin_eobr_makes_path %>
   </div>
 <% end %>
 </div></div></div>

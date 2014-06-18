@@ -1,3 +1,17 @@
+<%= javascript_include_tag "jquery.validate.min.js" %>
+ <script type="text/javascript">
+  jQuery(document).ready(function() {
+    $(".notes").validate({
+      errorElement: "label",
+	    rules: {
+	       "description": "required"
+	    },
+	    messages: {
+	       "description": "Description is required"	
+	    }
+  	});
+  }); 
+</script>
 <div class="container">
    <div class="serch-fld">
           <label class="margin-top">Service Alert </label>
@@ -7,10 +21,12 @@
             </span>
            
     </div>  
-
+<ol class="breadcrumb">
+       <li class="active">>> <a href="/">Home</a> >> <a href="/alert_details?id=<%= params[:alert]%>"> Alert Details</a> >> Add Notes</li>
+    </ol>
     	<div class="srvc-cntr-fld">	
 			<div class="srvc-frm">	
-				<form method="post" action="/add_notes_web">
+				<form method="post" action="/add_notes_web" class="notes">
 					<div class="dercp-nt">
 						<label>Description</label>
 						<textarea name="description"></textarea>

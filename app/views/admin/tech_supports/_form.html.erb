@@ -1,3 +1,17 @@
+<%= javascript_include_tag "jquery.validate.min.js" %>
+ <script type="text/javascript">
+  jQuery(document).ready(function() {
+    $(".new_admin_tech_support").validate({
+      errorElement: "label",
+      rules: {
+         "admin_tech_support[SupportDescription]": "required"
+      },
+      messages: {
+         "admin_tech_support[SupportDescription]": "Driver assistance name is required"
+      }
+    });
+  }); 
+</script>
 <div class="container">
     <div class="serch-fld">
           <label class="margin-top">Add/Update Driver Assistance </label>
@@ -26,7 +40,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :SupportDescription %><br>
+    <label>Support Name</label>
+    <%#= f.label :SupportDescription %><br>
     <%= f.text_field :SupportDescription, :class => "comp-nm-txt" %>
   </div>
   <div class="actions">

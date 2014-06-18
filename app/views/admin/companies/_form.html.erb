@@ -1,3 +1,17 @@
+<%= javascript_include_tag "jquery.validate.min.js" %>
+ <script type="text/javascript">
+  jQuery(document).ready(function() {
+    $(".new_admin_company").validate({
+      errorElement: "label",
+      rules: {
+         "admin_company[CompanyName]": "required"
+      },
+      messages: {
+         "admin_company[CompanyName]": "Company name is required"
+      }
+    });
+  }); 
+</script>
     <div class="container">
 
     <div class="serch-fld">

@@ -1,3 +1,19 @@
+<%= javascript_include_tag "jquery.validate.min.js" %>
+ <script type="text/javascript">
+  jQuery(document).ready(function() {
+    $(".new_admin_eobr_model").validate({
+      errorElement: "label",
+      rules: {
+         "admin_eobr_model[EobrMake_id]": "required",
+         "admin_eobr_model[Name]":"required"
+      },
+      messages: {
+         "admin_eobr_model[EobrMake_id]": "Eobr Make is required",
+         "admin_eobr_model[Name]":"Model name is required" 
+      }
+    });
+  }); 
+</script>
     <div class="container">
 
     <div class="serch-fld">
@@ -26,7 +42,8 @@
     </div>
   <% end %>
   <div class="field">
-  <%= f.label :EobrMake_id, :class => "comp-nm-lbl" %>
+  <label class="comp-nm-lbl">Eobr Makes</label>
+  <%#= f.label :EobrMake_id, :class => "comp-nm-lbl" %>
   <%= select("admin_eobr_model", "EobrMake_id", Admin::EobrMake.all.collect {|e| [ e.Name, e.id ] }, { include_blank: "Select Make" }, :class => "slct comp-nm-slct" ) %>
 </div>
 <!--   <div class="field">
@@ -34,12 +51,15 @@
     <%= f.text_field :EobrMake_id, :class => "comp-nm-txt" %>
   </div> -->
   <div class="field">
-    <%= f.label :Name, :class => "comp-nm-lbl" %>
+    <label class="comp-nm-lbl">Model Name</label>
+    <%#= f.label :Name, :class => "comp-nm-lbl" %>
     <%= f.text_field :Name, :class => "comp-nm-txt" %>
   </div>
 
   <div class="actions">
     <%= f.submit %>
+
+    <%= link_to 'Back', admin_eobr_models_path %>
   </div>
 <% end %>
 </div>

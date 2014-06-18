@@ -11,8 +11,13 @@
        "TruckMake": {required:true,maxlength: 15},
        "eobr_make_id": "required",
        "eobr_model_id": "required",
-       "EobrNumber": {required:true,maxlength: 15}
-      }});
+       "EobrNumber": {required:true,maxlength: 15},
+       "tech_support_id":{required:true}
+      },
+      messages: {
+        "TruckYear":"format should be dd/mm/yy"
+      }
+    });
   }); 
 </script>
  <script type="text/javascript">
