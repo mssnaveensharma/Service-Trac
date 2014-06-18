@@ -44,9 +44,7 @@
               <ol class="breadcrumb">
       <li class="active">>> <a href="/admin">Dashboard</a> >></li><li> <a href="/admin/manage_company_user"> Company Users </a></li>
     </ol> 
-	  <div class="add-dispatch-user">
-      	<a href="/admin/edit_company_user">Add New</a>
-	  </div>
+
         <div class="table-responsive">
           <table class="table-striped table-bordered table-condensed" width="100%">
             <% @users.each do |usr| %>
@@ -55,6 +53,9 @@
               </td></tr>
             <% end %>
             </table>
+            </div>
+            <div class="new-com">
+                <a href="/admin/edit_company_user">Add New</a>
             </div>
         </div>
       </div>
