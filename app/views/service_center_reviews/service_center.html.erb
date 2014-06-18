@@ -137,6 +137,10 @@ $(document).ready(function(){
                                     });
                                   });
 
+                                  if(reviewsLength <= 4) {
+                                    $(".holder").css("display","none");
+                                  }
+
                             }else{
                                 $("#reviews").append("<div class=reviews-cntnt><p>Serice center currently has no reviews</p></div>");
                             }
@@ -170,7 +174,7 @@ $(document).ready(function(){
       <div class="col-sm-4 right-border srvc-mn-hyt">
           <div class="top-search">
                 <label>SEARCH</label>
-                <input class="input-dtl-srch" type="text">
+                <input class="input-dtl-srch" type="text" name="search">
                 <input class="search-submit d-search" value="" type="submit" />
             </div>
             <div class="table-responsive">
