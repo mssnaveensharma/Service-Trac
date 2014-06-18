@@ -126,7 +126,7 @@ $(document).ready(function() {
                                   <% @selected_company = driver_company.company_id %>
                                 <% end %>
                             <% @user_companies = UsersServiceCenter.where(:user_id => current_user.id)%>
-
+                            
                           <% @user_companies.each do |user_company| %>
                           <%#=debug user_service_Center.service_center_id%>
                           <%#=debug service_alert.service_center_id%>
@@ -197,9 +197,8 @@ $(document).ready(function() {
                 <% end %>
                 </tbody>
             </table>
-     <% if @user_companies.length == 0 %>   
+     <% if @service_alerts.length == 0 %>   
       <h3 style="text-align:center;color:#fff">Currently you have no active service alerts</h3>
-     <style type="text/css">#ServiceAlerts_paginate{display:none;}</style>
      <% end %>
 
         </div>
