@@ -1278,11 +1278,13 @@ form.edit_alert
 #ServiceAlerts_paginate span {
 	display: none;
 }
-#ServiceAlerts_paginateD a {
+#ServiceAlerts_paginate a {
 	margin-left: 5px;
+	cursor: pointer;
 }
 #ServiceAlertsD_paginate a {
 	margin-left: 5px;
+	cursor: pointer;
 }
 
 /*#ServiceAlerts_previous {
