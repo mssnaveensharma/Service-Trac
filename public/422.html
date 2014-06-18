@@ -4,10 +4,10 @@
   <title>The change you wanted was rejected (422)</title>
   <style>
   body {
-    background-color: #EFEFEF;
+    background: url(repeat.png) repeat-x scroll 0 0 rgba(0, 0, 0, 0);
     color: #2E2F30;
     text-align: center;
-    font-family: arial, sans-serif;
+    /*font-family: arial, sans-serif;*/
   }
 
   div.dialog {
@@ -44,15 +44,24 @@
     color: #666;
     box-shadow:0 3px 8px rgba(50, 50, 50, 0.17);
   }
+   a.btn{background: none repeat scroll 0 0 #ED1C24;
+    border: medium none;
+    color: #FFFFFF;
+    display: inline-block;
+    min-width: 80px;
+    padding: 8px 25px;
+    text-align: center; text-decoration: none;}
+a.btn:hover{ background: none repeat scroll 0 0 #E4151D}    
   </style>
 </head>
 
 <body>
   <!-- This file lives in public/422.html -->
   <div class="dialog">
-    <h1>The change you wanted was rejected.</h1>
+   <img src="422.jpg" alt="error">
     <p>Maybe you tried to change something you didn't have access to.</p>
+   <p><a href="/" class="btn">Back to Home</a></p>
   </div>
-  <p>If you are the application owner check the logs for more information.</p>
+
 </body>
 </html>
