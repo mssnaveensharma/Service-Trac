@@ -182,7 +182,7 @@ function calcRoute(id) {
 
                     });
                         $(function(){
-                          $("div.holder").jPages({
+                          $("div.holder-note").jPages({
                             containerID : "notes",
                             previous : "",
                             next : "",
@@ -190,13 +190,12 @@ function calcRoute(id) {
                             delay : 20
                           });
                         });
-                        $(".holder").css("display","block");
-                        $("#notes").css("max-height","150px !important");
+                        $(".holder-note").css("display","block");
                 }else{
                   var noNotes = '<li class="list-notes"><span class="notes-cntnt"><strong>No notes for selected alert</strong></span></li>';
                   $("#notes").html('');
                   $("#notes").append(noNotes);
-                  $(".holder").css("display","none");
+                  $(".holder-note").css("display","none");
                 }
               },error: function(xhr,txt){
                 console.log("Error code is ",xhr.status);
@@ -484,7 +483,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                 </span>
               </li> -->
             </ul>
-              <div class="holder"></div>
+              <div class="holder-note"></div>
         </div>
     </div>
         

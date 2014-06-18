@@ -1267,9 +1267,6 @@ form.edit_alert
     width: 32%;
     word-wrap: break-word;
 }
-#notes {
-    min-height: 180px;
-}
 #ServiceAlerts_paginate {
 	overflow: hidden;
 	margin-top: 5px;
@@ -1344,4 +1341,9 @@ form.edit_alert
 #notes {
     max-height: 170px;
     min-height: 170px;
+}
+.holder-note {
+    bottom: 0;
+    position: absolute;
+    z-index: 9999;
 }
