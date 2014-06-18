@@ -21,7 +21,7 @@ $(document).ready(function () {
        "FirstName": {required:true},
        "LastName": {required:true},
        "email": {required:true,email:true},
-       "password": "required",
+       "password": {required:true,minlength:8},
        "Contact": {required:true,number:true,maxlength: 15},
        "company_id": "required"
       }});
