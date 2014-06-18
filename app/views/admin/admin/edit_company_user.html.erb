@@ -42,7 +42,18 @@ $(document).ready(function () {
       </ol>
 	  <div class="dsptch-usr-fld">
 	  	<div class="dsptch-usr-frm">
-        <div class="subcontainer">        
+        <div class="subcontainer"> 
+
+     <div id="error_explanation">
+            <ul>
+            <% if session[:err] != nil %>
+              <% session[:err].each do |msg| %>
+                <li><%= msg[:error] %></li>
+              <% end %>
+            <% session[:err] = nil %>
+            <% end %>
+          </div>
+        
         <% @all_info = User.where(:id => params[:id]) %>
             <% @all_info.each do |rara| %>
                 <% @firsname = rara.FirstName %>

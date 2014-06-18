@@ -238,8 +238,19 @@ def create_user
                   if(@response.id != nil and @response.id != '')
                    redirect_to '/admin/manage_company_user', :notice => 'New user created successfully'
                   else
-                      redirect_to '/admin/edit_company_user', :notice => 'Email is already taken'
+                    session[:err] = nil
+                    session[:err] = Array.new
+                    @response.errors.full_messages.each do |msg|
+                      response = Hash.new
+                      response[:error]=msg
+                      session[:err].push(response)
+                    end
+                    #session[:err] = arr
+                 
+                    redirect_to '/admin/edit_company_user' 
+                 
                   end
+
                   #redirect_to '/admin/manage_dispatch_user_edit', :notice => 'New user created successfully'
         else
          
