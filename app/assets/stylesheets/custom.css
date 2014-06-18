@@ -1273,11 +1273,19 @@ form.edit_alert
 #ServiceAlerts_paginate {
 	overflow: hidden;
 	margin-top: 5px;
+	text-align: right;
 }
 #ServiceAlerts_paginate span {
 	display: none;
 }
-#ServiceAlerts_previous {
+#ServiceAlerts_paginateD a {
+	margin-left: 5px;
+}
+#ServiceAlertsD_paginate a {
+	margin-left: 5px;
+}
+
+/*#ServiceAlerts_previous {
     background: url(up_arrow.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     color: #000;
     display: inline-block;
@@ -1292,15 +1300,16 @@ form.edit_alert
     height: 16px;
     text-indent: 1000px;
     width: 25px;
-}
+}*/
 #ServiceAlertsD_paginate {
 	overflow: hidden;
 	margin-top: 5px;
+	text-align: right;
 }
 #ServiceAlertsD_paginate span {
 	display: none;
 }
-#ServiceAlertsD_previous {
+/*#ServiceAlertsD_previous {
     background: url(up_arrow.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     color: #000;
     display: inline-block;
@@ -1316,7 +1325,7 @@ form.edit_alert
     text-indent: 1000px;
     width: 25px;
 }
-#ServiceAlertsD tr td {
+*/#ServiceAlertsD tr td {
     height: 21px;
     overflow: hidden;
     text-overflow: ellipsis;
