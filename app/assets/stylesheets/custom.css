@@ -1303,7 +1303,7 @@ form.edit_alert
 #ServiceAlertsD_paginate {
 	overflow: hidden;
 	margin-top: 5px;
-	text-align: right;
+	text-align: left;
 }
 #ServiceAlertsD_paginate span {
 	display: none;
