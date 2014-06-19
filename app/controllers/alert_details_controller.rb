@@ -80,8 +80,8 @@ class AlertDetailsController < ApplicationController
                 @eobr_number = user.EobrNumber
                 @truck_year = user.TruckYear
                 @truck_make = user.TruckMake
-                @tech_support = user.tech_support_id
-                if @tech_support != 0
+                @tech_support = AlertNotes.where(:alert_id => alert.id)
+                if @tech_support.length != 0
                   @tech_support_call = "Yes"
                 else
                   @tech_support_call = "No"
