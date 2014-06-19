@@ -322,7 +322,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                         
                           <% if @driver.length != 0 and alert.status != 'Complete' %>
                                                  
-                          <% if(params[:id] == alert.id.to_s) %>
+                          <% if(params[:id].to_i == alert.id.to_i) %>
                         
                           <tr class="active-row data-row" id="<%= alert.id %>">
                         
@@ -367,7 +367,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
  
                               <% if user_company.company_id.to_i==@selected_company.to_i%>
                           
-                                <% if(params[:id] == alert.id.to_s) %> <!--make seleted row active-->
+                                <% if(params[:id].to_i == alert.id.to_i) %> <!--make seleted row active-->
                           
                                   <tr class="active-row" id="<%= alert.id %>">
                           
