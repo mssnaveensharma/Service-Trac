@@ -269,7 +269,7 @@ def create_user
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       #params.require(:user).permit!
-      params.require(:user).permit(:eobr_make_id,:eobr_model_id,:Role,:EobrNumber,:TruckNumber,:TruckMake,:TruckYear,:TruckOwner,:TruckModel,:CompanyName,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language,:device_type,:device_token,:wp_notification_url)
+      params.require(:user).permit(:eobr_make_id,:company_id,:eobr_model_id,:Role,:EobrNumber,:TruckNumber,:TruckMake,:TruckYear,:TruckOwner,:TruckModel,:CompanyName,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language,:device_type,:device_token,:wp_notification_url)
     end
     
 end

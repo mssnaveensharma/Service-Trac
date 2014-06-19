@@ -251,7 +251,9 @@ def get_messages
                 @name = user.FirstName
                 @truck = user.TruckNumber
                 @userid = user.id
+                @role = user.Role
               end
+              if @role == "AppUser"
                 @messages.each do |message|
                   response = Hash.new
                   response[:id]=message.id
@@ -264,6 +266,7 @@ def get_messages
                   response[:user_id]=@userid
                   arr.push(response)
                 end
+              end
               @AllMessages = arr.uniq{|x| x[:id]}
               return render :json => {:success => true, :messages => @AllMessages }
         else
