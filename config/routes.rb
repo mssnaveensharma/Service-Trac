@@ -109,6 +109,10 @@ Servicetrac::Application.routes.draw do
   get 'add_review' => 'service_center_reviews#add_review'
 
   post 'update_review' => 'service_center_reviews#update_review'
+
+  post 'get_messages' => 'messages#get_messages'
+
+ # match 'get-messages/:user_id' => 'messages#get_messages', :via => :get, :defaults => { :format => 'json' }
   #   get 'register' => 'welcome#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

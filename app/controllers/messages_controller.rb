@@ -5,18 +5,16 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.find(:all, :order => "created_at DESC")
-    @messages_l = @messages.length
+    
     @message = Message.new
     @users = User.all
-    @service_centers = Admin::ServiceCenter.all
       arr = Array.new
-         @messages.each do |message| 
-            @service_centers.each do |center|
-              @users.each do |user|
-                if message.ToUserId == user.id 
+          @users.each do |user|
+            @messages = Message.where('"FromUserId" = ? or "ToUserId" = ?', user.id, user.id).order("created_at DESC").limit(1)
+            @messages.each do |message| 
                   @name = user.FirstName
                   @truck = user.TruckNumber
+                  if user.Role == "AppUser"
                       response = Hash.new
                       response[:id]=message.id
                       response[:from]=message.FromUserId
@@ -25,22 +23,10 @@ class MessagesController < ApplicationController
                       response[:date]=message.created_at
                       response[:name]=@name
                       response[:content]=message.MessageContent
+                      response[:user_id]=user.id
                       arr.push(response)
-                elsif message.FromUserId == user.id
-                  @name = user.FirstName
-                  @truck = user.TruckNumber
-                      response = Hash.new
-                      response[:id]=message.id
-                      response[:from]=message.FromUserId
-                      response[:to]=message.ToUserId
-                      response[:truck]=@truck
-                      response[:date]=message.created_at
-                      response[:name]=@name
-                      response[:content]=message.MessageContent
-                      arr.push(response)
-                end
+                  end
               end
-            end  
          end
          @new_users = arr.uniq{|x| x[:id]}
 
@@ -254,6 +240,40 @@ def all_messages
     return render :json => {:success => false, :messages => 'User id is required'}
   end
 end
+
+def get_messages
+  if params[:user_id] and params[:user_id] != ''
+    arr = Array.new
+      @messages = Message.where('"FromUserId" = ? or "ToUserId" = ?', params[:user_id], params[:user_id]).order("created_at DESC")
+        if @messages.length != 0
+            @users = User.where(:id => params[:user_id])
+              @users.each do |user|
+                @name = user.FirstName
+                @truck = user.TruckNumber
+                @userid = user.id
+              end
+                @messages.each do |message|
+                  response = Hash.new
+                  response[:id]=message.id
+                  #response[:from]=message.FromUserId
+                  #response[:to]=message.ToUserId
+                  response[:truck]=@truck
+                  response[:date]=message.created_at
+                  response[:name]=@name
+                  response[:content]=message.MessageContent
+                  response[:user_id]=@userid
+                  arr.push(response)
+                end
+              @AllMessages = arr.uniq{|x| x[:id]}
+              return render :json => {:success => true, :messages => @AllMessages }
+        else
+          return render :json => {:success => false, :messages => 'No messages for this user'}
+        end
+  else
+    return render :json => {:success => false, :messages => 'User id required'}
+  end
+end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message

@@ -132,7 +132,7 @@ $(document).ready(function() {
                           <% @user_companies.each do |user_company| %>
                           <%#=debug user_service_Center.service_center_id%>
                           <%#=debug service_alert.service_center_id%>
-                          <% if user_company.company_id.to_i==@selected_company.to_i%>
+                          <% if user_company.company_id.to_s==@selected_company.to_s%>
                              
                             <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></a></td>
                               <% @drivers.each do |driver| %>
@@ -186,8 +186,10 @@ $(document).ready(function() {
                                 <td><%= service_alert.status %></td>
                               <% end %>
                             <% else %>
-                                <td></td>
-                                <td></td>
+                                <td>NA</td>
+                                <td>NA</td>
+                                <td>NA</td>
+                                 <td><%= service_alert.status %></td>
                             <% end %>
                              <% end %>
                       </tr>

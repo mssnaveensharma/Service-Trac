@@ -1,6 +1,7 @@
 <%= javascript_include_tag "jquery.validate.min.js" %>
  <script type="text/javascript">
   jQuery(document).ready(function() {
+
     $(".new_message").validate({
       errorElement: "label",
     rules: {
@@ -9,6 +10,37 @@
       }
   	});
   }); 
+ function getMessages(id){
+ 	var UserId = id;
+ 		if (UserId != '' && UserId != undefined){
+ 			$.ajax({
+ 				url: "/get_messages",
+ 				type: "post",
+ 				dataType: "json",
+ 				data: {user_id: UserId},
+ 				success: function(response){
+ 					if(response.success == true && response.messages.length > 1){
+ 						$("#user_"+UserId).html("");
+ 						var Length = response.messages.length;
+ 						//alert(Length);
+ 						$.each([response.messages], function(index,value){
+ 							for(var i=0; i < Length;i++){
+ 								var NewMessage = '<div class="para-repeat"><h4 class="h4_"'+value[i]['user_id']+'>'+value[i]['date']+'</h4><h4 class="h4_"'+value[i]['user_id']+'>'+value[i]['truck']+'</h4><h4 class="h4_"'+value[i]['user_id']+'>'+value[i]['name']+'</h4><p class="h4_"'+value[i]['user_id']+'>'+value[i]['content']+'</p><a href="#new" class="mail-icon"></a></div>';
+ 								$("#user_"+UserId).append(NewMessage).show('slow');
+ 							}
+ 						});
+ 						//$("#user_"+UserId).slideDown("slow");
+ 					}else{
+ 						//$("#One").show();
+ 						$("#One").css("display","block").delay(2000).slideUp("slow");
+ 					}
+ 				},error: function(xhr,txt){
+ 					console.log("Something went wrong ",xhr.status);
+ 				}
+ 			})
+ 		}
+ 	//alert(id);
+ }
 </script>
 		<div class="container">
 
@@ -79,25 +111,22 @@
 			</div>
 		</div>
 		<div class="para-content">
-		<%#=debug @messages_l%>
-		<%#=debug @new_users.length %>
-		<% @new = @new_users.sort_by{|e| e[:from]} %>
-			<% @new.each do |message| %>
-					<div class="para-repeat">
-						<!-- <p><%#= message[:id]  %></p> -->
+		<div id="One" style="display:none;color:red;">User has only one message</div>
+			<% @new_users.each do |message| %>
+					<div class="para-repeat" id="user_<%= message[:user_id]%>">
 						<h4><%= message[:date] %></h4>
 						<h4><%= message[:truck] %></h4>
 						<h4><%= message[:name] %></h4>
 						<p><%= message[:content] %></p>
-						<%#= link_to '', new_message_path, :class=>"mail-icon" %>
 						<a href="#new" class="mail-icon"></a>
-						<div class="expand">
+						<!-- <div class="expand">
 						<%#= link_to 'Show', message %>
 						<%#= link_to 'Edit', edit_message_path(message) %>
 						<%#= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
-						<a href="javascript:void(0);" class="expand">Expand All</a>
-						</div>
+						
+						</div> -->
 					</div>
+					<a id="<%= message[:user_id]%>" href="javascript:void(0);" onclick="getMessages(this.id)" class="expand">Expand All</a>
 			<% end %>
 		</div>
 		<br>
