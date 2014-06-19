@@ -57,6 +57,7 @@ $(document).ready(function() {
     <tr class="data-header">
       <th width="45%">Date/Time</th>
       <th>Support Description</th>
+      <th>Contact #</th>
       <th class="th-align-center">Actions</th>
       <!-- <th></th> -->
     </tr>
@@ -67,6 +68,7 @@ $(document).ready(function() {
       <tr class="data-row">
         <td><%= admin_tech_support.created_at %></td>
         <td><%= admin_tech_support.SupportDescription %></td>
+        <td><%= admin_tech_support.Contact %></td>
         <td class="th-align-center"><%= link_to '', edit_admin_tech_support_path(admin_tech_support), :class => "edit-icon" %>
         <%= link_to '', admin_tech_support, method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete-icon" %></td>
       </tr>

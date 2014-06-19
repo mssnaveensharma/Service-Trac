@@ -71,6 +71,6 @@ class Admin::TechSupportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_tech_support_params
-      params.require(:admin_tech_support).permit(:SupportDescription)
+      params.require(:admin_tech_support).permit(:SupportDescription,:Contact)
     end
 end
