@@ -1,11 +1,4 @@
-<%= javascript_include_tag "jquery.dataTables.js" %>
 <%= javascript_include_tag "jPages.js" %>
-<script type="text/javascript" language="javascript" class="init">
-$(document).ready(function() {
-  $('#ServiceAlertsD').dataTable();
- 
-} );
-  </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
  <script type="text/javascript">
 function GetParameterValues(param) {
@@ -315,15 +308,15 @@ google.maps.event.addDomListener(window, 'load', initialize);
                 </thead>
                 <tbody>
                   <% if current_user.Role == "admin" %>
-                        
+                        <% @len = 0 %>
                           <% @alert_details.each do |alert| %>
-                        
+                           <% @len += 1 %>
                           <% @driver = User.where(:id => alert.user_id) %>  
                         
                           <% if @driver.length != 0 and alert.status != 'Complete' %>
                                                  
                           <% if(params[:id].to_i == alert.id.to_i) %>
-                        
+                          
                           <tr class="active-row data-row" id="<%= alert.id %>">
                         
                           <% else %>
@@ -348,9 +341,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
                         <% end %>
                      
                   <% else %>
+                      <% @len = 0 %>
 
                         <% @alert_details.each do |alert| %> <!-- loop the service alerts -->
- 
+                        <% @len += 1 %>
+
                           <% @driver = User.where(:id => alert.user_id) %>  <!-- get the user info from users table -->
 
                           <% if @driver.length != 0 and alert.status != 'Complete' %> <!-- ignore the alerts which are completed -->
@@ -402,6 +397,18 @@ google.maps.event.addDomListener(window, 'load', initialize);
             </table>
             </div>
         </div>
+
+<% if @len > 10 %>
+<%= javascript_include_tag "jquery.dataTables.js" %>
+<script type="text/javascript" language="javascript" class="init">
+$(document).ready(function() {
+  $('#ServiceAlertsD').dataTable();
+ 
+} );
+  </script>
+<% end %>
+
+
         <div class="col-sm-4 padding-2 sttc-hyt">
           <ul class="list-group">
                <li class="list-ctnt">
