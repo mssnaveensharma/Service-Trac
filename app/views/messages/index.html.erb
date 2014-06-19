@@ -13,9 +13,6 @@
  function getMessages(id){
  	var UserId = id;
  		if (UserId != '' && UserId != undefined){
- 			/*$(".para-repeat").css({
-			     "max-height": "50px"
-			 });*/
  			$.ajax({
  				url: "/get_messages",
  				type: "post",
@@ -25,22 +22,21 @@
  					if(response.success == true && response.messages.length > 1){
  						$("#user_"+UserId).html("");
  						var Length = response.messages.length;
- 						//alert(Length);
  						$.each([response.messages], function(index,value){
  							for(var i=0; i < Length;i++){
  								var NewMessage = '<div class="para-repeat inner"><h4 class="h4_"'+value[i]['user_id']+'>'+value[i]['date']+'</h4><h4 class="h4_"'+value[i]['user_id']+'>'+value[i]['truck']+'</h4><h4 class="h4_"'+value[i]['user_id']+'>'+value[i]['name']+'</h4><p class="h4_"'+value[i]['user_id']+'>'+value[i]['content']+'</p><a href="#new" class="mail-icon"></a></div>';
- 								$("#user_"+UserId).append(NewMessage).show('slow');
+ 								$("#user_"+UserId).append(NewMessage)
+ 								$('body,html').animate({'scrollTop':$("#user_"+UserId).offset().top});
  							}
  						});
- 						//$("#user_"+UserId).slideDown("slow");
+ 						
  					}else{
- 						//$("#One").show();
  						$("#One").css("display","block").delay(2000).slideUp("slow");
  					}
  				},error: function(xhr,txt){
  					console.log("Something went wrong ",xhr.status);
  				}
- 			})
+ 			});
  		}
  	//alert(id);
  }
@@ -122,12 +118,6 @@
 						<h4><%= message[:name] %></h4>
 						<p><%= message[:content] %></p>
 						<a href="#new" class="mail-icon"></a>
-						<!-- <div class="expand">
-						<%#= link_to 'Show', message %>
-						<%#= link_to 'Edit', edit_message_path(message) %>
-						<%#= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
-						
-						</div> -->
 					</div>
 					<a id="<%= message[:user_id]%>" href="javascript:void(0);" onclick="getMessages(this.id)" class="expand">Expand All</a>
 			<% end %>
