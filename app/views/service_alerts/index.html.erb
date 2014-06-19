@@ -130,8 +130,8 @@ $(document).ready(function() {
                             <% @user_companies = UsersServiceCenter.where(:user_id => current_user.id)%>
                             
                           <% @user_companies.each do |user_company| %>
-                          <%=debug user_company.company_id.to_s%>
-                          <%=debug @selected_company.to_s%>
+                          <%=debug user_company.company_id.to_i%>
+                          <%=debug @selected_company.to_i%>
                           <% if user_company.company_id.to_i==@selected_company.to_i%>
                              
                             <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></a></td>
