@@ -99,30 +99,56 @@ class AlertDetailsController < ApplicationController
                         @driver_assist = driver_support.SupportDescription
                       end
               end
-                @center_location.each do |center|
-                  response = Hash.new
-                  response[:driver_lat]=alert.lat
-                  response[:driver_lan]=alert.lan
-                  response[:center_lat]=center.lat
-                  response[:center_lan]=center.lan
-                  response[:contact]=@contact
-                  response[:truck_year]=@truck_year
-                  response[:truck_make]=@truck_make
-                  response[:eobr_number]=@eobr_number
-                  response[:eobr_make]=@eobr_make_name
-                  response[:eobr_model]=@eobr_model_name
-                  response[:driver_assist]=@driver_assist
-                  response[:service_center]=center.Name
-                  response[:service_center_id]=center.id
-                  response[:ticket_ref_no]=alert.ticket_ref_no
-                  response[:ticket_po_no]=alert.ticket_po_no
-                  response[:city_state]=center.City+"/"+center.State
-                  response[:last_alert]=alert.created_at.strftime("%d/%m/%y")
-                  response[:asst_time]=@asst_time.strftime("%I:%M %p")
-                  response[:asst_date]=Date.today.strftime("%d/%m/%y")
-                  response[:alert_status]=alert.status
-                  response[:tech_called]=@tech_support_call
-                  data.push(response)
+                if @center_location.length != 0
+                  @center_location.each do |center|
+                    response = Hash.new
+                    response[:driver_lat]=alert.lat
+                    response[:driver_lan]=alert.lan
+                    response[:center_lat]=center.lat
+                    response[:center_lan]=center.lan
+                    response[:contact]=@contact
+                    response[:truck_year]=@truck_year
+                    response[:truck_make]=@truck_make
+                    response[:eobr_number]=@eobr_number
+                    response[:eobr_make]=@eobr_make_name
+                    response[:eobr_model]=@eobr_model_name
+                    response[:driver_assist]=@driver_assist
+                    response[:service_center]=center.Name
+                    response[:service_center_id]=center.id
+                    response[:ticket_ref_no]=alert.ticket_ref_no
+                    response[:ticket_po_no]=alert.ticket_po_no
+                    response[:city_state]=center.City+"/"+center.State
+                    response[:last_alert]=alert.created_at.strftime("%d/%m/%y")
+                    response[:asst_time]=@asst_time.strftime("%I:%M %p")
+                    response[:asst_date]=Date.today.strftime("%d/%m/%y")
+                    response[:alert_status]=alert.status
+                    response[:tech_called]=@tech_support_call
+                    data.push(response)
+                  end
+                else
+                    response = Hash.new
+                    response[:driver_lat]=alert.lat
+                    response[:driver_lan]=alert.lan
+                    response[:center_lat]="0"
+                    response[:center_lan]="0"
+                    response[:contact]=@contact
+                    response[:truck_year]=@truck_year
+                    response[:truck_make]=@truck_make
+                    response[:eobr_number]=@eobr_number
+                    response[:eobr_make]=@eobr_make_name
+                    response[:eobr_model]=@eobr_model_name
+                    response[:driver_assist]=@driver_assist
+                    response[:service_center]="NA"
+                    response[:service_center_id]=0
+                    response[:ticket_ref_no]=alert.ticket_ref_no
+                    response[:ticket_po_no]=alert.ticket_po_no
+                    response[:city_state]="NA"
+                    response[:last_alert]=alert.created_at.strftime("%d/%m/%y")
+                    response[:asst_time]=@asst_time.strftime("%I:%M %p")
+                    response[:asst_date]=Date.today.strftime("%d/%m/%y")
+                    response[:alert_status]=alert.status
+                    response[:tech_called]=@tech_support_call
+                    data.push(response)
                 end
         end
       return render :json =>  data
