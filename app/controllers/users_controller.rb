@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   
   def register_app_user
-   if(params[:email] !='' and params[:password] !='' and params[:FirstName] !='' and params[:LastName] !='' and params[:EobrNumber] !='' and params[:eobr_make_id] !='' and params[:eobr_model_id] !='' and params[:TruckModel] !='' and params[:TruckNumber] !='' and params[:truckmake] !='' and params[:TruckYear] !='' and params[:TruckOwner] !='' and params[:CompanyName] !='' and params[:tech_support] !='' and params[:Contact] !='' and params[:device_type] !='' and params[:device_token] !='')
+   if(params[:email] !='' and params[:password] !='' and params[:FirstName] !='' and params[:LastName] !='' and params[:EobrNumber] !='' and params[:eobr_make_id] !='' and params[:eobr_model_id] !='' and params[:TruckModel] !='' and params[:TruckNumber] !='' and params[:truckmake] !='' and params[:TruckYear] !='' and params[:TruckOwner] !='' and params[:CompanyName] !='' and params[:CompanyName] !='' and params[:tech_support] !='' and params[:Contact] !='' and params[:device_type] !='' and params[:device_token] !='')
        if params[:device_type] == 'wp' 
         if params[:wp_notification_url] != ''
           @response = User.create({
@@ -200,7 +200,7 @@ def create_user
                 redirect_to '/admin/manage_company_user', :notice => 'User was updated succesfully.'
 
               else
-                redirect_to '/admin/edit_company_user', :notice => 'Required fields are missing.'
+                redirect_to '/admin/edit_company_user?id='+params[:user_id], :notice => 'Required fields are missing.'
                 end
      
         end            
