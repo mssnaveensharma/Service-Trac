@@ -132,7 +132,7 @@ $(document).ready(function() {
                           <% @user_companies.each do |user_company| %>
                           <%=debug user_company.company_id.to_s%>
                           <%=debug @selected_company.to_s%>
-                          <% if user_company.company_id.to_s==@selected_company.to_s%>
+                          <% if user_company.company_id.to_i==@selected_company.to_i%>
                              
                             <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></a></td>
                               <% @drivers.each do |driver| %>
