@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
                       response[:from]=message.FromUserId
                       response[:to]=message.ToUserId
                       response[:truck]=@truck
-                      response[:date]=message.created_at
+                      response[:date]=message.created_at.strftime("%d/%m/%y %I:%M %p")
                       response[:name]=@name
                       response[:content]=message.MessageContent
                       response[:user_id]=user.id
@@ -258,7 +258,7 @@ def get_messages
                   #response[:from]=message.FromUserId
                   #response[:to]=message.ToUserId
                   response[:truck]=@truck
-                  response[:date]=message.created_at
+                  response[:date]=message.created_at.strftime("%d/%m/%y %I:%M %p")
                   response[:name]=@name
                   response[:content]=message.MessageContent
                   response[:user_id]=@userid

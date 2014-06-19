@@ -1,10 +1,3 @@
-<%= javascript_include_tag "jquery.dataTables.js" %>
-<script type="text/javascript" language="javascript" class="init">
-$(document).ready(function() {
-  $('#ServiceAlerts').dataTable();
- 
-} );
-  </script>
 <script type="text/javascript">
      $(document).ready(function(){
       //$('#table').tablesorter();
@@ -50,11 +43,13 @@ $(document).ready(function() {
                 <tbody>
 
                 <% if current_user.Role == "admin" %>
-                
-                    <% @service_alerts.each do |service_alert| %>
+                <% @picture = 1 %>
+                    <% @service_alerts.each do |service_alert, n| %>
+                      
                       <tr class="data-row">
                         <% @drivers = User.where('("Role" = ? AND id = ? )', "AppUser",service_alert.user_id) %>
                             <% if(@drivers.length != 0) and service_alert.status != 'Complete' %>
+                            <% @picture += 1 %>
                             <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></a></td>
                               <% @drivers.each do |driver| %>
                                <%#=debug service_alert %>
@@ -118,8 +113,8 @@ $(document).ready(function() {
                 <% end %>
 
                 <% else %>
-
-                    <% @service_alerts.each do |service_alert| %>
+                    <% @picture = 0  %>
+                    <% @service_alerts.each do |service_alert, n| %>
                       <tr>
                         <% @drivers = User.where('("Role" = ? AND id = ? )', "AppUser",service_alert.user_id) %>
                             <% if(@drivers.length != 0) and service_alert.status != 'Complete' %>
@@ -133,7 +128,7 @@ $(document).ready(function() {
                           <%#=debug user_company.company_id.to_i%>
                           <%#=debug @selected_company.to_i%>
                           <% if user_company.company_id.to_i==@selected_company.to_i%>
-                             
+                             <% @picture +=1 %>
                             <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></a></td>
                               <% @drivers.each do |driver| %>
                                <%#=debug service_alert %>
@@ -195,16 +190,25 @@ $(document).ready(function() {
                       </tr>
                     <% end %>
                   <% end %>
-             
+                
                 <% end %>
 
                 <% end %>
                 </tbody>
             </table>
+           
      <% if @service_alerts.length == 0 %>   
       <h3 style="text-align:center;color:#fff">Currently you have no active service alerts</h3>
      <% end %>
-
+<% if @picture > 10 %>
+<%= javascript_include_tag "jquery.dataTables.js" %>
+<script type="text/javascript" language="javascript" class="init">
+$(document).ready(function() {
+  $('#ServiceAlerts').dataTable();
+ 
+} );
+  </script>
+<% end %>
         </div>
 
       <!-- Main component for a primary marketing message or call to action -->
