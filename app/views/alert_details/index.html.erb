@@ -114,8 +114,12 @@ function calcRoute(id) {
             center_lat = value[i]['center_lat'];
             center_lan = value[i]['center_lan'];
             
-            $("#service_center_edit").attr("href","/edit_service_center?id="+value[i]['service_center_id']+"&alert="+alert_id);
-
+            if(value[i]['service_center_id'] == 0){
+              $("#service_center_edit").hide();
+            }else{
+              $("#service_center_edit").attr("href","/edit_service_center?id="+value[i]['service_center_id']+"&alert="+alert_id);
+              $("#service_center_edit").show();
+            } 
             $('#driver_contact').html(value[i]['contact']);
             //$("#driver_contact_text").val(value[i]['contact']);
 
