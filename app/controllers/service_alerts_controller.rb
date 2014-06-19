@@ -174,6 +174,15 @@ class ServiceAlertsController < ApplicationController
                                       @status = "In Route"
                                     end
                                     @update_alert = ServiceAlert.where('id= ?', @alerts.id).update_all(asstimate_time: @asst_time, asstimate_date: @asst_time )  #update the alert status
+                                      if params[:description] and params[:description] !=''  #create the alert notes here
+                                            @create = AlertNotes.create({
+                                                :user_id =>params[:user_id],
+                                                :alert_id =>@alerts.id,
+                                                :description => params[:description],
+                                                :sent_by => "AppUser"
+                                              });
+                                        end
+
                                       return render :json => {:success => "true", :message => "New alert is created succesfully", :status => @status,:alert_id => @alerts.id, :distance => @distance, :time => @time,:mystatus => @status} #return the response to api
                           else
                               return render :json => {:success => "false", :message => "Location information is incorrect", :status => "null", :distance => "", :time => ""}  #if invalid lat,lan
