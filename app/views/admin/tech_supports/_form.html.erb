@@ -4,7 +4,8 @@
     $(".new_admin_tech_support").validate({
       errorElement: "label",
       rules: {
-         "admin_tech_support[SupportDescription]": "required"
+         "admin_tech_support[SupportDescription]": "required",
+         "admin_tech_support[SupportDescription]": {required:true,number:true}
       },
       messages: {
          "admin_tech_support[SupportDescription]": "Driver assistance name is required"
