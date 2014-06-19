@@ -12,6 +12,17 @@
          "admin_eobr_model[Name]":"Model name is required" 
       }
     });
+        $(".edit_admin_eobr_model").validate({
+      errorElement: "label",
+      rules: {
+         "admin_eobr_model[EobrMake_id]": "required",
+         "admin_eobr_model[Name]":"required"
+      },
+      messages: {
+         "admin_eobr_model[EobrMake_id]": "Eobr Make is required",
+         "admin_eobr_model[Name]":"Model name is required" 
+      }
+    });
   }); 
 </script>
     <div class="container">

@@ -12,6 +12,17 @@
          "admin_eobr_make[Contact]": "Make Contact is required" 
       }
     });
+        $(".edit_admin_eobr_make").validate({
+      errorElement: "label",
+      rules: {
+         "admin_eobr_make[Name]": "required",
+         "admin_eobr_make[Contact]":"required"
+      },
+      messages: {
+         "admin_eobr_make[Name]": "Eorb make name is required",
+         "admin_eobr_make[Contact]": "Make Contact is required" 
+      }
+    });
   }); 
 </script>
     <div class="container">

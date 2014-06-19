@@ -10,6 +10,15 @@
          "admin_company[CompanyName]": "Company name is required"
       }
     });
+        $(".edit_admin_company").validate({
+      errorElement: "label",
+      rules: {
+         "admin_company[CompanyName]": "required"
+      },
+      messages: {
+         "admin_company[CompanyName]": "Company name is required"
+      }
+    });
   }); 
 </script>
     <div class="container">
