@@ -125,8 +125,8 @@
                             <% @user_companies = UsersServiceCenter.where(:user_id => current_user.id)%>
                             
                           <% @user_companies.each do |user_company| %>
-                          <%#=debug user_company.company_id.to_i%>
-                          <%#=debug @selected_company.to_i%>
+                          companuy user company<%=debug user_company.company_id.to_i%>
+                          appuser company<%=debug @selected_company.to_i%>
                           <% if user_company.company_id.to_i==@selected_company.to_i%>
                              <% @picture +=1 %>
                             <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></a></td>
