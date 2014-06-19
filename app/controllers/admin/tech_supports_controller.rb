@@ -58,7 +58,7 @@ class Admin::TechSupportsController < ApplicationController
   def destroy
     @admin_tech_support.destroy
     respond_to do |format|
-      format.html { redirect_to admin_tech_supports_url }
+      format.html { redirect_to admin_tech_supports_url, notice: 'Tech support was successfully deleted.'  }
       format.json { head :no_content }
     end
   end

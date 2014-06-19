@@ -58,7 +58,7 @@ class Admin::EobrModelsController < ApplicationController
   def destroy
     @admin_eobr_model.destroy
     respond_to do |format|
-      format.html { redirect_to admin_eobr_models_url }
+      format.html { redirect_to admin_eobr_models_url, notice: 'Eobr model was successfully deleted.'  }
       format.json { head :no_content }
     end
   end

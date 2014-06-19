@@ -121,7 +121,7 @@ class Admin::ServiceCentersController < ApplicationController
   def destroy
     @admin_service_center.destroy
     respond_to do |format|
-      format.html { redirect_to admin_service_centers_url }
+      format.html { redirect_to admin_service_centers_url, notice: 'Service center was successfully deleted.'  }
       format.json { head :no_content }
     end
   end

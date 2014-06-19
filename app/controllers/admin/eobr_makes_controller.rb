@@ -56,7 +56,7 @@ class Admin::EobrMakesController < ApplicationController
   def destroy
     @admin_eobr_make.destroy
     respond_to do |format|
-      format.html { redirect_to admin_eobr_makes_url }
+      format.html { redirect_to admin_eobr_makes_url, notice: 'Eobr make was successfully deleted.'  }
       format.json { head :no_content }
     end
   end
