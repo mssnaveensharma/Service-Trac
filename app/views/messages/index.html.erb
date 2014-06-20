@@ -40,6 +40,8 @@
  						//$("user_"+UserId).hide().siblings("div");
  					}else{
  						$("#One").css("display","block").delay(2000).slideUp("slow");
+ 						 $("html, body").animate({ scrollTop: 0 }, "1");              
+        $('html, body').stop(true, true);
 
  					}
  				},error: function(xhr,txt){
