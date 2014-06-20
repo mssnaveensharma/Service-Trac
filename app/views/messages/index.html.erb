@@ -22,14 +22,12 @@
  					if(response.success == true && response.messages.length > 1){
  						$("#user_"+UserId).html("");
  						var Length = response.messages.length;
- 						//$("#user_"+UserId).append("<div id='inner_two_'"+UserId+"></div>")
  						$.each([response.messages], function(index,value){
  							for(var i=0; i < Length;i++){
- 								var NewMessage = '<div class="para-repeat inner"><h4>'+value[i]['date']+'</h4><h4>'+value[i]['truck']+'</h4><h4>'+value[i]['name']+'</h4><p>'+value[i]['content']+'</p><a href="#new" class="mail-icon"></a></div>';
+ 								var NewMessage = '<div class="para-repeat inner"><h4>'+value[i]['date']+'</h4><h4>'+value[i]['truck']+'</h4><h4>'+value[i]['name']+'</h4><p>'+value[i]['content']+'</p><a id='+value[i]['user_id']+' href="#new" onclick="showSelected(this.id)" class="mail-icon"></a></div>';
  								$("#user_"+UserId).append(NewMessage)
- 								//$("#user_"+UserId).removeClass("outer");
  								$('body,html').animate({'scrollTop':$("#user_"+UserId).offset().top});
- 								//$(".outer").slideUp("slow");
+ 								
  							}
  						});
  						
@@ -43,6 +41,14 @@
  			});
  		}
  	//alert(id);
+ }
+
+ function showSelected(id){
+ 	var id = id;
+ 	if(id !='' && id != undefined){
+ 		$("#message_ToUserId option:selected").removeAttr('selected');
+ 		$("#message_ToUserId option[value="+id+"]").attr("selected", "selected");
+ 	}
  }
 </script>
 		<div class="container">
@@ -73,7 +79,7 @@
  				<%= f.hidden_field :FromUserId, :value => current_user.id %>
 				  	<% @selected_center = UsersServiceCenter.where(:user_id => current_user.id) %>
 		         			<% @selected_center.each do |selected| %>   
-		            		<% @selected_id =  selected.service_center_id %>
+		            		<% @selected_id =  selected.company_id %>
 	         		<% end %>
 			    	<%= f.hidden_field :service_center_id, :value => @selected_id %>
 				<% end %>
@@ -83,9 +89,13 @@
 			  <div class="form-group">
 			   To:
 			  <!--%= text_field_tag 'tags' %-->
-
-			<%= select("message", "ToUserId", User.where(:Role => "AppUser").collect {|u| [ u.FirstName, u.id ] }, { include_blank: "Select User" }, :class => "slct" ) %>
-
+			  <% if user_signed_in? %>
+				<% if current_user.Role == "admin" %>
+					<%= select("message", "ToUserId", User.where(:Role => "AppUser").collect {|u| [ u.FirstName, u.id ] }, { include_blank: "Select User" }, :class => "slct" ) %>
+				<% else %>
+					<%= select("message", "ToUserId", User.where(:Role => "AppUser").where(:company_id => @selected_id).collect {|u| [ u.FirstName, u.id ] }, { include_blank: "Select User" }, :class => "slct" ) %>
+			  	<% end %>
+			  <% end %>
 
 			  </div>
 
@@ -121,7 +131,7 @@
 						<h4><%= message[:truck] %></h4>
 						<h4><%= message[:name] %></h4>
 						<p><%= message[:content] %></p>
-						<a href="#new" class="mail-icon"></a>
+						<a id="<%= message[:user_id]%>" href="#new" onclick="showSelected(this.id)" class="mail-icon"></a>
 					</div>
 					<a id="<%= message[:user_id]%>" href="javascript:void(0);" onclick="getMessages(this.id)" class="expand">Expand All</a>
 			<% end %>

@@ -7,7 +7,15 @@ class MessagesController < ApplicationController
   def index
     
     @message = Message.new
-    @users = User.all
+    if current_user.Role == "admin"
+      @users = User.all
+    else
+      @company = UsersServiceCenter.where(:user_id => current_user.id)
+      @company.each do |c|
+        @company_id = c.company_id
+      end
+      @users = User.where(:company_id => @company_id)
+    end
       arr = Array.new
           @users.each do |user|
             @messages = Message.where('"FromUserId" = ? or "ToUserId" = ?', user.id, user.id).order("created_at DESC").limit(1)
@@ -43,7 +51,7 @@ class MessagesController < ApplicationController
   Urbanairship.request_timeout = 5 # default
     
 
-    @users = User.all
+     @users = User.all
      @user = User.find(@message.ToUserId) 
      @d_type = @user.device_type 
      @d_token = @user.device_token 
