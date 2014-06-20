@@ -71,6 +71,34 @@
  	}
  }
 </script>
+<script type="text/javascript">
+     $(document).ready(function(){
+      //$('#table').tablesorter();
+    $('input[name="search"]').keyup(function(){
+      var searchterm = $(this).val();
+      if(searchterm.length > 3) {
+       var match = $('ul.outer:contains("' + searchterm +'")');
+       var nomatch = $('ul.outer:not(:contains("' + searchterm + '"))');
+       match.addClass('selected');
+       nomatch.css("display", "none");
+       //$(".expand").css("display","none");
+      } else {
+       $("ul.outer").css("display", "");
+       $("ul.outer").removeClass("selected");
+      }
+    });
+		   /* $('#office-type-list').change(function(){
+		    var sel = $(this).val();
+		    $('div[name="Offices"] div').hide();
+		    if(sel != "00"){
+		       $('div[data-custom-type="'+sel+'"]').show();
+		    }
+		    else {
+		        $('div[name="Offices"] div').show();
+		    }
+		});*/
+    });
+</script>
 		<div class="container">
 
 			<div class="serch-fld">
@@ -139,7 +167,7 @@
 		<div class="col-sm-8 align-right">
 			<div class="top-search padding-search">
 			<label>SEARCH</label>
-			<input class="input-dtl-srch" type="text">
+			<input class="input-dtl-srch" name="search" type="text">
 			<input class="search-submit d-search" type="submit" value="">
 			</div>
 		</div>
@@ -148,7 +176,7 @@
 			<ul id="messages">
 			<% @new_users.each do |message| %>
 					<ul id="user_<%= message[:user_id]%>" class="outer para-repeat">
-						<li class="">
+						<li class="msg">
 								<h4><%= message[:date] %></h4>
 								<h4><%= message[:truck] %></h4>
 								<h4><%= message[:name] %></h4>
@@ -156,8 +184,9 @@
 								<a id="<%= message[:user_id]%>" href="#new" onclick="showSelected(this.id)" class="mail-icon"></a>
 							
 						</li>
-				</ul>
-					<a href="#user_<%= message[:user_id]%>" id="<%= message[:user_id]%>" href="javascript:void(0);" onclick="getMessages(this.id)" class="expand">Expand All</a>
+						<a  href="#user_<%= message[:user_id]%>" id="<%= message[:user_id]%>" href="javascript:void(0);" onclick="getMessages(this.id)" class="expand">Expand All</a>
+					</ul>
+							
 			<% end %>
 			</ul>
 			<div class="holder"></div>
