@@ -1,7 +1,16 @@
 <%= javascript_include_tag "jquery.validate.min.js" %>
+<%= javascript_include_tag "jPages.js" %>
  <script type="text/javascript">
   jQuery(document).ready(function() {
-
+  	$(function(){
+      $("div.holder").jPages({
+        containerID : "messages",
+        previous : "",
+        next : "",
+        perPage : 10,
+        delay : 20
+      });
+    });
     $(".new_message").validate({
       errorElement: "label",
     rules: {
@@ -40,8 +49,8 @@
  						//$("user_"+UserId).hide().siblings("div");
  					}else{
  						$("#One").css("display","block").delay(2000).slideUp("slow");
- 						 $("html, body").animate({ scrollTop: 0 }, "1");              
-        $('html, body').stop(true, true);
+ 						$("html, body").animate({ scrollTop: 0 }, "1");              
+        				$('html, body').stop(true, true);
 
  					}
  				},error: function(xhr,txt){
@@ -134,6 +143,7 @@
 		</div>
 		<div class="para-content">
 		<div id="One" style="display:none;color:red;">User has only one message</div>
+			<ul id="messages">
 			<% @new_users.each do |message| %>
 					<ul id="user_<%= message[:user_id]%>" class="outer para-repeat">
 						<li class="">
@@ -147,6 +157,8 @@
 				</ul>
 					<a href="#user_<%= message[:user_id]%>" id="<%= message[:user_id]%>" href="javascript:void(0);" onclick="getMessages(this.id)" class="expand">Expand All</a>
 			<% end %>
+			</ul>
+			<div class="holder"></div>
 		</div>
 		<br>
 		
