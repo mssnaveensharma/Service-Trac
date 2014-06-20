@@ -32,7 +32,8 @@ class UsersController < ApplicationController
               :device_type=>params[:device_type],
               :device_token=>params[:device_token],
               :wp_notification_url=>params[:wp_notification_url],
-              :plain_password=>params[:password]
+              :plain_password=>params[:password],
+              :support_call => "0"
             });
 
       if(@response.id !='' and @response.id != nil)
@@ -64,7 +65,8 @@ class UsersController < ApplicationController
               :Role=>"AppUser",
               :device_type=>params[:device_type],
               :device_token=>params[:device_token],
-              :plain_password=>params[:password]            
+              :plain_password=>params[:password],
+              :support_call => "0"            
 
             });
            if(@response.id !='' and @response.id != nil)
@@ -226,7 +228,8 @@ def create_user
               :device_type=>"1",
               :device_token=>"1",
               :wp_notification_url=>"1",
-              :plain_password=>params[:password]
+              :plain_password=>params[:password],
+              :support_call => "0"
             });
               if(@response.id != nil)
                   @create = UsersServiceCenter.create({
@@ -269,7 +272,7 @@ def create_user
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       #params.require(:user).permit!
-      params.require(:user).permit(:eobr_make_id,:company_id,:eobr_model_id,:Role,:EobrNumber,:TruckNumber,:TruckMake,:TruckYear,:TruckOwner,:TruckModel,:CompanyName,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language,:device_type,:device_token,:wp_notification_url)
+      params.require(:user).permit(:eobr_make_id,:company_id,:eobr_model_id,:Role,:EobrNumber,:TruckNumber,:TruckMake,:TruckYear,:TruckOwner,:TruckModel,:CompanyName,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language,:device_type,:device_token,:wp_notification_url,:support_call)
     end
     
 end
