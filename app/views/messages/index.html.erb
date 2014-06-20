@@ -20,7 +20,10 @@
  				data: {user_id: UserId},
  				success: function(response){
  					if(response.success == true && response.messages.length > 1){
- 						$("#user_"+UserId).html("");
+ 						//$("#user_"+UserId).html("");
+ 						$(".inner").slideUp("slow");
+ 						//$(".outer").show();
+ 						//$("."+UserId).hide();
  						var Length = response.messages.length;
  						$.each([response.messages], function(index,value){
  							for(var i=0; i < Length;i++){
@@ -30,7 +33,8 @@
  								
  							}
  						});
- 						
+ 						$( "user_"+UserId+":first-of-type" ).hide();
+ 						//$("user_"+UserId).hide().siblings("div");
  					}else{
  						$("#One").css("display","block").delay(2000).slideUp("slow");
 
@@ -126,7 +130,7 @@
 		<div class="para-content">
 		<div id="One" style="display:none;color:red;">User has only one message</div>
 			<% @new_users.each do |message| %>
-					<div class="para-repeat outer" id="user_<%= message[:user_id]%>">
+					<div class="para-repeat outer <%= message[:user_id]%>" id="user_<%= message[:user_id]%>">
 						<h4><%= message[:date] %></h4>
 						<h4><%= message[:truck] %></h4>
 						<h4><%= message[:name] %></h4>
