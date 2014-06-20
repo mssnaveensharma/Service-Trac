@@ -112,6 +112,7 @@ Servicetrac::Application.routes.draw do
 
   post 'get_messages' => 'messages#get_messages'
 
+  match 'support-called' => 'service_alerts#support_call', :via => :post, :defaults => { :format => 'json' }
  # match 'get-messages/:user_id' => 'messages#get_messages', :via => :get, :defaults => { :format => 'json' }
   #   get 'register' => 'welcome#index'
   # Example of regular route:

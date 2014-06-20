@@ -85,7 +85,7 @@ def login
            if params[:wp_notification_url] != ''
             @update = User.where('id= ?', user.id).update_all(lat: params[:lat], lan: params[:lan], device_type: params[:device_type], device_token: params[:device_token], wp_notification_url: params[:wp_notification_url])
               if(@update == 1)
-                return render :json => {:success => true, :id => user.id, :email => user.email, :lat => params[:lat], :lan => params[:lan]}
+                return render :json => {:success => true, :id => user.id, :email => user.email, :lat => params[:lat], :lan => params[:lan] :user_info => user}
               else
                 return render :json => {:success => false, :message => "Invalid email or password"}
               end
@@ -95,7 +95,7 @@ def login
         else
        @update = User.where('id= ?', user.id).update_all(lat: params[:lat], lan: params[:lan], device_type: params[:device_type], device_token: params[:device_token])
           if(@update == 1)
-            return render :json => {:success => true, :id => user.id, :email => user.email, :lat => params[:lat], :lan => params[:lan]}
+            return render :json => {:success => true, :id => user.id, :email => user.email, :lat => params[:lat], :lan => params[:lan], :user_info => user}
           else
             return render :json => {:success => false, :message => "Invalid email or password"}
           end
