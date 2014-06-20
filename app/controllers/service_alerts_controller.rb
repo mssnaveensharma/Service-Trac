@@ -4,6 +4,7 @@ class ServiceAlertsController < ApplicationController
   before_action :set_service_alert, only: [:show, :edit, :update, :destroy]
   before_action :authenticate, only: [:driver_status]
   before_action :authenticate_user!, only: [:index]
+  before_action :authenticate, only: [:support_call]
   # GET /service_alerts
   # GET /service_alerts.json
   def index
