@@ -214,20 +214,20 @@ def create_user
               :LastName=>params[:LastName],
               :EobrNumber=>"1",
               :Contact=>params[:Contact],
-              :eobr_make_id=>"1",
-              :eobr_model_id=>"1",
-              :TruckNumber=>"1",
-              :TruckMake=>"1",
-              :TruckYear=>"1",
-              :TruckOwner=>"1",
-              :TruckModel=>"1",
-              :company_id=>"1",
-              :tech_support_id=>"1",
+              :eobr_make_id=>"01",
+              :eobr_model_id=>"01",
+              :TruckNumber=>"01",
+              :TruckMake=>"01",
+              :TruckYear=>"01",
+              :TruckOwner=>"01",
+              :TruckModel=>"01",
+              :company_id=>"01",
+              :tech_support_id=>"01",
               :Language=>"1",
               :Role=>"CompanyUser",
-              :device_type=>"1",
-              :device_token=>"1",
-              :wp_notification_url=>"1",
+              :device_type=>"01",
+              :device_token=>"01",
+              :wp_notification_url=>"01",
               :plain_password=>params[:password],
               :support_call => "0"
             });
@@ -272,7 +272,7 @@ def create_user
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       #params.require(:user).permit!
-      params.require(:user).permit(:eobr_make_id,:company_id,:eobr_model_id,:Role,:EobrNumber,:TruckNumber,:TruckMake,:TruckYear,:TruckOwner,:TruckModel,:CompanyName,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language,:device_type,:device_token,:wp_notification_url,:support_call)
+      params.require(:user).permit(:eobr_make_id,:company_id,:eobr_model_id,:Role,:EobrNumber,:TruckNumber,:TruckMake,:TruckYear,:TruckOwner,:TruckModel,:FirstName,:LastName,:email,:encrypted_password,:password_confirmation,:Language,:device_type,:device_token,:wp_notification_url,:support_call)
     end
     
 end
