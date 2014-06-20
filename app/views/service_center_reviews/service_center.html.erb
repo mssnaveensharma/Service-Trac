@@ -178,7 +178,7 @@ $(document).ready(function(){
                 <input class="search-submit d-search" value="" type="submit" />
             </div>
             <div class="table-responsive">
-              <table class="table-striped table-bordered table-condensed srvc-tb-cntr" width="100%">
+              <table id="ServiceAlertsD" class="table-striped table-bordered table-condensed srvc-tb-cntr" width="100%">
               <thead>
                     <tr>
                         <th><h4>NAME</h4></th>
@@ -188,7 +188,9 @@ $(document).ready(function(){
                 </thead>
                 <tbody>
                        <% if @service_centers.length != 0 %>
+                           <% @len = 0 %>
                             <% @service_centers.each do |service_center| %>
+                              <% @len += 1 %>
                              <% if(params[:id].to_i == service_center.id.to_i) %>
                                 <tr class="service-active-row data-row" id="<%= service_center.id %>">
                              <% else %>
@@ -204,6 +206,18 @@ $(document).ready(function(){
             </table>
             </div>
         </div>
+
+<% if @len > 10 %>
+<%= javascript_include_tag "jquery.dataTables.js" %>
+<script type="text/javascript" language="javascript" class="init">
+$(document).ready(function() {
+  $('#ServiceAlertsD').dataTable();
+ 
+} );
+  </script>
+<% end %>
+
+
         <div class="col-sm-4 padding-2 srvc-mn-hyt">
           <ul class="list-group">
                <li class="list-ctnt">
