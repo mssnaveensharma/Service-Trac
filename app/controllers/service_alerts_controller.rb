@@ -246,7 +246,7 @@ class ServiceAlertsController < ApplicationController
     if params[:user_id] and params[:user_id] != ''
       @user = User.where(:id => params[:user_id])
         if @user.length != 0
-          
+          @update = User.where(:id => params[:])
         else
           return render :json => {:success => false, :message => "Invalid user id"}
         end
