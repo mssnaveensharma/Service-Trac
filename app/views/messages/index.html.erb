@@ -22,6 +22,7 @@
  function getMessages(id){
  	var UserId = id;
  		if (UserId != '' && UserId != undefined){
+ 			$("#loader").show();
  			$(".outer li:first-child").css("display","block");
  			$.ajax({
  				url: "/get_messages",
@@ -53,6 +54,7 @@
         				$('html, body').stop(true, true);
 
  					}
+ 				$("#loader").hide();
  				},error: function(xhr,txt){
  					console.log("Something went wrong ",xhr.status);
  				}

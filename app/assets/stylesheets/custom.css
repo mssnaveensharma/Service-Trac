@@ -1342,3 +1342,6 @@ form.edit_alert
 	min-height: 80px;
 	padding-left: 0 !important;
 }
+#messages {
+	padding-left: 0 !important;
+}
