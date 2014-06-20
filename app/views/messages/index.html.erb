@@ -32,6 +32,7 @@
  				success: function(response){
  					if(response.success == true && response.messages.length > 1){
  						//$("#user_"+UserId).html("");
+ 						$("ul#user_"+UserId+" a.expand").css("display","none");
  						$(".inner").slideUp("slow");
  						//$(".outer").show();
  						//$("."+UserId).hide();
@@ -46,6 +47,7 @@
  							$("#user_"+UserId+" li:first-child").css("display","none");
  							//$("user_"+UserId).find('.inner:first').hide();
  						});
+ 						$("#user_"+UserId).append('<a  href=#user_'+UserId+' id='+UserId+' href="javascript:void(0);" onclick="getMessages(this.id)" class="expand">Expand All</a>')
  						//$( "user_"+UserId+":first-of-type" ).hide();
  						//$("user_"+UserId).hide().siblings("div");
  					}else{
@@ -184,9 +186,8 @@
 								<a id="<%= message[:user_id]%>" href="#new" onclick="showSelected(this.id)" class="mail-icon"></a>
 							
 						</li>
-
+						<a  href="#user_<%= message[:user_id]%>" id="<%= message[:user_id]%>" href="javascript:void(0);" onclick="getMessages(this.id)" class="expand">Expand All</a>
 					</ul>
-							<a  href="#user_<%= message[:user_id]%>" id="<%= message[:user_id]%>" href="javascript:void(0);" onclick="getMessages(this.id)" class="expand">Expand All</a>
 			<% end %>
 			</ul>
 			<div class="holder"></div>
