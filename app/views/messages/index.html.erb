@@ -137,7 +137,7 @@
 						<p><%= message[:content] %></p>
 						<a id="<%= message[:user_id]%>" href="#new" onclick="showSelected(this.id)" class="mail-icon"></a>
 					</div>
-					<a id="<%= message[:user_id]%>" href="javascript:void(0);" onclick="getMessages(this.id)" class="expand">Expand All</a>
+					<a href="#user_<%= message[:user_id]%>" id="<%= message[:user_id]%>" href="javascript:void(0);" onclick="getMessages(this.id)" class="expand">Expand All</a>
 			<% end %>
 		</div>
 		<br>
