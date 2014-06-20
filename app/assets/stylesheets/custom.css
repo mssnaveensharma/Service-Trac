@@ -1349,4 +1349,5 @@ form.edit_alert
     #map-canvas{height:255px !important;}
     #notes{max-height: 173px;min-height: 173px;}
     .right-border{max-height: 606px;}
+    #ReviewContainer{min-height: 606px !important;max-height: 606px !important;}
 }
