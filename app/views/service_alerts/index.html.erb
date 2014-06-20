@@ -118,7 +118,7 @@
                       <tr>
                         <% @drivers = User.where('("Role" = ? AND id = ? )', "AppUser",service_alert.user_id) %>
                             <% if(@drivers.length != 0) and service_alert.status != 'Complete' %>
-                              <%=debug @drivers %>
+                              <%#=debug @drivers %>
                                 <%@drivers.each do |driver_company| %>
                                   <% @selected_company = driver_company.company_id %>
                                 <% end %>
