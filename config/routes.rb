@@ -39,6 +39,8 @@ Servicetrac::Application.routes.draw do
     end
   end
 
+  #url' we are using in api call from mobile
+
   match 'api/eobr-makes' => 'admin/eobr_makes#index',  :via => :get,  :defaults => { :format => 'json' }
 
   match 'api/eobr-models/:id' => 'admin/eobr_models#index',  :via => :get,  :defaults => { :format => 'json' }
@@ -48,10 +50,7 @@ Servicetrac::Application.routes.draw do
   match 'api/service-centers' => 'admin/service_centers#index',  :via => :get,  :defaults => { :format => 'json' }
   
   match 'api/tech-support' => 'admin/tech_supports#index',  :via => :get,  :defaults => { :format => 'json' }
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
+  
   root 'service_alerts#index'
 
   post 'register_app_user' => 'users#register_app_user'
@@ -60,11 +59,7 @@ Servicetrac::Application.routes.draw do
 
   match 'driver-status' => 'service_alerts#driver_status',  :via => :post
 
-  #post 'post_review' => 'service_center_reviews#post_review'
-
   match 'post-review' => 'service_center_reviews#post_review',  :via => :post
-
-  #post 'get_reviews' => 'service_center_reviews#get_reviews'  
 
   match 'get-reviews/:service_center_id' => 'service_center_reviews#get_reviews',  :via => :get,  :defaults => { :format => 'json' }
 
@@ -76,6 +71,14 @@ Servicetrac::Application.routes.draw do
 
   post 'recover_password' => 'users#recover_password'
   
+  match 'add-notes' => 'alert_details#add_notes',  :via => :post
+
+  match 'support-called' => 'service_alerts#support_call', :via => :post, :defaults => { :format => 'json' }
+
+  
+
+  #url's we are using in web
+
   get 'edit_alert' => 'alert_details#edit_alert'
 
   post 'update_alert' => 'alert_details#update_alert'
@@ -98,8 +101,6 @@ Servicetrac::Application.routes.draw do
   
   post 'getCenter' => 'service_center_reviews#getCenter'
 
-  match 'add-notes' => 'alert_details#add_notes',  :via => :post
-
   match 'get-notes' => 'alert_details#get_notes', :via => :get, :defaults => { :format => 'json' }
 
   get 'notes' => 'alert_details#notes'
@@ -111,8 +112,7 @@ Servicetrac::Application.routes.draw do
   post 'update_review' => 'service_center_reviews#update_review'
 
   post 'get_messages' => 'messages#get_messages'
-
-  match 'support-called' => 'service_alerts#support_call', :via => :post, :defaults => { :format => 'json' }
+  
  # match 'get-messages/:user_id' => 'messages#get_messages', :via => :get, :defaults => { :format => 'json' }
   #   get 'register' => 'welcome#index'
   # Example of regular route:

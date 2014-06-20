@@ -144,8 +144,8 @@ class AlertDetailsController < ApplicationController
                     response[:ticket_po_no]=alert.ticket_po_no
                     response[:city_state]="NA"
                     response[:last_alert]=alert.created_at.strftime("%d/%m/%y")
-                    response[:asst_time]=@asst_time.strftime("%I:%M %p")
-                    response[:asst_date]=Date.today.strftime("%d/%m/%y")
+                    response[:asst_time]="NA"
+                    response[:asst_date]="NA"
                     response[:alert_status]=alert.status
                     response[:tech_called]=@tech_support_call
                     data.push(response)
