@@ -242,19 +242,7 @@ class ServiceAlertsController < ApplicationController
       return JSON.parse(response.response_body)
   end
 
-  def support_call
-    if params[:user_id] and params[:user_id] != ''
-      @user = User.where(:id => params[:user_id])
-        if @user.length != 0
-          @update = User.where(:id => params[:])
-        else
-          return render :json => {:success => false, :message => "Invalid user id"}
-        end
-    else
-      return render :json => {:success => false, :message => "Missing perameters or invalid request method"}
-    end
-  end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_service_alert
