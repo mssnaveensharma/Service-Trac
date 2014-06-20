@@ -1340,4 +1340,5 @@ form.edit_alert
 }
 .outer {
 	min-height: 80px;
+	padding-left: 0 !important;
 }

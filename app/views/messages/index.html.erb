@@ -13,6 +13,7 @@
  function getMessages(id){
  	var UserId = id;
  		if (UserId != '' && UserId != undefined){
+ 			$(".outer li:first-child").css("display","block");
  			$.ajax({
  				url: "/get_messages",
  				type: "post",
@@ -27,11 +28,13 @@
  						var Length = response.messages.length;
  						$.each([response.messages], function(index,value){
  							for(var i=0; i < Length;i++){
- 								var NewMessage = '<div class="para-repeat inner"><h4>'+value[i]['date']+'</h4><h4>'+value[i]['truck']+'</h4><h4>'+value[i]['name']+'</h4><p>'+value[i]['content']+'</p><a id='+value[i]['user_id']+' href="#new" onclick="showSelected(this.id)" class="mail-icon"></a></div>';
+ 								var NewMessage = '<li class="para-repeat inner"><h4>'+value[i]['date']+'</h4><h4>'+value[i]['truck']+'</h4><h4>'+value[i]['name']+'</h4><p>'+value[i]['content']+'</p><a id='+value[i]['user_id']+' href="#new" onclick="showSelected(this.id)" class="mail-icon"></a></li>';
  								$("#user_"+UserId).append(NewMessage)
  								$('body,html').animate({'scrollTop':$("#user_"+UserId).offset().top});
  								
  							}
+ 							$("#user_"+UserId+" li:first-child").css("display","none");
+ 							//$("user_"+UserId).find('.inner:first').hide();
  						});
  						//$( "user_"+UserId+":first-of-type" ).hide();
  						//$("user_"+UserId).hide().siblings("div");
@@ -130,13 +133,16 @@
 		<div class="para-content">
 		<div id="One" style="display:none;color:red;">User has only one message</div>
 			<% @new_users.each do |message| %>
-					<div class="para-repeat outer <%= message[:user_id]%>" id="user_<%= message[:user_id]%>">
-						<h4><%= message[:date] %></h4>
-						<h4><%= message[:truck] %></h4>
-						<h4><%= message[:name] %></h4>
-						<p><%= message[:content] %></p>
-						<a id="<%= message[:user_id]%>" href="#new" onclick="showSelected(this.id)" class="mail-icon"></a>
-					</div>
+					<ul id="user_<%= message[:user_id]%>" class="outer para-repeat">
+						<li class="">
+								<h4><%= message[:date] %></h4>
+								<h4><%= message[:truck] %></h4>
+								<h4><%= message[:name] %></h4>
+								<p><%= message[:content] %></p>
+								<a id="<%= message[:user_id]%>" href="#new" onclick="showSelected(this.id)" class="mail-icon"></a>
+							
+						</li>
+				</ul>
 					<a href="#user_<%= message[:user_id]%>" id="<%= message[:user_id]%>" href="javascript:void(0);" onclick="getMessages(this.id)" class="expand">Expand All</a>
 			<% end %>
 		</div>
