@@ -208,7 +208,7 @@ class MessagesController < ApplicationController
   end
 
 def all_messages
-  if params[:user_id] != '' and params[:user_id] != nil and params[:service_center_id] and params[:service_center_id] != nil
+  if params[:user_id] != '' and params[:user_id] != nil and params[:company_id] and params[:company_id] != nil
    messages = Array.new
     @messages = Message.where('"FromUserId" = ? or "ToUserId" = ?', params[:user_id], params[:user_id])
       if @messages.length != 0
@@ -222,7 +222,7 @@ def all_messages
                   @service_center = center.Name
                   @center_id = center.id
                 end
-                if message.service_center_id.to_i == params[:service_center_id].to_i
+                #if message.service_center_id.to_i == params[:service_center_id].to_i
                     response = Hash.new
                     response[:date]=message.created_at.strftime("%d/%m/%y %I:%M %p")
                     response[:service_center]=@service_center
@@ -230,11 +230,11 @@ def all_messages
                     response[:messageId]=message.id
                     response[:username]=@user_name
                     response[:sent_by]=message.sent_by
-                    response[:service_center_id]=message.service_center_id
-                    response[:my_Service]=params[:service_center_id]
+                    #response[:service_center_id]=message.service_center_id
+                    #response[:my_Service]=params[:service_center_id]
                     messages.push(response)
               @messageArray = messages
-            end
+            #end
         end
           if @messageArray !="" and @messageArray != nil
             return render :json => {:success => true, :messages => @messageArray}
