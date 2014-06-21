@@ -217,13 +217,13 @@ def all_messages
           @user_name = user.FirstName
         end
         @messages.each do |message| 
-=begin
-@center_name = Admin::Company.where(:id => params[:service_center_id])
-                @center_name.each do |center|
-                  @service_center = center.Name
-                  @center_id = center.id
-end
-=end
+
+            @companies = Admin::Company.where(:id => params[:company_id])
+                @companies.each do |c|
+                  @c_name = c.CompanyName
+                  #@center_id = center.id
+            end
+
 
                 if message.service_center_id.to_i == params[:company_id].to_i
                     response = Hash.new
@@ -233,6 +233,7 @@ end
                     response[:messageId]=message.id
                     response[:username]=@user_name
                     response[:sent_by]=message.sent_by
+                    response[:companyName]=@c_name
                     #response[:service_center_id]=message.service_center_id
                     #response[:my_Service]=params[:service_center_id]
                     messages.push(response)
