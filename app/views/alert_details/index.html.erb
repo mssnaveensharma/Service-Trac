@@ -89,6 +89,7 @@ function calcRoute(id) {
     $("#loader").show();
     $(".edit_alert").attr("href","/edit_alert?id="+alert_id);
     $("#service_ticket").attr("href","/service_ticket?id="+alert_id);
+    $("#notes_link").attr("href","/notes?alert="+alert_id);
     $(".refresh").attr("id",alert_id);
     $("#alert_id_hidden").val(alert_id);
     $("tr").removeClass("active-row");
@@ -466,7 +467,7 @@ $(document).ready(function() {
              <ul class="list-group">
                <li class="list-ctnt">
                     <h4>Notes</h4>
-                    <a href="/notes?alert=<%= params[:id]%>">add </a>
+                    <a id="notes_link" href="/notes?alert=<%= params[:id]%>">add </a>
                </li>
                </ul>
                <ul id="notes" class="list-group">
