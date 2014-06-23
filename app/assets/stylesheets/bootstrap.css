@@ -5816,3 +5816,159 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+/*Edited CSS */
+@media (max-width:768px)
+{
+.no-padding-s4 .col-sm-8
+{
+	background:#fff;
+}
+.white-bg .para-content
+{
+	padding-left:5px;
+	padding-top:0px;
+}
+.message-center h4
+{
+	display:inline-block;
+	width:100%;
+}
+.message-input
+{
+	margin-top:5px;
+}
+.table-responsive
+{
+	margin-bottom:10px;
+}
+.col-sm-4.right-border
+{
+	border:none;
+}
+.padding-2
+{
+	margin-bottom:10px;
+}
+.navbar-toggle
+{
+	display:none !important;
+}
+.container .list-group .list-group-item p {
+    width: 42%;
+}
+.list-group-item a
+{
+	float:right;
+}
+.fk-bg
+{
+	display:none;
+}
+.list-group .list-group-item p
+{
+	width:48%;
+}
+.navbar-collapse.collapse
+{
+	display:block;
+	border:none;
+}
+.nav.navbar-nav
+{
+	text-align:center;
+}
+.navbar-header
+{
+	text-align:center;
+	border:none;
+}
+.navbar-brand
+{
+	position:static;
+	float:none;
+	margin-bottom:5px;
+	display:inline-block;
+	margin-left:0px !important;
+}
+.nav.navbar-nav.navbar-right li
+{
+	display:inline-block;
+	width:auto;
+}
+.nav.navbar-nav.navbar-right li a
+{
+	padding:30px;
+	background-color:#555;
+}
+.nav.navbar-nav.navbar-right li a:hover
+{
+	background-color:#333;
+}
+.navbar .nav p
+{
+	margin:10px 0px;
+}
+.container .home:hover
+{
+	background:url(../img/home.png) center no-repeat;
+}
+.container .message:hover
+{
+	background:url(../img/message.png) center no-repeat;
+}
+
+.container .setting:hover
+{
+	background:url(../img/setting.png) center no-repeat;
+}
+
+.container .edit:hover
+{
+	background:url(../img/set-edit.png) center no-repeat;
+}
+th
+{
+	vertical-align:top;
+}
+	
+}
+@media (max-width:480px)
+{
+.container .serch-fld
+{
+	text-align:center;
+}
+.container .serch-fld span
+{
+	width:202px;
+}
+.container .form-control
+{
+	width:170px;
+}
+.container .serch-fld label
+{
+	font-size:14px;
+}
+.navbar-default .navbar-nav > li > a
+{
+	margin:0px 6px;
+}
+}
+@media (max-width:400px)
+{
+body .container .form-control {
+    width: 125px;
+}
+body .container .serch-fld span {
+    width: 160px;
+}
+body .container .serch-fld label
+{
+	font-size:12px;
+}
+.breadcrumb li
+{
+	font-size:12px;
+}
+}
