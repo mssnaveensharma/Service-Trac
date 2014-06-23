@@ -826,7 +826,6 @@ a.sign-up-lnk
 {
 	padding:20px;
 	background:#fff;
-	margin-top:20px;
 	min-height:400px;
 }
 .edit-cmp-form
@@ -1354,4 +1353,7 @@ form.edit_alert
 	padding-right:0px;
 	padding-left:10px;
 	
+}
+.table-responsive {
+    border: none;
 }
