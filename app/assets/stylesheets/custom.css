@@ -427,7 +427,9 @@ h4.bg-msg.bg-msg-pstn
 {
 	padding:5px 10px 0;
 	font-size:13px;
-	margin-bottom:20px;
+	margin-bottom:10px;
+	/*max-height: 115px;
+	text-overflow: ellipsis;*/
 }
 .reviews-cntnt label
 {
