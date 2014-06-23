@@ -5981,6 +5981,12 @@ body .navbar-default .navbar-nav > li > a {
 }
 @media (max-width:991px)
 {
+.container .trac-link a
+{
+	font-size:12px;
+	background-size: 32px 32px !important;
+	background-position: center 20px !important;
+}
 .col-sm-4 .hourly-rt p
 {
     font-size: 13px;
