@@ -5979,3 +5979,33 @@ body .navbar-default .navbar-nav > li > a {
     margin: 0 2px;
 }
 }
+@media (max-width:991px)
+{
+.col-sm-4 .hourly-rt p
+{
+    font-size: 13px;
+    padding: 5px 0 5px 4px;
+    width: 64%;
+}
+.col-sm-4 .hourly-rt h4 {
+  
+    font-size: 13px;
+    line-height: 18px;
+    width: 36%;
+}
+.col-sm-4 .form-group .message-input {
+    width: 100%;
+}
+.top-search .input-dtl-srch
+{
+  width:54%;
+}
+.list-group .list-group-item p
+{
+	width:42%;
+}
+.list-group .list-group-item h4
+{
+	width:48%;
+}
+}
