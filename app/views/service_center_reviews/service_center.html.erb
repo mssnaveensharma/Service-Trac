@@ -133,13 +133,24 @@ $(document).ready(function(){
                                       previous : "",
                                       next : "",
                                       perPage : 4,
-                                      delay : 20
+                                      delay : 20,
+                                      callback: function (pages, items) {
+                                         if (items.count > 4) {
+                                             $("div.holder").show();
+                  //                           $("#legend1").html("Page " + pages.current + " of " + pages.count);
+                  //                           $("#legend2").html(items.range.start + " - " + items.range.end + " of " + items.count);
+                                         } else {
+                                             $("div.holder").hide();
+                                         }
+
+                                     }
+
                                     });
                                   });
 
-                                  if(reviewsLength <= 4) {
+                                 /* if(reviewsLength <= 4) {
                                     $(".holder").css("display","none");
-                                  }
+                                  }*/
 
                             }else{
                                 $("#reviews").append("<div class=reviews-cntnt><p>Serice center currently has no reviews</p></div>");
