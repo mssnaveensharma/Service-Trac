@@ -5914,21 +5914,21 @@ button.close {
 }
 .container .home:hover
 {
-	background:url(../img/home.png) center no-repeat;
+	background:url(home-hover.png) center no-repeat;
 }
 .container .message:hover
 {
-	background:url(../img/message.png) center no-repeat;
+	background:url(message-hover.png) center no-repeat;
 }
 
 .container .setting:hover
 {
-	background:url(../img/setting.png) center no-repeat;
+	background:url(setting-hover.png) center no-repeat;
 }
 
 .container .edit:hover
 {
-	background:url(../img/set-edit.png) center no-repeat;
+	background:url(set-edit-hover.png) center no-repeat;
 }
 th
 {
