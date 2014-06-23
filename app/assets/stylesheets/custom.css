@@ -1349,3 +1349,9 @@ form.edit_alert
     .right-border{max-height: 606px;}
     #ReviewContainer{min-height: 606px !important;max-height: 606px !important;}
 }
+.no-padding-s4 .col-sm-8
+{
+	padding-right:0px;
+	padding-left:10px;
+	
+}
