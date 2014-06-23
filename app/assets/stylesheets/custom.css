@@ -1354,6 +1354,6 @@ form.edit_alert
 	padding-left:10px;
 	
 }
-.table-responsive > .table-bordered {
-    border: 0 none;
+.table-responsive {
+    border: none;
 }
