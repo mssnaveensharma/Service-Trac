@@ -5984,6 +5984,7 @@ body .navbar-default .navbar-nav > li > a {
 .container .trac-link a
 {
 	font-size:12px;
+	line-height:40px;
 	background-size: 32px 32px !important;
 	background-position: center 20px !important;
 }
