@@ -5816,3 +5816,196 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+/*Edited CSS */
+@media (max-width:768px)
+{
+.no-padding-s4 .col-sm-8
+{
+	background:#fff;
+}
+.white-bg .para-content
+{
+	padding-left:5px;
+	padding-top:0px;
+}
+.navbar-default .navbar-nav > li > a
+{
+	background-position: center !important;
+}
+.message-center h4
+{
+	display:inline-block;
+	width:100%;
+}
+.message-input
+{
+	margin-top:5px;
+}
+.table-responsive
+{
+	margin-bottom:10px;
+}
+.col-sm-4.right-border
+{
+	border:none;
+}
+.padding-2
+{
+	margin-bottom:10px;
+}
+.navbar-toggle
+{
+	display:none !important;
+}
+.container .list-group .list-group-item p {
+    width: 42%;
+}
+.list-group-item a
+{
+	float:right;
+}
+.fk-bg
+{
+	display:none;
+}
+.list-group .list-group-item p
+{
+	width:48%;
+}
+.navbar-collapse.collapse
+{
+	display:block;
+	border:none;
+}
+.nav.navbar-nav
+{
+	text-align:center;
+}
+.navbar-header
+{
+	text-align:center;
+	border:none;
+}
+.navbar-brand
+{
+	position:static;
+	float:none;
+	margin-bottom:5px;
+	display:inline-block;
+	margin-left:0px !important;
+}
+.nav.navbar-nav.navbar-right li
+{
+	display:inline-block;
+	width:auto;
+}
+.nav.navbar-nav.navbar-right li a
+{
+	padding:30px;
+	background-color:#555;
+}
+.nav.navbar-nav.navbar-right li a:hover
+{
+	background-color:#333;
+}
+.navbar .nav p
+{
+	margin:10px 0px;
+}
+.container .home:hover
+{
+	background:url(home-hover.png) center no-repeat;
+}
+.container .message:hover
+{
+	background:url(message-hover.png) center no-repeat;
+}
+
+.container .setting:hover
+{
+	background:url(setting-hover.png) center no-repeat;
+}
+
+.container .edit:hover
+{
+	background:url(set-edit-hover.png) center no-repeat;
+}
+th
+{
+	vertical-align:top;
+}
+	
+}
+@media (max-width:480px)
+{
+.container .serch-fld
+{
+	text-align:center;
+}
+.container .serch-fld span
+{
+	width:202px;
+}
+.container .form-control
+{
+	width:170px;
+}
+.container .serch-fld label
+{
+	font-size:14px;
+}
+.navbar-default .navbar-nav > li > a
+{
+	margin:0px 6px;
+}
+}
+@media (max-width:400px)
+{
+body .container .form-control {
+    width: 125px;
+}
+body .container .serch-fld span {
+    width: 160px;
+}
+body .container .serch-fld label
+{
+	font-size:12px;
+}
+.breadcrumb li
+{
+	font-size:12px;
+}
+body .navbar-default .navbar-nav > li > a {
+    margin: 0 2px;
+}
+}
+@media (max-width:991px)
+{
+.col-sm-4 .hourly-rt p
+{
+    font-size: 13px;
+    padding: 5px 0 5px 4px;
+    width: 64%;
+}
+.col-sm-4 .hourly-rt h4 {
+  
+    font-size: 13px;
+    line-height: 18px;
+    width: 36%;
+}
+.col-sm-4 .form-group .message-input {
+    width: 100%;
+}
+.top-search .input-dtl-srch
+{
+  width:54%;
+}
+.list-group .list-group-item p
+{
+	width:42%;
+}
+.list-group .list-group-item h4
+{
+	width:48%;
+}
+}

@@ -1100,10 +1100,6 @@ a.sign-up-lnk
 {
 	margin-bottom:10px;
 }
-.container
-{
-	margin-bottom:15px;
-}
 #message_ToUserId
 {
 	border: 1px solid #DDDDDD;
@@ -1352,4 +1348,10 @@ form.edit_alert
     #notes{max-height: 173px;min-height: 173px;}
     .right-border{max-height: 606px;}
     #ReviewContainer{min-height: 606px !important;max-height: 606px !important;}
+}
+.no-padding-s4 .col-sm-8
+{
+	padding-right:0px;
+	padding-left:10px;
+	
 }
