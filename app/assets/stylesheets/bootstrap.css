@@ -5975,4 +5975,7 @@ body .container .serch-fld label
 {
 	font-size:12px;
 }
+body .navbar-default .navbar-nav > li > a {
+    margin: 0 2px;
+}
 }
