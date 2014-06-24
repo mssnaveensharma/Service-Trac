@@ -245,7 +245,7 @@ class AlertDetailsController < ApplicationController
     if params[:user_id] and params[:user_id] !='' and params[:description] and params[:description] != '' and params[:alert_id] and params[:alert_id] !=''
       @chk_user = User.where(:id => params[:user_id])
       @chk_alert = ServiceAlert.where(:id => params[:alert_id])
-      @chk_note = AlertNotes.where(:user_id => params[:user_id]).where(:alert_id => params[:alert_id])
+      @chk_note = AlertNotes.where(:user_id => params[:user_id]).where(:alert_id => params[:alert_id]).where(:sent_by => "AppUser")
         if !@chk_note.empty?
           @update = AlertNotes.where(:user_id => params[:user_id]).update_all(description: params[:description])
              if @update == 1
