@@ -12,14 +12,7 @@
 </script>
 
 
-     
-  <div class="wrapper">
-   
-  
-  
-  
-  <div class="login-title">Sign In To Your Account</div>
-  <% if !flash[:alert].blank? %>
+      <% if !flash[:alert].blank? %>
         <% if flash[:alert][/The email address and password you entered do not match our records/] %>
            <div id="error_explanation">
               <ul>
@@ -35,9 +28,10 @@
                   <%= flash[:alert]%>
               </li>
             </ul>
-			</div>
         <% end %>
     <% end %>
+  <div class="wrapper">
+  <div class="login-title">Sign In To Your Account</div>
     <div class="login-box">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <%= f.email_field :email, autofocus: true, :class => "login-field", placeholder: "Email" %>
