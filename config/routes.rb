@@ -13,6 +13,8 @@ Servicetrac::Application.routes.draw do
 
   resources :messages
 
+  resources :settings 
+
   devise_for :users 
 
   resources :users_service_centers
@@ -112,6 +114,8 @@ Servicetrac::Application.routes.draw do
   post 'update_review' => 'service_center_reviews#update_review'
 
   post 'get_messages' => 'messages#get_messages'
+
+  post "updateProfile" => 'settings#updateProfile'
   
  # match 'get-messages/:user_id' => 'messages#get_messages', :via => :get, :defaults => { :format => 'json' }
   #   get 'register' => 'welcome#index'

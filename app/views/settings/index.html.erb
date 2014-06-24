@@ -1,0 +1,54 @@
+    <div class="container">
+<!--     <div class="serch-fld">
+          <label class="margin-top">Add/Update Service Center </label>
+           <span class="align-right">
+              <input class="form-control" type="search">
+                <input value="" class="search-submit" type="submit" />
+            </span>
+           
+        </div>   -->
+<!--     <ol class="breadcrumb">
+      <li class="active">>> <a href="/admin">Dashboard</a> >></li><li> <a href="/admin/service_centers"> Service Centers </a> >> </li><li> Add/Update</li>
+    </ol>  -->
+<div class="srvc-cntr-fld"> 
+<div class="srvc-frm">    
+<% @users.each do |user| %>
+
+  <%#=debug user %>
+    <form method="POST" action="/updateProfile">
+      <label>Email</label>
+      <input name="email" type="email" readonly="readonly" value="<%= user.email %>"><br>
+      <label>First Name</label>
+      <input name="FirstName" type="text" value="<%= user.FirstName %>"><br>
+      <label>Last Name</label>
+      <input name="LastName" name="text" value="<%= user.LastName %>"><br>
+      <label>Password</label>
+      <input type="password" name="password" ><br>
+      <label>Update my password</label>
+      <input name="check" type="checkbox" value="1"><br>
+      <input type="submit" name="commit" value="Update">
+    </form>
+  
+<% end %>
+
+
+</div>
+</div>
+</div>
+<!-- <table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  </tbody>
+</table>
+
+ --><br>
+
+<%#= link_to 'New Setting', new_setting_path %>
