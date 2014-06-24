@@ -134,7 +134,7 @@ ul
 {
 	width:100%;
 	padding:10px 10px;
-	line-height:28px;
+	line-height:20px;
 	display:inline-block;
 	background:#ed1c24;
 }
@@ -1361,4 +1361,8 @@ form.edit_alert
 }
 .table-responsive {
     border: none;
+}
+.margin-top
+{
+	margin-top:4px;
 }
