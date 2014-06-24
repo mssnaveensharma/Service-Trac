@@ -3846,6 +3846,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 	padding-top:75px;
 	line-height:24px;
 }
+.container .alrt-frm-fld div.form-group
+{
+	width:100%;
+}
 }
 @media (min-width: 768px) {
   .navbar-nav {
