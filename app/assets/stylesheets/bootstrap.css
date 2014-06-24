@@ -3859,6 +3859,10 @@ div.alrt-txt-form.alrt-frm-fld
 {
 	padding-top:10px;
 }
+.no-padding .srvc-mn-hyt
+{
+	min-height:10px;
+}
 }
 @media (min-width: 768px) {
   .navbar-nav {
@@ -5764,7 +5768,7 @@ button.close {
 div.alrt-txt-form.alrt-frm-fld
 {
 	max-width:700px;
-}
+}.....
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .visible-md {
