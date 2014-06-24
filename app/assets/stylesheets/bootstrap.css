@@ -6016,3 +6016,10 @@ body .navbar-default .navbar-nav > li > a {
 	width:48%;
 }
 }
+@media (max-width:600px)
+{
+.alrt-txt-form.srvc-trc-ls .form-group
+{
+	width:100%;
+}
+}
