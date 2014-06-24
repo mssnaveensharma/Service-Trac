@@ -1343,6 +1343,10 @@ form.edit_alert
 #messages {
 	padding-left: 0 !important;
 }
+#map-canvas
+{
+	width:100% !important;
+}
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     #map-canvas{height:255px !important;}
     #notes{max-height: 173px;min-height: 173px;}
