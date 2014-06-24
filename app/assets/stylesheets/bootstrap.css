@@ -3839,6 +3839,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-nav .open .dropdown-menu > li > a:focus {
     background-image: none;
   }
+.trac-link a
+{
+	min-height:130px;
+	width:24%;
+}
 }
 @media (min-width: 768px) {
   .navbar-nav {
@@ -5740,11 +5745,6 @@ button.close {
 	line-height:40px;
 	background-size: 32px 32px !important;
 	background-position: center 20px !important;
-}
-.trac-link a
-{
-	min-height:130px;
-	width:24%;
 }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
