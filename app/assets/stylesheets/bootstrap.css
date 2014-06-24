@@ -3859,10 +3859,6 @@ div.alrt-txt-form.alrt-frm-fld
 {
 	padding-top:10px;
 }
-.no-padding .srvc-mn-hyt
-{
-	min-height:10px;
-} 
 }
 @media (min-width: 768px) {
   .navbar-nav {
@@ -6056,6 +6052,12 @@ body .navbar-default .navbar-nav > li > a {
 .list-group .list-group-item h4
 {
 	width:48%;
+}
+.no-padding .col-sm-4 .hourly-rt p
+{
+	margin:0 -10px 0 -5px;
+	width:34%;
+	line-height:18px;
 }
 }
 @media (max-width:600px)
