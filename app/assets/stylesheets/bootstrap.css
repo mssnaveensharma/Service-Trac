@@ -5765,7 +5765,7 @@ button.close {
 div.alrt-txt-form.alrt-frm-fld
 {
 	max-width:700px;
-}.....
+}
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .visible-md {
@@ -5850,11 +5850,10 @@ div.alrt-txt-form.alrt-frm-fld
 /*Edited CSS */
 @media (max-width:768px)
 {
-.srvc-mn-hyt
+.srvc-mn-hyt 
 {
-	min-height:10px !important ;
-	display:none;
-}	
+	min-height:10px !important;
+}
 .no-padding-s4 .col-sm-8
 {
 	background:#fff;
