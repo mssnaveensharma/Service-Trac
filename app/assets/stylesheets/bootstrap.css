@@ -6080,4 +6080,8 @@ body .navbar-default .navbar-nav > li > a {
 	min-width:100px;
 	width:100%;
 }
+.container .trac-link a
+{
+	font-size:14px;
+}
 }
