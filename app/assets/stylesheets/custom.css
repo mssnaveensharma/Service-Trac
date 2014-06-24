@@ -1159,6 +1159,11 @@ form.edit_alert
 {
 	float:right;
 }
+.alrt-frm-fld .login-btn
+{
+	width:auto;
+	padding:10px 25px;
+}
 .alrt-txt-form.srvc-trc-ls
 {
 	max-width:680px;
