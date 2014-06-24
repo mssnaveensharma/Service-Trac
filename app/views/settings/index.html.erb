@@ -7,7 +7,8 @@
     rules: {
        "email": {required:true,email:true},
        "FirstName":"required",
-       "LastName":"required"
+       "LastName":"required",
+       "Contact":{required:true,number:true}
       }});
   }); 
 </script>
@@ -35,6 +36,8 @@
       <input name="FirstName" type="text" value="<%= user.FirstName %>"><br>
       <label>Last Name</label>
       <input name="LastName" name="text" value="<%= user.LastName %>"><br>
+      <label>Contact #</label>
+      <input type="text" name="Contact" value="<%= user.Contact%>" ><br>
       <label>Password</label>
       <input type="password" name="password" ><br>
       <label>Update my password</label>

@@ -14,8 +14,8 @@ class SettingsController < ApplicationController
 
 
   def updateProfile
-    if params[:email] and params[:email] != '' and params[:password] and params[:password] !='' and params[:FirstName] and params[:FirstName] !='' and params[:check] and params[:check] !='' and params[:LastName] and params[:LastName] !=''
-      @update = User.where(:id => current_user.id).update_all(:FirstName => params[:FirstName], :LastName => params[:LastName])
+    if params[:email] and params[:email] != '' and params[:password] and params[:password] !='' and params[:FirstName] and params[:FirstName] !='' and params[:check] and params[:check] !='' and params[:LastName] and params[:LastName] !='' and params[:Contact] and params[:Contact] !=""
+      @update = User.where(:id => current_user.id).update_all(:FirstName => params[:FirstName], :LastName => params[:LastName], :Contact => params[:Contact])
         if @update == 1
           user = User.find(current_user.id)
           password_salt = BCrypt::Engine.generate_salt
@@ -25,8 +25,8 @@ class SettingsController < ApplicationController
         else
           redirect_to '/settings', :notice => 'Profile was not updated.'
         end
-    elsif params[:email] and params[:email] != '' and params[:password] and params[:password] !='' and params[:FirstName] and params[:FirstName] !='' and params[:LastName] and params[:LastName] !=''
-       @update = User.where(:id => current_user.id).update_all(:FirstName => params[:FirstName], :LastName => params[:LastName])
+    elsif params[:email] and params[:email] != '' and params[:password] and params[:password] !='' and params[:FirstName] and params[:FirstName] !='' and params[:LastName] and params[:LastName] !='' and params[:Contact] and params[:Contact] !=""
+       @update = User.where(:id => current_user.id).update_all(:FirstName => params[:FirstName], :LastName => params[:LastName], :Contact => params[:Contact])
         if @update == 1
           redirect_to '/settings', :notice => 'Profile was successfully updated.'
         else
