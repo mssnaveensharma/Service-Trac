@@ -3843,6 +3843,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 {
 	min-height:130px;
 	width:24%;
+	padding-top:75px;
 	line-height:24px;
 }
 }
