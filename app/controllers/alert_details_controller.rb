@@ -245,30 +245,40 @@ class AlertDetailsController < ApplicationController
     if params[:user_id] and params[:user_id] !='' and params[:description] and params[:description] != '' and params[:alert_id] and params[:alert_id] !=''
       @chk_user = User.where(:id => params[:user_id])
       @chk_alert = ServiceAlert.where(:id => params[:alert_id])
-      if @chk_user.length !=0 and @chk_alert !=0
-          if params[:sent_by] and params[:sent_by]=="WebUser"
-            @sentBy = "WebUser"
-          else
-            @sentBy = "AppUser"
-          end
-            @create = AlertNotes.create({
-                :user_id =>params[:user_id],
-                :alert_id =>params[:alert_id],
-                :description => params[:description],
-                :sent_by => @sentBy
-              });
-
-              if @create.id != '' and @create.id != nil
-                return render :json => {:success => true, :message => "Note was added successfully", :note_id => @create.id}      
+      @chk_note = AlertNotes.where(:user_id => params[:user_id]).where(:alert_id => params[:alert_id])
+        if !@chk_note.empty?
+          @update = AlertNotes.where(:user_id => params[:user_id]).update_all(description: params[:description])
+             if @update == 1
+                return render :json => {:success => true, :message => "Note was updated successfully"}      
               else
-                return render :json => {:success => false, :message => @create.errors}
+                return render :json => {:success => false, :message => "Note was not added to alert"}
               end
-      else
-        return render :json => {:success => false, :message => "User not exists or invalid alert id"}
-      end
-    else
-      return render :json => {:success => false, :message => "Required perameters are missing"}
-    end
+        else
+            if @chk_user.length !=0 and @chk_alert !=0
+                if params[:sent_by] and params[:sent_by]=="WebUser"
+                  @sentBy = "WebUser"
+                else
+                  @sentBy = "AppUser"
+                end
+                  @create = AlertNotes.create({
+                      :user_id =>params[:user_id],
+                      :alert_id =>params[:alert_id],
+                      :description => params[:description],
+                      :sent_by => @sentBy
+                    });
+
+                    if @create.id != '' and @create.id != nil
+                      return render :json => {:success => true, :message => "Note was added successfully", :note_id => @create.id}      
+                    else
+                      return render :json => {:success => false, :message => @create.errors}
+                    end
+            else
+              return render :json => {:success => false, :message => "User not exists or invalid alert id"}
+            end
+          end
+        else
+          return render :json => {:success => false, :message => "Required perameters are missing"}
+        end
   end
 
   def get_notes
