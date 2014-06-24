@@ -6004,6 +6004,11 @@ body .navbar-default .navbar-nav > li > a {
 }
 @media (max-width:991px)
 {
+.form-group #message_ToUserId
+{
+	margin-left:0px;
+	width:100%;
+}
 .col-sm-4 .hourly-rt p
 {
     font-size: 13px;
