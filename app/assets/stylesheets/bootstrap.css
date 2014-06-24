@@ -6071,4 +6071,8 @@ body .navbar-default .navbar-nav > li > a {
 {
 	width:100%;
 }
+.edit-cmp-form
+{
+	padding:0px 15px;
+}
 }
