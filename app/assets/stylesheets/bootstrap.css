@@ -3859,10 +3859,7 @@ div.alrt-txt-form.alrt-frm-fld
 {
 	padding-top:10px;
 }
-.no-padding .srvc-mn-hyt
-{
-	min-height:10px !important;
-}
+
 }
 @media (min-width: 768px) {
   .navbar-nav {
@@ -5853,6 +5850,10 @@ div.alrt-txt-form.alrt-frm-fld
 /*Edited CSS */
 @media (max-width:768px)
 {
+.no-padding .srvc-mn-hyt
+{
+	min-height:10px ;
+}	
 .no-padding-s4 .col-sm-8
 {
 	background:#fff;
