@@ -6018,7 +6018,7 @@ body .navbar-default .navbar-nav > li > a {
 }
 @media (max-width:600px)
 {
-.alrt-txt-form.srvc-trc-ls .form-group
+.container .alrt-txt-form.srvc-trc-ls .form-group
 {
 	width:100%;
 }
