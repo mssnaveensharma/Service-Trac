@@ -3839,10 +3839,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-nav .open .dropdown-menu > li > a:focus {
     background-image: none;
   }
-.trac-link a
+.container .trac-link a
 {
 	min-height:130px;
 	width:24%;
+	line-height:24px;
 }
 }
 @media (min-width: 768px) {
