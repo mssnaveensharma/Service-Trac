@@ -5850,9 +5850,9 @@ div.alrt-txt-form.alrt-frm-fld
 /*Edited CSS */
 @media (max-width:768px)
 {
-.srvc-mn-hyt 
+.no-padding .srvc-mn-hyt 
 {
-	min-height:10px !important;
+	min-height:10px;
 }
 .no-padding-s4 .col-sm-8
 {
@@ -6061,7 +6061,7 @@ body .navbar-default .navbar-nav > li > a {
 .no-padding .col-sm-4 .hourly-rt p
 {
 	margin:0 -10px 0 -5px;
-	width:34%;
+	width:33%;
 	line-height:18px;
 }
 }
