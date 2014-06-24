@@ -1409,6 +1409,10 @@ form.edit_alert
 	display:inline-block;
 	text-align:left;
 }
+.frm-sb-grp
+{
+	margin-top:30px;
+}
 .updt-acnt .frm-sb-grp label
 {
 	width:auto;
@@ -1419,4 +1423,15 @@ form.edit_alert
 	width:auto;
 	display:inline-block;	
 	margin-left:10px;
+}
+.updt-acnt-sb input
+{
+	background: none repeat scroll 0 0 #ed1c24;
+    border: medium none;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    text-transform: uppercase;
+	padding: 10px 25px;
+    width: auto;
 }
