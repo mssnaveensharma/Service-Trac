@@ -5853,6 +5853,7 @@ div.alrt-txt-form.alrt-frm-fld
 .srvc-mn-hyt
 {
 	min-height:10px !important ;
+	display:none;
 }	
 .no-padding-s4 .col-sm-8
 {
