@@ -70,7 +70,7 @@ function getModal(id) {       // get the the modals on selecting the make
       <li class="active">>> <a href="/">Home </a> >> <a href="/alert_details?id=<%= params[:id] %>">Alert Details </a> >> <a href="/edit_alert?id=<%= params[:id] %>">Update Alert </a></li>
     </ol>
 	<div class="alrt-form-c">
-	<div class="alrt-txt-form">
+	<div class="alrt-txt-form alrt-frm-fld">
        	<form method="POST" action="/update_alert" class="edit_alert">
     		<% @alert_detail = ServiceAlert.where(:id => params[:id]) %>
     			<input type="hidden" name="id" value="<%=params[:id]%>">
@@ -97,11 +97,25 @@ function getModal(id) {       // get the the modals on selecting the make
 				<label>Truck Year</label>
 				<input type="text" id="TruckYear" name="TruckYear" value="<%= @truckyear %>">
 				</div>
-				<div class="form-group">
+				<div class="form-group frm-grp-mk">
 				<label>Truck Make</label>
 				<input type="text" name="TruckMake" value="<%= @truckmake %>">
 				</div>
-				<div class="form-group">
+				<div class="form-group frm-grp-mdl">
+				<label>Eobr Model</label>
+					<select name="eobr_model_id" id="user_eobr_model_id">
+						<option value="">Select Model</option>
+						<% @eobr_models.each do |eobr_model|%>
+							<% if(eobr_model.id == @eobr_model) %>
+                                <% @selected = "selected=selected"%>
+                            <% else %>
+                                <% @selected = "" %>
+                            <% end %>
+							<option value="<%= eobr_model.id %>" <%= @selected%>><%= eobr_model.Name %></option>
+						<% end %>
+					</select>
+				</div>	
+				<div class="form-group frm-grp-ebr">
 				<label>Eobr Make</label>
 					<select name="eobr_make_id" onchange="getModal(this.value)">
 						<option value="">Select Make</option>
@@ -116,20 +130,7 @@ function getModal(id) {       // get the the modals on selecting the make
 					</select>
 				</div>	
 				<!-- <input type="text" name="eobr_make_id" value="<%= @eobr_make %>"> -->
-				<div class="form-group">
-				<label>Eobr Model</label>
-					<select name="eobr_model_id" id="user_eobr_model_id">
-						<option value="">Select Model</option>
-						<% @eobr_models.each do |eobr_model|%>
-							<% if(eobr_model.id == @eobr_model) %>
-                                <% @selected = "selected=selected"%>
-                            <% else %>
-                                <% @selected = "" %>
-                            <% end %>
-							<option value="<%= eobr_model.id %>" <%= @selected%>><%= eobr_model.Name %></option>
-						<% end %>
-					</select>
-				</div>	
+				
 				<div class="form-group">
 				<!-- <input type="text" name="eobr_model_id" value="<%= @eobr_model %>"> -->
 				<label>Eobr Number</label>

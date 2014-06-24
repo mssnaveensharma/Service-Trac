@@ -1138,6 +1138,27 @@ form.edit_alert
     margin: 20px auto 0;
     max-width: 429px;
 }
+.alrt-txt-form.alrt-frm-fld
+{
+	max-width:84%;
+}
+.alrt-frm-fld .form-group
+{
+	width:48%;
+	display:inline-block;	
+}
+.alrt-frm-fld .form-group.frm-grp-mk
+{
+	width:25%;
+}
+.alrt-frm-fld .form-group.frm-grp-mdl
+{
+	width:25%;
+}
+.alrt-frm-fld .form-group:nth-child(even)
+{
+	float:right;
+}
 .alrt-txt-form.srvc-trc-ls
 {
 	max-width:680px;
