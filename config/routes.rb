@@ -69,7 +69,7 @@ Servicetrac::Application.routes.draw do
 
   match 'all-messages' => 'messages#all_messages',  :via => :post,  :defaults => { :format => 'json' }
 
-  post 'settings' => 'users#settings'
+  post 'setting' => 'users#setting'
 
   post 'recover_password' => 'users#recover_password'
   
