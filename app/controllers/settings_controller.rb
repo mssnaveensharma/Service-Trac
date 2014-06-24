@@ -33,7 +33,7 @@ class SettingsController < ApplicationController
           redirect_to '/settings', :notice => 'Profile was not updated.'
         end
     else
-        redirect_to '/settings', :notice => 'Required fields was missing.'
+        redirect_to '/settings', :notice => 'Please enter your password.'
     end    
   end
 

@@ -1,3 +1,16 @@
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "jquery.validate.min.js" %>
+ <script type="text/javascript">
+  jQuery(document).ready(function() {
+    $(".settings").validate({
+      errorElement: "label",
+    rules: {
+       "email": {required:true,email:true},
+       "FirstName":"required",
+       "LastName":"required"
+      }});
+  }); 
+</script>
     <div class="container">
 <!--     <div class="serch-fld">
           <label class="margin-top">Add/Update Service Center </label>
@@ -15,7 +28,7 @@
 <% @users.each do |user| %>
 
   <%#=debug user %>
-    <form method="POST" action="/updateProfile">
+    <form method="POST" class="settings" action="/updateProfile">
       <label>Email</label>
       <input name="email" type="email" readonly="readonly" value="<%= user.email %>"><br>
       <label>First Name</label>
