@@ -29,31 +29,19 @@
 <% @users.each do |user| %>
 
   <%#=debug user %>
-<<<<<<< HEAD
-    <form method="POST" action="/updateProfile">
-	<div class="form-group">
-		<label>Email</label>
-		<input name="email" type="email" readonly="readonly" value="<%= user.email %>"><br>
-	</div>
-	  <div class="form-group">
-=======
     <form method="POST" class="settings" action="/updateProfile">
       <label>Email</label>
       <input name="email" type="email" readonly="readonly" value="<%= user.email %>"><br>
->>>>>>> 50f9430c2ed69ea98a2a5000f299d85bb2651a36
       <label>First Name</label>
       <input name="FirstName" type="text" value="<%= user.FirstName %>"><br>
 	  </div>
 	  <div class="form-group">
 	  <label>Last Name</label>
       <input name="LastName" name="text" value="<%= user.LastName %>"><br>
-<<<<<<< HEAD
 	  </div>
 	  <div class="form-group">
-=======
       <label>Contact #</label>
       <input type="text" name="Contact" value="<%= user.Contact%>" ><br>
->>>>>>> 50f9430c2ed69ea98a2a5000f299d85bb2651a36
       <label>Password</label>
       <input type="password" name="password" ><br>
 	  </div>
