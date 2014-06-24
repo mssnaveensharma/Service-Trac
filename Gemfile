@@ -8,6 +8,8 @@ gem 'pg'
 gem 'devise'
 gem 'pushmeup'
 gem 'urbanairship'
+gem 'therubyracer'
+gem 'execjs'
 #for sending notification on titanium devices
 gem 'ruby-mpns'
 
