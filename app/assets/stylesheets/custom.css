@@ -1434,4 +1434,7 @@ form.edit_alert
     text-transform: uppercase;
 	padding: 10px 25px;
     width: auto;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-ms-border-radius:5px;
 }
