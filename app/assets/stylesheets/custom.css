@@ -1403,3 +1403,20 @@ form.edit_alert
 {
 	float:right;
 }
+.updt-acnt-sb
+{
+	width:100%;
+	display:inline-block;
+	text-align:left;
+}
+.updt-acnt .frm-sb-grp label
+{
+	width:auto;
+	display:inline-block;	
+}
+.updt-acnt .frm-sb-grp input
+{
+	width:auto;
+	display:inline-block;	
+	margin-left:10px;
+}
