@@ -3850,6 +3850,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 {
 	width:100%;
 }
+div.alrt-txt-form.alrt-frm-fld
+{
+	max-width:700px;
+}
 }
 @media (min-width: 768px) {
   .navbar-nav {
