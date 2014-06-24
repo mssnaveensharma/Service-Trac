@@ -5850,9 +5850,9 @@ div.alrt-txt-form.alrt-frm-fld
 /*Edited CSS */
 @media (max-width:768px)
 {
-.no-padding .srvc-mn-hyt
+.srvc-mn-hyt
 {
-	min-height:10px ;
+	min-height:10px !important ;
 }	
 .no-padding-s4 .col-sm-8
 {
