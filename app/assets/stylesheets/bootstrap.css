@@ -3861,7 +3861,7 @@ div.alrt-txt-form.alrt-frm-fld
 }
 .no-padding .srvc-mn-hyt
 {
-	min-height:10px;
+	min-height:10px !important;
 }
 }
 @media (min-width: 768px) {
