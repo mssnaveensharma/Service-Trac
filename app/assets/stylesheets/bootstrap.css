@@ -1611,7 +1611,7 @@ table th[class*="col-"] {
   .table-responsive {
     width: 100%;
     margin-bottom: 15px;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -3839,6 +3839,27 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-nav .open .dropdown-menu > li > a:focus {
     background-image: none;
   }
+.container .trac-link a
+{
+	min-height:130px;
+	width:24%;
+	padding-top:75px;
+	line-height:24px;
+}
+.container .alrt-frm-fld div.form-group
+{
+	width:100%;
+}
+div.alrt-txt-form.alrt-frm-fld
+{
+	max-width:700px;
+	margin-top:0px;
+}
+.alrt-frm-fld form.edit_alert
+{
+	padding-top:10px;
+}
+
 }
 @media (min-width: 768px) {
   .navbar-nav {
@@ -5734,7 +5755,17 @@ button.close {
   td.visible-sm {
     display: table-cell !important;
   }
-
+.container .trac-link a
+{
+	font-size:12px;
+	line-height:40px;
+	background-size: 32px 32px !important;
+	background-position: center 20px !important;
+}
+div.alrt-txt-form.alrt-frm-fld
+{
+	max-width:700px;
+}
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .visible-md {
@@ -5819,6 +5850,10 @@ button.close {
 /*Edited CSS */
 @media (max-width:768px)
 {
+.no-padding .srvc-mn-hyt 
+{
+	min-height:10px;
+}
 .no-padding-s4 .col-sm-8
 {
 	background:#fff;
@@ -5978,15 +6013,23 @@ body .container .serch-fld label
 body .navbar-default .navbar-nav > li > a {
     margin: 0 2px;
 }
+.srvc-ip-btn-an input
+{
+	width:100%;
+}
+.container .srvc-ip-btn-an a
+{
+	width:100%;
+	margin-top:10px;
+	margin-left:0px;
+}
 }
 @media (max-width:991px)
 {
-.container .trac-link a
+.form-group #message_ToUserId
 {
-	font-size:12px;
-	line-height:40px;
-	background-size: 32px 32px !important;
-	background-position: center 20px !important;
+	margin-left:0px;
+	width:100%;
 }
 .col-sm-4 .hourly-rt p
 {
@@ -6014,5 +6057,31 @@ body .navbar-default .navbar-nav > li > a {
 .list-group .list-group-item h4
 {
 	width:48%;
+}
+.no-padding .col-sm-4 .hourly-rt p
+{
+	margin:0 -10px 0 -5px;
+	width:33%;
+	line-height:18px;
+}
+}
+@media (max-width:600px)
+{
+.container .alrt-txt-form.srvc-trc-ls .form-group
+{
+	width:100%;
+}
+.edit-cmp-form
+{
+	padding:0px 15px;
+}
+.dercp-nt textarea
+{
+	min-width:100px;
+	width:100%;
+}
+.container .trac-link a
+{
+	font-size:14px;
 }
 }
