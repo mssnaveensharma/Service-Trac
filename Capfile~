@@ -1,6 +1,6 @@
 # Load DSL and Setup Up Stages
 require 'capistrano/setup'
-require 'rvm1/capistrano3'
+
 # Includes default deployment tasks
 require 'capistrano/deploy'
 
