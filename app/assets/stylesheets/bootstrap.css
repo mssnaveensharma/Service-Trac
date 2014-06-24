@@ -3853,6 +3853,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 div.alrt-txt-form.alrt-frm-fld
 {
 	max-width:700px;
+	margin-top:0px;
+}
+.alrt-frm-fld form.edit_alert
+{
+	padding-top:10px;
 }
 }
 @media (min-width: 768px) {
