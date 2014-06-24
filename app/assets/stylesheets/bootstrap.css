@@ -3859,6 +3859,10 @@ div.alrt-txt-form.alrt-frm-fld
 {
 	padding-top:10px;
 }
+.no-padding .srvc-mn-hyt
+{
+	min-height:10px;
+}
 }
 @media (min-width: 768px) {
   .navbar-nav {
