@@ -129,6 +129,9 @@
                           <%#=debug @selected_company.to_i+"App user company"%>
                           <% if user_company.company_id.to_i==@selected_company.to_i%>
                              <% @picture +=1 %>
+                             <% if @picture > 10 %>
+                                <% @page = 2 %>
+                             <% end %>
                             <td><a class="table-link" href="/alert_details?id=<%= service_alert.id %>"><%= service_alert.updated_at.strftime("%d/%m/%y %I:%M %p") %></a></td>
                               <% @drivers.each do |driver| %>
                                <%#=debug service_alert %>
@@ -137,7 +140,7 @@
                                 <td><%= driver.Contact %></td>
                               <% end %>
                           <% @centers = Admin::ServiceCenter.where(:id => service_alert.service_center_id)%>
-                            <% if(@centers.length !=0 ) %>
+                            <% if( @centers.length !=0 ) %>
                               <%#=debug @centers  %>
                               <% @centers.each do |center| %>
                                 

@@ -185,15 +185,25 @@ function calcRoute(id) {
                             previous : "",
                             next : "",
                             perPage : 2,
-                            delay : 20
+                            delay : 20,
+                              callback: function (pages, items) {
+                                 if (items.count > 2) {
+                                     $("div.holder-note").show();
+          //                           $("#legend1").html("Page " + pages.current + " of " + pages.count);
+          //                           $("#legend2").html(items.range.start + " - " + items.range.end + " of " + items.count);
+                                 } else {
+                                     $("div.holder-note").hide();
+                                 }
+
+                             }
                           });
                         });
-                          if (NotesLen <= 2) {
+/*                          if (NotesLen <= 2) {
                             $(".holder-note").css("display","none");
                           }else{
                             $(".holder-note").css("display","block");
                           }
-                }else{
+*/                }else{
                   var noNotes = '<li class="list-notes"><span class="notes-cntnt"><strong>No notes for selected alert</strong></span></li>';
                   $("#notes").html('');
                   $("#notes").append(noNotes);

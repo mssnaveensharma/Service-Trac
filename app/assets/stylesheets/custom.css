@@ -134,7 +134,7 @@ ul
 {
 	width:100%;
 	padding:10px 10px;
-	line-height:28px;
+	line-height:20px;
 	display:inline-block;
 	background:#ed1c24;
 }
@@ -392,6 +392,7 @@ h4.bg-msg.bg-msg-pstn
 {
 	padding:0px 10px;
 	text-align:left;
+	line-height:28px;
 }
 .hourly-rt p
 {
@@ -1138,6 +1139,33 @@ form.edit_alert
     margin: 20px auto 0;
     max-width: 429px;
 }
+.alrt-txt-form.alrt-frm-fld
+{
+	max-width:84%;
+}
+.alrt-frm-fld .form-group
+{
+	width:48%;
+	display:inline-block;	
+}
+.alrt-frm-fld .form-group.frm-grp-mk
+{
+	width:23%;
+	margin-right:10px;
+}
+.alrt-frm-fld .form-group.frm-grp-ebr
+{
+	width:23%;
+}
+.alrt-frm-fld .form-group:nth-child(even)
+{
+	float:right;
+}
+.alrt-frm-fld .login-btn
+{
+	width:auto;
+	padding:10px 25px;
+}
 .alrt-txt-form.srvc-trc-ls
 {
 	max-width:680px;
@@ -1361,4 +1389,52 @@ form.edit_alert
 }
 .table-responsive {
     border: none;
+}
+.serch-fld label.margin-top
+{
+	margin-top:4px;
+}
+.updt-acnt .form-group
+{
+	width:48%;
+	display:inline-block;
+}
+.updt-acnt .form-group:nth-child(even)
+{
+	float:right;
+}
+.updt-acnt-sb
+{
+	width:100%;
+	display:inline-block;
+	text-align:left;
+}
+.frm-sb-grp
+{
+	margin-top:30px;
+}
+.updt-acnt .frm-sb-grp label
+{
+	width:auto;
+	display:inline-block;	
+}
+.updt-acnt .frm-sb-grp input
+{
+	width:auto;
+	display:inline-block;	
+	margin-left:10px;
+}
+.updt-acnt-sb input
+{
+	background: none repeat scroll 0 0 #ed1c24;
+    border: medium none;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    text-transform: uppercase;
+	padding: 10px 25px;
+    width: auto;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-ms-border-radius:5px;
 }

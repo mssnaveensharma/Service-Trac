@@ -1,3 +1,4 @@
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "jquery.validate.min.js" %>
  <script type="text/javascript">
   jQuery(document).ready(function() {
@@ -5,14 +6,12 @@
       errorElement: "label",
     rules: {
        "user[email]": {required:true,email:true},
-       "user[password]": {required:true}
+       "user[password]": {required:true,minlength:8}
       }});
   }); 
 </script>
-<div class="container">
-<div class="login-form-c">
-<div class="login-form">   
-<h2>Sign in</h2>
+
+
       <% if !flash[:alert].blank? %>
         <% if flash[:alert][/The email address and password you entered do not match our records/] %>
            <div id="error_explanation">
@@ -31,21 +30,46 @@
             </ul>
         <% end %>
     <% end %>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-group"><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+  <div class="wrapper">
+  <div class="login-title">Sign In To Your Account</div>
+    <div class="login-box">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= f.email_field :email, autofocus: true, :class => "login-field", placeholder: "Email" %>
+        <%= f.password_field :password, autocomplete: "off",:class => "login-field", placeholder: "Password" %>
+          <%= f.submit "Sign in", :class => "login-button" %>
 
-  <div class="form-group"><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="form-group remmber-pswd"><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
-
-  <div><%= f.submit "Sign in", :class => "btn btn-default login-btn" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+        <div class="login-option">
+          <a href="/users/password/new" class="forgot">Forgot your password ?</a>
+            <div class="remember"><div class="remember"><%= f.check_box :remember_me ,:class => "cc" %><label for="c1"><span></span>Remember Me</label></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <% end %>
+    <!-- <div class="no-account">Don’t have an account? <a href="#">Register Now</a></div -->
 </div>
 </div>
-</div>
+
+<style>
+   body {margin:0; font-family:Arial, Helvetica, sans-serif; font-size:14px; color: #585858;line-height:18px; background-image: none !important ;}
+ a {text-decoration:none; color:#3593bf; -o-transition:.2s; -ms-transition:.2s; -moz-transition:.2s; -webkit-transition:.2s; transition:.2s;}
+ a:hover {opacity:0.5;}
+.clear {clear:both;}
+.header-aside {height:82px; background-color:#191919; width:100%;}
+.wrapper {width:960px; margin:0 auto;}
+.login-logo {background-image:url("<%= asset_path 'logoLogin.png' %>"); background-repeat:no-repeat; background-position:center; height:82px; width:200px;display: block;margin: 0 auto; -o-transition:.5s; -ms-transition:.5s; -moz-transition:.5s; -webkit-transition:.5s; transition:.5s;}
+.login-logo:hover {opacity:0.5;}
+.login-title {font-size: 28px; margin-top: 83px; text-align: center; color: #585858;}
+.login-box {width: 380px; background-color: #fefefe; margin: 40px auto; border: 1px solid #d9d9d9; padding: 40px; -webkit-border-radius: 3px;  -moz-border-radius: 3px;  border-radius: 3px;}
+.login-field {width: 100%; margin: 0 0 10px 0; height: 42px; padding: 0 0 0 15px; box-sizing: border-box; border: #d9d9d9 1px solid; -webkit-border-radius: 3px;  -moz-border-radius: 3px;  border-radius: 3px;}
+.login-button {color: #fff; background-color: #f4767b; padding: 12px; width: 100%; display: block; box-sizing: border-box; text-align: center; -webkit-border-radius: 3px;  -moz-border-radius: 3px;border-radius: 3px;  -o-transition:.2s; -ms-transition:.2s; -moz-transition:.2s; -webkit-transition:.2s; transition:.2s;}
+.login-button:hover {background-color:#ed1c24; opacity:1;}
+.login-option {}
+.forgot { float: left; margin-top: 28px;}
+.remember {float: right; margin-top: 14px;}
+.remember span {}
+.checkbox {}
+.no-account {text-align: center; color: #585858;}
+input[type="checkbox"] {display:none;}
+input[type="checkbox"] + label span {display:inline-block; width:18px; height:17px; margin: -2px 9px 0 0; vertical-align:middle; background: url("<%= asset_path 'checkbox.gif' %>") left top no-repeat; cursor:pointer;}
+input[type="checkbox"]:checked + label span {background: url("<%= asset_path 'checkbox.gif' %>") left bottom no-repeat;}
+</style>
