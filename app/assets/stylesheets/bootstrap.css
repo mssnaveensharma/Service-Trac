@@ -5761,6 +5761,10 @@ button.close {
 	background-size: 32px 32px !important;
 	background-position: center 20px !important;
 }
+div.alrt-txt-form.alrt-frm-fld
+{
+	max-width:700px;
+}
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .visible-md {
