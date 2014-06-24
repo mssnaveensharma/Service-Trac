@@ -1394,3 +1394,12 @@ form.edit_alert
 {
 	margin-top:4px;
 }
+.updt-acnt .form-group
+{
+	width:48%;
+	display:inline-block;
+}
+.updt-acnt .form-group:nth-child(even)
+{
+	float:right;
+}
