@@ -111,7 +111,7 @@ def login
   end
 end
   
-def settings
+def setting
   if params[:user_id] != '' and params[:user_id] != nil and params[:email] == ''
     @user = User.where(:id => params[:user_id])
       if @user.length != 0

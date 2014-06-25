@@ -28,6 +28,7 @@
                   <%= flash[:alert]%>
               </li>
             </ul>
+			</div>
         <% end %>
     <% end %>
   <div class="wrapper">
@@ -40,7 +41,7 @@
 
         <div class="login-option">
           <a href="/users/password/new" class="forgot">Forgot your password ?</a>
-            <div class="remember"><div class="remember"><%= f.check_box :remember_me ,:class => "cc" %><label for="c1"><span></span>Remember Me</label></div>
+            <div class="remember"><div class="remember"><%= f.check_box :remember_me ,:class => "cc" %><label class="chk-nt" for="c1"><span></span>Remember Me</label></div>
             <div class="clear"></div>
         </div>
     </div>
@@ -69,7 +70,25 @@
 .remember span {}
 .checkbox {}
 .no-account {text-align: center; color: #585858;}
-input[type="checkbox"] {display:none;}
+input[type="checkbox"] {opacity:0; margin-right:-13px; width:20px; height:20px; z-index:111; cursor:pointer; position:relative;}
 input[type="checkbox"] + label span {display:inline-block; width:18px; height:17px; margin: -2px 9px 0 0; vertical-align:middle; background: url("<%= asset_path 'checkbox.gif' %>") left top no-repeat; cursor:pointer;}
 input[type="checkbox"]:checked + label span {background: url("<%= asset_path 'checkbox.gif' %>") left bottom no-repeat;}
+#error_explanation
+{
+	position:relative;
+}
+.chk-nt
+{
+	position:relative;
+	left:-6px;
+	top:-10px;
+}
+#error_explanation ul
+{
+	padding: 0;
+    position: absolute;
+    text-align: center;
+    top: 35px;
+    width: 100%;
+}
 </style>
