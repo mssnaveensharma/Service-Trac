@@ -320,7 +320,7 @@ def add_notes_web
                 :user_id =>params[:user_id],
                 :alert_id =>params[:alert_id],
                 :description => params[:description],
-                :sent_by => @sentBy
+                :sent_by => "WebUser"
               });
 
           respond_to do |format|
