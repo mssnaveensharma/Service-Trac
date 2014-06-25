@@ -155,6 +155,7 @@ class ServiceAlertsController < ApplicationController
                                       @distance =  new_distance['distance']['text'].gsub(/\s.+/, '').to_i   #lotal distance in kms
                                       @time = new_distance['duration']['text'] #total time 
                                       @asst_time = new_distance['duration']['text'].gsub(/\s.+/, '').to_i
+                                      @asst_distance =  new_distance['distance']['text']
                               end 
                             end
 
@@ -184,7 +185,7 @@ class ServiceAlertsController < ApplicationController
                                               });
                                         end
 
-                                      return render :json => {:success => "true", :message => "New alert is created succesfully", :status => @status,:alert_id => @alerts.id, :distance => @distance, :time => @time,:mystatus => @status} #return the response to api
+                                      return render :json => {:success => "true", :message => "New alert is created succesfully", :status => @status,:alert_id => @alerts.id, :distance => @asst_distance, :time => @time,:mystatus => @status} #return the response to api
                           else
                               return render :json => {:success => "false", :message => "Location information is incorrect", :status => "null", :distance => "", :time => ""}  #if invalid lat,lan
                           end
