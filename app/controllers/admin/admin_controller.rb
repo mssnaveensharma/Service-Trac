@@ -6,7 +6,7 @@ class Admin::AdminController < ApplicationController
   end
 
   def manage_company_user
-     @users = User.where('("Role" = ? )', "CompanyUser")
+     @users = User.where('Role = "CompanyUser"')
   end
 
   def edit_company_user
