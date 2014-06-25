@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
     end
       arr = Array.new
           @users.each do |user|
-            @messages = Message.where('"FromUserId" = ? or "ToUserId" = ?', user.id, user.id).order("created_at DESC").limit(1)
+            @messages = Message.where('FromUserId = ? or ToUserId = ?', user.id, user.id).order("created_at DESC").limit(1)
             @messages.each do |message| 
                   @name = user.FirstName
                   @truck = user.TruckNumber
@@ -210,7 +210,7 @@ class MessagesController < ApplicationController
 def all_messages
   if params[:user_id] != '' and params[:user_id] != nil and params[:company_id] and params[:company_id] != nil
    messages = Array.new
-    @messages = Message.where('"FromUserId" = ? or "ToUserId" = ?', params[:user_id], params[:user_id])
+    @messages = Message.where('FromUserId = ? or ToUserId = ?', params[:user_id], params[:user_id])
       if @messages.length != 0
         @users = User.where(:id => params[:user_id])
         @users.each do |user|
@@ -256,7 +256,7 @@ end
 def get_messages
   if params[:user_id] and params[:user_id] != ''
     arr = Array.new
-      @messages = Message.where('"FromUserId" = ? or "ToUserId" = ?', params[:user_id], params[:user_id]).order("created_at DESC")
+      @messages = Message.where('FromUserId = ? or ToUserId = ?', params[:user_id], params[:user_id]).order("created_at DESC")
         if @messages.length != 0
             @users = User.where(:id => params[:user_id])
               @users.each do |user|
