@@ -201,7 +201,7 @@ class ServiceAlertsController < ApplicationController
         end
 
       elsif(params[:user_id] and params[:user_id] !='' and params[:description] and params[:description] != '')
-          @cancel = ServiceAlert.where('user_id= ?', params[:user_id]).update_all(status: "cancel")  #cancel all previous alerts corresponding to this user
+          @cancel = ServiceAlert.where('user_id = ?', params[:user_id]).update_all(status: "cancel")  #cancel all previous alerts corresponding to this user
                @alerts = ServiceAlert.create({
                 :user_id=>params[:user_id],
                 :service_center_id=>"0",
