@@ -23,7 +23,7 @@ test:
   password: root
 
 production:
-  adapter: postgresql
+  adapter: mysql2
   database: servicetrac_prod
   pool: 5
   timeout: 5000
