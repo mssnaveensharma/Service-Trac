@@ -1438,3 +1438,58 @@ form.edit_alert
 	-webkit-border-radius:5px;
 	-ms-border-radius:5px;
 }
+.trc-dsc-frm
+{
+	padding: 20px 40px;
+	padding-top: 10px;
+	background:#fff;
+	margin-top: 10px;
+}
+.edit-trc-frm
+{
+	background: none repeat scroll 0 0 #ed1c24;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    padding: 8px 25px;
+    margin-right: 10px;
+    text-align: center;
+    display: inline-block;;
+    text-transform: uppercase;
+    width: auto;
+}
+.lnk-t-edit
+{
+	margin-top: 5px;
+	margin-bottom: 10px;
+	width: 100%;
+	display: inline-block;
+}
+.edit-trc-frm:hover
+{
+	text-decoration: none;
+	color: #fff;
+	background:#dc0d13;
+}
+.bck-trc-frm
+{
+	background: none repeat scroll 0 0 #333;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    padding: 8px 25px;
+    display: inline-block;;
+    text-align: center;
+    text-transform: uppercase;
+    width: auto;
+}
+.bck-trc-frm:hover
+{
+	text-decoration: none;
+	color: #fff;
+	background:#222;
+}
+.trc-dsc-frm p
+{
+	width: 48%;float: left;
+}

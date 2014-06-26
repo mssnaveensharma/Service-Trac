@@ -1,4 +1,10 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+<div class="serch-fld">
+    <label class="margin-top">Listing messages</label>
+</div>
+<div class="trc-dsc-frm">
+
+<p style="width:100%; float:left;" id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
@@ -44,6 +50,9 @@
   <strong>Contactperson:</strong>
   <%= @admin_service_center.ContactPerson %>
 </p>
-
-<%= link_to 'Edit', edit_admin_service_center_path(@admin_service_center) %> |
-<%= link_to 'Back', admin_service_centers_path %>
+<div class="lnk-t-edit">
+<%= link_to 'Edit', edit_admin_service_center_path(@admin_service_center), :class =>"edit-trc-frm" %> 
+<%= link_to 'Back', admin_service_centers_path, :class =>"bck-trc-frm" %>
+</div>
+</div>
+</div>

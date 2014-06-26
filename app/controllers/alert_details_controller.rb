@@ -284,7 +284,7 @@ class AlertDetailsController < ApplicationController
   def get_notes
     if params[:alert_id] and params[:alert_id] != ''
       notesArray = Array.new
-      @notes = AlertNotes.where(:alert_id => params[:alert_id]).order("created_at DESC")
+      @notes = AlertNotes.where(:alert_id => params[:alert_id]).order("updated_at DESC")
       if @notes.length != 0
           @notes.each do |note|
             response = Hash.new
