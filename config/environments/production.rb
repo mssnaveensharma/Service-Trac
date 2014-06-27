@@ -78,7 +78,7 @@ Servicetrac::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
   #url to heroku instance.
-  config.action_mailer.default_url_options = { :host => 'myservicetrac.com' , :protocol => 'http'}
+  config.action_mailer.default_url_options = { :host => 'myservicetrac.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
@@ -88,6 +88,7 @@ Servicetrac::Application.configure do
       :user_name => "AKIAJZ557T6WQWIJZHDQ",
       :password => "AtjuD40eQ1H96irPGEGolxkoF7G8XZasYfMXGq0qzQiO",
       :authentication => :login,
-      :enable_starttls_auto => true
+      :enable_starttls_auto => true,
+      :ssl => true
   }
 end
