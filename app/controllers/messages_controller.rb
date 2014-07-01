@@ -114,7 +114,7 @@ class MessagesController < ApplicationController
       @users = User.all
        @user = User.find(@message.ToUserId) 
        @d_type = @user.device_type 
-       @d_token = @user.device_token 
+       @d_token = 'a73da96744174e23895d09c81fdb4c8e7a85507a3e0964852be4a4020ff4f809' 
        @user_msg = @message.MessageContent 
     
      if @d_type == 'iphone' 
