@@ -87,8 +87,9 @@ Servicetrac::Application.configure do
       :address => "email-smtp.us-west-2.amazonaws.com",
       :user_name => "AKIAJZ557T6WQWIJZHDQ",
       :password => "AtjuD40eQ1H96irPGEGolxkoF7G8XZasYfMXGq0qzQiO",
+      :port      => 465,
       :authentication => :login,
       :enable_starttls_auto => true,
-      :ssl => true
+    
   }
 end

@@ -89,6 +89,6 @@ Servicetrac::Application.configure do
       :password => "AtjuD40eQ1H96irPGEGolxkoF7G8XZasYfMXGq0qzQiO",
       :authentication => :login,
       :enable_starttls_auto => true,
-      :ssl => true
+    
   }
 end
