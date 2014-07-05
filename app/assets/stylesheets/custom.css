@@ -452,6 +452,8 @@ h4.bg-msg.bg-msg-pstn
 	margin-top:10px;
 	display:inline-block;
 	word-wrap:break-word;
+	max-height: 70px;
+	overflow: hidden;
 }
 /*label.margin-top
 {
