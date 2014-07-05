@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "mss.naveensharma@gmail.com"
+  default from: "no-reply@myservicetrac.com"
   
   def sendpassword(user,protocol, host)
         @user =user

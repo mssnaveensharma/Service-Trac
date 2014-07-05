@@ -81,13 +81,13 @@ Servicetrac::Application.configure do
   config.action_mailer.default_url_options = { :host => 'myservicetrac.com'}
   config.action_mailer.delivery_method = :smtp
 
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.smtp_settings = {
       :address => "email-smtp.us-west-2.amazonaws.com",
       :user_name => "AKIAJZ557T6WQWIJZHDQ",
       :password => "AtjuD40eQ1H96irPGEGolxkoF7G8XZasYfMXGq0qzQiO",
-      :port      => 465,
+      :port      => 587,
       :authentication => :login,
       :enable_starttls_auto => true,
     
