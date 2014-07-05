@@ -120,7 +120,6 @@ class MessagesController < ApplicationController
      if @d_type == 'iphone' 
      Urbanairship.register_device(@d_token)
      notification = { 
-       :schedule_for => [1.second.from_now],  
        :device_tokens => [@d_token], 
        :aps => {:alert => @user_msg, :badge => 1} 
        } 
