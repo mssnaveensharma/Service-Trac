@@ -541,6 +541,7 @@ h4.bg-msg.bg-msg-pstn
 	width:auto;
 	margin-right:45px;
 	font-size:14px;
+	min-width: 25%;
 }
 .para-repeat p
 {
