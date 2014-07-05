@@ -7,16 +7,13 @@
       errorElement: "label",
     rules: {
        "Contact": {required:true,number:true,maxlength: 15},
-       "TruckYear": {required:true,date:true,messages:"format should be dd/mm/yy"},
+       "TruckYear": {required:true,number:true,maxlength: 4,minlength: 4},
        "TruckMake": {required:true,maxlength: 15},
        "eobr_make_id": "required",
        "eobr_model_id": "required",
        "EobrNumber": {required:true,maxlength: 15},
        "tech_support_id":{required:true}
       },
-      messages: {
-        "TruckYear":"format should be dd/mm/yy"
-      }
     });
   }); 
 </script>
@@ -156,3 +153,17 @@ function getModal(id) {       // get the the modals on selecting the make
 		</div>
 		</div>
     </div>
+    <style>
+    .form-group
+    {
+      position: relative;
+      margin-bottom: 20px;
+    }  
+    label.error
+    {
+      position: absolute;
+      bottom:-24px;
+      font-size: 12px;
+      left: 0px; 
+    }
+    </style>
