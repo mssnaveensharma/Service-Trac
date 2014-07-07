@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
     end
       arr = Array.new
           @users.each do |user|
-            @messages = Message.where('FromUserId = ? or ToUserId = ?', user.id, user.id).order('created_at DESC').limit(1)
+            @messages = Message.where('FromUserId = ? or ToUserId = ?', user.id, user.id).order("created_at DESC").limit(1)
             @messages.each do |message| 
                   @name = user.FirstName
                   @truck = user.TruckNumber
@@ -36,7 +36,8 @@ class MessagesController < ApplicationController
                   end
               end
          end
-         @new_users = arr.uniq{|x| x[:id]}
+         @new_users = arr.uniq{|x| x[:id]}.sort_by!{|x| x[:date].to_s}.reverse
+
 
   end
 
