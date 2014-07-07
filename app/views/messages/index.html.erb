@@ -18,6 +18,10 @@
        "message[MessageContent]": {required:true}
       }
   	});
+    $('.holder').click(function (){
+    	$('input[name="search"]').val('');
+    });	
+
   }); 
  function getMessages(id){
  	var UserId = id;
