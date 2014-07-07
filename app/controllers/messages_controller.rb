@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
     end
       arr = Array.new
           @users.each do |user|
-            @messages = Message.where('FromUserId = ? or ToUserId = ?', user.id, user.id).order("created_at DESC").limit(1)
+            @messages = Message.where('FromUserId = ? or ToUserId = ?', user.id, user.id).order('created_at DESC').limit(1)
             @messages.each do |message| 
                   @name = user.FirstName
                   @truck = user.TruckNumber
