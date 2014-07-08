@@ -1496,3 +1496,26 @@ form.edit_alert
 {
 	width: 48%;float: left;
 }
+.input-sb-fld 
+{
+	margin-bottom: 10px;
+	width: 48%;
+	display: inline-block;
+}
+.input-sb-fld:nth-child(even) 
+{
+	float: right;
+}
+.input-sb-fld input
+{
+	border: 1px solid #dddddd;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -ms-border-radius: 5px;
+    padding: 7px 8px;
+    width: 100%;
+}
+.input-sb-fld label.error
+{
+	font-size: 11px;
+}

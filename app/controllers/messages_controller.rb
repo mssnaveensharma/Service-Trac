@@ -37,8 +37,6 @@ class MessagesController < ApplicationController
               end
          end
          @new_users = arr.uniq{|x| x[:id]}.sort_by!{|x| x[:date].to_s}.reverse
-
-
   end
 
   # GET /messages/1
