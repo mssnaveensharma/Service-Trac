@@ -1519,3 +1519,11 @@ form.edit_alert
 {
 	font-size: 11px;
 }
+ .field > input[type="radio"] {
+    margin-right: 10px;
+    width: auto;
+}
+.field-outer {
+	display: inline-block;
+    width: 100%;
+}

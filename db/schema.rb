@@ -11,12 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140620094551) do
+ActiveRecord::Schema.define(version: 20140813063438) do
 
   create_table "admin_companies", force: true do |t|
     t.string   "CompanyName"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "Address"
+    t.string   "Address2"
+    t.string   "City"
+    t.string   "State"
+    t.integer  "Zip"
+    t.integer  "Telephone"
+    t.integer  "Fax"
+    t.string   "Email"
+    t.string   "ContactName"
   end
 
   create_table "admin_eobr_makes", force: true do |t|
@@ -49,9 +58,12 @@ ActiveRecord::Schema.define(version: 20140620094551) do
     t.datetime "updated_at"
     t.string   "lat"
     t.string   "lan"
-    t.string   "StateCode"
+    t.string   "StreetAddress2"
     t.string   "StreetAddress"
     t.text     "WorkingHours"
+    t.integer  "trailer_access"
+    t.integer  "appointment_service"
+    t.integer  "appointment_installation"
   end
 
   create_table "admin_tech_supports", force: true do |t|

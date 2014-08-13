@@ -146,13 +146,16 @@ class ServiceCenterReviewsController < ApplicationController
               response[:street]=center.StreetAddress
               response[:city]=center.City
               response[:state]=center.State
-              response[:statecode]=center.StateCode
+              response[:streetaddress2]=center.StreetAddress2
               response[:pin]=center.Pin
               response[:tel]=center.Tel
               response[:fax]=center.Fax
               response[:url]=center.Url
               response[:email]=center.Email
               response[:contact]=center.ContactPerson
+              response[:trailer_access]=center.trailer_access
+              response[:appointment_service]=center.appointment_service
+              response[:appointment_installation]=center.appointment_installation
               response[:hours]=JSON.parse(center.WorkingHours)
               center_info.push(response)
             end

@@ -1,7 +1,10 @@
 <%= javascript_include_tag "jquery.timepicker.js" %>
 <%= javascript_include_tag "jquery.validate.min.js" %>
+<%= javascript_include_tag "mask.js" %>
+
 <script type="text/javascript">
   $(document).ready(function (){
+    $('#admin_service_center_Tel').mask('(000) 000-0000');
       $('.time').timepicker({
         'showDuration': true,
         'timeFormat': 'g:ia'
@@ -32,9 +35,9 @@
      "admin_service_center[State]": {required:true},
      "admin_service_center[City]": {required:true},
      "admin_service_center[Name]": {required:true},
-     "admin_service_center[StateCode]": {required:true},
+     "admin_service_center[State]": {required:true},
      "admin_service_center[StreetAddress]": {required:true},
-     "admin_service_center[Tel]": {required:true,number:true},
+     "admin_service_center[Tel]": {required:true},
      "admin_service_center[Fax]": {required:true,number:true},
      "admin_service_center[Pin]": {required:true,number:true},
      "admin_service_center[Email]": {required:true,email:true},
@@ -62,16 +65,16 @@
      "admin_service_center[State]": {required:true},
      "admin_service_center[City]": {required:true},
      "admin_service_center[Name]": {required:true},
-     "admin_service_center[StateCode]": {required:true},
+     "admin_service_center[StreetAddress2]": {required:true},
      "admin_service_center[StreetAddress]": {required:true},
-     "admin_service_center[Tel]": {required:true,number:true},
+     "admin_service_center[Tel]": {required:true},
      "admin_service_center[Fax]": {required:true,number:true},
      "admin_service_center[Pin]": {required:true,number:true},
      "admin_service_center[Email]": {required:true,email:true},
      "admin_service_center[Url]": {required:true,url:true},
      "admin_service_center[ContactPerson]": {required:true},
-     "admin_service_center[lat]": {required:true,number:true},
-     "admin_service_center[lan]": {required:true,number:true},
+    // "admin_service_center[lat]": {required:true,number:true},
+    // "admin_service_center[lan]": {required:true,number:true},
      "mon_hours_start": {required:true},
      "mon_hours_close": {required:true},
      "tue_hours_start": {required:true},
@@ -89,9 +92,10 @@
   });
 
 </script>
-<% if action_name=="new" %>
+<%# if action_name=="new" %>
 <script>
 function addTimings(){
+    codeAddress()
     //alert($("#mon_start").val());
     if($("#mon_start").val() !='' && $("#mon_close").val() !='' && $("#tue_start").val() !='' && $("#tue_close").val() !='' && $("#wed_start").val() !='' && $("#wed_close").val() !='' && $("#thu_start").val() !='' && $("#thu_close").val() !='' && $("#fri_start").val() !='' && $("#fri_close").val() !=''){
           //alert("ok working");
@@ -135,7 +139,49 @@ function addTimings(){
     }
   }
 </script>
-<% end %>
+<%# end %>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+        <script type="text/javascript">
+        function initialize() {
+        var address = (document.getElementById('admin_service_center_StreetAddress'));
+        var autocomplete = new google.maps.places.Autocomplete(address);
+        autocomplete.setTypes(['geocode']);
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
+
+        var address = '';
+        if (place.address_components) {
+            address = [
+                (place.address_components[0] && place.address_components[0].short_name || ''),
+                (place.address_components[1] && place.address_components[1].short_name || ''),
+                (place.address_components[2] && place.address_components[2].short_name || '')
+                ].join(' ');
+        }
+      });
+}
+function codeAddress() {
+    geocoder = new google.maps.Geocoder();
+    var address = document.getElementById("admin_service_center_StreetAddress").value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        $('#admin_service_center_lat').val(results[0].geometry.location.lat());
+        $('#admin_service_center_lan').val(results[0].geometry.location.lng());
+      //alert("Latitude: "+results[0].geometry.location.lat());
+      //alert("Longitude: "+results[0].geometry.location.lng());
+      } 
+
+      else {
+        //alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+google.maps.event.addDomListener(window, 'load', initialize);
+
+        </script>
+
     <div class="container">
     <div class="serch-fld">
           <label class="margin-top">Add/Update Service Center </label>
@@ -165,56 +211,68 @@ function addTimings(){
 
   <div class="field">
     <%= f.label :Name %><br>
-    <%= f.text_field :Name %>
+    <%= f.text_field :Name, :placeholder => "Enter Name" %>
   </div>
   <div class="field">
     <%= f.label :State %><br>
-    <%= f.text_field :State %>
+    <%= f.text_field :State, :placeholder => "Enter State" %>
   </div>
   <div class="field">
-    <%= f.label :StreetAddress %><br>
-    <%= f.text_field :StreetAddress %>
+    <label>Address</label>
+    <%#= f.label :StreetAddress %><br>
+    <%= f.text_field :StreetAddress, :placeholder => "Enter Address"  %>
   </div>
     <div class="field">
-    <%= f.label :StateCode %><br>
-    <%= f.text_field :StateCode %>
-  </div>
+    <label>Address 2</label>
+    <%#= f.label :StreetAddress2 %><br>
+    <%= f.text_field :StreetAddress2 , :placeholder => "Enter Address 2" %>
+  </div> 
   <div class="field">
     <%= f.label :City %><br>
-    <%= f.text_field :City %>
+    <%= f.text_field :City , :placeholder => "Enter City Name" %>
   </div>
   <div class="field">
-    <%= f.label :Pin %><br>
-    <%= f.text_field :Pin %>
+    <label>Zip</label><br>
+    <%= f.text_field :Pin , :placeholder => "Enter ZipCode" %>
   </div>
   <div class="field">
     <%= f.label :Tel %><br>
-    <%= f.text_field :Tel %>
+    <%= f.text_field :Tel , :placeholder => "Enter Contact " %>
+    <input type="hidden" id="admin_service_center_Tel_hidden">
   </div>
   <div class="field">
     <%= f.label :Fax %><br>
-    <%= f.text_field :Fax %>
+    <%= f.text_field :Fax , :placeholder => "Enter Fax" %>
   </div>
   <div class="field">
     <%= f.label :Email %><br>
-    <%= f.text_field :Email %>
+    <%= f.text_field :Email , :placeholder => "Enter Email" %>
   </div>
   <div class="field">
     <%= f.label :Url %><br>
-    <%= f.text_field :Url %>
+    <%= f.text_field :Url , :placeholder => "Enter Service Center Url" %>
   </div>
   <div class="field">
-    <%= f.label :ContactPerson %><br>
-    <%= f.text_field :ContactPerson %>
+    <label>Contact Person</label>
+    <%#= f.label :ContactPerson %><br>
+    <%= f.text_field :ContactPerson , :placeholder => "Enter Contact Person Name" %>
   </div>
   <div class="field">
-    <%= f.label :lat %><br>
-    <%= f.text_field :lat %>
+    <label>Trailer Accessible</label><br>
+    <input type="radio" name="admin_service_center[trailer_access]" value="1">Yes
+  </div>
+    <div class="field">
+    <label>Appointment Needed for Service</label><br>
+    <input type="radio" name="admin_service_center[appointment_service]" value="1">Yes
   </div>
   <div class="field">
-    <%= f.label :lan %><br>
-    <%= f.text_field :lan %>
+    <label>Appointment Needed for Installation</label><br>
+    <input type="radio" name="admin_service_center[appointment_installation]" value="1">Yes
   </div>
+
+    <%= f.hidden_field :lat %>
+    <%= f.hidden_field :lan %>
+
   <div class="cntr-frm-fl">
   	<p class="wrkng-hr-dtl">Working Hours Details :  </p>
     <div class="field">

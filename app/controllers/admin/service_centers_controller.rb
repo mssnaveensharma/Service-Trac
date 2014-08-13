@@ -26,7 +26,7 @@ class Admin::ServiceCentersController < ApplicationController
                                       response[:Name]=center.Name
                                       response[:StreetAddress]=center.StreetAddress
                                       response[:State]=center.State
-                                      response[:StateCode]=center.StateCode
+                                      response[:StreetAddress2]=center.StreetAddress2
                                       response[:City]=center.City
                                       response[:Pin]=center.Pin
                                       response[:Tel]=center.Tel
@@ -48,7 +48,7 @@ class Admin::ServiceCentersController < ApplicationController
                     response[:Name]=center.Name
                     response[:StreetAddress]=center.StreetAddress
                     response[:State]=center.State
-                    response[:StateCode]=center.StateCode
+                    response[:StreetAddress2]=center.StreetAddress2
                     response[:City]=center.City
                     response[:Pin]=center.Pin
                     response[:Tel]=center.Tel
@@ -90,7 +90,7 @@ class Admin::ServiceCentersController < ApplicationController
   # POST /admin/service_centers.json
   def create
     @admin_service_center = Admin::ServiceCenter.new(admin_service_center_params)
-
+  
     respond_to do |format|
       if @admin_service_center.save
         format.html { redirect_to @admin_service_center, notice: 'Service center was successfully created.' }
@@ -168,6 +168,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_service_center_params
-      params.require(:admin_service_center).permit(:Name, :State, :StateCode, :City, :Pin, :Tel, :Fax, :Email, :Url, :ContactPerson, :lat, :lan, :StreetAddress,:WorkingHours)
+      params.require(:admin_service_center).permit(:Name, :State, :StreetAddress, :City, :Pin, :Tel, :Fax, :Email, :Url, :ContactPerson, :lat, :lan, :StreetAddress2,:WorkingHours, :trailer_access, :appointment_service, :appointment_installation)
     end
 end

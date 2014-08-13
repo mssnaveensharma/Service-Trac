@@ -63,12 +63,33 @@ $(document).ready(function(){
                         $("#street").html(value[i]['street']);
                         $("#city").html(value[i]['city']);
                         $("#state").html(value[i]['state']);
-                        $("#StateCode").html(value[i]['statecode']);
+                        $("#StateCode").html(value[i]['streetaddress2']);
                         $("#fax").html(value[i]['fax']);
                         $("#tel").html(value[i]['tel']);
                         $("#url").html(value[i]['url']);
                         $("#email").html(value[i]['email']);
                         $("#ContactPerson").html(value[i]['contact']);
+                        if(value[i]['trailer_access'] == null){
+                          var tAccess = "No";
+                        }else{
+                          var tAccess = "Yes";
+                        }
+                         $("#trailer_access").html(tAccess);
+                        
+                        if(value[i]['appointment_service'] == null){
+                          var serviceAppointment = "No appointment needed for service.";
+                        }else{
+                          var serviceAppointment = "Appointment needed for service.";
+                        }
+                         $("#appointment_service").html(serviceAppointment);
+                        
+                        if(value[i]['appointment_installation'] == null){
+                          var installAppointment = "No need to call to schedule installation.";
+                        }else{
+                          var installAppointment = "Please call to schedule installation.";
+                        }
+                        $("#appointment_installation").html(installAppointment);
+                       
                       //console.log(value[i].hours);
                           $.each([value[i].hours], function( index, new_val ){
                             var len = value[i].hours.length;
@@ -243,9 +264,9 @@ $(document).ready(function() {
                 <i id="email"> info@selectcommusa.com</i>
                 <i id="url"> www.selectcommusa.com</i><br>
                 <i> Contact: </i><i id="ContactPerson">Hugh Grant </i><br>
-                <em>Trailer Accessible? Yes</em>
-                <em>No appointment needed for service.</em>
-                <em>Please call to schedule installation.</em>
+                <em>Trailer Accessible? <i id="trailer_access">No</i></em>
+                <em id="appointment_service">No appointment needed for service.</em>
+                <em id="appointment_installation">Please call to schedule installation.</em>
             </div>
             <ul class="list-group">
                <li class="list-ctnt">

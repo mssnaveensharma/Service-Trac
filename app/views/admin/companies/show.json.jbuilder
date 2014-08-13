@@ -1,1 +1,1 @@
-json.extract! @admin_company, :id, :CompanyName, :created_at, :updated_at
+json.extract! @admin_company, :id, :CompanyName, :Address, :City, :State, :Zip, :Telephone, :Email, :created_at, :updated_at

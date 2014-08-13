@@ -1,22 +1,55 @@
 <%= javascript_include_tag "jquery.validate.min.js" %>
  <script type="text/javascript">
   jQuery(document).ready(function() {
+    $('#admin_company_Telephone').mask('(000) 000-0000');
     $(".new_admin_company").validate({
       errorElement: "label",
       rules: {
-         "admin_company[CompanyName]": "required"
+         "admin_company[CompanyName]": "required",
+         "admin_company[Address]": "required",
+         "admin_company[City]": "required",
+         "admin_company[State]": "required",
+         "admin_company[Zip]": {required:true,number:true},
+         "admin_company[Telephone]": "required",
+         "admin_company[Fax]": {required:true,number:true},
+         "admin_company[Email]": {required:true,email:true},
+         "admin_company[ContactName]": "required"
       },
       messages: {
-         "admin_company[CompanyName]": "Company name is required"
+         "admin_company[CompanyName]": "Company name is required",
+         "admin_company[Address]": "Address is required",
+         "admin_company[City]": "City is required",
+         "admin_company[State]": "State is required",
+         "admin_company[Zip]": "Please enter valid zipcode",
+         "admin_company[Telephone]": "Please enter valid phone number",
+         "admin_company[Fax]": "Please enter valid fax number",
+         "admin_company[Email]": "Please enter email",
+         "admin_company[ContactName]": "Contact person name is required"
       }
     });
         $(".edit_admin_company").validate({
       errorElement: "label",
       rules: {
-         "admin_company[CompanyName]": "required"
+         "admin_company[CompanyName]": "required",
+         "admin_company[Address]": "required",
+         "admin_company[City]": "required",
+         "admin_company[State]": "required",
+         "admin_company[Zip]": {required:true,number:true},
+         "admin_company[Telephone]": "required",
+         "admin_company[Fax]": {required:true,number:true},
+         "admin_company[Email]": {required:true,email:true},
+         "admin_company[ContactName]": "required"
       },
       messages: {
-         "admin_company[CompanyName]": "Company name is required"
+         "admin_company[CompanyName]": "Company name is required",
+         "admin_company[Address]": "Address is required",
+         "admin_company[City]": "City is required",
+         "admin_company[State]": "State is required",
+         "admin_company[Zip]": "Please enter valid zipcode",
+         "admin_company[Telephone]": "Please enter valid phone number",
+         "admin_company[Fax]": "Please enter valid fax number",
+         "admin_company[Email]": "Please enter email",
+         "admin_company[ContactName]": "Contact person name is required"
       }
     });
   }); 
@@ -34,8 +67,8 @@
     <ol class="breadcrumb">
       <li class="active">>> <a href="/admin">Dashboard</a> >></li><li> <a href="/admin/companies"> Companies </a> >> </li><li> Add/Update</li>
     </ol> 
-<div class="edit-cmny-dtl">
-<div class="edit-cmp-form">	
+<div class="srvc-cntr-fld"> 
+<div class="srvc-frm">  
 <%= form_for(@admin_company) do |f| %>
   <% if @admin_company.errors.any? %>
     <div id="error_explanation">
@@ -49,14 +82,69 @@
     </div>
   <% end %>
 
+<div class="field-outer">
   <div class="field">
-    <%= f.label :CompanyName %><br>
-    <%= f.text_field :CompanyName, :class => "comp-nm-txt" %>
+    <%= f.label :CompanyName %>
+    <%= f.text_field :CompanyName  %>
+  </div>
+    <div class="field">
+    <%= f.label :Email %>
+    <%= f.text_field :Email %>
+  </div>
+</div>
+
+<div class="field-outer">
+   <div class="field">
+    <%= f.label :Address %>
+    <%= f.text_field :Address %>
+  </div>
+   <div class="field">
+    <%= f.label :Address2 %>
+    <%= f.text_field :Address2 %>
+  </div>
+</div>
+
+<div class="field-outer">
+   <div class="field">
+    <%= f.label :City %>
+    <%= f.text_field :City %>
+  </div>
+   <div class="field">
+    <%= f.label :State %>
+    <%= f.text_field :State %>
+  </div>
+</div>
+
+<div class="field-outer">
+   <div class="field">
+    <%= f.label :Zip %>
+    <%= f.text_field :Zip %>
+  </div>
+   <div class="field">
+    <%= f.label :Telephone %>
+    <%= f.text_field :Telephone %>
+  </div>
+</div>
+
+<div class="field-outer">
+     <div class="field">
+    <%= f.label :Fax %>
+    <%= f.text_field :Fax %>
+  </div>
+
+     <div class="field">
+     <label>Contact Person</label>
+    <%#= f.label :ContactName %>
+    <%= f.text_field :ContactName %>
+  </div>
+</div>
+
+  <div class="field">
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "edit-btn-comp"%>
   
-  <%= link_to 'Back', admin_companies_path %>
+  <%= link_to 'Back', admin_companies_path, :class => "back-btn-comp" %>
 </div>
 <% end %>
 </div>

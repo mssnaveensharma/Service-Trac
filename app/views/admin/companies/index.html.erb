@@ -57,7 +57,12 @@ $(document).ready(function() {
    <table id="company" class="table-striped table-bordered table-condensed" width="100%"> 
   <thead>
     <tr class="data-header">
-      <th width="85%">Company Name</th>
+      <th >Company Name</th>
+      <th >Email</th>
+      <th >Address</th>
+      <th >City</th>
+      <th >State</th>
+      <th >Contact Person</th>
       <th class="th-align-center">Action</th>
       
     </tr>
@@ -67,6 +72,11 @@ $(document).ready(function() {
     <% @admin_companies.each do |admin_company| %>
       <tr class="data-row">
         <td><%= admin_company.CompanyName %></td>
+        <td><%= admin_company.Email %></td>
+        <td><%= admin_company.Address %></td>
+        <td><%= admin_company.City %></td>
+        <td><%= admin_company.State %></td>
+        <td><%= admin_company.ContactName %></td>
         <!--<td><%= link_to 'Show', admin_company %></td>-->
         <td class="th-align-center">
 			<%= link_to '', edit_admin_company_path(admin_company), :class => "edit-icon" %>

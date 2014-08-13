@@ -7,6 +7,38 @@
   <strong>Company Name:</strong>
   <%= @admin_company.CompanyName %>
 </p>
+<p>
+  <strong>Address:</strong>
+  <%= @admin_company.Address %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%= @admin_company.City %>
+</p>
+<p>
+  <strong>State:</strong>
+  <%= @admin_company.State %>
+</p>
+<p>
+  <strong>Zip:</strong>
+  <%= @admin_company.Zip %>
+</p>
+<p>
+  <strong>Telephone:</strong>
+  <%= @admin_company.Telephone %>
+</p>
+<p>
+  <strong>Fax:</strong>
+  <%= @admin_company.Fax %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @admin_company.Email %>
+</p>
+<p>
+  <strong>ContactName:</strong>
+  <%= @admin_company.ContactName %>
+</p>
 <div class="show-actions">
 <%= link_to 'Edit', edit_admin_company_path(@admin_company), :class => "edit-btn-comp" %> 
 <%= link_to 'Back', admin_companies_path, :class => "back-btn-comp" %>
