@@ -83,61 +83,70 @@
   <% end %>
 
 <div class="field-outer">
+  
+    <div class="field">
+    <%= f.label :Email %>
+    <%= f.text_field :Email %>
+  </div>
   <div class="field">
   <label>Company Name</label>
     <%#= f.label :CompanyName %>
     <%= f.text_field :CompanyName  %>
   </div>
-    <div class="field">
-    <%= f.label :Email %>
-    <%= f.text_field :Email %>
-  </div>
 </div>
 
 <div class="field-outer">
-   <div class="field">
-    <%= f.label :Address %>
-    <%= f.text_field :Address %>
-  </div>
    <div class="field">
     <%= f.label :Address2 %>
     <%= f.text_field :Address2 %>
   </div>
+   <div class="field">
+    <%= f.label :Address %>
+    <%= f.text_field :Address %>
+  </div>
+
 </div>
 
 <div class="field-outer">
+ <div class="field">
+    <%= f.label :State %>
+    <%= f.text_field :State %>
+  </div>
+
    <div class="field">
     <%= f.label :City %>
     <%= f.text_field :City %>
   </div>
-   <div class="field">
-    <%= f.label :State %>
-    <%= f.text_field :State %>
-  </div>
+  
 </div>
 
 <div class="field-outer">
+  <div class="field">
+    <%= f.label :Telephone %>
+    <%= f.text_field :Telephone %>
+  </div>
+
    <div class="field">
     <%= f.label :Zip %>
     <%= f.text_field :Zip %>
   </div>
-   <div class="field">
-    <%= f.label :Telephone %>
-    <%= f.text_field :Telephone %>
-  </div>
+ 
 </div>
 
 <div class="field-outer">
+
+  <div class="field">
+     <label>Contact Person</label>
+    <%#= f.label :ContactName %>
+    <%= f.text_field :ContactName %>
+  </div>
+  
      <div class="field">
     <%= f.label :Fax %>
     <%= f.text_field :Fax %>
   </div>
 
-     <div class="field">
-     <label>Contact Person</label>
-    <%#= f.label :ContactName %>
-    <%= f.text_field :ContactName %>
-  </div>
+   
 </div>
 
   <div class="field">
