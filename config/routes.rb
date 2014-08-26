@@ -52,6 +52,8 @@ Servicetrac::Application.routes.draw do
   match 'api/service-centers' => 'admin/service_centers#index',  :via => :get,  :defaults => { :format => 'json' }
   
   match 'api/tech-support' => 'admin/tech_supports#index',  :via => :get,  :defaults => { :format => 'json' }
+
+  match 'api/test' => 'users#getall',  :via => :get,:defaults => { :format => 'json' }
   
   root 'service_alerts#index'
 

@@ -158,6 +158,13 @@ def setting
       end
 end
 
+def getall
+  @users = User.all
+  
+   return render :json => {:success => "true", :message => @users}
+end
+
+
 def recover_password
   if params[:email] != '' and params[:email] != nil
     @pass = User.where(:email => params[:email])
