@@ -1379,7 +1379,7 @@ form.edit_alert
 	width:100% !important;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-    #map-canvas{height:255px !important;}
+    #map-canvas{height:291px !important;}
     #notes{max-height: 173px;min-height: 173px;}
     .right-border{max-height: 606px;}
     #ReviewContainer{min-height: 606px !important;max-height: 606px !important;}

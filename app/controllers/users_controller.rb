@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   
   def register_app_user
-   if(params[:email] !='' and params[:password] !='' and params[:FirstName] !='' and params[:LastName] !='' and params[:EobrNumber] !='' and params[:eobr_make_id] !='' and params[:eobr_model_id] !='' and params[:TruckModel] !='' and params[:TruckNumber] !='' and params[:truckmake] !='' and params[:TruckYear] !='' and params[:TruckOwner] !='' and params[:CompanyName] and params[:CompanyName] !=0 and params[:CompanyName] !='' and params[:tech_support] !='' and params[:Contact] !='' and params[:device_type] !='' and params[:device_token] !='')
+   if(params[:email] !='' and params[:password] !='' and params[:FirstName] !='' and params[:LastName] !='' and params[:EobrNumber] !='' and params[:eobr_make_id] !='' and params[:TruckModel] !='' and params[:TruckNumber] !='' and params[:truckmake] !='' and params[:TruckYear] !='' and params[:TruckOwner] !='' and params[:CompanyName] and params[:CompanyName] !=0 and params[:CompanyName] !='' and params[:tech_support] !='' and params[:Contact] !='' and params[:device_type] !='' and params[:device_token] !='')
        if params[:device_type] == 'wp' 
         if params[:wp_notification_url] != ''
           @response = User.create({
@@ -19,7 +19,6 @@ class UsersController < ApplicationController
               :EobrNumber=>params[:EobrNumber],
               :Contact=>params[:Contact],
               :eobr_make_id=>params[:eobr_make_id],
-              :eobr_model_id=>params[:eobr_model_id],
               :TruckNumber=>params[:TruckNumber],
               :TruckMake=>params[:truckmake],
               :TruckYear=>params[:TruckYear],
@@ -53,7 +52,6 @@ class UsersController < ApplicationController
               :EobrNumber=>params[:EobrNumber],
               :Contact=>params[:Contact],
               :eobr_make_id=>params[:eobr_make_id],
-              :eobr_model_id=>params[:eobr_model_id],
               :TruckNumber=>params[:TruckNumber],
               :TruckMake=>params[:truckmake],
               :TruckYear=>params[:TruckYear],
@@ -75,6 +73,8 @@ class UsersController < ApplicationController
               return render :json => {:success => "false", :message => @response.errors}
             end
     end
+  else
+      return render :json => {:success => false, :message => "Required perameters are missing"}
   end
 end
 
@@ -120,9 +120,9 @@ def setting
         return render :json => {:success => false, :message => "Invalid user id"}
       end
 
- elsif(params[:user_id] and params[:user_id] != '' and params[:email] and params[:email] !='' and params[:password] and params[:password] !='' and params[:FirstName] and params[:FirstName] !='' and params[:LastName] and params[:LastName] !='' and params[:EobrNumber] and params[:EobrNumber] !='' and params[:eobr_make_id] and params[:eobr_make_id] !='' and params[:eobr_model_id] and params[:eobr_model_id] !='' and params[:TruckNumber] and params[:TruckNumber] !='' and params[:TruckModel] and params[:TruckModel] !='' and params[:truckmake] and params[:truckmake] !='' and params[:TruckYear] and params[:TruckYear] !='' and params[:TruckOwner] and params[:TruckOwner] !='' and params[:company_id] and params[:company_id] !='' and params[:tech_support] and params[:tech_support] !='' and params[:Contact] and params[:Contact] !='' and params[:device_type] and params[:device_type] !='' and params[:device_type] == 'wp' and params[:device_token] !='' and params[:Language] != '' and params[:wp_notification_url] and params[:wp_notification_url] != '')
+ elsif(params[:user_id] and params[:user_id] != '' and params[:email] and params[:email] !='' and params[:password] and params[:password] !='' and params[:FirstName] and params[:FirstName] !='' and params[:LastName] and params[:LastName] !='' and params[:EobrNumber] and params[:EobrNumber] !='' and params[:eobr_make_id] and params[:eobr_make_id] !='' and params[:TruckNumber] and params[:TruckNumber] !='' and params[:TruckModel] and params[:TruckModel] !='' and params[:truckmake] and params[:truckmake] !='' and params[:TruckYear] and params[:TruckYear] !='' and params[:TruckOwner] and params[:TruckOwner] !='' and params[:company_id] and params[:company_id] !='' and params[:tech_support] and params[:tech_support] !='' and params[:Contact] and params[:Contact] !='' and params[:device_type] and params[:device_type] !='' and params[:device_type] == 'wp' and params[:device_token] !='' and params[:Language] != '' and params[:wp_notification_url] and params[:wp_notification_url] != '')
 
-          @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], TruckMake: params[:truckmake], company_id: params[:company_id], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], wp_notification_url: params[:wp_notification_url], plain_password: params[:password])
+          @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], TruckMake: params[:truckmake], company_id: params[:company_id], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], wp_notification_url: params[:wp_notification_url], plain_password: params[:password])
           user = User.find(params[:user_id])
               if(@response == 1 and user != nil and user != '')
                 password_salt = BCrypt::Engine.generate_salt
@@ -137,8 +137,8 @@ def setting
               else
                   return render :json => {:success => false, :message => "Invalid user id" }
               end
-    elsif(params[:user_id] and params[:user_id] != '' and params[:email] and params[:email] !='' and params[:password] and params[:password] !='' and params[:FirstName] and params[:FirstName] !='' and params[:LastName] and params[:LastName] !='' and params[:EobrNumber] and params[:EobrNumber] !='' and params[:eobr_make_id] and params[:eobr_make_id] !='' and params[:eobr_model_id] !='' and params[:TruckNumber] and params[:TruckNumber] !='' and params[:TruckModel] and params[:TruckModel] !='' and params[:truckmake] and params[:truckmake] !='' and params[:TruckYear] and params[:TruckYear] and params[:TruckYear] !='' and params[:TruckOwner] and params[:TruckOwner] !='' and params[:CompanyName] and params[:CompanyName] !='' and params[:tech_support] and params[:tech_support] !='' and params[:Contact] and params[:Contact] !='' and params[:device_type] and params[:device_type] !='' and params[:device_type] =="iphone" and params[:device_token] !='' and params[:Language] and params[:Language] != '')
-          @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], eobr_model_id: params[:eobr_model_id], TruckMake: params[:truckmake], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], company_id: params[:CompanyName], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], plain_password: params[:password])
+    elsif(params[:user_id] and params[:user_id] != '' and params[:email] and params[:email] !='' and params[:password] and params[:password] !='' and params[:FirstName] and params[:FirstName] !='' and params[:LastName] and params[:LastName] !='' and params[:EobrNumber] and params[:EobrNumber] !='' and params[:eobr_make_id] and params[:eobr_make_id] !='' and params[:TruckNumber] and params[:TruckNumber] !='' and params[:TruckModel] and params[:TruckModel] !='' and params[:truckmake] and params[:truckmake] !='' and params[:TruckYear] and params[:TruckYear] and params[:TruckYear] !='' and params[:TruckOwner] and params[:TruckOwner] !='' and params[:CompanyName] and params[:CompanyName] !='' and params[:tech_support] and params[:tech_support] !='' and params[:Contact] and params[:Contact] !='' and params[:device_type] and params[:device_type] !='' and params[:device_type] =="iphone" and params[:device_token] !='' and params[:Language] and params[:Language] != '')
+          @response = User.where('id= ?', params[:user_id]).update_all(FirstName: params[:FirstName], LastName: params[:LastName], EobrNumber: params[:EobrNumber], eobr_make_id: params[:eobr_make_id], TruckMake: params[:truckmake], TruckYear: params[:TruckYear], TruckNumber: params[:TruckNumber],TruckOwner: params[:TruckOwner], TruckModel: params[:TruckModel], company_id: params[:CompanyName], tech_support_id: params[:tech_support], Contact: params[:Contact], device_type: params[:device_type], device_token: params[:device_token], Language: params[:Language], plain_password: params[:password])
             user = User.find(params[:user_id])
            if(@response == 1 and user != nil)
                 password_salt = BCrypt::Engine.generate_salt

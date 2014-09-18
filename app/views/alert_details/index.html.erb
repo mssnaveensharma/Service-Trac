@@ -125,14 +125,28 @@ function calcRoute(id) {
 
             $('#eobr_make').html(value[i]['eobr_make']);
             //$('#eobr_make_text').val(value[i]['eobr_make']);
+            if(value[i]['eobr_model'] == null){
 
-            $('#eobr_model').html(value[i]['eobr_model']);
+              $('#eobr_model').html("Unknown");
+
+            }else{
+
+              $('#eobr_model').html(value[i]['eobr_model']);
+            }
             //$('#eobr_model_text').val(value[i]['eobr_model']);
 
             $('#eobr_number').html(value[i]['eobr_number']);
             //$('#eobr_number_text').val(value[i]['eobr_number']);
 
-            $('#driver_assist').html(value[i]['driver_assist']);
+            if(value[i]['driver_assist'] == null){
+              
+              $('#driver_assist').html("None");
+
+            }else{
+
+              $('#driver_assist').html(value[i]['driver_assist']);
+
+            }
             //$('#driver_assist_text').val(value[i]['driver_assist']);
 
             $('#service_center').html(value[i]['service_center']);
@@ -427,7 +441,7 @@ $(document).ready(function() {
                     <h4 class="">INFO<a class="msg-dvt" href="/messages"></a></h4>
                     <a class="edit_alert" href=""> edit</a>
                </li>
-               <li class="list-group-item"><h4>Contact# </h4><input type="hidden" id="driver_contact_text" class="inline-edit" value=""><p id="driver_contact">904-999-999</p></a></li>
+               <li class="list-group-item"><h4>Cellular Contact # </h4><input type="hidden" id="driver_contact_text" class="inline-edit" value=""><p id="driver_contact">904-999-999</p></a></li>
                <li class="list-group-item"><h4>Truck Year </h4><input type="hidden" id="truck_year_text" class="inline-edit" value=""><p id="truck_year">2013</p></li>
                <li class="list-group-item"><h4>Truck Make  </h4><input type="hidden" id="truck_make_text" class="inline-edit" value=""><p id="truck_make">Kenworth</p></a></li>
             </ul>
@@ -438,7 +452,7 @@ $(document).ready(function() {
                </li>
                <li class="list-group-item"><h4>eobr </h4><input type="hidden" id="eobr_make_text" class="inline-edit" value=""><p id="eobr_make">Omnitraces</p></li>
                <li class="list-group-item"><h4>unit model</h4><input type="hidden" id="eobr_model_text" class="inline-edit" value=""><p id="eobr_model">MCP 100</p></li>
-               <li class="list-group-item"><h4>serial #</h4><input type="hidden" id="eobr_number_text" class="inline-edit" value=""><p id="eobr_number">20758968</p></li>
+               <!-- <li class="list-group-item"><h4>serial #</h4><input type="hidden" id="eobr_number_text" class="inline-edit" value=""><p id="eobr_number">20758968</p></li> -->
                <li class="list-group-item"><h4>driver asst.</h4><input type="hidden" id="driver_assist_text" class="inline-edit" value=""><p id="driver_assist">MobilEye</p></li>
             </ul>
              <ul class="list-group">
@@ -446,7 +460,7 @@ $(document).ready(function() {
                     <h4>Current Location</h4>
                     <a id="" class="refresh" onclick="calcRoute(this.id)" href="javascript:void(0);"> </a>
                </li>
-              <div id="map-canvas" style="width:317px;height:258px;"></div>
+              <div id="map-canvas" style="width:317px;height:294px;"></div>
 
             </ul>
         </div>
